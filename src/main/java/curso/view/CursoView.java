@@ -52,7 +52,7 @@ public class CursoView {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setTitle("Planificación de cursos");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(CursoView.class.getResource("/curso/img/logo-437x500.gif")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(CursoView.class.getResource("/images/logo-437x500.gif")));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 778, 502);
 	
@@ -100,7 +100,7 @@ public class CursoView {
 	private JLabel getLbLogo() {
 		if (lbLogo == null) {
 			lbLogo = new JLabel("");
-			lbLogo.setIcon(new ImageIcon(CursoView.class.getResource("/curso/img/coiipa-logo.jpg")));
+			lbLogo.setIcon(new ImageIcon(CursoView.class.getResource("/images/coiipa-logo.jpg")));
 		}
 		return lbLogo;
 	}
