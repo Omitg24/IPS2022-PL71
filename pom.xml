@@ -4,16 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>giis</groupId>
-	<artifactId>samples-test-dev</artifactId>
+	<artifactId>IPS2022-PL71</artifactId>
 	<version>2.0.1</version>
 	<packaging>jar</packaging>
 	<organization>
-		<name>Grupo de Investigacion en Ingenieria del Software - Universidad de Oviedo</name>
-		<url>http://giis.uniovi.es/</url>
+		<name>Grupo 1 de IPS</name>
+		<url>https://github.com/Omitg24/IPS2022-PL71</url>
 	</organization>
 
-	<name>samples-test-dev</name>
-	<url>https://github.com/javiertuya/samples-test-dev</url>
+	<name>IPS2022-PL71</name>
+	<url>https://github.com/Omitg24/IPS2022-PL71</url>
 
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -45,8 +45,8 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-		  <groupId>io.github.javiertuya</groupId>
-		  <artifactId>visual-assert</artifactId>
+		  <groupId>io.github.ips</groupId>
+		  <artifactId>coiipa</artifactId>
 		  <version>2.2.1</version>
 		</dependency>
 
