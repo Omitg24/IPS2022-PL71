@@ -105,7 +105,7 @@ public class CursoView {
 	private JLabel getLbLogo() {
 		if (lbLogo == null) {
 			lbLogo = new JLabel("");
-			lbLogo.setIcon(new ImageIcon(CursoView.class.getResource("/images/coiipa_logo.png")));
+			lbLogo.setIcon(new ImageIcon(CursoView.class.getResource("/images/coiipa_logo.jpg")));
 		}
 		return lbLogo;
 	}
