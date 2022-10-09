@@ -6,43 +6,43 @@ DROP TABLE Curso;
 DROP TABLE Solicitud;
 
 CREATE TABLE Solicitante (
-    DNIsol varchar(20) NOT NULL,
-    nombresol varchar(20) NOT NULL,
-    apellidossol varchar(40) NOT NULL,
-    localidadsol varchar(20) NOT NULL,
-    telefonosol varchar(20) NOT NULL,
-    titulacionsol varchar(40) NOT NULL,
-    centrosol varchar(40) NOT NULL,
-    anosol decimal(4, 0) NOT NULL,
-    IBANsol varchar(40) NOT NULL,
-    IDsol varchar(20) NOT NULL,
+    dniSol varchar(20) NOT NULL,
+    nombreSol varchar(20) NOT NULL,
+    apellidosSol varchar(40) NOT NULL,
+    idSol varchar(20),
+    localidadSol varchar(20) NOT NULL,
+    telefonoSol varchar(20) NOT NULL,
+    titulacionSol varchar(40) NOT NULL,
+    centroSol varchar(40) NOT NULL,
+    añoSol decimal(4, 0) NOT NULL,
+   	ibanSol varchar(40) NOT NULL,    
 
-    CONSTRAINT PK_SOLICITANTE PRIMARY KEY (DNIsol)
+    CONSTRAINT PK_SOLICITANTE PRIMARY KEY (dniSol)
 );
 
 CREATE TABLE Curso (
-    titulocurso varchar(40) NOT NULL,
-    fechacurso date NOT NULL,
-    fechainicioins date NOT NULL,
-    fechafinins date NOT NULL,
+    tituloCurso varchar(40) NOT NULL,
+    fechaCurso date NOT NULL,
+    fechaInicioIns date,
+    fechaFinIns date,
     precio decimal(10, 2) NOT NULL,
-    estadoc varchar(20) NOT NULL,
-    nplazas decimal(4, 0) NOT NULL,
+    estadoC varchar(20) NOT NULL,
+    nPlazas decimal(4, 0) NOT NULL,
 
-    CONSTRAINT PK_CURSO PRIMARY KEY (titulocurso),
-    CONSTRAINT CK_ESTADO_CURSO CHECK (estadoc in ('Planificado', 'Abierta', 'Cerrada', 'Cancelada')),
-    CONSTRAINT CK_FECHA_CURSO CHECK (fechainicioins < fechafinins)
+    CONSTRAINT PK_CURSO PRIMARY KEY (tituloCurso),
+    CONSTRAINT CK_ESTADO_CURSO CHECK (estadoC in ('Planificado', 'Abierta', 'Cerrada', 'Cancelada')),
+    CONSTRAINT CK_FECHA_CURSO CHECK (fechaInicioIns < fechaFinIns)
 );
 
 CREATE TABLE Solicitud (
-    DNIsol varchar(20),
-    titulocurso varchar(40),
+    dniSol varchar(20),
+    tituloCurso varchar(40),
     fecha date NOT NULL,
-    estados varchar(20) NOT NULL,
+    estadoS varchar(20) NOT NULL,
     abonado decimal(10, 2) NOT NULL,
 
-    CONSTRAINT PK_SOLICITUD PRIMARY KEY (DNIsol, titulocurso),
-    CONSTRAINT FK_SOLICITUD_SOLICITANTE FOREIGN KEY (DNIsol) REFERENCES Solicitante (DNIsol),
-    CONSTRAINT FK_SOLICITUD_CURSO FOREIGN KEY (titulocurso) REFERENCES Curso (titulocurso),
-    CONSTRAINT CK_ESTADO_SOLICITUD CHECK (estados in ('Pre-inscrito', 'Inscrito', 'Cancelado'))
+    CONSTRAINT PK_SOLICITUD PRIMARY KEY (dniSol, tituloCurso),
+    CONSTRAINT FK_SOLICITUD_SOLICITANTE FOREIGN KEY (dniSol) REFERENCES Solicitante (dniSol),
+    CONSTRAINT FK_SOLICITUD_CURSO FOREIGN KEY (tituloCurso) REFERENCES Curso (tituloCurso),
+    CONSTRAINT CK_ESTADO_SOLICITUD CHECK (estadoS in ('Pre-inscrito', 'Inscrito', 'Cancelado'))
 );

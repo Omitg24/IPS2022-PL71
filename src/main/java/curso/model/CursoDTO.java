@@ -1,11 +1,11 @@
 package curso.model;
 
 public class CursoDTO {
-	
+
 	private String titulo;
 	private String fechaInicio;
 	private double precio;
-	
+
 	public CursoDTO(String titulo, String fechaInicio, double precio) {
 		this.titulo = titulo;
 		this.fechaInicio = fechaInicio;
@@ -35,8 +35,5 @@ public class CursoDTO {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-	
-	
-	
 
 }
