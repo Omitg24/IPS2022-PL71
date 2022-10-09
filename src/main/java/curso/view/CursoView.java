@@ -1,23 +1,24 @@
 package curso.view;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
-import java.awt.Color;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import javax.swing.SwingConstants;
+import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.JButton;
-import java.awt.Dimension;
 
 public class CursoView {
 
@@ -51,11 +52,13 @@ public class CursoView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setTitle("Planificación de cursos");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(CursoView.class.getResource("/images/logo-437x500.gif")));
+		frame.setTitle("Administración COIIPA - Planificación de cursos");
+		frame.setIconImage(
+				Toolkit.getDefaultToolkit().getImage(CursoView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 778, 502);
-	
+		frame.setBounds(100, 100, 800, 500);
+		frame.setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,7 +70,7 @@ public class CursoView {
 		contentPane.add(getPnInferior(), BorderLayout.SOUTH);
 		frame.getRootPane().setDefaultButton(btAddCurso);
 	}
-	
+
 	public void reiniciarCampos() {
 		getTxtTitulo().setText("");
 		getTxtPrecio().setText("");
@@ -77,7 +80,7 @@ public class CursoView {
 		txtFecha.setForeground(Color.WHITE);
 		txtFecha.setText("(YYYY-MM-DD)");
 	}
-	
+
 	private JPanel getPnCentro() {
 		if (pnCentro == null) {
 			pnCentro = new JPanel();
@@ -87,6 +90,7 @@ public class CursoView {
 		}
 		return pnCentro;
 	}
+
 	private JPanel getPnSuperior() {
 		if (pnSuperior == null) {
 			pnSuperior = new JPanel();
@@ -97,19 +101,22 @@ public class CursoView {
 		}
 		return pnSuperior;
 	}
+
 	private JLabel getLbLogo() {
 		if (lbLogo == null) {
 			lbLogo = new JLabel("");
-			lbLogo.setIcon(new ImageIcon(CursoView.class.getResource("/images/coiipa-logo.jpg")));
+			lbLogo.setIcon(new ImageIcon(CursoView.class.getResource("/images/coiipa_logo.png")));
 		}
 		return lbLogo;
 	}
+
 	private JPanel getPnRegistro() {
 		if (pnRegistro == null) {
 			pnRegistro = new JPanel();
 			pnRegistro.setPreferredSize(new Dimension(400, 200));
 			pnRegistro.setName("");
-			pnRegistro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Informaci\u00F3n curso", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			pnRegistro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Informaci\u00F3n curso",
+					TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnRegistro.setBackground(Color.WHITE);
 			pnRegistro.setLayout(new GridLayout(3, 1, 0, 5));
 			pnRegistro.add(getPnTitulo());
@@ -118,6 +125,7 @@ public class CursoView {
 		}
 		return pnRegistro;
 	}
+
 	private JPanel getPnTitulo() {
 		if (pnTitulo == null) {
 			pnTitulo = new JPanel();
@@ -130,6 +138,7 @@ public class CursoView {
 		}
 		return pnTitulo;
 	}
+
 	private JLabel getLbTitulo() {
 		if (lbTitulo == null) {
 			lbTitulo = new JLabel("Titulo del curso:");
@@ -138,6 +147,7 @@ public class CursoView {
 		}
 		return lbTitulo;
 	}
+
 	public JTextField getTxtTitulo() {
 		if (txtTitulo == null) {
 			txtTitulo = new JTextField();
@@ -150,6 +160,7 @@ public class CursoView {
 		}
 		return txtTitulo;
 	}
+
 	private JPanel getPnFecha() {
 		if (pnFecha == null) {
 			pnFecha = new JPanel();
@@ -162,6 +173,7 @@ public class CursoView {
 		}
 		return pnFecha;
 	}
+
 	private JLabel getLbFecha() {
 		if (lbFecha == null) {
 			lbFecha = new JLabel("Fecha del curso:");
@@ -169,6 +181,7 @@ public class CursoView {
 		}
 		return lbFecha;
 	}
+
 	public JTextField getTxtFecha() {
 		if (txtFecha == null) {
 			txtFecha = new JTextField();
@@ -183,6 +196,7 @@ public class CursoView {
 		}
 		return txtFecha;
 	}
+
 	private JPanel getPnPrecio() {
 		if (pnPrecio == null) {
 			pnPrecio = new JPanel();
@@ -195,6 +209,7 @@ public class CursoView {
 		}
 		return pnPrecio;
 	}
+
 	private JLabel getLbPrecio() {
 		if (lbPrecio == null) {
 			lbPrecio = new JLabel("Precio del curso:");
@@ -202,6 +217,7 @@ public class CursoView {
 		}
 		return lbPrecio;
 	}
+
 	public JTextField getTxtPrecio() {
 		if (txtPrecio == null) {
 			txtPrecio = new JTextField();
@@ -214,6 +230,7 @@ public class CursoView {
 		}
 		return txtPrecio;
 	}
+
 	private JPanel getPnInferior() {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
@@ -225,15 +242,18 @@ public class CursoView {
 		}
 		return pnInferior;
 	}
+
 	public JButton getBtAddCurso() {
 		if (btAddCurso == null) {
 			btAddCurso = new JButton("Planificar");
+			btAddCurso.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btAddCurso.setForeground(Color.WHITE);
 			btAddCurso.setFont(new Font("High Tower Text", Font.BOLD, 14));
 			btAddCurso.setBackground(new Color(34, 139, 34));
 		}
 		return btAddCurso;
 	}
+
 	private JPanel getPnTituloSup() {
 		if (pnTituloSup == null) {
 			pnTituloSup = new JPanel();
@@ -242,6 +262,7 @@ public class CursoView {
 		}
 		return pnTituloSup;
 	}
+
 	private JLabel getLbPlan() {
 		if (lbPlan == null) {
 			lbPlan = new JLabel("Planificación cursos");
@@ -250,25 +271,20 @@ public class CursoView {
 		}
 		return lbPlan;
 	}
-	
+
 	public JFrame getFrame() {
 		return frame;
 	}
-	
+
 	public String getTitulo() {
 		return getTxtTitulo().getText();
 	}
-	
+
 	public String getPrecio() {
 		return getTxtPrecio().getText();
 	}
-	
+
 	public String getFecha() {
 		return getTxtFecha().getText();
-	}
-
-	public void mostrarDialogo(String string) {
-		JOptionPane.showMessageDialog(null, string);
-		
 	}
 }

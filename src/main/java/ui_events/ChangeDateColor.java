@@ -1,4 +1,4 @@
-package curso.controller;
+package ui_events;
 
 import java.awt.Color;
 import java.awt.event.FocusEvent;
@@ -6,29 +6,44 @@ import java.awt.event.FocusListener;
 
 import javax.swing.JTextField;
 
-public class CambiarColorFecha implements FocusListener {
-	
-	public static final String DATE="(YYYY-MM-DD)";
-	
+/**
+ * Título: Clase ChangeDateColor
+ *
+ * @author David Warzynski Abril, UO278968
+ * @version 9 oct 2022
+ */
+public class ChangeDateColor implements FocusListener {
+	/**
+	 * Constante DATE
+	 */
+	public static final String DATE = "(YYYY-MM-DD)";
+
+	/**
+	 * Método focusGained
+	 * @param e
+	 */
 	@Override
 	public void focusGained(FocusEvent e) {
 		JTextField f = ((JTextField) e.getSource());
 		f.setForeground(Color.BLACK);
 		f.setBackground(Color.WHITE);
-		if(f.getText().equals(DATE))
+		if (f.getText().equals(DATE))
 			f.setText("");
-		
+
 	}
+
 	
+	/**
+	 * Método focusLost
+	 * @param e
+	 */
 	@Override
 	public void focusLost(FocusEvent e) {
 		JTextField f = ((JTextField) e.getSource());
-		if(f.getText().isBlank()) {
+		if (f.getText().isBlank()) {
 			f.setBackground(Color.LIGHT_GRAY);
 			f.setForeground(Color.WHITE);
 			f.setText(DATE);
 		}
-		
 	}
-
 }
