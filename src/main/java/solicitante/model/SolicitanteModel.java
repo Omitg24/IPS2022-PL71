@@ -16,7 +16,15 @@ public class SolicitanteModel {
 	 */
 	public static final String SQL_ADD_APPLICANT =
 			"INSERT INTO SOLICITANTE (dniSol, nombreSol, apellidosSol, localidadSol, telefonoSol, "
-			+ "titulacionSol, centroSol, añoSol, ibanSol) values (?,?,?,?,?,?,?,?,?)";
+			+ "titulacionSol, centroSol, anioSol, ibanSol, tipoSol, estadoSol) values (?,?,?,?,?,?,?,?,?,?,?)";
+	/**
+	 * Constante DEFAULT_TIPOSOL
+	 */
+	private static final String DEFAULT_TIPOSOL = "Colegiado";
+	/**
+	 * Constante DEFAULT_ESTADOSOL
+	 */
+	private static final String DEFAULT_ESTADOSOL = "Pendiente";
 	
 //-- ATRIBUTOS -----------------------------------------------------------------	
 	/**
@@ -42,7 +50,7 @@ public class SolicitanteModel {
 		
 		validation(dni, nombre, apellidos, localidad, telefono, titulacion, centro, año, iban);
 		db.executeUpdate(SQL_ADD_APPLICANT, dni, nombre, apellidos, 
-				localidad, telefono, titulacion, centro, año, iban);
+				localidad, telefono, titulacion, centro, año, iban,DEFAULT_TIPOSOL,DEFAULT_ESTADOSOL);
 	}
 	
 	/**
