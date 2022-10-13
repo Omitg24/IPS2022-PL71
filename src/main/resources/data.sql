@@ -15,7 +15,10 @@ Insert into curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,esta
 values 
 ('Desarrollo dispositivos moviles','2022-9-13','135','2022-9-13','2023-10-10','Planificado','19'),
 ('Desarrollo de robots','2022-13-17','90','2022-9-13','2023-10-10','Planificado','2'),
-('Desarrollo videojuegos','2022-11-21','165','2022-9-13','2023-10-10','Planificado','100');
+('Desarrollo videojuegos','2022-11-21','165','2022-9-13','2023-10-10','Planificado','100'),
+('Desarrollo web','2022-11-26','104','2022-9-17','2023-11-3','Abierta','78'),
+('Informática forense y auditoría','2023-1-20','97','2022-11-17','2023-3-1','Abierta','24');
+
 
 Insert into Inscribe (DNIsol,titulocurso,fecha,estados,abonado)
 values

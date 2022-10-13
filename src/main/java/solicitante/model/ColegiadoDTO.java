@@ -6,7 +6,7 @@ package solicitante.model;
  * @author Omar Teixeira González, UO281847
  * @version 9 oct 2022
  */
-public class SolicitanteDTO {
+public class ColegiadoDTO {
 	/**
 	 * Atributo dniSol
 	 */
@@ -38,12 +38,15 @@ public class SolicitanteDTO {
 	/**
 	 * Atributo añoSol
 	 */
-	private String añoSol;
+	private String anioSol;
 	/**
 	 * Atributo ibanSol
 	 */
 	private String ibanSol;
+	private String numeroColegiado;
 	
+	
+	public ColegiadoDTO() { }
 	/**
 	 * Constructor ApplicantDTO 
 	 * @param dniSol
@@ -56,9 +59,9 @@ public class SolicitanteDTO {
 	 * @param añoSol
 	 * @param ibanSol
 	 */
-	public SolicitanteDTO(String dniSol, String nombreSol, String apellidosSol, 
+	public ColegiadoDTO(String dniSol, String nombreSol, String apellidosSol, 
 			String localidadSol, String telefonoSol, String titulacionSol, 
-			String centroSol, String añoSol, String ibanSol) {		
+			String centroSol, String añoSol, String ibanSol, String numeroColegiado) {		
 		this.dniSol = dniSol;
 		this.nombreSol = nombreSol;
 		this.apellidosSol = apellidosSol;
@@ -66,8 +69,9 @@ public class SolicitanteDTO {
 		this.telefonoSol = telefonoSol;
 		this.titulacionSol = titulacionSol;
 		this.centroSol = centroSol;
-		this.añoSol = añoSol;
+		this.anioSol = añoSol;
 		this.ibanSol = ibanSol;
+		this.numeroColegiado = numeroColegiado;
 	}
 
 	/**
@@ -186,16 +190,16 @@ public class SolicitanteDTO {
 	 * Método getAñoSol
 	 * @return añoSol
 	 */
-	public String getAñoSol() {
-		return añoSol;
+	public String getAnioSol() {
+		return anioSol;
 	}
 
 	/**
 	 * Método setAñoSol
 	 * @param añoSol
 	 */
-	public void setAñoSol(String añoSol) {
-		this.añoSol = añoSol;
+	public void setAnioSol(String añoSol) {
+		this.anioSol = añoSol;
 	}
 
 	/**
@@ -214,6 +218,18 @@ public class SolicitanteDTO {
 		this.ibanSol = ibanSol;
 	}
 
+	public String getNumeroColegiado() {
+		return numeroColegiado;
+	}
+	
+	public void setNumeroColegiado(String numeroCol) {
+		this.numeroColegiado = numeroCol;
+	}
+	
+	public String getApellidosSol() {
+		return apellidosSol;
+	}
+	
 	/**
 	 * Método toString
 	 * @return string
@@ -222,7 +238,7 @@ public class SolicitanteDTO {
 	public String toString() {
 		return "Solicitante [dniSol=" + dniSol + ", nombreSol=" + nombreSol + ", apellidosSol=" + apellidosSol
 				+ ", localidadSol=" + localidadSol + ", telefonoSol=" + telefonoSol + ", titulacionSol=" + titulacionSol
-				+ ", centroSol=" + centroSol + ", añoSol=" + añoSol + ", ibanSol=" + ibanSol + "]";
+				+ ", centroSol=" + centroSol + ", añoSol=" + anioSol + ", ibanSol=" + ibanSol + "]";
 	}
 	
 	
