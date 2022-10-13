@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import curso.view.CursoView;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
@@ -61,7 +60,7 @@ public class InscritosView {
 		frame.setResizable(false);
 		frame.setTitle("Administración COIIPA - Inscripciones de cursos");
 		frame.setIconImage(
-				Toolkit.getDefaultToolkit().getImage(CursoView.class.getResource("/images/coiipa_symbol.png")));
+				Toolkit.getDefaultToolkit().getImage(InscritosView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 500);
 		frame.setLocationRelativeTo(null);
@@ -103,7 +102,7 @@ public class InscritosView {
 	private JLabel getLbLogo() {
 		if (lbLogo == null) {
 			lbLogo = new JLabel("");
-			lbLogo.setIcon(new ImageIcon(CursoView.class.getResource("/images/coiipa_logo.jpg")));
+			lbLogo.setIcon(new ImageIcon(InscritosView.class.getResource("/images/coiipa_logo.jpg")));
 		}
 		return lbLogo;
 	}
