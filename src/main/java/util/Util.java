@@ -1,6 +1,13 @@
 package util;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +26,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * conversion de fechas
  */
 public class Util {
+	/**
+	 * Constante RECEIPTS_PATH
+	 */
+	private static final String RECEIPTS_PATH = "src/main/resources/files/receipts.dat";	
 	
 	/**
 	 * Constructor Util
@@ -214,6 +225,38 @@ public class Util {
 	public static void validateCondition(boolean condition, String message) {
 		if (!condition) {
 			throw new ApplicationException(message);
+		}
+	}
+	
+	/**
+	 * Método saveReceiptToFile
+	 * @param receiptLine
+	 * @param date
+	 * @param dni
+	 * @param iban
+	 * @param amount
+	 */
+	public static void saveReceiptToFile(String receiptLine, String date, String dni, String iban, int amount) {
+		try {
+			String filePath = RECEIPTS_PATH;
+			Path path = Paths.get(filePath);
+			if (!Files.exists(path.getParent())) {
+				Files.createDirectory(path.getParent());
+			}
+			BufferedWriter file = new BufferedWriter(new FileWriter(filePath, true));			
+			String line = String.format("[%s;%s;%s;%s;%d]\n", 
+										receiptLine,
+										date,
+										dni,
+										iban,
+										amount);
+			file.append(line);		
+			file.close();
+		}
+		catch (FileNotFoundException fnfe) {
+			System.out.println("El archivo no se ha podido guardar");
+		} catch (IOException ioe) {
+			new RuntimeException("Error de entrada/salida");
 		}
 	}
 }

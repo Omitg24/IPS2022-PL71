@@ -1,4 +1,4 @@
-package solicitante.model;
+package colegiado.model;
 
 /**
  * Título: Clase SolicitanteDTO

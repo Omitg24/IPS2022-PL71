@@ -1,11 +1,11 @@
-package solicitante.controller;
+package colegiado.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import solicitante.model.SolicitanteModel;
-import solicitante.view.SolicitanteView;
+import colegiado.model.ColegiadoModel;
+import colegiado.view.ColegiadoView;
 import ui_events.ChangeColor;
 import ui_events.ChangeDateColor;
 import util.SwingUtil;
@@ -16,22 +16,22 @@ import util.SwingUtil;
  * @author Omar Teixeira González, UO281847
  * @version 9 oct 2022
  */
-public class SolicitanteController {	
+public class ColegiadoController {	
 	/**
 	 * Atributo model
 	 */
-	private SolicitanteModel model;
+	private ColegiadoModel model;
 	/**
 	 * Atributo view
 	 */
-	private SolicitanteView view;
+	private ColegiadoView view;
 	
 	/**
 	 * Constructor ApplicantController
 	 * @param model
 	 * @param view
 	 */
-	public SolicitanteController(SolicitanteModel model, SolicitanteView view) {
+	public ColegiadoController(ColegiadoModel model, ColegiadoView view) {
 		this.model = model;
 		this.view = view;
 		
@@ -85,8 +85,7 @@ public class SolicitanteController {
 			model.applyForApplicant(dni, name, surname, population, telephone, 
 									titulation, center, year, iban);
 			view.resetFields();
-			Locale loc = new Locale("es", "ES");
-			DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, loc);
+			DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("es", "ES"));
 			SwingUtil.showInformationDialog("Solicitud con dni: " + dni + ", a día " + dateFormat.format(new Date()) + ",\n ha sido presentada. Se mantendrá en estado 'Pendiente'.");
 		}
 	}

@@ -4,12 +4,12 @@ import java.util.Date;
 
 import javax.swing.table.TableModel;
 
+import colegiado.model.ColegiadoDTO;
 import curso.model.CursoDTO;
 import inscripcion.model.InscripcionModel;
 import inscripcion.view.EmisionView;
 import inscripcion.view.IdentificadorView;
 import inscripcion.view.InscripcionView;
-import solicitante.model.ColegiadoDTO;
 import util.SwingUtil;
 import util.Util;
 

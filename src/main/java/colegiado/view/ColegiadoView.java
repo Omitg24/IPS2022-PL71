@@ -1,4 +1,4 @@
-package solicitante.view;
+package colegiado.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,7 +31,7 @@ import ui_events.ProccessKeyNoDigits;
  * @author Omar Teixeira González, UO281847
  * @version 9 oct 2022
  */
-public class SolicitanteView extends JFrame {
+public class ColegiadoView extends JFrame {
 //-- CONSTANTES ----------------------------------------------------------------
 	/**
 	 * Constante serialVersionUID 
@@ -216,7 +216,7 @@ public class SolicitanteView extends JFrame {
 	/**
 	 * Constructor ApplicantView
 	 */
-	public SolicitanteView() {
+	public ColegiadoView() {
 		initialize();
 	}
 	
@@ -227,7 +227,7 @@ public class SolicitanteView extends JFrame {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setTitle("Administración COIIPA - Solicitud de alta");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(SolicitanteView.class.getResource("/images/coiipa_symbol.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ColegiadoView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 500);
 		frame.setLocationRelativeTo(null);
@@ -266,7 +266,7 @@ public class SolicitanteView extends JFrame {
 	private JLabel getLbLogo() {
 		if (lbLogo == null) {
 			lbLogo = new JLabel("");
-			lbLogo.setIcon(new ImageIcon(SolicitanteView.class.getResource("/images/coiipa_logo.jpg")));
+			lbLogo.setIcon(new ImageIcon(ColegiadoView.class.getResource("/images/coiipa_logo.jpg")));
 		}
 		return lbLogo;
 	}

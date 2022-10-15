@@ -14,13 +14,10 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.BoxLayout;
 
 /**
  * Título: Clase AperturaView
@@ -54,7 +51,7 @@ public class EmisionView {
 		frmEmision.setResizable(false);
 		frmEmision.setTitle("Administración COIIPA");
 		frmEmision.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmEmision.setBounds(100, 100, 412, 316);
+		frmEmision.setBounds(100, 100, 425, 330);
 		frmEmision.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();

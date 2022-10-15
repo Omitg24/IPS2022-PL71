@@ -1,4 +1,4 @@
-package solicitante.model;
+package colegiado.model;
 
 import util.Database;
 import util.Util;
@@ -9,7 +9,7 @@ import util.Util;
  * @author Omar Teixeira González, UO281847
  * @version 9 oct 2022
  */
-public class SolicitanteModel {
+public class ColegiadoModel {
 //-- CONSTANTES ----------------------------------------------------------------
 	/**
 	 * Constante SQL_ADD_APPLICANT
@@ -20,11 +20,11 @@ public class SolicitanteModel {
 	/**
 	 * Constante DEFAULT_TIPOSOL
 	 */
-	private static final String DEFAULT_TIPOSOL = "Colegiado";
+	private static final String DEFAULT_TYPE = "Colegiado";
 	/**
 	 * Constante DEFAULT_ESTADOSOL
 	 */
-	private static final String DEFAULT_ESTADOSOL = "Pendiente";
+	private static final String DEFAULT_STATE = "Pendiente";
 	
 //-- ATRIBUTOS -----------------------------------------------------------------	
 	/**
@@ -50,7 +50,7 @@ public class SolicitanteModel {
 		
 		validation(dni, nombre, apellidos, localidad, telefono, titulacion, centro, año, iban);
 		db.executeUpdate(SQL_ADD_APPLICANT, dni, nombre, apellidos, 
-				localidad, telefono, titulacion, centro, año, iban,DEFAULT_TIPOSOL,DEFAULT_ESTADOSOL);
+				localidad, telefono, titulacion, centro, año, iban, DEFAULT_TYPE, DEFAULT_STATE);
 	}
 	
 	/**

@@ -2,8 +2,8 @@ package inscripcion.model;
 
 import java.util.List;
 
+import colegiado.model.ColegiadoDTO;
 import curso.model.CursoDTO;
-import solicitante.model.ColegiadoDTO;
 import util.Database;
 import util.Util;
 
