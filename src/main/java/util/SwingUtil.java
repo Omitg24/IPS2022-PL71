@@ -62,7 +62,7 @@ public class SwingUtil {
 	 * del tablemodel
 	 */
 	public static void autoAdjustColumns(JTable table) {
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // si se usa ON la ultima columna se expandra en el panel
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS); // si se usa ON la ultima columna se expandra en el panel
 		TableColumnAdjuster tca = new TableColumnAdjuster(table);
 		tca.adjustColumns();
 	}
