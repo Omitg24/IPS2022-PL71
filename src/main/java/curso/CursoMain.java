@@ -11,6 +11,7 @@ public class CursoMain {
 
 		Database db = new Database();
 		db.createDatabase(false);
+		db.loadDatabase();
 
 		CursoView view = new CursoView();
 		CursoModel model = new CursoModel();

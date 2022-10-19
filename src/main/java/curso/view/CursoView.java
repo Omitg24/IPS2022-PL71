@@ -79,6 +79,7 @@ public class CursoView {
 		txtFecha.setBackground(Color.LIGHT_GRAY);
 		txtFecha.setForeground(Color.WHITE);
 		txtFecha.setText("(YYYY-MM-DD)");
+		txtTitulo.grabFocus();
 	}
 
 	private JPanel getPnCentro() {
@@ -142,6 +143,8 @@ public class CursoView {
 	private JLabel getLbTitulo() {
 		if (lbTitulo == null) {
 			lbTitulo = new JLabel("Titulo del curso:");
+			lbTitulo.setLabelFor(getTxtTitulo());
+			lbTitulo.setDisplayedMnemonic('T');
 			lbTitulo.setHorizontalAlignment(SwingConstants.LEFT);
 			lbTitulo.setFont(new Font("High Tower Text", Font.BOLD, 14));
 		}
@@ -177,6 +180,8 @@ public class CursoView {
 	private JLabel getLbFecha() {
 		if (lbFecha == null) {
 			lbFecha = new JLabel("Fecha del curso:");
+			lbFecha.setLabelFor(getTxtFecha());
+			lbFecha.setDisplayedMnemonic('F');
 			lbFecha.setFont(new Font("High Tower Text", Font.BOLD, 14));
 		}
 		return lbFecha;
@@ -213,6 +218,8 @@ public class CursoView {
 	private JLabel getLbPrecio() {
 		if (lbPrecio == null) {
 			lbPrecio = new JLabel("Precio del curso:");
+			lbPrecio.setLabelFor(getTxtPrecio());
+			lbPrecio.setDisplayedMnemonic('P');
 			lbPrecio.setFont(new Font("High Tower Text", Font.BOLD, 14));
 		}
 		return lbPrecio;

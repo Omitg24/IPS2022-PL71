@@ -34,7 +34,10 @@ public class CursoController {
 		} else if (comprobarPrecio()) {
 			SwingUtil.showErrorDialog("Formato de precio no valido");
 			view.getTxtPrecio().setText("");
-		} else {
+		} else if (comprobarTitulo(view.getTitulo())){
+			view.reiniciarCampos();
+			SwingUtil.showErrorDialog("El curso ya existe");
+		}else {
 			String titulo = view.getTitulo();
 			Date fecha = Util.isoStringToDate(view.getFecha());
 			double precio = Double.parseDouble(view.getPrecio());
@@ -42,6 +45,10 @@ public class CursoController {
 			view.reiniciarCampos();
 			SwingUtil.showInformationDialog("Curso " + titulo + " añadido correctamente");
 		}
+	}
+
+	private boolean comprobarTitulo(String titulo) {
+		return !model.buscarCursoPorTitulo(titulo).isEmpty();
 	}
 
 	private boolean comprobarPrecio() {
