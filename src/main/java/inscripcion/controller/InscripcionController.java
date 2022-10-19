@@ -54,6 +54,7 @@ public class InscripcionController {
 		}
 		else {
 			SwingUtil.showErrorDialog("El identificador introducido no es válido");
+			viewId.getTextId().setText("");
 		}
 	}
 
