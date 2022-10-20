@@ -57,7 +57,7 @@ public class InscripcionView {
 		frmAdministracinCoiipa = new JFrame();
 		frmAdministracinCoiipa.setResizable(false);
 		frmAdministracinCoiipa.setTitle("Administración COIIPA - Apertura de cursos");
-		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frmAdministracinCoiipa.setBounds(100, 100, 778, 502);
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 

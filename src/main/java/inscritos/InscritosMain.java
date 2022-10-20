@@ -3,7 +3,6 @@ package inscritos;
 import inscritos.controller.InscritosController;
 import inscritos.model.InscritosModel;
 import inscritos.view.InscritosView;
-import util.Database;
 
 /**
  * 
@@ -14,10 +13,6 @@ import util.Database;
  */
 public class InscritosMain {
 	public static void main(String[] args) {
-
-		Database db = new Database();
-		db.createDatabase(false);
-		db.loadDatabase();
 
 		InscritosView view = new InscritosView();
 		InscritosModel model = new InscritosModel();

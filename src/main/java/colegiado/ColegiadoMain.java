@@ -3,7 +3,6 @@ package colegiado;
 import colegiado.controller.ColegiadoController;
 import colegiado.model.ColegiadoModel;
 import colegiado.view.ColegiadoView;
-import util.Database;
 
 /**
  * Título: Clase SolicitanteMain
@@ -17,8 +16,6 @@ public class ColegiadoMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Database db = new Database();
-		db.createDatabase(false);
 
 		ColegiadoView view = new ColegiadoView();
 		ColegiadoModel model = new ColegiadoModel();

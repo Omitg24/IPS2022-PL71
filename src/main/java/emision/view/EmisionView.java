@@ -92,7 +92,7 @@ public class EmisionView extends JFrame {
 		frame.setResizable(false);
 		frame.setTitle("Administración COIIPA - Emisión de recibos");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(EmisionView.class.getResource("/images/coiipa_symbol.png")));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 425, 330);
 		frame.setLocationRelativeTo(null);
 		

@@ -48,7 +48,7 @@ public class IdentificadorView {
 		frmIntroduzcaCredenciales = new JFrame();
 		frmIntroduzcaCredenciales.setResizable(false);
 		frmIntroduzcaCredenciales.setTitle("Administración COIIPA");
-		frmIntroduzcaCredenciales.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frmIntroduzcaCredenciales.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frmIntroduzcaCredenciales.setBounds(100, 100, 380, 200);
 		frmIntroduzcaCredenciales.setLocationRelativeTo(null);
 
