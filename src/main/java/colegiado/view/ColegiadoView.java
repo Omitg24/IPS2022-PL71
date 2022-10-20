@@ -398,6 +398,7 @@ public class ColegiadoView extends JFrame {
 			txtDni.setColumns(10);
 			txtDni.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtDni.setBackground(Color.LIGHT_GRAY);
+			txtDni.addKeyListener(new ProccessKeyDni());
 		}
 		return txtDni;
 	}
