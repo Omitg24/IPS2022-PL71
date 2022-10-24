@@ -17,8 +17,14 @@
 <p align="justify"> 
 Proyecto realizado para la asignatura de Ingeniería del Proceso Software (IPS) de la Universidad de Oviedo.
 Este proyecto se ha desarrollado conjuntamente entre Adrián Alves Morales, Omar Teixeira González y David Leszek Warzynski Abril donde, como desarrolladores, se ha cumplido con la funcion de implementar el programa definido mediante la técnica de SCRUM.
+</p>
+<p align="justify"> 
 El proyecto consiste en una aplicación que sea capaz de llevar la gestión del Colegio Oficial de Ingenieros en Informática del Principado de Asturias (COIIPA), en esta gestión, se incluyen funcionalidades como el registro y control de los colegiados, precolegiados y estudiantes base del colegio, pasando por los cursos impartidos, donde, al igual que con los colegiados, deberá poder llevarse un control sobre éstos, pudiendo añadir, eliminar, modificar, al mismo tiempo que controlar las inscripciones que se realizan y pagos del mismo, mediante envíos de lotes a bancos y demás.
+</p>
+<p align="justify"> 
 También se contará con la funcionalidad de peritajes, dando la oportunidad de solicitar informes periciales y que la aplicación asigne a el solicitante un perito listo para ello, entre otras. 
+</p>
+<p align="justify"> 
 Con esta aplicación se pretende llegar a una introducción al desarrollo de software en equipos para una empresa, o, como en este caso, un product owner, siendo aquí, el profesor de la asignatura.
 </p>
 
