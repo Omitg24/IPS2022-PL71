@@ -60,7 +60,7 @@ public class InscritosView {
 		frame.setTitle("Administración COIIPA - Inscripciones de cursos");
 		frame.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(InscritosView.class.getResource("/images/coiipa_symbol.png")));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 500);
 		frame.setLocationRelativeTo(null);
 		

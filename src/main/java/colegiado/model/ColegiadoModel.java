@@ -15,7 +15,7 @@ public class ColegiadoModel {
 	 * Constante SQL_ADD_APPLICANT
 	 */
 	public static final String SQL_ADD_APPLICANT =
-			"INSERT INTO SOLICITANTE (dniSol, nombreSol, apellidosSol, localidadSol, telefonoSol, "
+			"INSERT INTO COLEGIADO (dniSol, nombreSol, apellidosSol, localidadSol, telefonoSol, "
 			+ "titulacionSol, centroSol, anioSol, ibanSol, tipoSol, estadoSol) values (?,?,?,?,?,?,?,?,?,?,?)";
 	/**
 	 * Constante DEFAULT_TIPOSOL

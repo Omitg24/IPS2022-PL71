@@ -3,7 +3,6 @@ package apertura;
 import apertura.controller.AperturaController;
 import apertura.model.AperturaModel;
 import apertura.view.AperturaView;
-import util.Database;
 
 /**
  * Título: Clase AperturaMain
@@ -14,10 +13,6 @@ import util.Database;
 public class AperturaMain {
 	
 	public static void main(String[] args) {
-	
-		Database db=new Database();
-		db.createDatabase(false);
-		db.loadDatabase();
 		
 		AperturaView view = new AperturaView();
 		AperturaModel model = new AperturaModel();

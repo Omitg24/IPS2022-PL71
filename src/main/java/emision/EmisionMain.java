@@ -3,7 +3,6 @@ package emision;
 import emision.controller.EmisionController;
 import emision.model.EmisionModel;
 import emision.view.EmisionView;
-import util.Database;
 
 /**
  * Titulo: Clase EmisionMain
@@ -17,9 +16,6 @@ public class EmisionMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Database db = new Database();
-		db.createDatabase(false);
-		db.loadDatabase();
 		
 		EmisionView view = new EmisionView();
 		EmisionModel model = new EmisionModel();

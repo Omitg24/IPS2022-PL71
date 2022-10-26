@@ -228,7 +228,7 @@ public class ColegiadoView extends JFrame {
 		frame.setResizable(false);
 		frame.setTitle("Administración COIIPA - Solicitud de alta");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ColegiadoView.class.getResource("/images/coiipa_symbol.png")));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 500);
 		frame.setLocationRelativeTo(null);
 		
@@ -398,6 +398,7 @@ public class ColegiadoView extends JFrame {
 			txtDni.setColumns(10);
 			txtDni.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtDni.setBackground(Color.LIGHT_GRAY);
+			txtDni.addKeyListener(new ProccessKeyDni());
 		}
 		return txtDni;
 	}

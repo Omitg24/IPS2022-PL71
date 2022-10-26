@@ -47,7 +47,8 @@ public class CursoController {
 			double precio = Double.parseDouble(view.getPrecio());
 			model.planificarCurso(titulo, fecha, precio);
 			view.reiniciarCampos();
-			SwingUtil.showInformationDialog("Curso " + titulo + " añadido correctamente");
+			String str= "'" + titulo+ "'";
+			SwingUtil.showInformationDialog("El curso " +str+" se ha añadido correctamente");
 		}
 	}
 

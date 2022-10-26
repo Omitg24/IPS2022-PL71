@@ -3,7 +3,6 @@ package inscripcion;
 import inscripcion.controller.InscripcionController;
 import inscripcion.model.InscripcionModel;
 import inscripcion.view.IdentificadorView;
-import util.Database;
 
 /**
  * Título: Clase InscripcionMain
@@ -15,10 +14,6 @@ public class InscripcionMain {
 	
 	public static void main(String[] args) {
 	
-		Database db=new Database();
-		db.createDatabase(false);
-		db.loadDatabase();
-		
 		IdentificadorView view = new IdentificadorView();
 		InscripcionModel model = new InscripcionModel();
 		System.out.println(model.getCursosAbiertos());

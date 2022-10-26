@@ -31,7 +31,7 @@ CREATE TABLE Curso (
     fechaFinIns date,
     precio decimal(10, 2) NOT NULL,
     estadoC varchar(20) NOT NULL,
-    nPlazas decimal(4, 0) NOT NULL,
+    nPlazas decimal(4, 0) ,
 
     CONSTRAINT PK_CURSO PRIMARY KEY (tituloCurso),
     CONSTRAINT CK_ESTADO_CURSO CHECK (estadoC in ('Planificado', 'Abierta', 'Cerrada', 'Cancelada')),
