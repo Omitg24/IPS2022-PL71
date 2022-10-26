@@ -1,5 +1,7 @@
 package curso.controller;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 import curso.model.CursoModel;
@@ -34,7 +36,9 @@ public class CursoController {
 		} else if (comprobarPrecio()) {
 			SwingUtil.showErrorDialog("Formato de precio no valido");
 			view.getTxtPrecio().setText("");
-		} else if (comprobarTitulo(view.getTitulo())){
+		} else if (comprobarFecha()){
+			SwingUtil.showErrorDialog("La fecha no puede ser anterior");
+		}else if (comprobarTitulo(view.getTitulo())){
 			view.reiniciarCampos();
 			SwingUtil.showErrorDialog("El curso ya existe");
 		}else {
@@ -45,6 +49,12 @@ public class CursoController {
 			view.reiniciarCampos();
 			SwingUtil.showInformationDialog("Curso " + titulo + " añadido correctamente");
 		}
+	}
+
+	private boolean comprobarFecha() {
+		Date introduce = Util.isoStringToDate(view.getFecha());
+		Date actual = Calendar.getInstance().getTime();
+		return introduce.before(actual);
 	}
 
 	private boolean comprobarTitulo(String titulo) {
