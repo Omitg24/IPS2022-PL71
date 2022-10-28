@@ -51,8 +51,9 @@ public class AperturaController {
 		Date inicio = Util.isoStringToDate(modificacion.getTextInicio().getText());
 		// System.out.println(inicio);
 		Date fin = Util.isoStringToDate(modificacion.getTextFin().getText());
+		int nplazas = Integer.parseInt(modificacion.getTextFieldNplazas().getText());
 		// System.out.println(fin);
-		model.updateFechasCurso(inicio, fin, key);
+		model.updateFechasCurso(inicio, fin, nplazas, key);
 		modificacion.getFrame().setVisible(false);
 		// System.out.println(model.getCursos());
 		addCursosToList();

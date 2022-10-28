@@ -113,7 +113,7 @@ public class IdentificadorView {
 	}
 	private JLabel getLblIntroduzcaId() {
 		if (lblIntroduzcaId == null) {
-			lblIntroduzcaId = new JLabel("Introduzca su identificador:");
+			lblIntroduzcaId = new JLabel("Introduzca su DNI:");
 		}
 		return lblIntroduzcaId;
 	}

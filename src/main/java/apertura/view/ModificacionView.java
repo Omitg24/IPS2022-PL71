@@ -41,6 +41,9 @@ public class ModificacionView {
 	private JTextField textInicio;
 	private JLabel lblInicio;
 	private JLabel lblFin;
+	private JPanel panelNplazas;
+	private JLabel lblNplazas;
+	private JTextField textFieldNplazas;
 
 	/**
 	 * Create the frame.
@@ -56,7 +59,7 @@ public class ModificacionView {
 		frmModificacion.setResizable(false);
 		frmModificacion.setTitle("Establecimiento de plazos");
 		frmModificacion.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmModificacion.setBounds(100, 100, 340, 220);
+		frmModificacion.setBounds(100, 100, 340, 270);
 		frmModificacion.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -84,9 +87,10 @@ public class ModificacionView {
 		if (pnCentro == null) {
 			pnCentro = new JPanel();
 			pnCentro.setBackground(Color.WHITE);
-			pnCentro.setLayout(new GridLayout(2, 1, 0, 0));
+			pnCentro.setLayout(new GridLayout(3, 1, 0, 0));
 			pnCentro.add(getPanelInicio());
 			pnCentro.add(getPanelFin());
+			pnCentro.add(getPanelNplazas());
 		}
 		return pnCentro;
 	}
@@ -188,14 +192,43 @@ public class ModificacionView {
 	}
 	private JLabel getLblInicio() {
 		if (lblInicio == null) {
-			lblInicio = new JLabel("Inicio: ");
+			lblInicio = new JLabel("Inicio:     ");
 		}
 		return lblInicio;
 	}
 	private JLabel getLblFin() {
 		if (lblFin == null) {
-			lblFin = new JLabel("Fin:     ");
+			lblFin = new JLabel("Fin:          ");
 		}
 		return lblFin;
+	}
+	private JPanel getPanelNplazas() {
+		if (panelNplazas == null) {
+			panelNplazas = new JPanel();
+			panelNplazas.setBackground(Color.WHITE);
+			panelNplazas.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 5));
+			panelNplazas.add(getLblNplazas());
+			panelNplazas.add(getTextFieldNplazas());
+		}
+		return panelNplazas;
+	}
+	private JLabel getLblNplazas() {
+		if (lblNplazas == null) {
+			lblNplazas = new JLabel("Nº plazas:");
+		}
+		return lblNplazas;
+	}
+	public JTextField getTextFieldNplazas() {
+		if (textFieldNplazas == null) {
+			textFieldNplazas = new JTextField();
+			textFieldNplazas.setPreferredSize(new Dimension(10, 25));
+			textFieldNplazas.setHorizontalAlignment(SwingConstants.CENTER);
+			textFieldNplazas.setForeground(Color.WHITE);
+			textFieldNplazas.setFont(new Font("High Tower Text", Font.PLAIN, 14));
+			textFieldNplazas.setColumns(10);
+			textFieldNplazas.setBorder(new LineBorder(new Color(171, 173, 179)));
+			textFieldNplazas.setBackground(Color.LIGHT_GRAY);
+		}
+		return textFieldNplazas;
 	}
 }

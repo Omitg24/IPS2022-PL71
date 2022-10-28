@@ -5,6 +5,7 @@ import java.util.List;
 import colegiado.model.ColegiadoDTO;
 import curso.model.CursoDTO;
 import util.Database;
+import util.SwingUtil;
 import util.Util;
 
 /**
@@ -36,6 +37,10 @@ public class InscripcionModel {
 	public static final String SQL_INTRODUCIR_INSCRIBE =
 			"insert into inscribe (dnisol, titulocurso, fecha, estados, abonado)"
 			+ "values(?, ?, ?, ?, ?)";
+	
+	public static final String SQL_REDUCIR_NPLAZAS = 
+			"update curso set nplazas=nplazas-1 where titulocurso = ?";
+	
 
 	/**
 	 * Método que convierte la lista de cursos a un array de String
@@ -52,8 +57,15 @@ public class InscripcionModel {
 	}
 
 	public void insertarInscribe(CursoDTO curso, ColegiadoDTO colegiado) {
-		db.executeUpdate(SQL_INTRODUCIR_INSCRIBE, colegiado.getDniSol(),
+		if (curso.getNplazas() > 0) {
+			db.executeUpdate(SQL_INTRODUCIR_INSCRIBE, colegiado.getDniSol(),
 				curso.getTituloCurso(), Util.isoStringToDate(curso.getFechaCurso()),"Pre-inscrito", curso.getPrecio());
+			db.executeUpdate(SQL_REDUCIR_NPLAZAS, curso.getTituloCurso());
+		}
+		else {
+			SwingUtil.showErrorDialog("No hay plazas disponibles para el curso seleccionado");
+		}
+		
 	}
 
 	/*
@@ -65,6 +77,10 @@ public class InscripcionModel {
 			return db.executeQueryPojo(ColegiadoDTO.class, SQL_OBTENER_COLEGIADO_POR_KEY, key).get(0);
 		}
 		else return null;
+	}
+	
+	public void reducirNplazas(String key) {
+		db.executeUpdate(SQL_REDUCIR_NPLAZAS, key);
 	}
 
 }

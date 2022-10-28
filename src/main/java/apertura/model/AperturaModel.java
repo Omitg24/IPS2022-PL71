@@ -28,7 +28,7 @@ public class AperturaModel {
 			"select * from curso;";
 	
 	public static final String SQL_ACTUALIZAR_CURSOS=
-			"update curso set fechainicioins = ?, fechafinins = ?, "
+			"update curso set fechainicioins = ?, fechafinins = ?, nplazas = ?, "
 			+ "estadoc = 'Abierta' where titulocurso = ?";
 	
 	public static final String SQL_OBTENER_CURSO_POR_KEY =
@@ -51,7 +51,7 @@ public class AperturaModel {
 	/*
 	 * Modifica las fechas de inscripción y el estado de un curso con clave key
 	 */
-	public void updateFechasCurso(Date inicio, Date fin, String key) {
-		db.executeUpdate(SQL_ACTUALIZAR_CURSOS, Util.dateToIsoString(inicio), Util.dateToIsoString(fin), key);
+	public void updateFechasCurso(Date inicio, Date fin, int nplazas, String key) {
+		db.executeUpdate(SQL_ACTUALIZAR_CURSOS, Util.dateToIsoString(inicio), Util.dateToIsoString(fin), nplazas, key);
 	}
 }
