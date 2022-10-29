@@ -6,7 +6,7 @@ import curso.view.CursoView;
 
 public class CursoMain {
 
-	public static void main(String[] args) {
+	public void main(String[] args) {
 
 		CursoView view = new CursoView();
 		CursoModel model = new CursoModel();

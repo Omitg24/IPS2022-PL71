@@ -12,7 +12,7 @@ import inscripcion.view.IdentificadorView;
  */
 public class InscripcionMain {
 	
-	public static void main(String[] args) {
+	public void main(String[] args) {
 	
 		IdentificadorView view = new IdentificadorView();
 		InscripcionModel model = new InscripcionModel();

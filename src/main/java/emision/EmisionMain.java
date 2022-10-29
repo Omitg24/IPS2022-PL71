@@ -15,7 +15,7 @@ public class EmisionMain {
 	 * Método main
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		
 		EmisionView view = new EmisionView();
 		EmisionModel model = new EmisionModel();

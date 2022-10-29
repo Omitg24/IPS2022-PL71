@@ -15,7 +15,7 @@ public class ColegiadoMain {
 	 * Método main
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public void main(String[] args) {
 
 		ColegiadoView view = new ColegiadoView();
 		ColegiadoModel model = new ColegiadoModel();

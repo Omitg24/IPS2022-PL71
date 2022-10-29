@@ -12,7 +12,7 @@ import apertura.view.AperturaView;
  */
 public class AperturaMain {
 	
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		
 		AperturaView view = new AperturaView();
 		AperturaModel model = new AperturaModel();

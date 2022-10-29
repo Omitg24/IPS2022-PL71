@@ -20,6 +20,10 @@ import util.Database;
 
 public class Main extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
@@ -36,7 +40,7 @@ public class Main extends JFrame {
 		
 		Database db=new Database();
 		db.createDatabase(false);
-		db.loadDatabase();
+		//db.loadDatabase();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -96,7 +100,7 @@ public class Main extends JFrame {
 			btnNewButton_2 = new JButton("Palnificar Cursos");
 			btnNewButton_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					new CursoMain().main(null);;
+					new CursoMain().main(null);
 				}
 			});
 		}
@@ -110,7 +114,7 @@ public class Main extends JFrame {
 					new EmisionMain().main(null);;
 				}
 			});
-		}
+		} 
 		return btnNewButton_3;
 	}
 	private JButton getBtnNewButton_4() {

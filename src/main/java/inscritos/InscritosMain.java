@@ -12,7 +12,7 @@ import inscritos.view.InscritosView;
  * @version 13 oct 2022
  */
 public class InscritosMain {
-	public static void main(String[] args) {
+	public void main(String[] args) {
 
 		InscritosView view = new InscritosView();
 		InscritosModel model = new InscritosModel();
