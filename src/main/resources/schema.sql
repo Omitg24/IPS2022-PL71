@@ -49,6 +49,7 @@ CREATE TABLE Curso (
 CREATE TABLE Inscribe (
     dniSol varchar(20),
     tituloCurso varchar(40),
+    fechaCurso date NOT NULL,
     fecha date NOT NULL,
     estadoS varchar(20) NOT NULL,
     abonado decimal(10, 2) NOT NULL,
@@ -56,7 +57,7 @@ CREATE TABLE Inscribe (
 
     CONSTRAINT PK_INSCRIBE PRIMARY KEY (dniSol, tituloCurso),
     CONSTRAINT FK_INSCRIBE_COLEGIADO FOREIGN KEY (dniSol) REFERENCES Colegiado (dniSol),
-    CONSTRAINT FK_INSCRIBE_CURSO FOREIGN KEY (tituloCurso) REFERENCES Curso (tituloCurso),
+    CONSTRAINT FK_INSCRIBE_CURSO FOREIGN KEY (tituloCurso,fechaCurso) REFERENCES Curso (tituloCurso,fechaCurso),
     CONSTRAINT CK_ESTADO_INSCRIBE CHECK (estadoS in ('Pre-inscrito', 'Inscrito', 'Cancelado','Pendiente'))
 );
 
