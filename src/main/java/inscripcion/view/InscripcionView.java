@@ -6,6 +6,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -48,6 +49,10 @@ public class InscripcionView {
 	private JPanel pnInscripciones;
 	private JScrollPane scrollPaneInscripciones;
 	private JTable tablePreInscritos;
+	private JPanel pnInfD;
+	private JPanel pnInfIz;
+	private JButton btTarjeta;
+	private JButton btTransferencia;
 
 	/**
 	 * Create the frame.
@@ -122,11 +127,10 @@ public class InscripcionView {
 	private JPanel getPnInferior() {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
-			FlowLayout flowLayout = (FlowLayout) pnInferior.getLayout();
-			flowLayout.setVgap(40);
-			flowLayout.setHgap(0);
 			pnInferior.setBackground(Color.WHITE);
-			pnInferior.add(getBtInscribirse());
+			pnInferior.setLayout(new GridLayout(0, 2, 0, 0));
+			pnInferior.add(getPnInfD());
+			pnInferior.add(getPnInfIz());
 		}
 		return pnInferior;
 	}
@@ -199,7 +203,7 @@ public class InscripcionView {
 	private JPanel getPnInscripciones() {
 		if (pnInscripciones == null) {
 			pnInscripciones = new JPanel();
-			pnInscripciones.setBorder(new TitledBorder(null, "Cursos Pre-Inscritos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			pnInscripciones.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Cursos Pre-Inscritos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnInscripciones.setBackground(Color.WHITE);
 			pnInscripciones.setPreferredSize(new Dimension(414, 200));
 			pnInscripciones.setLayout(new BorderLayout(0, 0));
@@ -226,8 +230,46 @@ public class InscripcionView {
 		return tablePreInscritos;
 	}
 
-	public void confirmarPagoTarjeta() {
-		// TODO Auto-generated method stub
-		
+	private JPanel getPnInfD() {
+		if (pnInfD == null) {
+			pnInfD = new JPanel();
+			pnInfD.setBackground(Color.WHITE);
+			pnInfD.add(getBtInscribirse());	
+		}
+		return pnInfD;
+	}
+	private JPanel getPnInfIz() {
+		if (pnInfIz == null) {
+			pnInfIz = new JPanel();
+			pnInfIz.setPreferredSize(new Dimension(10, 50));
+			FlowLayout flowLayout = (FlowLayout) pnInfIz.getLayout();
+			flowLayout.setHgap(50);
+			pnInfIz.setBackground(Color.WHITE);
+			pnInfIz.add(getBtTarjeta());
+			pnInfIz.add(getBtTransferencia());
+		}
+		return pnInfIz;
+	}
+	public JButton getBtTarjeta() {
+		if (btTarjeta == null) {
+			btTarjeta = new JButton("Tarjeta");
+			btTarjeta.setEnabled(false);
+			btTarjeta.setForeground(Color.WHITE);
+			btTarjeta.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			btTarjeta.setFocusable(false);
+			btTarjeta.setBackground(new Color(34, 139, 34));
+		}
+		return btTarjeta;
+	}
+	public JButton getBtTransferencia() {
+		if (btTransferencia == null) {
+			btTransferencia = new JButton("Transferencia");
+			btTransferencia.setEnabled(false);
+			btTransferencia.setForeground(Color.WHITE);
+			btTransferencia.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			btTransferencia.setFocusable(false);
+			btTransferencia.setBackground(new Color(34, 139, 34));
+		}
+		return btTransferencia;
 	}
 }

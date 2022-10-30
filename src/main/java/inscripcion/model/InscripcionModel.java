@@ -1,5 +1,6 @@
 package inscripcion.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import colegiado.model.ColegiadoDTO;
@@ -30,13 +31,16 @@ public class InscripcionModel {
 
 	public static final String SQL_OBTENER_COLEGIADO_POR_KEY =
 			"select * from colegiado where dniSol = ?";
+	
+	public static final String SQL_OBTENER_CURSO =
+			"select * from curso where titulocurso = ? and fechaCurso=?";
 
 	public static final String SQL_OBTENER_CURSO_POR_KEY =
 			"select * from curso where titulocurso = ?";
 
 	public static final String SQL_INTRODUCIR_INSCRIBE =
-			"insert into inscribe (dnisol, titulocurso, fecha, estados, abonado)"
-			+ "values(?, ?, ?, ?, ?)";
+			"insert into inscribe (dnisol, titulocurso,fechaCurso, fecha, estados, abonado)"
+			+ "values(?, ?, ?, ?, ?, ?)";
 	
 	public static final String SQL_REDUCIR_NPLAZAS = 
 			"update curso set nplazas=nplazas-1 where titulocurso = ?";
@@ -70,11 +74,15 @@ public class InscripcionModel {
 	public CursoDTO getCursoFromKey(String key) {
 		return db.executeQueryPojo(CursoDTO.class, SQL_OBTENER_CURSO_POR_KEY, key).get(0);
 	}
+	
+	public CursoDTO getCursoFromKey(String titulo, String fecha) {
+		return db.executeQueryPojo(CursoDTO.class, SQL_OBTENER_CURSO, titulo,fecha).get(0);
+	}
 
 	public void insertarInscribe(CursoDTO curso, ColegiadoDTO colegiado) {
 		if (curso.getNplazas() > 0) {
 			db.executeUpdate(SQL_INTRODUCIR_INSCRIBE, colegiado.getDniSol(),
-				curso.getTituloCurso(), Util.isoStringToDate(curso.getFechaCurso()),"Pre-inscrito", curso.getPrecio());
+				curso.getTituloCurso(),curso.getFechaCurso(),LocalDateTime.now(),"Pre-inscrito", curso.getPrecio());
 			db.executeUpdate(SQL_REDUCIR_NPLAZAS, curso.getTituloCurso());
 		}
 		else {
@@ -100,7 +108,7 @@ public class InscripcionModel {
 	
 	public List<CursoDTO> buscarCursoPorInscrito(String dni) {
 		Util.validateNotNull(dni, "El dni no puede ser nulo");
-		return db.executeQueryPojo(CursoDTO.class,SQL_LISTAR_CURSO_PREINSCRITO,dni,"Pre-Inscrito");
+		return db.executeQueryPojo(CursoDTO.class,SQL_LISTAR_CURSO_PREINSCRITO,dni,"Pre-inscrito");
 	}
 	
 	public void actualizarEstadoInscripcion(String dni, String titulo,

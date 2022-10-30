@@ -1,18 +1,22 @@
 package inscripcion.controller;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.TableModel;
 
 import colegiado.model.ColegiadoDTO;
 import curso.model.CursoDTO;
+import inscripcion.model.InscribeDTO;
 import inscripcion.model.InscripcionModel;
 import inscripcion.view.EmisionView;
 import inscripcion.view.IdentificadorView;
 import inscripcion.view.InscripcionView;
+import inscripcion.view.TarjetaView;
+import ui_events.ChangeColor;
 import util.SwingUtil;
-import util.Util;
 
 /**
  * Título: Clase InscripcionController
@@ -26,6 +30,7 @@ public class InscripcionController {
 	private IdentificadorView viewId;
 	private InscripcionView view;
 	private EmisionView emision;
+	private TarjetaView tarjetaView;
 	private ColegiadoDTO colegiado;
 	private CursoDTO curso;
 
@@ -41,10 +46,26 @@ public class InscripcionController {
 	}
 
 	public void initController() {
+		viewId.getTextId().addFocusListener(new ChangeColor());
 		viewId.getBtnEntrar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> entrar()));
 		view.getBtInscribirse().addActionListener(e -> SwingUtil.exceptionWrapper(() -> inscribirse()));
 		emision.getBtnConfirmar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> cerrarEmision()));
+		view.getBtTarjeta().addActionListener(e -> SwingUtil.exceptionWrapper(() -> abrirPagoTarjeta()));
+		view.getBtTransferencia().addActionListener(e -> SwingUtil.exceptionWrapper(() -> confirmarPago("Transferencia")));
+		view.getTablePreinscritos().getSelectionModel().addListSelectionListener(
+				e -> SwingUtil.exceptionWrapper(() -> activarPagos(e)));
 		addCursosToList();
+	}
+
+	private void activarPagos(ListSelectionEvent e) {
+		view.getBtTarjeta().setEnabled(true);
+		view.getBtTransferencia().setEnabled(true);
+	}
+
+	private void abrirPagoTarjeta() {
+		tarjetaView= new TarjetaView(this);
+		tarjetaView.setLocationRelativeTo(null);
+		tarjetaView.setVisible(true);
 	}
 
 	private void getListaPreInscritos() {
@@ -81,10 +102,11 @@ public class InscripcionController {
 		try {
 			model.insertarInscribe(curso, colegiado);
 			crearEmision();
+			getListaPreInscritos();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			SwingUtil.showErrorDialog("Ya ha presentado una solicitud para este curso");
 		}
-
 	}
 
 	public void initView() {
@@ -123,7 +145,7 @@ public class InscripcionController {
 				+ apellido2.substring(0, 1).toUpperCase()
 				+ apellido2.substring(1);
 		String num = colegiado.getNumeroColegiado();
-		String fecha = Util.dateToIsoString(new Date());
+		String fecha = LocalDateTime.now().toLocalDate().toString();
 		String precio = curso.getPrecio() + "";
 		emision.setNombre(nombre);
 		emision.setApellido(apellidoMayus);
@@ -131,5 +153,47 @@ public class InscripcionController {
 		emision.setFecha(fecha);
 		emision.setCantidad(precio);
 		emision.getFrame().setVisible(true);
+	}
+
+	public void confirmarPago(String tipoPago) {
+		String titulo = SwingUtil.getSelectedKey(view.getTableCursos());
+		String fecha = SwingUtil.getSelectedKey(view.getTableCursos(),1);
+		CursoDTO c = model.getCursoFromKey(titulo, fecha);
+		if(comprobarFechaInscripcion(c) && comprobarPlazas(c)) {
+			String estado ="";
+			switch(tipoPago) {
+			case "Tarjeta":
+				estado="Inscrito";
+			case "Transferencia":
+				estado="Pendiente";
+			}
+			if(tarjetaView!=null)
+				tarjetaView.dispose();
+			model.actualizarEstadoInscripcion(colegiado.getDniSol(), 
+						curso.getTituloCurso(), curso.getFechaCurso(), estado);
+			getListaPreInscritos();
+			SwingUtil.showInformationDialog("Se ha registrado el pago del curso: "
+						+ c.getTituloCurso()+", con fecha de inicio: "+
+					c.getFechaCurso());
+		}
+	}
+
+	private boolean comprobarPlazas(CursoDTO curso) {
+		if(curso.getNplazas()>=1)
+			return true;
+		return false;
+	}
+
+	private boolean comprobarFechaInscripcion(CursoDTO curso) {
+		InscribeDTO i=
+				model.buscarInscripcionCurso(colegiado.getDniSol(), 
+						curso.getTituloCurso(), curso.getFechaCurso());
+		 long diasTranscurridos=
+				 ChronoUnit.DAYS.between( LocalDateTime.parse(i.getFecha()), LocalDateTime.now());
+		 if(diasTranscurridos>2) {
+			 SwingUtil.showInformationDialog("Han pasado 2 dias de la fecha de inscripción");
+			 return false;
+		 }
+		return true;
 	}
 }

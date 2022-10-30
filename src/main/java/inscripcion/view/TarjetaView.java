@@ -16,11 +16,19 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import inscripcion.controller.InscripcionController;
 import ui_events.ChangeColor;
 import ui_events.ChangeDateColor;
-import ui_events.ConfirmarTarjeta;
+import util.SwingUtil;
+
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class TarjetaView extends JDialog {
 
@@ -33,19 +41,17 @@ public class TarjetaView extends JDialog {
 	private JLabel lbNumero;
 	private JTextField txtFechaCaducidad;
 	private JLabel lbFechaCaducidad;
-	private InscripcionView inscripcion;
 
 	/**
 	 * Create the dialog.
 	 */
-	public TarjetaView(InscripcionView insc) {
-		this.inscripcion=insc;
+	public TarjetaView(InscripcionController inscripcion) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TarjetaView.class.getResource("/images/coiipa_symbol.png")));
 		setResizable(false);
 		setModal(true);
 		setTitle("Confirmar pago con tarjeta");
 		setFont(new Font("Calibri", Font.PLAIN, 14));
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 618, 368);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,7 +77,10 @@ public class TarjetaView extends JDialog {
 				}
 				{
 					txtNumero = new JTextField();
+					txtNumero.setBackground(Color.LIGHT_GRAY);
+					txtNumero.setHorizontalAlignment(SwingConstants.CENTER);
 					txtNumero.addFocusListener(new ChangeColor());
+					txtNumero.addKeyListener(new ProccessKeyTarjeta());
 					lbNumero.setLabelFor(txtNumero);
 					txtNumero.setFont(new Font("Calibri", Font.PLAIN, 14));
 					pnNumero.add(txtNumero);
@@ -91,6 +100,10 @@ public class TarjetaView extends JDialog {
 				}
 				{
 					txtFechaCaducidad = new JTextField();
+					txtFechaCaducidad.setHorizontalAlignment(SwingConstants.CENTER);
+					txtFechaCaducidad.setBackground(Color.LIGHT_GRAY);
+					txtFechaCaducidad.setForeground(Color.white);
+					txtFechaCaducidad.setText("(MM/YY)");
 					lbFechaCaducidad.setLabelFor(txtFechaCaducidad);
 					txtFechaCaducidad.addFocusListener(new ChangeDateColor("(MM/YY)"));
 					txtFechaCaducidad.setFont(new Font("Calibri", Font.PLAIN, 14));
@@ -100,41 +113,98 @@ public class TarjetaView extends JDialog {
 			}
 		}
 		{
-			JPanel pnSup = new JPanel();
-			pnSup.setPreferredSize(new Dimension(10, 35));
-			pnSup.setBackground(Color.WHITE);
-			contentPanel.add(pnSup, BorderLayout.NORTH);
-		}
-		{
 			JPanel pnSur = new JPanel();
 			pnSur.setPreferredSize(new Dimension(10, 35));
 			pnSur.setBackground(Color.WHITE);
 			contentPanel.add(pnSur, BorderLayout.SOUTH);
 		}
 		{
+			JPanel pnSuperior = new JPanel();
+			pnSuperior.setBackground(Color.WHITE);
+			contentPanel.add(pnSuperior, BorderLayout.NORTH);
+			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
+			{
+				JLabel lbLogo = new JLabel("");
+				lbLogo.setIcon(new ImageIcon(TarjetaView.class.getResource("/images/coiipa_logo.jpg")));
+				pnSuperior.add(lbLogo);
+			}
+			{
+				JPanel pnTituloSup = new JPanel();
+				pnTituloSup.setBackground(Color.WHITE);
+				pnSuperior.add(pnTituloSup);
+				{
+					JLabel lbInscripcion = new JLabel("Confrimar Pago");
+					lbInscripcion.setHorizontalAlignment(SwingConstants.CENTER);
+					lbInscripcion.setFont(new Font("High Tower Text", Font.PLAIN, 32));
+					pnTituloSup.add(lbInscripcion);
+				}
+			}
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			FlowLayout fl_buttonPane = new FlowLayout(FlowLayout.RIGHT);
+			fl_buttonPane.setHgap(50);
+			buttonPane.setLayout(fl_buttonPane);
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Confirmar");
-				okButton.addActionListener(new ConfirmarTarjeta(inscripcion));
-				okButton.setFont(new Font("Calibri", Font.PLAIN, 14));
+				okButton.setForeground(Color.WHITE);
+				okButton.setBackground(new Color(0, 128, 0));
+				okButton.addActionListener(e -> SwingUtil.exceptionWrapper(() -> comprobarCampos(inscripcion)));
+				okButton.setFont(new Font("Calibri", Font.BOLD, 14));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setForeground(Color.WHITE);
+				cancelButton.setBackground(Color.RED);
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
-				cancelButton.setFont(new Font("Calibri", Font.PLAIN, 14));
+				cancelButton.setFont(new Font("Calibri", Font.BOLD, 14));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+		}
+	}
+
+	private void comprobarCampos(InscripcionController inscripcion) {
+		if (txtFechaCaducidad.getText().isBlank() || txtNumero.getText().isBlank()) {
+			SwingUtil.showErrorDialog("Los campos no pueden estar vacios");
+
+		} else if (!comprobarFechaCaducidad()){
+			SwingUtil.showErrorDialog("La fecha de caducidad es anterior a la actual");
+		}else {
+			inscripcion.confirmarPago("Tarjeta");
+		}
+
+	}
+
+	private boolean comprobarFechaCaducidad() {
+		String[] fecha = txtFechaCaducidad.getText().split("/");
+		int year =2000+ Integer.parseInt(fecha[1]);
+		int month = Integer.parseInt(fecha[0]);
+		return LocalDateTime.now().toLocalDate().isBefore(LocalDate.of(year, month, 
+				LocalDateTime.now().getDayOfMonth()));
+	}
+
+	public class ProccessKeyTarjeta extends KeyAdapter {
+		/**
+		 * Método keyTyped
+		 * 
+		 * @param e
+		 */
+		public void keyTyped(KeyEvent e) {
+			char pressedKey = e.getKeyChar();
+			if (Character.isAlphabetic(pressedKey)) {
+				e.consume();
+			}
+
 		}
 	}
 

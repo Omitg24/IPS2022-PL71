@@ -40,7 +40,7 @@ public class Main extends JFrame {
 		
 		Database db=new Database();
 		db.createDatabase(false);
-		//db.loadDatabase();
+		db.loadDatabase();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
