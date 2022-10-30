@@ -84,7 +84,7 @@ CREATE TABLE SolicitudPericial (
 );
 
 CREATE TABLE Informes (
-    id varchar
+    id varchar,
     nombre varchar NOT NULL,
     dni varchar(20) NOT NULL,
     correo varchar NOT NULL,
