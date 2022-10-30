@@ -45,6 +45,9 @@ public class InscripcionView {
 	private JPanel pnRegistro;
 
 	private EmisionView emision;
+	private JPanel pnInscripciones;
+	private JScrollPane scrollPaneInscripciones;
+	private JTable tablePreInscritos;
 
 	/**
 	 * Create the frame.
@@ -58,7 +61,7 @@ public class InscripcionView {
 		frmAdministracinCoiipa.setResizable(false);
 		frmAdministracinCoiipa.setTitle("Administración COIIPA - Apertura de cursos");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmAdministracinCoiipa.setBounds(100, 100, 778, 502);
+		frmAdministracinCoiipa.setBounds(100, 100, 871, 500);
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -71,7 +74,7 @@ public class InscripcionView {
 		contentPane.add(getPnSuperior(), BorderLayout.NORTH);
 		contentPane.add(getPnInferior(), BorderLayout.SOUTH);
 		frmAdministracinCoiipa.getRootPane().setDefaultButton(btInscribirse);
-
+		
 		emision = new EmisionView();
 	}
 
@@ -86,6 +89,7 @@ public class InscripcionView {
 	public EmisionView getEmision() {
 		return emision;
 	}
+	
 
 	private JPanel getPnCentro() {
 		if (pnCentro == null) {
@@ -93,6 +97,7 @@ public class InscripcionView {
 			pnCentro.setBackground(Color.WHITE);
 			pnCentro.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			pnCentro.add(getPnRegistro());
+			pnCentro.add(getPnInscripciones());
 		}
 		return pnCentro;
 	}
@@ -146,7 +151,7 @@ public class InscripcionView {
 	}
 	private JLabel getLbInscripcion() {
 		if (lbInscripcion == null) {
-			lbInscripcion = new JLabel("Pre-inscripción");
+			lbInscripcion = new JLabel("Inscripciones Cursos");
 			lbInscripcion.setHorizontalAlignment(SwingConstants.CENTER);
 			lbInscripcion.setFont(new Font("High Tower Text", Font.PLAIN, 35));
 		}
@@ -190,5 +195,39 @@ public class InscripcionView {
 			pnRegistro.add(getScrollPaneCursos());
 		}
 		return pnRegistro;
+	}
+	private JPanel getPnInscripciones() {
+		if (pnInscripciones == null) {
+			pnInscripciones = new JPanel();
+			pnInscripciones.setBorder(new TitledBorder(null, "Cursos Pre-Inscritos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			pnInscripciones.setBackground(Color.WHITE);
+			pnInscripciones.setPreferredSize(new Dimension(414, 200));
+			pnInscripciones.setLayout(new BorderLayout(0, 0));
+			pnInscripciones.add(getScrollPaneInscripciones());
+		}
+		return pnInscripciones;
+	}
+	private JScrollPane getScrollPaneInscripciones() {
+		if (scrollPaneInscripciones == null) {
+			scrollPaneInscripciones = new JScrollPane();
+			scrollPaneInscripciones.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			scrollPaneInscripciones.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			scrollPaneInscripciones.setViewportView(getTablePreinscritos());
+		}
+		return scrollPaneInscripciones;
+	}
+	public JTable getTablePreinscritos() {
+		if (tablePreInscritos == null) {
+			tablePreInscritos = new JTable();
+			tablePreInscritos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			tablePreInscritos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			tablePreInscritos.setDefaultEditor(Object.class, null);
+		}
+		return tablePreInscritos;
+	}
+
+	public void confirmarPagoTarjeta() {
+		// TODO Auto-generated method stub
+		
 	}
 }

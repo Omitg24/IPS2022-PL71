@@ -41,6 +41,21 @@ public class InscripcionModel {
 	public static final String SQL_REDUCIR_NPLAZAS = 
 			"update curso set nplazas=nplazas-1 where titulocurso = ?";
 	
+	private static final String SQL_LISTAR_CURSO_PREINSCRITO = 
+			"Select c.tituloCurso, c.fechaCurso, c.precio, c.estadoC "
+			+ "from Curso c, Inscribe i "
+			+ "where c.tituloCurso=i.tituloCurso and c.fechaCurso=i.fechaCurso "
+			+ "and i.dniSol =? and i.estadoS=?";
+	
+	private static final String SQL_ACTUALIZAR_INSCRITO=
+			"Update Inscribe "
+			+ "set estadoS=? "
+			+ "where dniSol=? and tituloCurso=? and fechaCurso=?";
+	
+	private static final String SQL_FIND_INSCRIPCION=
+			"Select * from Inscribe "
+			+ "where dniSol=? and tituloCurso=? and fechaCurso=?";
+	
 
 	/**
 	 * Método que convierte la lista de cursos a un array de String
@@ -82,5 +97,28 @@ public class InscripcionModel {
 	public void reducirNplazas(String key) {
 		db.executeUpdate(SQL_REDUCIR_NPLAZAS, key);
 	}
+	
+	public List<CursoDTO> buscarCursoPorInscrito(String dni) {
+		Util.validateNotNull(dni, "El dni no puede ser nulo");
+		return db.executeQueryPojo(CursoDTO.class,SQL_LISTAR_CURSO_PREINSCRITO,dni,"Pre-Inscrito");
+	}
+	
+	public void actualizarEstadoInscripcion(String dni, String titulo,
+			String fecha,String estado) {
+		Util.validateNotNull(dni, "El dni no puede ser nulo");
+		Util.validateNotNull(titulo, "El titulo no puede ser nulo");
+		Util.validateNotNull(fecha, "La fecha no puede ser nulo");
+		Util.validateNotNull(estado, "El estado no puede ser nulo");
+		db.executeUpdate(SQL_ACTUALIZAR_INSCRITO, estado,dni,titulo,fecha);
+	}
+	
+	public InscribeDTO buscarInscripcionCurso(String dni, String titulo,
+			String fecha) {
+		Util.validateNotNull(dni, "El dni no puede ser nulo");
+		Util.validateNotNull(titulo, "El titulo no puede ser nulo");
+		Util.validateNotNull(fecha, "La fecha no puede ser nulo");
+		return db.executeQueryPojo(InscribeDTO.class,SQL_FIND_INSCRIPCION,dni,titulo,fecha).get(0);
+	}
+
 
 }

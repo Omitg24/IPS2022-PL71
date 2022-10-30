@@ -1,6 +1,7 @@
 package inscripcion.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.table.TableModel;
 
@@ -46,9 +47,25 @@ public class InscripcionController {
 		addCursosToList();
 	}
 
+	private void getListaPreInscritos() {
+		List<CursoDTO> preinscritos = model.buscarCursoPorInscrito(colegiado.getDniSol());
+		TableModel tmodel = SwingUtil.getTableModelFromPojos(preinscritos, 
+				new String[] {"tituloCurso", "fechaCurso", "precio"});
+		view.getTablePreinscritos().setModel(tmodel);
+		String[] titles = new String[] { "                  Título del curso                  ", "      Fecha de inicio      ", "  Precio  "};
+		for (int i = 0; i < titles.length; i++) {
+			view.getTablePreinscritos().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
+		}
+		SwingUtil.autoAdjustColumns(view.getTablePreinscritos());
+		view.getTablePreinscritos().getTableHeader().setReorderingAllowed(false);
+		view.getTablePreinscritos().getTableHeader().setResizingAllowed(false);
+		
+	}
+
 	public void entrar() {
 		if (comprobarId(viewId.getTextId().getText())) {
 			colegiado = model.getSolicitanteFromKey(viewId.getTextId().getText());
+			getListaPreInscritos();
 			viewId.getFrame().setVisible(false);
 			view.getFrame().setVisible(true);
 		}
