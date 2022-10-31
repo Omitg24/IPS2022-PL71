@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -258,5 +260,11 @@ public class Util {
 		} catch (IOException ioe) {
 			new RuntimeException("Error de entrada/salida");
 		}
+	}
+	
+	public static LocalDateTime convertToLocalDateTimeViaInstant(Date dateToConvert) {
+	    return dateToConvert.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDateTime();
 	}
 }

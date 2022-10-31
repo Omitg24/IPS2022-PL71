@@ -26,6 +26,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
@@ -189,8 +190,7 @@ public class TarjetaView extends JDialog {
 		String[] fecha = txtFechaCaducidad.getText().split("/");
 		int year =2000+ Integer.parseInt(fecha[1]);
 		int month = Integer.parseInt(fecha[0]);
-		return LocalDateTime.now().toLocalDate().isBefore(LocalDate.of(year, month, 
-				LocalDateTime.now().getDayOfMonth()));
+		return LocalDateTime.now().toLocalDate().isBefore(LocalDate.of(year, month, 1));
 	}
 
 	public class ProccessKeyTarjeta extends KeyAdapter {

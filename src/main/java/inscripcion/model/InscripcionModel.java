@@ -76,6 +76,7 @@ public class InscripcionModel {
 	}
 	
 	public CursoDTO getCursoFromKey(String titulo, String fecha) {
+		System.out.println(titulo+"\n"+fecha);
 		return db.executeQueryPojo(CursoDTO.class, SQL_OBTENER_CURSO, titulo,fecha).get(0);
 	}
 

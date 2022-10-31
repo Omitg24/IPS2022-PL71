@@ -36,7 +36,7 @@ values
 ('7348920547A','Desarrollo dispositivos moviles','2022-6-4','2022-7-12','Inscrito','135','ninguna'),
 ('7348920547A','Desarrollo de robots','2022-2-3','2022-7-12','Inscrito','150','ninguna'),
 ('7348920547A','Desarrollo videojuegos','2022-2-19','2022-7-12','Inscrito','90','ninguna'),
-('6435634566K','Desarrollo de robots','2022-1-7','2022-7-12','Pre-inscrito','150','ninguna'),
+('6435634566K','Desarrollo de robots','2022-13-17','2022-7-10','Pre-inscrito','150','ninguna'),
 ('6435634566K','Desarrollo videojuegos','2022-6-4','2022-7-12','Cancelado','90','ninguna')
 ;
 

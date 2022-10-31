@@ -17,6 +17,7 @@ import inscripcion.view.InscripcionView;
 import inscripcion.view.TarjetaView;
 import ui_events.ChangeColor;
 import util.SwingUtil;
+import util.Util;
 
 /**
  * Título: Clase InscripcionController
@@ -156,8 +157,9 @@ public class InscripcionController {
 	}
 
 	public void confirmarPago(String tipoPago) {
-		String titulo = SwingUtil.getSelectedKey(view.getTableCursos());
-		String fecha = SwingUtil.getSelectedKey(view.getTableCursos(),1);
+		String titulo = SwingUtil.getSelectedKey(view.getTablePreinscritos());
+		String fecha = SwingUtil.getSelectedKey(view.getTablePreinscritos(),1);
+		System.out.println(titulo+"\n"+fecha);
 		CursoDTO c = model.getCursoFromKey(titulo, fecha);
 		if(comprobarFechaInscripcion(c) && comprobarPlazas(c)) {
 			String estado ="";
@@ -189,7 +191,9 @@ public class InscripcionController {
 				model.buscarInscripcionCurso(colegiado.getDniSol(), 
 						curso.getTituloCurso(), curso.getFechaCurso());
 		 long diasTranscurridos=
-				 ChronoUnit.DAYS.between( LocalDateTime.parse(i.getFecha()), LocalDateTime.now());
+				 ChronoUnit.DAYS.between(
+						 Util.convertToLocalDateTimeViaInstant( 
+								 Util.isoStringToDate(i.getFecha())), LocalDateTime.now());
 		 if(diasTranscurridos>2) {
 			 SwingUtil.showInformationDialog("Han pasado 2 dias de la fecha de inscripción");
 			 return false;
