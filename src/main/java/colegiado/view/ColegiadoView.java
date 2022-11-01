@@ -8,11 +8,14 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.time.LocalDate;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,11 +25,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 
 import ui_events.ProccessKeyNoDigits;
+import util.SwingUtil;
 
 /**
- * Título: Clase SolicitanteView
+ * Título: Clase ColegiadoView
  *
  * @author Omar Teixeira González, UO281847
  * @version 9 oct 2022
@@ -37,22 +42,6 @@ public class ColegiadoView extends JFrame {
 	 * Constante serialVersionUID 
 	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * Constante ID_LENGTH
-	 */
-	private static final int ID_LENGTH = 9;
-	/**
-	 * Constante YEAR_LENGTH 
-	 */
-	private static final int YEAR_LENGTH = 4;
-	/**
-	 * Constante TELEPHONE_LENGTH 
-	 */
-	private static final int TELEPHONE_LENGTH = 12;
-	/**
-	 * Constante IBAN_LENGTH 
-	 */
-	private static final int IBAN_LENGTH = 28;
 
 //-- ATRIBUTOS -----------------------------------------------------------------
 	/**
@@ -210,8 +199,8 @@ public class ColegiadoView extends JFrame {
 	/**
 	 * Atributo txtIban
 	 */
-	private JTextField txtIban;	
-
+	private JTextField txtIban;		
+	
 //-- INTERFAZ GRÁFICA ----------------------------------------------------------
 	/**
 	 * Constructor ApplicantView
@@ -229,18 +218,17 @@ public class ColegiadoView extends JFrame {
 		frame.setTitle("Administración COIIPA - Solicitud de alta");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ColegiadoView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setBounds(100, 100, 800, 500);
-		frame.setLocationRelativeTo(null);
+		frame.setBounds(100, 100, 1200, 800);
+		frame.setLocationRelativeTo(null);		
+		frame.setContentPane(contentPane);
+		frame.getRootPane().setDefaultButton(btAddApplicant);
 		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		frame.setContentPane(contentPane);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));	
 		contentPane.setLayout(new BorderLayout(2, 2));
 		contentPane.add(getUpperPanel(), BorderLayout.NORTH);
-		contentPane.add(getBottomPanel(), BorderLayout.SOUTH);
-		frame.getRootPane().setDefaultButton(btAddApplicant);
+		contentPane.add(getBottomPanel(), BorderLayout.SOUTH);		
 		contentPane.add(getMiddlePanel(), BorderLayout.CENTER);
 	}
 
@@ -292,7 +280,7 @@ public class ColegiadoView extends JFrame {
 		if (lbApplicant == null) {
 			lbApplicant = new JLabel("Solicitud de alta");
 			lbApplicant.setHorizontalAlignment(SwingConstants.CENTER);
-			lbApplicant.setFont(new Font("High Tower Text", Font.PLAIN, 35));
+			lbApplicant.setFont(new Font("Baskerville Old Face", Font.PLAIN, 60));
 		}
 		return lbApplicant;
 	}
@@ -307,7 +295,7 @@ public class ColegiadoView extends JFrame {
 			bottomPanel.setBackground(Color.WHITE);
 			bottomPanel.add(getBtAddApplicant());
 		}
-		return bottomPanel;
+		return bottomPanel;		
 	}
 	
 	/**
@@ -319,7 +307,7 @@ public class ColegiadoView extends JFrame {
 			btAddApplicant = new JButton("Presentar solicitud");
 			btAddApplicant.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btAddApplicant.setForeground(Color.WHITE);
-			btAddApplicant.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			btAddApplicant.setFont(new Font("Tahoma", Font.BOLD, 22));
 			btAddApplicant.setBackground(new Color(34, 139, 34));
 		}
 		return btAddApplicant;
@@ -380,7 +368,7 @@ public class ColegiadoView extends JFrame {
 		if (lbDni == null) {
 			lbDni = new JLabel("DNI");
 			lbDni.setHorizontalAlignment(SwingConstants.CENTER);
-			lbDni.setFont(new Font("High Tower Text", Font.BOLD, 16));
+			lbDni.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lbDni;
 	}
@@ -391,14 +379,19 @@ public class ColegiadoView extends JFrame {
 	 */
 	public JTextField getTxtDni() {
 		if (txtDni == null) {
-			txtDni = new JTextField();
+			MaskFormatter mf = null;
+			try {
+				mf = new MaskFormatter("########U");
+			} catch (ParseException e) {
+				System.out.println("Excepción capturada: JFormattedTextField");
+			}
+			txtDni = new JFormattedTextField(mf);			
 			txtDni.setPreferredSize(new Dimension(10, 25));
 			txtDni.setHorizontalAlignment(SwingConstants.CENTER);
-			txtDni.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtDni.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtDni.setColumns(10);
 			txtDni.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtDni.setBackground(Color.LIGHT_GRAY);
-			txtDni.addKeyListener(new ProccessKeyDni());
 		}
 		return txtDni;
 	}
@@ -426,7 +419,7 @@ public class ColegiadoView extends JFrame {
 		if (lbName == null) {
 			lbName = new JLabel("Nombre");
 			lbName.setHorizontalAlignment(SwingConstants.CENTER);
-			lbName.setFont(new Font("High Tower Text", Font.BOLD, 16));
+			lbName.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lbName;
 	}
@@ -440,7 +433,7 @@ public class ColegiadoView extends JFrame {
 			txtName = new JTextField();
 			txtName.setPreferredSize(new Dimension(10, 25));
 			txtName.setHorizontalAlignment(SwingConstants.CENTER);
-			txtName.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtName.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtName.setColumns(10);
 			txtName.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtName.setBackground(Color.LIGHT_GRAY);
@@ -472,7 +465,7 @@ public class ColegiadoView extends JFrame {
 		if (lbSurname == null) {
 			lbSurname = new JLabel("Apellidos");
 			lbSurname.setHorizontalAlignment(SwingConstants.CENTER);
-			lbSurname.setFont(new Font("High Tower Text", Font.BOLD, 16));
+			lbSurname.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lbSurname;
 	}
@@ -486,7 +479,7 @@ public class ColegiadoView extends JFrame {
 			txtSurname = new JTextField();
 			txtSurname.setPreferredSize(new Dimension(10, 25));
 			txtSurname.setHorizontalAlignment(SwingConstants.CENTER);
-			txtSurname.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtSurname.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtSurname.setColumns(10);
 			txtSurname.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtSurname.setBackground(Color.LIGHT_GRAY);
@@ -533,7 +526,7 @@ public class ColegiadoView extends JFrame {
 		if (lbPopulation == null) {
 			lbPopulation = new JLabel("Población");
 			lbPopulation.setHorizontalAlignment(SwingConstants.CENTER);
-			lbPopulation.setFont(new Font("High Tower Text", Font.BOLD, 16));
+			lbPopulation.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lbPopulation;
 	}
@@ -547,7 +540,7 @@ public class ColegiadoView extends JFrame {
 			txtPopulation = new JTextField();
 			txtPopulation.setPreferredSize(new Dimension(10, 25));
 			txtPopulation.setHorizontalAlignment(SwingConstants.CENTER);
-			txtPopulation.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtPopulation.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtPopulation.setColumns(10);
 			txtPopulation.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtPopulation.setBackground(Color.LIGHT_GRAY);
@@ -579,7 +572,7 @@ public class ColegiadoView extends JFrame {
 		if (lbTelephone == null) {
 			lbTelephone = new JLabel("Teléfono");
 			lbTelephone.setHorizontalAlignment(SwingConstants.CENTER);
-			lbTelephone.setFont(new Font("High Tower Text", Font.BOLD, 16));
+			lbTelephone.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lbTelephone;
 	}
@@ -590,14 +583,19 @@ public class ColegiadoView extends JFrame {
 	 */
 	public JTextField getTxtTelephone() {
 		if (txtTelephone == null) {
-			txtTelephone = new JTextField();
+			MaskFormatter mf = null;
+			try {
+				mf = new MaskFormatter("### ## ## ##");
+			} catch (ParseException e) {
+				System.out.println("Excepción capturada: JFormattedTextField");
+			}
+			txtTelephone = new JFormattedTextField(mf);
 			txtTelephone.setPreferredSize(new Dimension(10, 25));
 			txtTelephone.setHorizontalAlignment(SwingConstants.CENTER);
-			txtTelephone.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtTelephone.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtTelephone.setColumns(10);
 			txtTelephone.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtTelephone.setBackground(Color.LIGHT_GRAY);
-			txtTelephone.addKeyListener(new ProccessKeyTelephone());
 		}
 		return txtTelephone;
 	}
@@ -625,7 +623,7 @@ public class ColegiadoView extends JFrame {
 		if (lbTitulation == null) {
 			lbTitulation = new JLabel("Titulación");
 			lbTitulation.setHorizontalAlignment(SwingConstants.CENTER);
-			lbTitulation.setFont(new Font("High Tower Text", Font.BOLD, 16));
+			lbTitulation.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lbTitulation;
 	}
@@ -639,7 +637,7 @@ public class ColegiadoView extends JFrame {
 			txtTitulation = new JTextField();
 			txtTitulation.setPreferredSize(new Dimension(10, 25));
 			txtTitulation.setHorizontalAlignment(SwingConstants.CENTER);
-			txtTitulation.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtTitulation.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtTitulation.setColumns(10);
 			txtTitulation.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtTitulation.setBackground(Color.LIGHT_GRAY);
@@ -685,7 +683,7 @@ public class ColegiadoView extends JFrame {
 		if (lbCenter == null) {
 			lbCenter = new JLabel("Centro de titulación");
 			lbCenter.setHorizontalAlignment(SwingConstants.CENTER);
-			lbCenter.setFont(new Font("High Tower Text", Font.BOLD, 16));
+			lbCenter.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lbCenter;
 	}
@@ -699,7 +697,7 @@ public class ColegiadoView extends JFrame {
 			txtCenter = new JTextField();
 			txtCenter.setPreferredSize(new Dimension(10, 25));
 			txtCenter.setHorizontalAlignment(SwingConstants.CENTER);
-			txtCenter.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtCenter.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtCenter.setColumns(10);
 			txtCenter.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtCenter.setBackground(Color.LIGHT_GRAY);
@@ -730,7 +728,7 @@ public class ColegiadoView extends JFrame {
 		if (lbYear == null) {
 			lbYear = new JLabel("Año de titulación");
 			lbYear.setHorizontalAlignment(SwingConstants.CENTER);
-			lbYear.setFont(new Font("High Tower Text", Font.BOLD, 16));
+			lbYear.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lbYear;
 	}
@@ -741,13 +739,31 @@ public class ColegiadoView extends JFrame {
 	 */
 	public JTextField getTxtYear() {
 		if (txtYear == null) {
-			txtYear = new JTextField();
+			MaskFormatter mf = null;
+			try {
+				mf = new MaskFormatter("####");
+			} catch (ParseException e) {
+				System.out.println("Excepción capturada: JFormattedTextField");
+			}
+			txtYear = new JFormattedTextField(mf);			
 			txtYear.setPreferredSize(new Dimension(10, 25));
 			txtYear.setHorizontalAlignment(SwingConstants.CENTER);
-			txtYear.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtYear.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtYear.setColumns(10);
 			txtYear.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtYear.setBackground(Color.LIGHT_GRAY);
+			txtYear.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (Integer.valueOf(txtYear.getText()) > LocalDate.now().getYear()) {
+						SwingUtil.showErrorDialog("El año de titulación no puede ser posterior al actual");
+						getBtAddApplicant().setEnabled(false);
+					} else {
+						getBtAddApplicant().setEnabled(true);
+					}
+				}
+			});
 		}
 		return txtYear;
 	}
@@ -775,7 +791,7 @@ public class ColegiadoView extends JFrame {
 		if (lbIban == null) {
 			lbIban = new JLabel("IBAN");
 			lbIban.setHorizontalAlignment(SwingConstants.CENTER);
-			lbIban.setFont(new Font("High Tower Text", Font.BOLD, 16));
+			lbIban.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lbIban;
 	}
@@ -786,10 +802,16 @@ public class ColegiadoView extends JFrame {
 	 */
 	public JTextField getTxtIban() {
 		if (txtIban == null) {
-			txtIban = new JTextField();
+			MaskFormatter mf = null;
+			try {
+				mf = new MaskFormatter("UU## #### #### ## ##########");
+			} catch (ParseException e) {
+				System.out.println("Excepción capturada: JFormattedTextField");
+			}
+			txtIban = new JFormattedTextField(mf);
 			txtIban.setPreferredSize(new Dimension(10, 25));
 			txtIban.setHorizontalAlignment(SwingConstants.CENTER);
-			txtIban.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtIban.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtIban.setColumns(10);
 			txtIban.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtIban.setBackground(Color.LIGHT_GRAY);
@@ -915,111 +937,4 @@ public class ColegiadoView extends JFrame {
 		getTxtYear().setBackground(Color.LIGHT_GRAY);
 		getTxtIban().setBackground(Color.LIGHT_GRAY);
 	}
-	
-//-- EVENTOS--------------------------------------------------------------------
-	/**
-	 * Título: Clase ProccessKeyDni
-	 *
-	 * @author Omar Teixeira González, UO281847
-	 * @version 9 oct 2022
-	 */
-	public class ProccessKeyDni extends KeyAdapter {
-		/**
-		 * Método keyTyped
-		 * @param e
-		 */
-		public void keyTyped(KeyEvent e) {
-			char pressedKey = e.getKeyChar();
-			if (getTxtDni().getText().length()==ID_LENGTH) {
-				e.consume();
-			} else if (getTxtDni().getText().length()<8) {
-				if (Character.isAlphabetic(pressedKey)) {
-					e.consume();
-				}
-			} else if (getTxtDni().getText().length()>=8) {
-				if (Character.isAlphabetic(pressedKey)) {
-					e.setKeyChar(String.valueOf(pressedKey).toUpperCase().charAt(0));
-				} else if (Character.isDigit(pressedKey)) {
-					e.consume();
-				}
-			}
-		}
-	}	
-	
-	/**
-	 * Título: Clase ProccessKeyTelephone
-	 *
-	 * @author Omar Teixeira González, UO281847
-	 * @version 9 oct 2022
-	 */
-	public class ProccessKeyTelephone extends KeyAdapter {
-		/**
-		 * Método keyTyped
-		 * @param e
-		 */
-		public void keyTyped(KeyEvent e) {
-			char pressedKey = e.getKeyChar();
-			if (getTxtTelephone().getText().length()==TELEPHONE_LENGTH) {
-				e.consume();
-			} else {
-				if (Character.isAlphabetic(pressedKey)) {
-					e.consume();
-				}
-			}
-		}
-	}
-	
-	/**
-	 * Título: Clase ProccessKeyYear
-	 *
-	 * @author Omar Teixeira González, UO281847
-	 * @version 9 oct 2022
-	 */
-	public class ProccessKeyYear extends KeyAdapter {
-		/**
-		 * Método keyTyped
-		 * @param e
-		 */
-		public void keyTyped(KeyEvent e) {
-			char pressedKey = e.getKeyChar();
-			if (getTxtYear().getText().length()==YEAR_LENGTH) {
-				e.consume();
-			} else {
-				if (Character.isAlphabetic(pressedKey)) {
-					e.consume();
-				}
-			}
-		}
-	}	
-		
-	/**
-	 * Título: Clase ProccessKeyIban
-	 *
-	 * @author Omar Teixeira González, UO281847
-	 * @version 9 oct 2022
-	 */
-	public class ProccessKeyIban extends KeyAdapter {
-		/**
-		 * Método keyTyped
-		 * @param e
-		 */
-		public void keyTyped(KeyEvent e) {
-			char pressedKey = e.getKeyChar();
-			if (getTxtIban().getText().length()==IBAN_LENGTH) {
-				e.consume();
-			} else {
-				if (getTxtIban().getText().length()<2) {
-					if (Character.isAlphabetic(pressedKey)) {
-						e.setKeyChar(String.valueOf(pressedKey).toUpperCase().charAt(0));
-					} else if (Character.isDigit(pressedKey)) {
-						e.consume();
-					}
-				} else {
-					if (Character.isAlphabetic(pressedKey)) {
-						e.consume();
-					}
-				}
-			}
-		}
-	}		
 }

@@ -86,7 +86,8 @@ public class ColegiadoController {
 									titulation, center, year, iban);
 			view.resetFields();
 			DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("es", "ES"));
-			SwingUtil.showInformationDialog("Solicitud con dni: " + dni + ", a día " + dateFormat.format(new Date()) + ",\n ha sido presentada. Se mantendrá en estado 'Pendiente'.");
+			SwingUtil.showInformationDialog("Solicitud con dni: " + dni + ", a día " 
+			+ dateFormat.format(new Date()) + ",\nha sido presentada. Se mantendrá en estado 'Pendiente'.");
 		}
 	}
 	

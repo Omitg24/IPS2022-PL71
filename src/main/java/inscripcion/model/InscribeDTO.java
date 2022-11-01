@@ -2,7 +2,7 @@ package inscripcion.model;
 
 public class InscribeDTO {
 	
-    private String dniSol;
+    private String dniColegiado;
     private String tituloCurso;
     private String fechaCurso;
     private String fecha;
@@ -12,9 +12,9 @@ public class InscribeDTO {
     
     public InscribeDTO() {}
     
-	public InscribeDTO(String dniSol, String tituloCurso, String fechaCurso, String fecha, String estadoS,
+	public InscribeDTO(String dniColegiado, String tituloCurso, String fechaCurso, String fecha, String estadoS,
 			double abonado, String incidencia) {
-		this.dniSol = dniSol;
+		this.dniColegiado = dniColegiado;
 		this.tituloCurso = tituloCurso;
 		this.fechaCurso = fechaCurso;
 		this.fecha = fecha;
@@ -23,12 +23,12 @@ public class InscribeDTO {
 		this.incidencia = incidencia;
 	}
 
-	public String getDniSol() {
-		return dniSol;
+	public String getDniColegiado() {
+		return dniColegiado;
 	}
 
-	public void setDniSol(String dniSol) {
-		this.dniSol = dniSol;
+	public void setDniColegiado(String dniColegiado) {
+		this.dniColegiado = dniColegiado;
 	}
 
 	public String getTituloCurso() {
@@ -81,7 +81,7 @@ public class InscribeDTO {
 
 	@Override
 	public String toString() {
-		return "InscribeDTO [dniSol=" + dniSol + ", tituloCurso=" + tituloCurso + ", fechaCurso=" + fechaCurso
+		return "InscribeDTO [dniColegiado=" + dniColegiado + ", tituloCurso=" + tituloCurso + ", fechaCurso=" + fechaCurso
 				+ ", fecha=" + fecha + ", estadoS=" + estadoS + ", abonado=" + abonado + ", incidencia=" + incidencia
 				+ "]";
 	}

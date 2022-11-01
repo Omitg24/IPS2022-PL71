@@ -21,19 +21,31 @@ public class EmisionModel {
 	 * Constante SQL_GETCOLEGIADOS
 	 */
 	public static final String SQL_GETCOLEGIADOS = 
-			"SELECT DNISOL, IBANSOL FROM COLEGIADO WHERE DNISOL IN (SELECT DNISOL FROM INSCRIBE)";
+			"SELECT DNICOLEGIADO, IBANCOLEGIADO, ESTADOCUOTA FROM COLEGIADO WHERE DNICOLEGIADO IN (SELECT DNICOLEGIADO FROM INSCRIBE)";
 	
 	/**
 	 * Constante SQL_GETAMOUNT
 	 */
 	public static final String SQL_GETAMOUNT = 
 			"SELECT SUM(PRECIO) FROM CURSO C, INSCRIBE I WHERE C.TITULOCURSO=I.TITULOCURSO AND "
-			+ "I.DNISOL = ? ";
+			+ "I.DNICOLEGIADO = ? ";
 	
 	/**
 	 * Atributo db
 	 */
 	private Database db = new Database();
+	
+	/**
+	 * Atributo colegiados
+	 */
+	private List<ColegiadoDTO> colegiados;
+	
+	/**
+	 * Construcotr EmisionModel 
+	 */
+	public EmisionModel() {
+		this.colegiados = getColegiados();
+	}
 	
 	/**
 	 * Método getColegiados
@@ -66,16 +78,22 @@ public class EmisionModel {
 	/**
 	 * Método saveToFile
 	 */
-	public void saveToFile() {
-		List<ColegiadoDTO> colegiados = getColegiados();
+	public boolean saveToFile() {
 		DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("es", "ES"));
+		boolean emittedReceipts = false;
 		for(ColegiadoDTO colegiado : colegiados) {
-			String receipt = getReceiptNumber();
-			String dni = colegiado.getDniSol();
-			String iban = colegiado.getIbanSol();
-			int amount = getAmount(dni);
-			
-			Util.saveReceiptToFile(receipt, dateFormat.format(new Date()), dni, iban, amount);
+			String estadoCuota = colegiado.getEstadoCuota(); 
+			if (estadoCuota.equals("Pendiente")) {
+				String receipt = getReceiptNumber();
+				String dni = colegiado.getDniColegiado();
+				String iban = colegiado.getIbanColegiado();
+				int amount = getAmount(dni);
+				
+				Util.saveReceiptToFile(receipt, dateFormat.format(new Date()), dni, iban, amount);
+				colegiado.setEstadoCuota("Emitido");
+				emittedReceipts = true;
+			}
 		}
+		return emittedReceipts;
 	}	
 }

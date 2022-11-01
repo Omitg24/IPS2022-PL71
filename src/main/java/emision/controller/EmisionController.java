@@ -50,7 +50,10 @@ public class EmisionController {
 	 * Método emissionPlan
 	 */
 	private void emissionPlan() {
-		model.saveToFile();
-		SwingUtil.showInformationDialog("Se han emitido los recibos de cuota \n a los colegiados y precolegiados");
+		if (model.saveToFile()) {
+			SwingUtil.showInformationDialog("Se han emitido los recibos de cuota.\nLa lista de recibos se encuentra en: resources/files/receipts.csv");
+		} else {
+			SwingUtil.showInformationDialog("No hay recibos pendientes de emitir");
+		}
 	}
 }

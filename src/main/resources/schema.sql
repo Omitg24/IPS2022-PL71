@@ -9,27 +9,27 @@ DROP TABLE SolicitudPericial;
 DROP TABLE Informes;
 
 CREATE TABLE Colegiado (
-    dniSol varchar(20) NOT NULL,
-    nombreSol varchar(20) NOT NULL,
-    apellidosSol varchar(40) NOT NULL,
+    dniColegiado varchar(20) NOT NULL,
+    nombreColegiado varchar(20) NOT NULL,
+    apellidosColegiado varchar(40) NOT NULL,
     numeroColegiado varchar(20),
-    localidadSol varchar(20) NOT NULL,
-    telefonoSol varchar(20) NOT NULL,
-    titulacionSol varchar(40) NOT NULL,    
-    centroSol varchar(40) NOT NULL,    
-    anioSol decimal(4, 0) NOT NULL,
-   	ibanSol varchar(40) NOT NULL,
-   	tipoSol varchar(40) NOT NULL,
-   	estadoSol varchar(40) NOT NULL,
+    localidadColegiado varchar(20) NOT NULL,
+    telefonoColegiado varchar(20) NOT NULL,
+    titulacionColegiado varchar(40) NOT NULL,    
+    centroColegiado varchar(40) NOT NULL,    
+    anioColegiado decimal(4, 0) NOT NULL,
+   	ibanColegiado varchar(40) NOT NULL,
+   	tipoColegiado varchar(40) NOT NULL,
+   	estadoColegiado varchar(40) NOT NULL,
     estadoCuota varchar NOT NULL,
     estadoAsignacionPericial varchar NOT NULL,
     fechaColegiacion date,
 
-    CONSTRAINT PK_COLEGIADO PRIMARY KEY (dniSol),
+    CONSTRAINT PK_COLEGIADO PRIMARY KEY (dniColegiado),
     CONSTRAINT CK_ESTADO_ASIGNACION_PERICIAL CHECK (estadoAsignacionPericial in ('Asignado','NA')),
-    CONSTRAINT CK_ESTADO_INSCRIBE CHECK (estadoSol in ('Pendiente','Anulado','Activo')),
+    CONSTRAINT CK_ESTADO_INSCRIBE CHECK (estadoColegiado in ('Pendiente','Anulado','Activo')),
     CONSTRAINT CK_ESTADO_CUOTA_INSCRIBE CHECK (estadoCuota in ('Pagado','Emitido','Pendiente')),
-    CONSTRAINT CK_TIPO_COLEGIADO CHECK (tipoSol in ('Colegiado', 'Pre-colegiado'))
+    CONSTRAINT CK_TIPO_COLEGIADO CHECK (tipoColegiado in ('Colegiado', 'Pre-colegiado'))
 );
 
 CREATE TABLE Curso (
@@ -47,7 +47,7 @@ CREATE TABLE Curso (
 );
 
 CREATE TABLE Inscribe (
-    dniSol varchar(20),
+    dniColegiado varchar(20),
     tituloCurso varchar(40),
     fechaCurso date NOT NULL,
     fecha date NOT NULL,
@@ -55,20 +55,20 @@ CREATE TABLE Inscribe (
     abonado decimal(10, 2) NOT NULL,
     incidencia varchar,
 
-    CONSTRAINT PK_INSCRIBE PRIMARY KEY (dniSol, tituloCurso),
-    CONSTRAINT FK_INSCRIBE_COLEGIADO FOREIGN KEY (dniSol) REFERENCES Colegiado (dniSol),
+    CONSTRAINT PK_INSCRIBE PRIMARY KEY (dniColegiado, tituloCurso),
+    CONSTRAINT FK_INSCRIBE_COLEGIADO FOREIGN KEY (dniColegiado) REFERENCES Colegiado (dniColegiado),
     CONSTRAINT FK_INSCRIBE_CURSO FOREIGN KEY (tituloCurso,fechaCurso) REFERENCES Curso (tituloCurso,fechaCurso),
     CONSTRAINT CK_ESTADO_INSCRIBE CHECK (estadoS in ('Pre-inscrito', 'Inscrito', 'Cancelado','Pendiente'))
 );
 
 CREATE TABLE InscripcionPericial (
-    dniSol varchar(20),
+    dniColegiado varchar(20),
     fechaInscripcion date NOT NULL,
     posicionLista decimal,
     estadoInscripcion varchar NOT NULL,
 
-    CONSTRAINT PK_INSCRIPCION PRIMARY KEY (dniSol, fechaInscripcion),
-    CONSTRAINT FK_INSCRIPCION_COLEGIADO FOREIGN KEY (dniSol) REFERENCES Colegiado (dniSol),
+    CONSTRAINT PK_INSCRIPCION PRIMARY KEY (dniColegiado, fechaInscripcion),
+    CONSTRAINT FK_INSCRIPCION_COLEGIADO FOREIGN KEY (dniColegiado) REFERENCES Colegiado (dniColegiado),
     CONSTRAINT CK_ESTADO_INSCRIPCION_PERICIAL CHECK (estadoInscripcion in ('No inscrito', 'Inscrito'))
 );
 
@@ -78,7 +78,7 @@ CREATE TABLE SolicitudPericial (
     estado varchar NOT NULL,
 
     CONSTRAINT PK_SOLICITUDPERICIAL PRIMARY KEY (dni,id),
-    CONSTRAINT FK_INSCRIPCION_PERITO FOREIGN KEY (dni) REFERENCES Colegiado (dniSol),
+    CONSTRAINT FK_INSCRIPCION_PERITO FOREIGN KEY (dni) REFERENCES Colegiado (dniColegiado),
     CONSTRAINT FK_INFORME_SOLICITUD FOREIGN KEY (id) REFERENCES Informes (id),
     CONSTRAINT CK_SOLICITUD_ESTADO CHECK (estado in ('Asignada', 'NA'))
 );

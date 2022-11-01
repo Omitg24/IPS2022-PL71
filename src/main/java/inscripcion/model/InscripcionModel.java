@@ -30,7 +30,7 @@ public class InscripcionModel {
 			"select * from curso where estadoc='Abierta';";
 
 	public static final String SQL_OBTENER_COLEGIADO_POR_KEY =
-			"select * from colegiado where dniSol = ?";
+			"select * from colegiado where dniColegiado = ?";
 	
 	public static final String SQL_OBTENER_CURSO =
 			"select * from curso where titulocurso = ? and fechaCurso=?";
@@ -39,7 +39,7 @@ public class InscripcionModel {
 			"select * from curso where titulocurso = ?";
 
 	public static final String SQL_INTRODUCIR_INSCRIBE =
-			"insert into inscribe (dnisol, titulocurso,fechaCurso, fecha, estados, abonado)"
+			"insert into inscribe (dniColegiado, titulocurso,fechaCurso, fecha, estados, abonado)"
 			+ "values(?, ?, ?, ?, ?, ?)";
 	
 	public static final String SQL_REDUCIR_NPLAZAS = 
@@ -49,16 +49,16 @@ public class InscripcionModel {
 			"Select c.tituloCurso, c.fechaCurso, c.precio, c.estadoC "
 			+ "from Curso c, Inscribe i "
 			+ "where c.tituloCurso=i.tituloCurso and c.fechaCurso=i.fechaCurso "
-			+ "and i.dniSol =? and i.estadoS=?";
+			+ "and i.dniColegiado =? and i.estadoS=?";
 	
 	private static final String SQL_ACTUALIZAR_INSCRITO=
 			"Update Inscribe "
 			+ "set estadoS=? "
-			+ "where dniSol=? and tituloCurso=? and fechaCurso=?";
+			+ "where dniColegiado=? and tituloCurso=? and fechaCurso=?";
 	
 	private static final String SQL_FIND_INSCRIPCION=
 			"Select * from Inscribe "
-			+ "where dniSol=? and tituloCurso=? and fechaCurso=?";
+			+ "where dniColegiado=? and tituloCurso=? and fechaCurso=?";
 	
 
 	/**
@@ -82,7 +82,7 @@ public class InscripcionModel {
 
 	public void insertarInscribe(CursoDTO curso, ColegiadoDTO colegiado) {
 		if (curso.getNplazas() > 0) {
-			db.executeUpdate(SQL_INTRODUCIR_INSCRIBE, colegiado.getDniSol(),
+			db.executeUpdate(SQL_INTRODUCIR_INSCRIBE, colegiado.getDniColegiado(),
 				curso.getTituloCurso(),curso.getFechaCurso(),LocalDateTime.now(),"Pre-inscrito", curso.getPrecio());
 			db.executeUpdate(SQL_REDUCIR_NPLAZAS, curso.getTituloCurso());
 		}

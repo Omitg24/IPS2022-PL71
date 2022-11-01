@@ -70,7 +70,7 @@ public class InscripcionController {
 	}
 
 	private void getListaPreInscritos() {
-		List<CursoDTO> preinscritos = model.buscarCursoPorInscrito(colegiado.getDniSol());
+		List<CursoDTO> preinscritos = model.buscarCursoPorInscrito(colegiado.getDniColegiado());
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(preinscritos, 
 				new String[] {"tituloCurso", "fechaCurso", "precio"});
 		view.getTablePreinscritos().setModel(tmodel);
@@ -136,9 +136,9 @@ public class InscripcionController {
 	}
 
 	public void crearEmision() {
-		String nombre = colegiado.getNombreSol().substring(0, 1).toUpperCase()
-				+ colegiado.getNombreSol().substring(1);
-		String apellido = colegiado.getApellidoSol();
+		String nombre = colegiado.getNombreColegiado().substring(0, 1).toUpperCase()
+				+ colegiado.getNombreColegiado().substring(1);
+		String apellido = colegiado.getApellidosColegiado();
 		String apellido1 = apellido.split(" ")[0];
 		String apellido2 = apellido.split(" ")[1];
 		String apellidoMayus = apellido1.substring(0, 1).toUpperCase()
@@ -171,7 +171,7 @@ public class InscripcionController {
 			}
 			if(tarjetaView!=null)
 				tarjetaView.dispose();
-			model.actualizarEstadoInscripcion(colegiado.getDniSol(), 
+			model.actualizarEstadoInscripcion(colegiado.getDniColegiado(), 
 						curso.getTituloCurso(), curso.getFechaCurso(), estado);
 			getListaPreInscritos();
 			SwingUtil.showInformationDialog("Se ha registrado el pago del curso: "
@@ -188,7 +188,7 @@ public class InscripcionController {
 
 	private boolean comprobarFechaInscripcion(CursoDTO curso) {
 		InscribeDTO i=
-				model.buscarInscripcionCurso(colegiado.getDniSol(), 
+				model.buscarInscripcionCurso(colegiado.getDniColegiado(), 
 						curso.getTituloCurso(), curso.getFechaCurso());
 		 long diasTranscurridos=
 				 ChronoUnit.DAYS.between(

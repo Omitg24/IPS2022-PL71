@@ -13,7 +13,7 @@ public class CursoModel {
 
 	private Database db = new Database();
 
-	public static final String SQL_INCLUIR_CURSOS = "Insert into curso (tituloCurso, fechaCurso, precio,estadoC) values (?,?,?,?)";
+	public static final String SQL_INCLUIR_CURSOS = "Insert into curso (tituloCurso, fechaCurso, precio, estadoC) values (?,?,?,?)";
 	
 	public static final String SQL_BUSCAR_CURSOS = "Select * from curso where tituloCurso=?";
 
