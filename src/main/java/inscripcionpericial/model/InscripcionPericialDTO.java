@@ -5,7 +5,7 @@ import java.sql.Date;
 public class InscripcionPericialDTO {
 	
     private String dniColegiado ;
-    private Date fechaInscripcion;
+    public Date fechaInscripcion;
     private int posicionLista;
     private String estadoInscripcion ;
     
@@ -27,13 +27,7 @@ public class InscripcionPericialDTO {
 		this.dniColegiado = dniColegiado;
 	}
 
-	public Date getFechaInscripcion() {
-		return fechaInscripcion;
-	}
 
-	public void setFechaInscripcion(Date fechaInscripcion) {
-		this.fechaInscripcion = fechaInscripcion;
-	}
 
 	public int getPosicionLista() {
 		return posicionLista;

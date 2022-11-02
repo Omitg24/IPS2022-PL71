@@ -70,7 +70,7 @@ public class JustificanteInscripcionPericial {
 		pnInsRealizada.setBackground(Color.WHITE);
 		contentPane.add(pnInsRealizada, BorderLayout.NORTH);
 		
-		JLabel lblInsRealizada = new JLabel("Pre-inscripción completada");
+		JLabel lblInsRealizada = new JLabel("Confirmar Inscripción");
 		lblInsRealizada.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		pnInsRealizada.add(lblInsRealizada);
 		
@@ -126,6 +126,10 @@ public class JustificanteInscripcionPericial {
 		btnConfirmar.setFocusable(false);
 		btnConfirmar.setBackground(new Color(34, 139, 34));
 		panelConfirmar.add(btnConfirmar);
+	}
+	
+	public JDialog getDialog() {
+		return frmEmision;
 	}
 
 	public void setNombre(String texto) {

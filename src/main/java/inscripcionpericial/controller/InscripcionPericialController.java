@@ -61,43 +61,52 @@ public class InscripcionPericialController {
 	private void verificar() {
 		JustificanteInscripcionPericial j =new JustificanteInscripcionPericial();
 		j.getBtnConfirmar().addActionListener(
-				e -> SwingUtil.exceptionWrapper(() -> enviarConfirmacion()));
+				e -> SwingUtil.exceptionWrapper(() -> enviarConfirmacion(j)));
+		confirmarCambios();
 		confirmarInscripcion();
 		rellenarCampos(j);
+		j.getDialog().setVisible(true);
 	}
 
-	private void enviarConfirmacion() {
-		if(colegiado.getEstadoAsignacionPericial().equals("Asignado")) {	
+	private void confirmarCambios() {
+		colegiado.setTelefonoColegiado(view.getTelefono());
+		colegiado.setLocalidadColegiado(view.getLocalidad());
+		
+	}
+
+	private void enviarConfirmacion(JustificanteInscripcionPericial j) {
+		if(model.buscarColegiadoPercial(colegiado.getDniColegiado())!=null) {	
 			model.actualizarInscripcionPericial(p);
 		}else {
 			model.insertarInscripcionPericial(p);
 		}
-		
+		j.getDialog().dispose();
 	}
 
 	private void rellenarCampos(JustificanteInscripcionPericial j) {
 		j.setDni(p.getDniColegiado());
+		j.setNumero(colegiado.getNumeroColegiado());
 		j.setNombre(colegiado.getNombreColegiado());
 		j.setApellido(colegiado.getApellidosColegiado());
-		j.setFecha(p.getFechaInscripcion().toString());
+		j.setFecha(p.fechaInscripcion.toString());
 		j.setTurno(p.getPosicionLista()+"");
 		j.setTelefono(colegiado.getTelefonoColegiado());
 		j.setLocalidad(colegiado.getLocalidadColegiado());
 		
 	}
-
+	
 	private void confirmarInscripcion() {
-		if(colegiado.getEstadoAsignacionPericial().equals("Asignado")) {
+		if(model.buscarColegiadoPercial(colegiado.getDniColegiado())!=null) {
 			p=model.buscarColegiadoPercial(colegiado.getDniColegiado());
 			p.setEstadoInscripcion("Inscrito");
-			p.setFechaInscripcion(Date.valueOf(LocalDateTime.now().toLocalDate()));
+			p.fechaInscripcion= Date.valueOf(LocalDateTime.now().toLocalDate());
 			
 		}else {
 			p=new InscripcionPericialDTO();
 			p.setDniColegiado(colegiado.getDniColegiado());
 			p.setPosicionLista(model.getUltimoTurnoPericial()+1);
 			p.setEstadoInscripcion("Inscrito");
-			p.setFechaInscripcion(Date.valueOf(LocalDateTime.now().toLocalDate()));
+			p.fechaInscripcion=Date.valueOf(LocalDateTime.now().toLocalDate());
 		}
 	}
 

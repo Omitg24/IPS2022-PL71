@@ -61,6 +61,7 @@ public class IdentificadorView {
 		contentPane.add(getPnCentro(), BorderLayout.CENTER);
 		contentPane.add(getPnSuperior(), BorderLayout.NORTH);
 		contentPane.add(getPnInferior(), BorderLayout.SOUTH);
+		frmIntroduzcaCredenciales.getRootPane().setDefaultButton(btnEntrar);
 
 		inscripcion = ins.getInscripcion();
 	} 
