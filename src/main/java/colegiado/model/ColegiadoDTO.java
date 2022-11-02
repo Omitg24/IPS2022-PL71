@@ -1,5 +1,7 @@
 package colegiado.model;
 
+import java.util.Date;
+
 /**
  * Título: Clase SolicitanteDTO
  *
@@ -8,226 +10,333 @@ package colegiado.model;
  */
 public class ColegiadoDTO {
 	/**
-	 * Atributo dniSol
+	 * Atributo dniColegiado
 	 */
-	private String dniSol;
+	private String dniColegiado;
 	/**
-	 * Atributo nombreSol
+	 * Atributo nombreColegiado
 	 */
-	private String nombreSol;
+	private String nombreColegiado;
 	/**
-	 * Atributo apellidosSol
+	 * Atributo apellidosColegiado
 	 */
-	private String apellidosSol;
+	private String apellidosColegiado;
 	/**
-	 * Atributo localidadSol
+	 * Atributo numeroColegiado
 	 */
-	private String localidadSol;
-	/**
-	 * Atributo telefonoSol
-	 */
-	private String telefonoSol;
-	/**
-	 * Atributo titulacionSol
-	 */
-	private String titulacionSol;
-	/**
-	 * Atributo centroSol
-	 */
-	private String centroSol;
-	/**
-	 * Atributo añoSol
-	 */
-	private String anioSol;
-	/**
-	 * Atributo ibanSol
-	 */
-	private String ibanSol;
 	private String numeroColegiado;
+	/**
+	 * Atributo localidadColegiado
+	 */
+	private String localidadColegiado;
+	/**
+	 * Atributo telefonoColegiado
+	 */
+	private String telefonoColegiado;
+	/**
+	 * Atributo titulacionColegiado
+	 */
+	private String titulacionColegiado;
+	/**
+	 * Atributo centroColegiado
+	 */
+	private String centroColegiado;
+	/**
+	 * Atributo anioColegiado
+	 */
+	private String anioColegiado;
+	/**
+	 * Atributo ibanColegiado
+	 */
+	private String ibanColegiado;
+	/**
+	 * Atributo tipoColegiado
+	 */
+	private String tipoColegiado;
+	/**
+	 * Atributo estadoColegiado
+	 */
+	private String estadoColegiado;
+	/**
+	 * Atributo estadoCuota
+	 */
+	private String estadoCuota;
+	/**
+	 * Atributo estadoAsignacionPericial
+	 */
+	private String estadoAsignacionPericial;
+	/**
+	 * Atributo fechaColegiacion
+	 */
+	private Date fechaColegiacion;
 	
+	/**
+	 * Constructor ColegiadoDTO
+	 */
+	public ColegiadoDTO() {}
 	
-	public ColegiadoDTO() { }
 	/**
 	 * Constructor ApplicantDTO 
-	 * @param dniSol
-	 * @param nombreSol
-	 * @param apellidosSol
-	 * @param localidadSol
-	 * @param telefonoSol
-	 * @param titulacionSol
-	 * @param centroSol
-	 * @param añoSol
-	 * @param ibanSol
 	 */
-	public ColegiadoDTO(String dniSol, String nombreSol, String apellidosSol, 
-			String localidadSol, String telefonoSol, String titulacionSol, 
-			String centroSol, String añoSol, String ibanSol, String numeroColegiado) {		
-		this.dniSol = dniSol;
-		this.nombreSol = nombreSol;
-		this.apellidosSol = apellidosSol;
-		this.localidadSol = localidadSol;
-		this.telefonoSol = telefonoSol;
-		this.titulacionSol = titulacionSol;
-		this.centroSol = centroSol;
-		this.anioSol = añoSol;
-		this.ibanSol = ibanSol;
+	public ColegiadoDTO(String dniColegiado, String nombreColegiado, String apellidosColegiado, String numeroColegiado,
+			String localidadColegiado, String telefonoColegiado, String titulacionColegiado, String centroColegiado,
+			String anioColegiado, String ibanColegiado, String tipoColegiado, String estadoColegiado,
+			String estadoCuota, String estadoAsignacionPericial, Date fechaColegiacion) {
+		this.dniColegiado = dniColegiado;
+		this.nombreColegiado = nombreColegiado;
+		this.apellidosColegiado = apellidosColegiado;
 		this.numeroColegiado = numeroColegiado;
+		this.localidadColegiado = localidadColegiado;
+		this.telefonoColegiado = telefonoColegiado;
+		this.titulacionColegiado = titulacionColegiado;
+		this.centroColegiado = centroColegiado;
+		this.anioColegiado = anioColegiado;
+		this.ibanColegiado = ibanColegiado;
+		this.tipoColegiado = tipoColegiado;
+		this.estadoColegiado = estadoColegiado;
+		this.estadoCuota = estadoCuota;
+		this.estadoAsignacionPericial = estadoAsignacionPericial;
+		this.fechaColegiacion = fechaColegiacion;
 	}
 
 	/**
-	 * Método getDniSol
-	 * @return dniSol
+	 * Método getDniColegiado
+	 * @return dniColegiado
 	 */
-	public String getDniSol() {
-		return dniSol;
+	public String getDniColegiado() {
+		return dniColegiado;
+	}
+	
+	/**
+	 * Método setDniColegiado
+	 * @param dniColegiado
+	 */
+	public void setDniColegiado(String dniColegiado) {
+		this.dniColegiado = dniColegiado;
 	}
 
 	/**
-	 * Método setDniSol
-	 * @param dniSol
+	 * Método getNombreColegiado
+	 * @return nombreColegiado
 	 */
-	public void setDniSol(String dniSol) {
-		this.dniSol = dniSol;
+	public String getNombreColegiado() {
+		return nombreColegiado;
 	}
 
 	/**
-	 * Método getNombreSOl
-	 * @return nombreSol
+	 * Método setNombreColegiado
+	 * @param nombreColegiado
 	 */
-	public String getNombreSol() {
-		return nombreSol;
+	public void setNombreColegiado(String nombreColegiado) {
+		this.nombreColegiado = nombreColegiado;
 	}
 
 	/**
-	 * Método setNombreSol
-	 * @param nombreSol
+	 * Método getApellidosColegiado
+	 * @return apellidosColegiado
 	 */
-	public void setNombreSol(String nombreSol) {
-		this.nombreSol = nombreSol;
+	public String getApellidosColegiado() {
+		return apellidosColegiado;
 	}
 
 	/**
-	 * Método getApellidoSol
-	 * @return apellidosSol
+	 * Método setApellidosColegiado
+	 * @param apellidosColegiado
 	 */
-	public String getApellidoSol() {
-		return apellidosSol;
+	public void setApellidosColegiado(String apellidosColegiado) {
+		this.apellidosColegiado = apellidosColegiado;
 	}
-
+	
 	/**
-	 * Método setApellidoSol
-	 * @param apellidosSol
+	 * Método getNumeroColegiado
+	 * @return numeroColegiado
 	 */
-	public void setApellidosSol(String apellidosSol) {
-		this.apellidosSol = apellidosSol;
-	}
-
-	/**
-	 * Método getLocalidadSol
-	 * @return localidadSol
-	 */
-	public String getLocalidadSol() {
-		return localidadSol;
-	}
-
-	/**
-	 * Método setLocalidadSol
-	 * @param localidadSol
-	 */
-	public void setLocalidadSol(String localidadSol) {
-		this.localidadSol = localidadSol;
-	}
-
-	/**
-	 * Método getTelefonoSol
-	 * @return telefonoSol
-	 */
-	public String getTelefonoSol() {
-		return telefonoSol;
-	}
-
-	/**
-	 * Método setTelefonoSol
-	 * @param telefonoSol
-	 */
-	public void setTelefonoSol(String telefonoSol) {
-		this.telefonoSol = telefonoSol;
-	}
-
-	/**
-	 * Método getTitulacionSol
-	 * @return titulacionSol
-	 */
-	public String getTitulacionSol() {
-		return titulacionSol;
-	}
-
-	/**
-	 * Método setTitulacionSol
-	 * @param titulacionSol
-	 */
-	public void setTitulacionSol(String titulacionSol) {
-		this.titulacionSol = titulacionSol;
-	}
-
-	/**
-	 * Método getCentroSol
-	 * @return centroSol
-	 */
-	public String getCentroSol() {
-		return centroSol;
-	}
-
-	/**
-	 * Método setCentroSol
-	 * @param centroSol
-	 */
-	public void setCentroSol(String centroSol) {
-		this.centroSol = centroSol;
-	}
-
-	/**
-	 * Método getAñoSol
-	 * @return añoSol
-	 */
-	public String getAnioSol() {
-		return anioSol;
-	}
-
-	/**
-	 * Método setAñoSol
-	 * @param añoSol
-	 */
-	public void setAnioSol(String añoSol) {
-		this.anioSol = añoSol;
-	}
-
-	/**
-	 * Método getIbanSol
-	 * @return ibanSol
-	 */
-	public String getIbanSol() {
-		return ibanSol;
-	}
-
-	/**
-	 * Método setIbanSol
-	 * @param ibanSol
-	 */
-	public void setIbanSol(String ibanSol) {
-		this.ibanSol = ibanSol;
-	}
-
 	public String getNumeroColegiado() {
 		return numeroColegiado;
 	}
 	
+	/**
+	 * Método setNumeroColegiado
+	 * @param numeroCol
+	 */
 	public void setNumeroColegiado(String numeroCol) {
 		this.numeroColegiado = numeroCol;
 	}
+
+	/**
+	 * Método getLocalidadColegiado
+	 * @return localidadColegiado
+	 */
+	public String getLocalidadColegiado() {
+		return localidadColegiado;
+	}
+
+	/**
+	 * Método setLocalidadColegiado
+	 * @param localidadColegiado
+	 */
+	public void setLocalidadColegiado(String localidadColegiado) {
+		this.localidadColegiado = localidadColegiado;
+	}
+
+	/**
+	 * Método getTelefonoColegiado
+	 * @return telefonoColegiado
+	 */
+	public String getTelefonoColegiado() {
+		return telefonoColegiado;
+	}
+
+	/**
+	 * Método setTelefonoColegiado
+	 * @param telefonoColegiado
+	 */
+	public void setTelefonoColegiado(String telefonoColegiado) {
+		this.telefonoColegiado = telefonoColegiado;
+	}
+
+	/**
+	 * Método getTitulacionColegiado
+	 * @return titulacionColegiado
+	 */
+	public String getTitulacionColegiado() {
+		return titulacionColegiado;
+	}
+
+	/**
+	 * Método setTitulacionColegiado
+	 * @param titulacionColegiado
+	 */
+	public void setTitulacionColegiado(String titulacionColegiado) {
+		this.titulacionColegiado = titulacionColegiado;
+	}
+
+	/**
+	 * Método getCentroColegiado
+	 * @return centroColegiado
+	 */
+	public String getCentroColegiado() {
+		return centroColegiado;
+	}
+
+	/**
+	 * Método setCentroColegiado
+	 * @param centroColegiado
+	 */
+	public void setCentroColegiado(String centroColegiado) {
+		this.centroColegiado = centroColegiado;
+	}
+
+	/**
+	 * Método getAnioColegiado
+	 * @return anioColegiado
+	 */
+	public String getAnioColegiado() {
+		return anioColegiado;
+	}
+
+	/**
+	 * Método setAnioColegiado
+	 * @param anioColegiado
+	 */
+	public void setAnioColegiado(String anioColegiado) {
+		this.anioColegiado = anioColegiado;
+	}
+
+	/**
+	 * Método getIbanColegiado
+	 * @return ibanColegiado
+	 */
+	public String getIbanColegiado() {
+		return ibanColegiado;
+	}
+
+	/**
+	 * Método setIbanColegiado
+	 * @param ibanColegiado
+	 */
+	public void setIbanColegiado(String ibanColegiado) {
+		this.ibanColegiado = ibanColegiado;
+	}	
 	
-	public String getApellidosSol() {
-		return apellidosSol;
+	/**
+	 * Método getTipoColegiado
+	 * @return tipoColegiado
+	 */
+	public String getTipoColegiado() {
+		return tipoColegiado;
+	}
+	
+	/**
+	 * Método setTipoColegiado
+	 * @param tipoColegiado
+	 */
+	public void setTipoColegiado(String tipoColegiado) {
+		this.tipoColegiado = tipoColegiado;
+	}
+	
+	/**
+	 * Método getEstadoColegiado
+	 * @return estadoColegiado
+	 */
+	public String getEstadoColegiado() {
+		return estadoColegiado;
+	}
+	
+	/**
+	 * Método setEstadoColegiado
+	 * @param estadoColegiado
+	 */
+	public void setEstadoColegiado(String estadoColegiado) {
+		this.estadoColegiado = estadoColegiado;
+	}
+	
+	/**
+	 * Método getEstadoCuota
+	 * @return estadoCuota
+	 */
+	public String getEstadoCuota() {
+		return estadoCuota;
+	}
+	
+	/**
+	 * Método setEstadoCuota
+	 * @param estadoCuota
+	 */
+	public void setEstadoCuota(String estadoCuota) {
+		this.estadoCuota = estadoCuota;
+	}
+	
+	/**
+	 * Método getEstadoAsignacionPericial
+	 * @return estadoAsignacionPericial
+	 */
+	public String getEstadoAsignacionPericial() {
+		return estadoAsignacionPericial;
+	}
+	
+	/**
+	 * Método setEstadoAsignacionPericial
+	 * @param estadoAsignacionPericial
+	 */
+	public void setEstadoAsignacionPericial(String estadoAsignacionPericial) {
+		this.estadoAsignacionPericial = estadoAsignacionPericial;
+	}
+	
+	/**
+	 * Método getFechaColegiacion
+	 * @return fechaColegiacion
+	 */
+	public Date getFechaColegiacion() {
+		return fechaColegiacion;
+	}
+	
+	/**
+	 * Método setFechaColegiacion
+	 * @param fechaColegiacion
+	 */
+	public void setFechaColegiacion(Date fechaColegiacion) {
+		this.fechaColegiacion = fechaColegiacion;
 	}
 	
 	/**
@@ -236,10 +345,16 @@ public class ColegiadoDTO {
 	 */
 	@Override
 	public String toString() {
-		return "Solicitante [dniSol=" + dniSol + ", nombreSol=" + nombreSol + ", apellidosSol=" + apellidosSol
-				+ ", localidadSol=" + localidadSol + ", telefonoSol=" + telefonoSol + ", titulacionSol=" + titulacionSol
-				+ ", centroSol=" + centroSol + ", añoSol=" + anioSol + ", ibanSol=" + ibanSol + "]";
-	}
+		return "ColegiadoDTO [dniColegiado=" + dniColegiado + ", nombreColegiado=" + nombreColegiado
+				+ ", apellidosColegiado=" + apellidosColegiado + ", numeroColegiado=" + numeroColegiado
+				+ ", localidadColegiado=" + localidadColegiado + ", telefonoColegiado=" + telefonoColegiado
+				+ ", titulacionColegiado=" + titulacionColegiado + ", centroColegiado=" + centroColegiado
+				+ ", anioColegiado=" + anioColegiado + ", ibanColegiado=" + ibanColegiado + ", tipoColegiado="
+				+ tipoColegiado + ", estadoColegiado=" + estadoColegiado + ", estadoCuota=" + estadoCuota
+				+ ", estadoAsignacionPericial=" + estadoAsignacionPericial + ", fechaColegiacion=" + fechaColegiacion
+				+ "]";
+	}	
+	
 	
 	
 }

@@ -31,7 +31,7 @@ public class Util {
 	/**
 	 * Constante RECEIPTS_PATH
 	 */
-	private static final String RECEIPTS_PATH = "src/main/resources/files/receipts.dat";	
+	private static final String RECEIPTS_PATH = "src/main/resources/files/receipts.csv";	
 	
 	/**
 	 * Constructor Util
@@ -246,7 +246,7 @@ public class Util {
 				Files.createDirectory(path.getParent());
 			}
 			BufferedWriter file = new BufferedWriter(new FileWriter(filePath, true));			
-			String line = String.format("[%s;%s;%s;%s;%d]\n", 
+			String line = String.format("\n%s;%s;%s;%s;%d", 
 										receiptLine,
 										date,
 										dni,

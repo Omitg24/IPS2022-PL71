@@ -15,10 +15,10 @@ import util.Util;
 public class InscritosModel {
 	
 	public static final String SQL_LISTAR_CURSOS = "Select tituloCurso from Curso";
-	public static final String SQL_LISTAR_INSCRITOS = "Select apellidosSol , nombreSol, "
+	public static final String SQL_LISTAR_INSCRITOS = "Select apellidosColegiado , nombreColegiado, "
 			+ " fecha, estadoS, abonado from Curso c, Inscribe i ,Colegiado o "
-			+ "where c.tituloCurso = i.tituloCurso and i.dniSol = o.dniSol "
-			+ "and i.tituloCurso = ? order by o.apellidosSol,nombreSol";
+			+ "where c.tituloCurso = i.tituloCurso and i.dniColegiado = o.dniColegiado "
+			+ "and i.tituloCurso = ? order by o.apellidosColegiado,nombreColegiado";
 	
 	private Database db = new Database();
 	

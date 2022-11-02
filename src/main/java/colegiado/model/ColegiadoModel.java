@@ -4,7 +4,7 @@ import util.Database;
 import util.Util;
 
 /**
- * Título: Clase SolicitanteModel
+ * Título: Clase ColegiadoModel
  *
  * @author Omar Teixeira González, UO281847
  * @version 9 oct 2022
@@ -15,16 +15,22 @@ public class ColegiadoModel {
 	 * Constante SQL_ADD_APPLICANT
 	 */
 	public static final String SQL_ADD_APPLICANT =
-			"INSERT INTO COLEGIADO (dniSol, nombreSol, apellidosSol, localidadSol, telefonoSol, "
-			+ "titulacionSol, centroSol, anioSol, ibanSol, tipoSol, estadoSol) values (?,?,?,?,?,?,?,?,?,?,?)";
+			"INSERT INTO COLEGIADO (dniColegiado, nombreColegiado, apellidosColegiado, localidadColegiado, telefonoColegiado, "
+					+ "titulacionColegiado, centroColegiado, anioColegiado, ibanColegiado, tipoColegiado, estadoColegiado, estadoCuota,"
+					+ "estadoAsignacionPericial, fechaColegiacion)"
+					+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	/**
-	 * Constante DEFAULT_TIPOSOL
+	 * Constante DEFAULT_TYPE
 	 */
 	private static final String DEFAULT_TYPE = "Colegiado";
 	/**
-	 * Constante DEFAULT_ESTADOSOL
+	 * Constante DEFAULT_STATE
 	 */
 	private static final String DEFAULT_STATE = "Pendiente";
+	/**
+	 * Constante DEFAULT_PERICIAL
+	 */
+	private static final String DEFAULT_PERICIAL = "NA";
 	
 //-- ATRIBUTOS -----------------------------------------------------------------	
 	/**
@@ -50,7 +56,8 @@ public class ColegiadoModel {
 		
 		validation(dni, nombre, apellidos, localidad, telefono, titulacion, centro, año, iban);
 		db.executeUpdate(SQL_ADD_APPLICANT, dni, nombre, apellidos, 
-				localidad, telefono, titulacion, centro, año, iban, DEFAULT_TYPE, DEFAULT_STATE);
+				localidad, telefono, titulacion, centro, año, iban, 
+				DEFAULT_TYPE, DEFAULT_STATE, DEFAULT_STATE, DEFAULT_PERICIAL, null);
 	}
 	
 	/**
