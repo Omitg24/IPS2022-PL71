@@ -15,6 +15,7 @@ import colegiado.ColegiadoMain;
 import curso.CursoMain;
 import emision.EmisionMain;
 import inscripcion.InscripcionMain;
+import inscripcionpericial.InscripcionPericialMain;
 import inscritos.InscritosMain;
 import util.Database;
 
@@ -31,6 +32,7 @@ public class Main extends JFrame {
 	private JButton btnNewButton_3;
 	private JButton btnNewButton_4;
 	private JButton btnNewButton_5;
+	private JButton btnNewButton_6;
 
 	/**
 	 * Launch the application.
@@ -71,6 +73,7 @@ public class Main extends JFrame {
 		contentPane.add(getBtnNewButton_3());
 		contentPane.add(getBtnNewButton_4());
 		contentPane.add(getBtnNewButton_5());
+		contentPane.add(getBtnNewButton_6());
 	}
 
 	private JButton getBtnNewButton() {
@@ -138,5 +141,17 @@ public class Main extends JFrame {
 			});
 		}
 		return btnNewButton_5;
+	}
+	
+	private JButton getBtnNewButton_6() {
+		if (btnNewButton_6 == null) {
+			btnNewButton_6 = new JButton("Inscribir Perito");
+			btnNewButton_6.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new InscripcionPericialMain().main(null);;
+				}
+			});
+		}
+		return btnNewButton_6;
 	}
 }

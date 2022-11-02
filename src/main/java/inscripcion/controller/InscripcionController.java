@@ -40,7 +40,7 @@ public class InscripcionController {
 	public InscripcionController(InscripcionModel m, IdentificadorView v) {
 		this.model = m;
 		this.viewId = v;
-		this.view = viewId.getInscripcion();
+		this.view = (InscripcionView) viewId.getInscripcion();
 		this.emision = view.getEmision();
 
 		this.initView();

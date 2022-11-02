@@ -3,6 +3,7 @@ package inscripcion;
 import inscripcion.controller.InscripcionController;
 import inscripcion.model.InscripcionModel;
 import inscripcion.view.IdentificadorView;
+import inscripcion.view.InscripcionView;
 
 /**
  * Título: Clase InscripcionMain
@@ -14,7 +15,7 @@ public class InscripcionMain {
 	
 	public void main(String[] args) {
 	
-		IdentificadorView view = new IdentificadorView();
+		IdentificadorView view = new IdentificadorView(new InscripcionView());
 		InscripcionModel model = new InscripcionModel();
 		System.out.println(model.getCursosAbiertos());
 		InscripcionController controller = new InscripcionController(model,view);
