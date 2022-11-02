@@ -6,7 +6,7 @@ delete from Inscribe;
 delete from Colegiado;
 delete from Curso;
 
-insert into Colegiado (dniSol, nombreSol, apellidosSol, localidadSol, telefonoSol, titulacionSol, centroSol, anioSol, ibanSol, numeroColegiado, tipoSol, estadoSol, estadoCuota, estadoAsignacionPericial, fechaColegiacion) values
+insert into Colegiado (dniColegiado, nombreColegiado, apellidosColegiado, localidadColegiado, telefonoColegiado, titulacionColegiado, centroColegiado, anioColegiado, ibanColegiado, numeroColegiado, tipoColegiado, estadoColegiado, estadoCuota, estadoAsignacionPericial, fechaColegiacion) values
 	('7348920547A' ,'manolo', 'sanchez rodriguez', 'madrid', '472381032', 'panadero', 'uniovi', 1986, '3412431434789', '327894312', 'Colegiado', 'Pendiente', 'Emitido', 'NA', '2020-9-13'),
 	('6435634566K' ,'pablo', 'gonzalez martinez', 'asturias', '584022938', 'carnicero', 'fundacion minabo', 1983, '5342453352345', '465326453', 'Colegiado', 'Anulado', 'Pendiente', 'NA', '2021-6-16'),
 	('4728129374H' ,'juan', 'garcia del monte quemao', 'cataluña', '544356789', 'bombero', 'grupo entuhuerto', 1991, '7653756537456', '765474567', 'Colegiado', 'Activo', 'Pagado', 'Asignado', '2022-1-3'),
@@ -31,7 +31,7 @@ VALUES
 ('Desarrollo videojuegos','2022-11-21','165','Planificado')
 ;
 
-Insert into Inscribe (dniSol,tituloCurso,fechaCurso,fecha,estadoS,abonado,incidencia)
+Insert into Inscribe (dniColegiado,tituloCurso,fechaCurso,fecha,estadoS,abonado,incidencia)
 values
 ('7348920547A','Desarrollo dispositivos moviles','2022-6-4','2022-7-12','Inscrito','135','ninguna'),
 ('7348920547A','Desarrollo de robots','2022-2-3','2022-7-12','Inscrito','150','ninguna'),
@@ -40,7 +40,7 @@ values
 ('6435634566K','Desarrollo videojuegos','2022-6-4','2022-7-12','Cancelado','90','ninguna')
 ;
 
-Insert into InscripcionPericial(dniSol, fechaInscripcion, posicionLista, estadoInscripcion)
+Insert into InscripcionPericial(dniColegiado, fechaInscripcion, posicionLista, estadoInscripcion)
 VALUES
 ('7348920547A', '2020-9-11', 1, 'Inscrito'),
 ('6435634566K', '2021-6-8', 2, 'Inscrito'),
