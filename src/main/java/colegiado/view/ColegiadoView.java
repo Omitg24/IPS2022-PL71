@@ -220,7 +220,6 @@ public class ColegiadoView extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 1200, 800);
 		frame.setLocationRelativeTo(null);		
-		frame.setContentPane(contentPane);
 		frame.getRootPane().setDefaultButton(btAddApplicant);
 		
 		contentPane = new JPanel();
@@ -230,6 +229,7 @@ public class ColegiadoView extends JFrame {
 		contentPane.add(getUpperPanel(), BorderLayout.NORTH);
 		contentPane.add(getBottomPanel(), BorderLayout.SOUTH);		
 		contentPane.add(getMiddlePanel(), BorderLayout.CENTER);
+		frame.setContentPane(contentPane);
 	}
 
 	/**

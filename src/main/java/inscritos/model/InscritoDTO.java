@@ -8,37 +8,37 @@ package inscritos.model;
  * @version 13 oct 2022
  */
 public class InscritoDTO {
-	private String apellidosSol;
-	private String nombreSol;
+	private String apellidosColegiado;
+	private String nombreColegiado;
 	private String fecha;
 	private String estadoS;
 	private double abonado;
 	
 	public InscritoDTO() {}
 	
-	public InscritoDTO(String apellidosSol, String nombreSol,
+	public InscritoDTO(String apellidosColegiado, String nombreColegiado,
 			String fecha, String estadoS, double abonado) {
-		this.apellidosSol = apellidosSol;
-		this.nombreSol = nombreSol;
+		this.apellidosColegiado = apellidosColegiado;
+		this.nombreColegiado = nombreColegiado;
 		this.fecha = fecha;
 		this.estadoS = estadoS;
 		this.abonado = abonado;
 	}
 
-	public String getApellidosSol() {
-		return apellidosSol;
+	public String getApellidosColegiado() {
+		return apellidosColegiado;
 	}
 
-	public void setApellidosSol(String apellidosSol) {
-		this.apellidosSol = apellidosSol;
+	public void setApellidosColegiado(String apellidosColegiado) {
+		this.apellidosColegiado = apellidosColegiado;
 	}
 
-	public String getNombreSol() {
-		return nombreSol;
+	public String getNombreColegiado() {
+		return nombreColegiado;
 	}
 
-	public void setNombreSol(String nombreSol) {
-		this.nombreSol = nombreSol;
+	public void setNombreColegiado(String nombreColegiado) {
+		this.nombreColegiado = nombreColegiado;
 	}
 
 	public String getFecha() {

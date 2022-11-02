@@ -1,6 +1,6 @@
 package colegiado.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Título: Clase SolicitanteDTO

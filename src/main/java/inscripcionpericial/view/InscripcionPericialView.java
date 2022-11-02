@@ -359,7 +359,7 @@ public class InscripcionPericialView implements Inscripcion {
 			txtNumeroCol.setEditable(false);
 			txtNumeroCol.setPreferredSize(new Dimension(10, 25));
 			txtNumeroCol.setHorizontalAlignment(SwingConstants.CENTER);
-			txtNumeroCol.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtNumeroCol.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			txtNumeroCol.setColumns(10);
 			txtNumeroCol.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtNumeroCol.setBackground(Color.WHITE);
@@ -409,7 +409,7 @@ public class InscripcionPericialView implements Inscripcion {
 			txtDni.setEditable(false);
 			txtDni.setPreferredSize(new Dimension(10, 25));
 			txtDni.setHorizontalAlignment(SwingConstants.CENTER);
-			txtDni.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			txtDni.setColumns(10);
 			txtDni.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtDni.setBackground(Color.WHITE);
@@ -476,7 +476,7 @@ public class InscripcionPericialView implements Inscripcion {
 			txtNombre.setEditable(false);
 			txtNombre.setPreferredSize(new Dimension(10, 25));
 			txtNombre.setHorizontalAlignment(SwingConstants.CENTER);
-			txtNombre.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			txtNombre.setColumns(10);
 			txtNombre.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtNombre.setBackground(Color.WHITE);

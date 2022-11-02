@@ -1,9 +1,14 @@
 package inscripcionpericial.controller;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+
 import colegiado.model.ColegiadoDTO;
 import inscripcion.view.IdentificadorView;
+import inscripcionpericial.model.InscripcionPericialDTO;
 import inscripcionpericial.model.InscripcionPericialModel;
 import inscripcionpericial.view.InscripcionPericialView;
+import inscripcionpericial.view.JustificanteInscripcionPericial;
 import ui_events.ChangeColor;
 import util.SwingUtil;
 
@@ -12,7 +17,10 @@ public class InscripcionPericialController {
 	private InscripcionPericialModel model;
 	private InscripcionPericialView view;
 	private IdentificadorView viewId;
-	private String dni;
+	
+	
+	private ColegiadoDTO colegiado;
+	private InscripcionPericialDTO p ;
 	
 	
 	public InscripcionPericialController(InscripcionPericialModel model, IdentificadorView viewId) {
@@ -22,6 +30,7 @@ public class InscripcionPericialController {
 	}
 	
 	private void initView() {
+		rellenarCampos(colegiado);
 		view.getFrame().setVisible(true);
 	}
 	
@@ -43,14 +52,53 @@ public class InscripcionPericialController {
 		else if(model.buscarColegiado(dni)==null)
 			SwingUtil.showErrorDialog("No existe un colegiado con ese identificador");
 		else {
-			this.dni=dni;
+			colegiado= model.buscarColegiado(dni);
 			viewId.getFrame().dispose();
 			initView();
 		}
 	}
 
 	private void verificar() {
+		JustificanteInscripcionPericial j =new JustificanteInscripcionPericial();
+		j.getBtnConfirmar().addActionListener(
+				e -> SwingUtil.exceptionWrapper(() -> enviarConfirmacion()));
+		confirmarInscripcion();
+		rellenarCampos(j);
+	}
 
+	private void enviarConfirmacion() {
+		if(colegiado.getEstadoAsignacionPericial().equals("Asignado")) {	
+			model.actualizarInscripcionPericial(p);
+		}else {
+			model.insertarInscripcionPericial(p);
+		}
+		
+	}
+
+	private void rellenarCampos(JustificanteInscripcionPericial j) {
+		j.setDni(p.getDniColegiado());
+		j.setNombre(colegiado.getNombreColegiado());
+		j.setApellido(colegiado.getApellidosColegiado());
+		j.setFecha(p.getFechaInscripcion().toString());
+		j.setTurno(p.getPosicionLista()+"");
+		j.setTelefono(colegiado.getTelefonoColegiado());
+		j.setLocalidad(colegiado.getLocalidadColegiado());
+		
+	}
+
+	private void confirmarInscripcion() {
+		if(colegiado.getEstadoAsignacionPericial().equals("Asignado")) {
+			p=model.buscarColegiadoPercial(colegiado.getDniColegiado());
+			p.setEstadoInscripcion("Inscrito");
+			p.setFechaInscripcion(Date.valueOf(LocalDateTime.now().toLocalDate()));
+			
+		}else {
+			p=new InscripcionPericialDTO();
+			p.setDniColegiado(colegiado.getDniColegiado());
+			p.setPosicionLista(model.getUltimoTurnoPericial()+1);
+			p.setEstadoInscripcion("Inscrito");
+			p.setFechaInscripcion(Date.valueOf(LocalDateTime.now().toLocalDate()));
+		}
 	}
 
 	private void modificarCampos() {
@@ -60,14 +108,13 @@ public class InscripcionPericialController {
 		view.getTxtLocalidad().setEditable(true);
 	}
 	
-	private void rellenarCampos(String dni) {
-		ColegiadoDTO colegiado = model.buscarColegiado(dni);
+	private void rellenarCampos(ColegiadoDTO colegiado) {
 		view.getTxtNumeroCol().setText(colegiado.getNumeroColegiado());
-		view.getTxtDni().setText(colegiado.getDniSol());
-		view.getTxtNombre().setText(colegiado.getNombreSol());
-		view.getTxtTelefono().setText(colegiado.getTelefonoSol());
-		view.getTxtApellidos().setText(colegiado.getApellidoSol());
-		view.getTxtLocalidad().setText(colegiado.getLocalidadSol());
+		view.getTxtDni().setText(colegiado.getDniColegiado());
+		view.getTxtNombre().setText(colegiado.getNombreColegiado());
+		view.getTxtTelefono().setText(colegiado.getTelefonoColegiado());
+		view.getTxtApellidos().setText(colegiado.getApellidosColegiado());
+		view.getTxtLocalidad().setText(colegiado.getLocalidadColegiado());
 	}
 	
 
