@@ -38,13 +38,12 @@ Con esta aplicación se pretende llegar a una introducción al desarrollo de sof
   - David: Como secretaría administrativa quiero obtener el listado de inscritos de un determinado curso de formación.
   - Omar: Como secretaría administrativa quiero realizar la emisión de los recibos de cuotas a los colegiados y precolegiados.
 #### Sprint 2:
-  - Como colegiado/pre-colegiado pre-inscrito en un curso de formación quiero realizar el pago del curso.
-  - Como secretaría administrativa quiero realizar una consulta al ministerio para conocer la titulación de un solicitante de ingreso para proceder al alta inmediato en el COIIPA.
-  - Como colegiado quiero inscribirme como perito privado para poder realizar informes periciales.
-  - Como secretaria administrativa quiero asignar solicitudes periciales a los peritos para que puedan cumplir la función asignada
-  - Como entidad quiero poder solicitar un informe pericial para realizar la tarea solicitada.
-  - Como secretaria administrativa quiero poder consolidar los pagos por transferencia para poder inscribir al solicitante al curso.
-  - Como secretaria administrativa quiero poder enviar lotes de solicitudes al ministerio y recepcionarlos para completar el proceso de colegiación
+  - David: Como colegiado/pre-colegiado pre-inscrito en un curso de formación quiero realizar el pago del curso.  
+  - David: Como colegiado quiero inscribirme como perito privado para poder realizar informes periciales.
+  - David: Como secretaria administrativa quiero asignar solicitudes periciales a los peritos para que puedan cumplir la función asignada
+  - Adrián: Como entidad quiero poder solicitar un informe pericial para realizar la tarea solicitada.
+  - Omar: Como secretaria administrativa quiero poder consolidar los pagos por transferencia para poder inscribir al solicitante al curso.
+  - Adrián: Como secretaria administrativa quiero poder enviar lotes de solicitudes al ministerio y recepcionarlos para completar el proceso de colegiación
 #### Sprint 3:
 
   - Como
