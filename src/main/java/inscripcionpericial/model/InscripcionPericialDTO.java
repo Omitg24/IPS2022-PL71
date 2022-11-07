@@ -28,6 +28,12 @@ public class InscripcionPericialDTO {
 	}
 
 
+	public Date getFechaInscripcion() {
+		return fechaInscripcion;
+	}
+	
+
+
 
 	public int getPosicionLista() {
 		return posicionLista;

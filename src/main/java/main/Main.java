@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import apertura.AperturaMain;
+import asignacionpericial.AsignacionPericialMain;
 import colegiado.ColegiadoMain;
 import curso.CursoMain;
 import emision.EmisionMain;
@@ -33,6 +34,7 @@ public class Main extends JFrame {
 	private JButton btnNewButton_4;
 	private JButton btnNewButton_5;
 	private JButton btnNewButton_6;
+	private JButton btnNewButton_7;
 
 	/**
 	 * Launch the application.
@@ -74,6 +76,7 @@ public class Main extends JFrame {
 		contentPane.add(getBtnNewButton_4());
 		contentPane.add(getBtnNewButton_5());
 		contentPane.add(getBtnNewButton_6());
+		contentPane.add(getBtnNewButton_7());
 	}
 
 	private JButton getBtnNewButton() {
@@ -153,5 +156,17 @@ public class Main extends JFrame {
 			});
 		}
 		return btnNewButton_6;
+	}
+	
+	private JButton getBtnNewButton_7() {
+		if (btnNewButton_7 == null) {
+			btnNewButton_7 = new JButton("Asginar Informe Pericial");
+			btnNewButton_7.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new AsignacionPericialMain().main(null);;
+				}
+			});
+		}
+		return btnNewButton_7;
 	}
 }
