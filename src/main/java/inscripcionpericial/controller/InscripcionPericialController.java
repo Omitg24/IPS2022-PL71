@@ -99,14 +99,14 @@ public class InscripcionPericialController {
 		if(model.buscarColegiadoPercial(colegiado.getDniColegiado())!=null) {
 			p=model.buscarColegiadoPercial(colegiado.getDniColegiado());
 			p.setEstadoInscripcion("Inscrito");
-			p.fechaInscripcion= Date.valueOf(LocalDateTime.now().toLocalDate());
+			p.fechaInscripcion= Date.valueOf(LocalDateTime.now().toLocalDate()).toString();
 			
 		}else {
 			p=new InscripcionPericialDTO();
 			p.setDniColegiado(colegiado.getDniColegiado());
 			p.setPosicionLista(model.getUltimoTurnoPericial()+1);
 			p.setEstadoInscripcion("Inscrito");
-			p.fechaInscripcion=Date.valueOf(LocalDateTime.now().toLocalDate());
+			p.fechaInscripcion=Date.valueOf(LocalDateTime.now().toLocalDate()).toString();
 		}
 	}
 
