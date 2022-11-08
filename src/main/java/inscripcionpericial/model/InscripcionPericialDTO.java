@@ -1,17 +1,15 @@
 package inscripcionpericial.model;
 
-import java.sql.Date;
-
 public class InscripcionPericialDTO {
 	
     private String dniColegiado ;
-    public Date fechaInscripcion;
+    public String fechaInscripcion;
     private int posicionLista;
     private String estadoInscripcion ;
     
     public InscripcionPericialDTO() {}
     
-	public InscripcionPericialDTO(String dniColegiado, Date fechaInscripcion, int posicionLista,
+	public InscripcionPericialDTO(String dniColegiado, String fechaInscripcion, int posicionLista,
 			String estadoInscripcion) {
 		this.dniColegiado = dniColegiado;
 		this.fechaInscripcion = fechaInscripcion;
@@ -27,7 +25,13 @@ public class InscripcionPericialDTO {
 		this.dniColegiado = dniColegiado;
 	}
 
+	public String getFechaInscripcion() {
+		return fechaInscripcion;
+	}
 
+	public void setFechaInscripcion(String fechaInscripcion) {
+		this.fechaInscripcion = fechaInscripcion;
+	}
 
 	public int getPosicionLista() {
 		return posicionLista;

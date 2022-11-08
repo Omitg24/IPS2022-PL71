@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import apertura.AperturaMain;
+import asignacionpericial.AsignacionPericialMain;
 import colegiado.ColegiadoMain;
 import consolidacion.ConsolidacionMain;
 import curso.CursoMain;
@@ -29,12 +30,13 @@ public class Main extends JFrame {
 	private JPanel contentPane;
 	private JButton btnAperturaCursos;
 	private JButton btnAltaColegiado;
-	private JButton btnNewButton_2;
+	private JButton btnPlanificarCursos;
 	private JButton btnEmitirRecibo;
 	private JButton btnInscripcionCurso;
 	private JButton btnListarInscritos;
 	private JButton btnInscribirPerito;
 	private JButton btnConsolidacionPago;
+	private JButton btnAsignarInformePericial;
 
 	/**
 	 * Launch the application.
@@ -73,12 +75,13 @@ public class Main extends JFrame {
 		setContentPane(contentPane);
 		contentPane.add(getBtnAperturaCursos());
 		contentPane.add(getBtnAltaColegiado());
-		contentPane.add(getBtnNewButton_2());
+		contentPane.add(getBtnPlanificarCursos());
 		contentPane.add(getBtnEmitirRecibo());
 		contentPane.add(getBtnInscripcionCurso());
 		contentPane.add(getBtnListarInscritos());
 		contentPane.add(getBtnInscribirPerito());
 		contentPane.add(getBtnConsolidacionPago());
+		contentPane.add(getBtnAsignarInformePericial());
 	}
 
 	private JButton getBtnAperturaCursos() {
@@ -103,16 +106,17 @@ public class Main extends JFrame {
 		}
 		return btnAltaColegiado;
 	}
-	private JButton getBtnNewButton_2() {
-		if (btnNewButton_2 == null) {
-			btnNewButton_2 = new JButton("Palnificar Cursos");
-			btnNewButton_2.addActionListener(new ActionListener() {
+	
+	private JButton getBtnPlanificarCursos() {
+		if (btnPlanificarCursos == null) {
+			btnPlanificarCursos = new JButton("Planificar Cursos");
+			btnPlanificarCursos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new CursoMain().main(null);
 				}
 			});
 		}
-		return btnNewButton_2;
+		return btnPlanificarCursos;
 	}
 	private JButton getBtnEmitirRecibo() {
 		if (btnEmitirRecibo == null) {
@@ -125,6 +129,7 @@ public class Main extends JFrame {
 		} 
 		return btnEmitirRecibo;
 	}
+	
 	private JButton getBtnInscripcionCurso() {
 		if (btnInscripcionCurso == null) {
 			btnInscripcionCurso = new JButton("Inscripcion Curso");
@@ -170,5 +175,17 @@ public class Main extends JFrame {
 			});
 		}
 		return btnConsolidacionPago;
+	}
+	
+	private JButton getBtnAsignarInformePericial() {
+		if (btnAsignarInformePericial == null) {
+			btnAsignarInformePericial = new JButton("Asginar Informe Pericial");
+			btnAsignarInformePericial.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new AsignacionPericialMain().main(null);;
+				}
+			});
+		}
+		return btnAsignarInformePericial;
 	}
 }
