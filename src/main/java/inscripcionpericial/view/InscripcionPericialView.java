@@ -264,9 +264,9 @@ public class InscripcionPericialView implements Inscripcion {
 	}
 
 	/**
-	 * Método getBtAddApplicant
+	 * Método getBtModificar
 	 * 
-	 * @return btAddApplicant
+	 * @return btModificar
 	 */
 	public JButton getBtModificar() {
 		if (btModificar == null) {
@@ -281,7 +281,7 @@ public class InscripcionPericialView implements Inscripcion {
 	}
 
 	/**
-	 * Método getRegisterPanel
+	 * Método getMiddlePanel
 	 * 
 	 * @return middlePanel
 	 */
@@ -300,9 +300,9 @@ public class InscripcionPericialView implements Inscripcion {
 	}
 
 	/**
-	 * Método getLeftDataPanel
+	 * Método getPnIzqDatos
 	 * 
-	 * @return leftDataPanel
+	 * @return pnIzqDatos
 	 */
 	private JPanel getPnIzqDatos() {
 		if (pnIzqDatos == null) {
@@ -317,9 +317,9 @@ public class InscripcionPericialView implements Inscripcion {
 	}
 
 	/**
-	 * Método getDniPanel
+	 * Método getPnNumeroCol
 	 * 
-	 * @return dniPanel
+	 * @return pnNumeroCol
 	 */
 	private JPanel getPnNumeroCol() {
 		if (pnNumeroCol == null) {
@@ -333,9 +333,9 @@ public class InscripcionPericialView implements Inscripcion {
 	}
 
 	/**
-	 * Método getLbDni
+	 * Método getLbNumeroCol
 	 * 
-	 * @return lbDni
+	 * @return lbNumeroCol
 	 */
 	private JLabel getLbNumeroCol() {
 		if (lbNumeroCol == null) {
@@ -349,9 +349,9 @@ public class InscripcionPericialView implements Inscripcion {
 	}
 
 	/**
-	 * Método getTxtDni
+	 * Método getTxtNumeroCol
 	 * 
-	 * @return txtDni
+	 * @return txtNumeroCol
 	 */
 	public JTextField getTxtNumeroCol() {
 		if (txtNumeroCol == null) {

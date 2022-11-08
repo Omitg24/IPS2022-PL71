@@ -8,6 +8,7 @@ package inscritos.model;
  * @version 13 oct 2022
  */
 public class InscritoDTO {
+	private String dni;
 	private String apellidosColegiado;
 	private String nombreColegiado;
 	private String fecha;
@@ -16,13 +17,22 @@ public class InscritoDTO {
 	
 	public InscritoDTO() {}
 	
-	public InscritoDTO(String apellidosColegiado, String nombreColegiado,
+	public InscritoDTO(String dni, String apellidosColegiado, String nombreColegiado,
 			String fecha, String estadoS, double abonado) {
+		this.dni = dni;
 		this.apellidosColegiado = apellidosColegiado;
 		this.nombreColegiado = nombreColegiado;
 		this.fecha = fecha;
 		this.estadoS = estadoS;
 		this.abonado = abonado;
+	}	
+	
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getApellidosColegiado() {
@@ -63,8 +73,5 @@ public class InscritoDTO {
 
 	public void setAbonado(double abonado) {
 		this.abonado = abonado;
-	}
-	
-	
-	
+	}	
 }

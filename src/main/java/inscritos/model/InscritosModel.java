@@ -33,7 +33,7 @@ public class InscritosModel {
 	}
 	
 	private void validateNotNullOrEmpty(String cadena) {
-		Util.validateNotNull(cadena,"El curso no puede ser null o estar vacio");
+		Util.validateNotNull(cadena,"El título del curso no puede ser null o estar vacio");
 	}
 
 }

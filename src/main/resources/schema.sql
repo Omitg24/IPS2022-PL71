@@ -52,12 +52,12 @@ CREATE TABLE Inscribe (
     fechaCurso date NOT NULL,
     fecha date NOT NULL,
     estadoS varchar(20) NOT NULL,
-    abonado decimal(10, 2) NOT NULL,
+    abonado decimal(10, 2),
     incidencia varchar,
 
-    CONSTRAINT PK_INSCRIBE PRIMARY KEY (dniColegiado, tituloCurso),
+    CONSTRAINT PK_INSCRIBE PRIMARY KEY (dniColegiado, tituloCurso, fechaCurso),
     CONSTRAINT FK_INSCRIBE_COLEGIADO FOREIGN KEY (dniColegiado) REFERENCES Colegiado (dniColegiado),
-    CONSTRAINT FK_INSCRIBE_CURSO FOREIGN KEY (tituloCurso,fechaCurso) REFERENCES Curso (tituloCurso,fechaCurso),
+    CONSTRAINT FK_INSCRIBE_CURSO FOREIGN KEY (tituloCurso, fechaCurso) REFERENCES Curso (tituloCurso, fechaCurso),
     CONSTRAINT CK_ESTADO_INSCRIBE CHECK (estadoS in ('Pre-inscrito', 'Inscrito', 'Cancelado','Pendiente'))
 );
 
