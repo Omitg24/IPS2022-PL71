@@ -28,15 +28,15 @@ public class ConsolidacionModel {
 	/**
 	 * Constante SQL_UPDATE_ESTADO
 	 */
-	public static final String SQL_UPDATE_ESTADO = "UPDATE INSCRIBE SET ESTADOS = ? WHERE DNICOLEGIADO = ?";
+	public static final String SQL_UPDATE_ESTADO = "UPDATE INSCRIBE SET ESTADOS = ? WHERE DNICOLEGIADO = ? AND TITULOCURSO = ? AND FECHACURSO = ?";
 	/**
 	 * Constante SQL_UPDATE_PREINSCRITO
 	 */
-	public static final String SQL_UPDATE_PREINSCRITO = "UPDATE INSCRIBE SET ESTADOS = ?, INCIDENCIA = ? WHERE DNICOLEGIADO = ?";
+	public static final String SQL_UPDATE_PREINSCRITO = "UPDATE INSCRIBE SET ESTADOS = ?, INCIDENCIA = ? WHERE DNICOLEGIADO = ? AND TITULOCURSO = ? AND FECHACURSO = ?";
 	/**
 	 * Constante SQL_UPDATE_INSCRITO
 	 */
-	public static final String SQL_UPDATE_INSCRITO = "UPDATE INSCRIBE SET ESTADOS = ?, ABONADO = ? WHERE DNICOLEGIADO = ?";
+	public static final String SQL_UPDATE_INSCRITO = "UPDATE INSCRIBE SET ESTADOS = ?, ABONADO = ? WHERE DNICOLEGIADO = ? AND TITULOCURSO = ? AND FECHACURSO = ?";
 	
 	/**
 	 * Atributo db
@@ -64,25 +64,37 @@ public class ConsolidacionModel {
 	
 	/**
 	 * Método updateEstado
-	 * @param estado
-	 * @param dni
+	 * @param estadoS
+	 * @param dniColegiado
+	 * @param tituloCurso
+	 * @param fechaCurso
 	 */
-	public void updateEstado(String estado, String dni) {
-		db.executeUpdate(SQL_UPDATE_ESTADO, estado, dni);
+	public void updateEstado(String estadoS, String dniColegiado, String tituloCurso, String fechaCurso) {
+		db.executeUpdate(SQL_UPDATE_ESTADO, estadoS, dniColegiado, tituloCurso, fechaCurso);
 	}
 	
 	/**
 	 * Método updatePreinscrito
-	 * @param estado
+	 * @param estadoS
 	 * @param incidencia
-	 * @param dni
+	 * @param dniColegiado
+	 * @param tituloCurso
+	 * @param fechaCurso
 	 */
-	public void updatePreinscrito(String estado, String incidencia,String dni) {
-		db.executeUpdate(SQL_UPDATE_PREINSCRITO, estado, incidencia, dni);
+	public void updatePreinscrito(String estadoS, String incidencia, String dniColegiado, String tituloCurso, String fechaCurso) {
+		db.executeUpdate(SQL_UPDATE_PREINSCRITO, estadoS, incidencia, dniColegiado, tituloCurso, fechaCurso);
 	}
 	
-	public void updateInscrito(String estado, double abonado, String dni) {
-		db.executeUpdate(SQL_UPDATE_INSCRITO, estado, abonado, dni);
+	/**
+	 * Método updateInscrito
+	 * @param estado
+	 * @param abonado
+	 * @param dni
+	 * @param tituloCurso
+	 * @param fechaCurso
+	 */
+	public void updateInscrito(String estado, double abonado, String dni, String tituloCurso, String fechaCurso) {
+		db.executeUpdate(SQL_UPDATE_INSCRITO, estado, abonado, dni, tituloCurso, fechaCurso);
 	}
 	
 	/**

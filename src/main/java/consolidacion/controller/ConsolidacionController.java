@@ -21,6 +21,11 @@ import util.Util;
  * @version 9 nov 2022
  */
 public class ConsolidacionController {	
+//-- CONSTANTES -----------------------------------------------
+	/**
+	 * Constante LIMITE_DIAS
+	 */
+	public static final int LIMITE_DIAS = 2;
 	/**
 	 * Constante CANCELADO
 	 */
@@ -29,6 +34,7 @@ public class ConsolidacionController {
 	 * Constante INSCRITO
 	 */
 	public static final String INSCRITO = "Inscrito";
+//-- ATRIBUTOS ------------------------------------------------
 	/**
 	 * Atributo model
 	 */
@@ -70,7 +76,7 @@ public class ConsolidacionController {
 	public ConsolidacionController(ConsolidacionModel model, ConsolidacionView view) {
 		this.model=model;
 		this.view=view;
-		
+				
 		this.initView();
 	}
 	
@@ -124,45 +130,63 @@ public class ConsolidacionController {
 		this.preinscritos = model.getListaPreinscritos(tituloCurso, fechaCurso);		
 		updateTableColegiados();			
 		
-		view.getBtConsolidacion().setEnabled(true);
+		if (preinscritos.isEmpty()) {
+			view.getBtConsolidacion().setEnabled(false);
+		} else {
+			view.getBtConsolidacion().setEnabled(true);
+		}				
 	}
 	
 	/**
 	 * Método loadTableColegiados
 	 */
 	private void consolidate() {
-		boolean isPresent = false;
+		boolean isPresent = false;		
+		int fechaCounter = 0;		
+		int abonadoCounter = 0;		
+		int noPresenteCounter = 0;
+		int inscritoCounter = 0;
 		
 		List<InscritoDTO> preinscritosBanco = new ArrayList<InscritoDTO>(); 
-		Util.readFinanceFiles(fileName, preinscritosBanco);
+		if (!Util.readFinanceFiles(fileName, preinscritosBanco)) {
+			SwingUtil.showErrorDialog("No se han podido consolidar los pagos."
+									+ "\nEsto se debe a que no se ha recibido aún el fichero del banco correspondiente.");
+			return;
+		}
 		
 		for (InscritoDTO preinscrito : preinscritos) {
 			isPresent = false;
 			for (InscritoDTO preinscritoBanco : preinscritosBanco) {
-				if (preinscrito.getDniColegiado().equals(preinscritoBanco.getDniColegiado())
-					&& preinscrito.getTituloCurso().equals(tituloCurso)
-					&& preinscrito.getFechaCurso().equals(fechaCurso)) {					
+				if (preinscrito.getDniColegiado().equals(preinscritoBanco.getDniColegiado())) {					
 					isPresent = true;
 					LocalDate fechaInscrito = LocalDate.parse(preinscrito.getFecha());
 					LocalDate fechaPago = LocalDate.parse(preinscritoBanco.getFecha());
 					
-					if (ChronoUnit.DAYS.between(fechaInscrito, fechaPago) > 2) {
-						model.updatePreinscrito(CANCELADO, "Inscripción cancelada por exceder el límite de tiempo (2 días)", preinscrito.getDniColegiado());
+					if (ChronoUnit.DAYS.between(fechaInscrito, fechaPago) > LIMITE_DIAS) {
+						fechaCounter++;
+						model.updatePreinscrito(CANCELADO, "Inscripción cancelada por exceder el límite de tiempo del pago (2 días)", 
+								preinscrito.getDniColegiado(), tituloCurso, fechaCurso);
 					} else if (preinscritoBanco.getAbonado() < precio) {
-						model.updatePreinscrito(CANCELADO, "Inscripción cancelada por no pagar el curso al completo. Se devolverá el importe abonado.", preinscrito.getDniColegiado());
+						abonadoCounter++;
+						model.updatePreinscrito(CANCELADO, "Inscripción cancelada por no pagar el curso al completo. Se devolverá el importe abonado.", 
+								preinscrito.getDniColegiado(), tituloCurso, fechaCurso);
 					} else {
-						model.updateInscrito(INSCRITO, preinscritoBanco.getAbonado(), preinscrito.getDniColegiado());
+						inscritoCounter++;
+						model.updateInscrito(INSCRITO, preinscritoBanco.getAbonado(), 
+								preinscrito.getDniColegiado(), tituloCurso, fechaCurso);
 					}
 				}
 			}
 			if (!isPresent) {				
-				model.updateEstado(CANCELADO, preinscrito.getDniColegiado());
+				noPresenteCounter++;
+				model.updateEstado(CANCELADO, preinscrito.getDniColegiado(), tituloCurso, fechaCurso);
 			}
 		}
 		
 		this.preinscritos = model.getListaPreinscritos(tituloCurso, fechaCurso);
 		updateTableColegiados();
 		
+		SwingUtil.showInformationDialog(getMsg(fechaCounter, abonadoCounter, noPresenteCounter, inscritoCounter));
 		view.getBtConsolidacion().setEnabled(false);
 	}	
 	
@@ -181,5 +205,24 @@ public class ConsolidacionController {
 		SwingUtil.autoAdjustColumns(view.getTblColegiados());
 		view.getTblColegiados().getTableHeader().setReorderingAllowed(false);
 		view.getTblColegiados().getTableHeader().setResizingAllowed(false);
+	}
+	
+	/**
+	 * Método getMsg
+	 * @param fechaCounter
+	 * @param abonadoCounter
+	 * @param noPresenteCounter
+	 * @param inscritoCounter
+	 * @return
+	 */
+	private String getMsg(int fechaCounter, int abonadoCounter, int noPresenteCounter, int inscritoCounter) {
+		int canceladoCounter = fechaCounter + abonadoCounter + noPresenteCounter;
+		String msg = "Se han actualizado todos los estados."
+				   + "\nUn total de " + canceladoCounter + " inscripciones se han cancelado, concretamente:"
+				   + "\n      • Cancelados por exceder el limite de tiempo del pago: " + fechaCounter 
+				   + "\n      • Cancelados por no hacer el pago completo: " + abonadoCounter
+				   + "\n      • Cancelados por no estar presentes en el informe bancario: " + noPresenteCounter
+				   + "\nEl resto de inscripciones (un total de " + inscritoCounter + ") han cumplido los requisitos y se ha confirmado su inscripción.";
+		return msg;
 	}
 }

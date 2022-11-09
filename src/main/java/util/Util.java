@@ -277,7 +277,7 @@ public class Util {
 	 * @param fileName
 	 * @param listaPreinscritos
 	 */
-	public static void readFinanceFiles(String fileName, List<InscritoDTO> listaPreinscritos){		
+	public static boolean readFinanceFiles(String fileName, List<InscritoDTO> listaPreinscritos){		
 		String linea;
 	    String[] datosInscrito= null;	   
 	    String filePath = "src/main/resources/files/finance_files/"+fileName+".csv";
@@ -290,12 +290,15 @@ public class Util {
 	    							datosInscrito[2], datosInscrito[4], null, Double.valueOf(datosInscrito[3])));
 	    		}
 	    		fichero.close();
+	    		return true;
 	    }
 	    catch (FileNotFoundException fnfe) {
-	      System.out.println("El archivo no se ha encontrado.");
+	    	System.out.println("El archivo no se ha encontrado.");
+	      	return false;
 	    }
 	    catch (IOException ioe) {
-	      new RuntimeException("Error de entrada/salida.");
-	    } 
+	    	new RuntimeException("Error de entrada/salida.");
+	    	return false;
+	    }
 	}
 }
