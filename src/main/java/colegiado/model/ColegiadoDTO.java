@@ -76,6 +76,42 @@ public class ColegiadoDTO {
 	public ColegiadoDTO() {}
 	
 	/**
+	 * Constructor parcial, sin estado ni numero de colegiado
+	 */
+	public ColegiadoDTO (String dniColegiado, String nombreColegiado, String apellidosColegiado,
+			String localidadColegiado, String telefonoColegiado, String titulacionColegiado, String centroColegiado,
+			String anioColegiado, String ibanColegiado) {
+		this.dniColegiado = dniColegiado;
+		this.nombreColegiado = nombreColegiado;
+		this.apellidosColegiado = apellidosColegiado;
+		this.localidadColegiado = localidadColegiado;
+		this.telefonoColegiado = telefonoColegiado;
+		this.titulacionColegiado = titulacionColegiado;
+		this.centroColegiado = centroColegiado;
+		this.anioColegiado = anioColegiado;
+		this.ibanColegiado = ibanColegiado;
+	}
+	
+	/**
+	 * Constructor parcial, con estado y número de colegiado
+	 */
+	public ColegiadoDTO (String dniColegiado, String nombreColegiado, String apellidosColegiado,
+			String localidadColegiado, String telefonoColegiado, String titulacionColegiado, String centroColegiado,
+			String anioColegiado, String ibanColegiado, String numeroColegiado, String estadoColegiado) {
+		this.dniColegiado = dniColegiado;
+		this.nombreColegiado = nombreColegiado;
+		this.apellidosColegiado = apellidosColegiado;
+		this.localidadColegiado = localidadColegiado;
+		this.telefonoColegiado = telefonoColegiado;
+		this.titulacionColegiado = titulacionColegiado;
+		this.centroColegiado = centroColegiado;
+		this.anioColegiado = anioColegiado;
+		this.ibanColegiado = ibanColegiado;
+		this.numeroColegiado = numeroColegiado;
+		this.estadoColegiado = estadoColegiado;
+	}
+	
+	/**
 	 * Constructor ApplicantDTO 
 	 */
 	public ColegiadoDTO(String dniColegiado, String nombreColegiado, String apellidosColegiado, String numeroColegiado,
