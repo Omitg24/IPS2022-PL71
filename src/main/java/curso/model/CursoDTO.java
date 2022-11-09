@@ -9,6 +9,7 @@ public class CursoDTO {
 	private String fechaFinIns;
 	private String estadoc;
 	private int nplazas;
+	private String fecha;
 	
 	public CursoDTO() {}
 	
@@ -23,6 +24,27 @@ public class CursoDTO {
 		this.estadoc = estadoc;
 	}
 	
+	public CursoDTO(String titulocurso, String fechaCurso, double precio, String fechaInicioIns, 
+			String fechaFinIns, String estadoc, int nplazas,String fecha) {
+		this.tituloCurso = titulocurso;
+		this.fechaInicioIns = fechaInicioIns;
+		this.fechaFinIns = fechaFinIns;
+		this.fechaCurso = fechaCurso;
+		this.precio = precio;
+		this.nplazas = nplazas;
+		this.estadoc = estadoc;
+		this.fecha=fecha;
+	}
+	
+	
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
 	public String getTituloCurso() {
 		return tituloCurso;
 	}

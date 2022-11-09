@@ -72,9 +72,9 @@ public class InscripcionController {
 	private void getListaPreInscritos() {
 		List<CursoDTO> preinscritos = model.buscarCursoPorInscrito(colegiado.getDniColegiado());
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(preinscritos, 
-				new String[] {"tituloCurso", "fechaCurso", "precio"});
+				new String[] {"tituloCurso", "fechaCurso","fecha", "precio"});
 		view.getTablePreinscritos().setModel(tmodel);
-		String[] titles = new String[] { "                  Título del curso                  ", "      Fecha de inicio      ", "  Precio  "};
+		String[] titles = new String[] { "Título del curso", "Fecha de inicio","Fecha Inscripción", "Precio"};
 		for (int i = 0; i < titles.length; i++) {
 			view.getTablePreinscritos().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
 		}
@@ -159,7 +159,6 @@ public class InscripcionController {
 	public void confirmarPago(String tipoPago) {
 		String titulo = SwingUtil.getSelectedKey(view.getTablePreinscritos());
 		String fecha = SwingUtil.getSelectedKey(view.getTablePreinscritos(),1);
-		System.out.println(titulo+"\n"+fecha);
 		CursoDTO c = model.getCursoFromKey(titulo, fecha);
 		if(comprobarFechaInscripcion(c) && comprobarPlazas(c)) {
 			String estado ="";
@@ -183,6 +182,8 @@ public class InscripcionController {
 	private boolean comprobarPlazas(CursoDTO curso) {
 		if(curso.getNplazas()>=1)
 			return true;
+		else
+			SwingUtil.showInformationDialog("No quedan plazas disponibles");
 		return false;
 	}
 

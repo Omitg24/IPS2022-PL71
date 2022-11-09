@@ -1,6 +1,6 @@
 package inscripcion.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import colegiado.model.ColegiadoDTO;
@@ -46,7 +46,7 @@ public class InscripcionModel {
 			"update curso set nplazas=nplazas-1 where titulocurso = ?";
 	
 	private static final String SQL_LISTAR_CURSO_PREINSCRITO = 
-			"Select c.tituloCurso, c.fechaCurso, c.precio, c.estadoC "
+			"Select c.tituloCurso, c.fechaCurso, c.precio, c.estadoC, i.fecha "
 			+ "from Curso c, Inscribe i "
 			+ "where c.tituloCurso=i.tituloCurso and c.fechaCurso=i.fechaCurso "
 			+ "and i.dniColegiado =? and i.estadoS=?";
@@ -83,7 +83,7 @@ public class InscripcionModel {
 	public void insertarInscribe(CursoDTO curso, ColegiadoDTO colegiado) {
 		if (curso.getNplazas() > 0) {
 			db.executeUpdate(SQL_INTRODUCIR_INSCRIBE, colegiado.getDniColegiado(),
-				curso.getTituloCurso(),curso.getFechaCurso(),LocalDateTime.now(),"Pre-inscrito", curso.getPrecio());
+				curso.getTituloCurso(),curso.getFechaCurso(),LocalDate.now(),"Pre-inscrito", curso.getPrecio());
 			db.executeUpdate(SQL_REDUCIR_NPLAZAS, curso.getTituloCurso());
 		}
 		else {

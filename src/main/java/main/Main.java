@@ -1,14 +1,26 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 import apertura.AperturaMain;
 import asignacionpericial.AsignacionPericialMain;
@@ -22,18 +34,6 @@ import inscripcionpericial.InscripcionPericialMain;
 import inscritos.InscritosMain;
 import lotes.LotesMain;
 import util.Database;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
-import java.awt.Toolkit;
-import java.awt.GridLayout;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-import java.awt.Cursor;
 
 public class Main extends JFrame {
 
@@ -58,7 +58,7 @@ public class Main extends JFrame {
 	private JButton btnAsignarInformePericial;
 	private JButton btnLotes;
 	private JButton btnInforme;
-	private JLabel lblAltoke;
+	private JButton btnNuevaFuncionalidad;
 
 	/**
 	 * Launch the application.
@@ -149,7 +149,7 @@ public class Main extends JFrame {
 			pnBotones.add(getBtnLotes());
 			pnBotones.add(getBtnLotes());
 			pnBotones.add(getBtnInforme());
-			pnBotones.add(getLblAltoke());
+			pnBotones.add(getBtnNuevaFuncionalidad());
 		}
 		return pnBotones;
 	}
@@ -323,13 +323,29 @@ public class Main extends JFrame {
 		}
 		return btnInforme;
 	}
-	private JLabel getLblAltoke() {
-		if (lblAltoke == null) {
-			lblAltoke = new JLabel("");
-			lblAltoke.setHorizontalTextPosition(SwingConstants.CENTER);
-			lblAltoke.setHorizontalAlignment(SwingConstants.CENTER);
-			lblAltoke.setIcon(new ImageIcon(Main.class.getResource("/images/altoke.png")));
+	
+	private JButton getBtnNuevaFuncionalidad() {
+		if (btnNuevaFuncionalidad== null) {
+			btnNuevaFuncionalidad = new JButton("*Próxima Funcionalidad*");
+			btnNuevaFuncionalidad.setBackground(Color.LIGHT_GRAY);
+			btnNuevaFuncionalidad.setBorder(new LineBorder(Color.BLACK));
+			btnNuevaFuncionalidad.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnNuevaFuncionalidad.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnNuevaFuncionalidad.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JDialog j = new JDialog();
+					j.setBounds(0, 0, 500, 500);
+					j.setLocationRelativeTo(null);
+					j.setLayout(new BorderLayout());
+					JLabel l = new JLabel();
+					l.setIcon(new ImageIcon(Main.class.getResource("/images/altoke.png")));
+					l.setHorizontalAlignment(SwingConstants.CENTER);
+					j.add(l, BorderLayout.CENTER);
+					j.setVisible(true);
+				}
+			});
 		}
-		return lblAltoke;
+		return btnNuevaFuncionalidad;
 	}
+
 }

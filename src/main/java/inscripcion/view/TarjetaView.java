@@ -198,7 +198,8 @@ public class TarjetaView extends JDialog {
 	}
 
 	private void comprobarCampos(InscripcionController inscripcion) {
-		if (txtFechaCaducidad.getText().isBlank() || txtNumero.getText().isBlank()) {
+		if (txtFechaCaducidad.getText().isBlank() || txtNumero.getText().isBlank()
+				|| txtCvv.getText().isBlank()) {
 			SwingUtil.showErrorDialog("Los campos no pueden estar vacios");
 
 		} else if (!comprobarFechaCaducidad()){
