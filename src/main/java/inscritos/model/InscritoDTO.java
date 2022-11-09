@@ -8,18 +8,20 @@ package inscritos.model;
  * @version 13 oct 2022
  */
 public class InscritoDTO {
-	private String dni;
+	private String dniColegiado;
+	private String tituloCurso;
 	private String apellidosColegiado;
 	private String nombreColegiado;
+	private String fechaCurso;
 	private String fecha;
 	private String estadoS;
 	private double abonado;
 	
 	public InscritoDTO() {}
 	
-	public InscritoDTO(String dni, String apellidosColegiado, String nombreColegiado,
+	public InscritoDTO(String dniColegiado, String apellidosColegiado, String nombreColegiado,
 			String fecha, String estadoS, double abonado) {
-		this.dni = dni;
+		this.dniColegiado = dniColegiado;
 		this.apellidosColegiado = apellidosColegiado;
 		this.nombreColegiado = nombreColegiado;
 		this.fecha = fecha;
@@ -27,12 +29,27 @@ public class InscritoDTO {
 		this.abonado = abonado;
 	}	
 	
-	public String getDni() {
-		return dni;
+	public InscritoDTO(String dniColegiado, String tituloCurso, String apellidosColegiado, String nombreColegiado,
+			String fechaCurso, String fecha, String estadoS, double abonado) {
+		this(dniColegiado, apellidosColegiado, nombreColegiado, fecha, estadoS, abonado);
+		this.tituloCurso = tituloCurso;
+		this.fechaCurso = fechaCurso;
+	}	
+	
+	public String getDniColegiado() {
+		return dniColegiado;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDniColegiado(String dni) {
+		this.dniColegiado = dni;
+	}	
+
+	public String getTituloCurso() {
+		return tituloCurso;
+	}
+
+	public void setTituloCurso(String tituloCurso) {
+		this.tituloCurso = tituloCurso;
 	}
 
 	public String getApellidosColegiado() {
@@ -49,6 +66,14 @@ public class InscritoDTO {
 
 	public void setNombreColegiado(String nombreColegiado) {
 		this.nombreColegiado = nombreColegiado;
+	}
+	
+	public String getFechaCurso() {
+		return fechaCurso;
+	}
+
+	public void setFechaCurso(String fechaCurso) {
+		this.fechaCurso = fechaCurso;
 	}
 
 	public String getFecha() {

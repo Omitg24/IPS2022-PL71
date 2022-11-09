@@ -38,11 +38,6 @@ public class Util {
 	private static final String RECEIPTS_PATH = "src/main/resources/files/receipts.csv";
 	
 	/**
-	 * Constante General_PATH
-	 */
-	private static final String GENERAL_PATH = "src/main/resources/files/";
-	
-	/**
 	 * Constructor Util
 	 */
 	private Util() {
@@ -277,16 +272,21 @@ public class Util {
 	      .toLocalDateTime();
 	}
 	
-	public static void readFinanceFiles(String fileName, List<InscritoDTO> preinscritos){		
+	/**
+	 * Método readFinanceFIles
+	 * @param fileName
+	 * @param listaPreinscritos
+	 */
+	public static void readFinanceFiles(String fileName, List<InscritoDTO> listaPreinscritos){		
 		String linea;
 	    String[] datosInscrito= null;	   
-	    String filePath = GENERAL_PATH+fileName;
+	    String filePath = "src/main/resources/files/finance_files/"+fileName+".csv";
 	    try {
 	    	   BufferedReader fichero = new BufferedReader(new FileReader(filePath));
 	    		while (fichero.ready()) {
 	    			linea = fichero.readLine();
 	    			datosInscrito = linea.split(";");
-	    			preinscritos.add(new InscritoDTO(datosInscrito[0], datosInscrito[1],
+	    			listaPreinscritos.add(new InscritoDTO(datosInscrito[0], datosInscrito[1],
 	    							datosInscrito[2], datosInscrito[4], null, Double.valueOf(datosInscrito[3])));
 	    		}
 	    		fichero.close();

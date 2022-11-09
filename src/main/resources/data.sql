@@ -37,9 +37,6 @@ VALUES
 
 Insert into Inscribe (dniColegiado,tituloCurso,fechaCurso,fecha,estadoS,incidencia)
 values
-('7348920547A','Desarrollo web','2022-11-26','2022-08-03','Pre-inscrito','ninguna'),
-('4728129374H','Desarrollo web','2022-11-26','2022-08-02','Inscrito','ninguna'),
-('4728129374H','Informática forense y auditoría','2023-1-20','2022-08-02','Pre-inscrito','ninguna'),
 ('7348920547A','Desarrollo de aplicaciones moviles','2022-09-13','2022-05-14','Inscrito','ninguna'),
 ('4728129374H','Desarrollo de aplicaciones moviles','2022-09-13','2022-01-24','Pre-inscrito','ninguna'),
 ('2348597612B','Desarrollo de aplicaciones moviles','2022-09-13','2022-03-24','Inscrito','ninguna'),

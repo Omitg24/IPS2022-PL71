@@ -1,5 +1,8 @@
 package consolidacion.controller;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.TableModel;
@@ -9,6 +12,7 @@ import consolidacion.view.ConsolidacionView;
 import curso.model.CursoDTO;
 import inscritos.model.InscritoDTO;
 import util.SwingUtil;
+import util.Util;
 
 /**
  * Titulo: Clase ConsolidacionController
@@ -16,7 +20,15 @@ import util.SwingUtil;
  * @author Omar Teixeira González, UO281847
  * @version 9 nov 2022
  */
-public class ConsolidacionController {
+public class ConsolidacionController {	
+	/**
+	 * Constante CANCELADO
+	 */
+	public static final String CANCELADO = "Cancelado";
+	/**
+	 * Constante INSCRITO
+	 */
+	public static final String INSCRITO = "Inscrito";
 	/**
 	 * Atributo model
 	 */
@@ -25,6 +37,30 @@ public class ConsolidacionController {
 	 * Atributo view
 	 */
 	private ConsolidacionView view;
+	/**
+	 * Atributo cursos
+	 */
+	private List<CursoDTO> cursos;
+	/**
+	 * Atributo preinscritos
+	 */
+	private List<InscritoDTO> preinscritos;
+	/**
+	 * Atributo tituloCuros
+	 */
+	private String tituloCurso;
+	/**
+	 * Atributo fechaCurso
+	 */
+	private String fechaCurso;
+	/**
+	 * Atributo precio
+	 */
+	private double precio;
+	/**
+	 * Atributo fileName
+	 */
+	private String fileName;
 	
 	/**
 	 * Constructor ConsolidacionController
@@ -52,13 +88,16 @@ public class ConsolidacionController {
 	public void initController() {
 		view.getTblCursos().getSelectionModel().addListSelectionListener(
 				e -> SwingUtil.exceptionWrapper(() -> loadTableColegiados()));
+		view.getBtConsolidacion().addActionListener(
+				e -> SwingUtil.exceptionWrapper(() -> consolidate()));
 	}
 	
 	/**
 	 * Método loadTableCursos
 	 */
 	private void loadTableCursos() {
-		List<CursoDTO> cursos = model.getListaCursos();
+		this.cursos = model.getListaCursos();
+		
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(cursos, new String[] {"tituloCurso", "fechaCurso", 
 				"fechaInicioIns", "fechaFinIns", "precio", "estadoc", "nplazas"});
 		view.getTblCursos().setModel(tmodel);
@@ -77,10 +116,61 @@ public class ConsolidacionController {
 	 * Método loadTableColegiados
 	 */
 	private void loadTableColegiados() {
-		String tituloCurso = view.getTblCursos().getModel().getValueAt(view.getTblCursos().getSelectedRow(), 0).toString();
-		String fechaCurso = view.getTblCursos().getModel().getValueAt(view.getTblCursos().getSelectedRow(), 1).toString();
-		List<InscritoDTO> colegiados = model.getListaPreinscritos(tituloCurso, fechaCurso);
-		TableModel tmodel = SwingUtil.getTableModelFromPojos(colegiados, new String[] {"apellidosColegiado", "nombreColegiado", 
+		this.tituloCurso = view.getTblCursos().getModel().getValueAt(view.getTblCursos().getSelectedRow(), 0).toString();
+		this.fechaCurso = view.getTblCursos().getModel().getValueAt(view.getTblCursos().getSelectedRow(), 1).toString();
+		this.precio = Double.valueOf(view.getTblCursos().getModel().getValueAt(view.getTblCursos().getSelectedRow(), 4).toString());
+		
+		this.fileName = tituloCurso.toLowerCase().replace(" ", "_")+"_"+fechaCurso;
+		this.preinscritos = model.getListaPreinscritos(tituloCurso, fechaCurso);		
+		updateTableColegiados();			
+		
+		view.getBtConsolidacion().setEnabled(true);
+	}
+	
+	/**
+	 * Método loadTableColegiados
+	 */
+	private void consolidate() {
+		boolean isPresent = false;
+		
+		List<InscritoDTO> preinscritosBanco = new ArrayList<InscritoDTO>(); 
+		Util.readFinanceFiles(fileName, preinscritosBanco);
+		
+		for (InscritoDTO preinscrito : preinscritos) {
+			isPresent = false;
+			for (InscritoDTO preinscritoBanco : preinscritosBanco) {
+				if (preinscrito.getDniColegiado().equals(preinscritoBanco.getDniColegiado())
+					&& preinscrito.getTituloCurso().equals(tituloCurso)
+					&& preinscrito.getFechaCurso().equals(fechaCurso)) {					
+					isPresent = true;
+					LocalDate fechaInscrito = LocalDate.parse(preinscrito.getFecha());
+					LocalDate fechaPago = LocalDate.parse(preinscritoBanco.getFecha());
+					
+					if (ChronoUnit.DAYS.between(fechaInscrito, fechaPago) > 2) {
+						model.updatePreinscrito(CANCELADO, "Inscripción cancelada por exceder el límite de tiempo (2 días)", preinscrito.getDniColegiado());
+					} else if (preinscritoBanco.getAbonado() < precio) {
+						model.updatePreinscrito(CANCELADO, "Inscripción cancelada por no pagar el curso al completo. Se devolverá el importe abonado.", preinscrito.getDniColegiado());
+					} else {
+						model.updateInscrito(INSCRITO, preinscritoBanco.getAbonado(), preinscrito.getDniColegiado());
+					}
+				}
+			}
+			if (!isPresent) {				
+				model.updateEstado(CANCELADO, preinscrito.getDniColegiado());
+			}
+		}
+		
+		this.preinscritos = model.getListaPreinscritos(tituloCurso, fechaCurso);
+		updateTableColegiados();
+		
+		view.getBtConsolidacion().setEnabled(false);
+	}	
+	
+	/**
+	 * Método updateTableColegiados
+	 */
+	private void updateTableColegiados() {
+		TableModel tmodel = SwingUtil.getTableModelFromPojos(preinscritos, new String[] {"apellidosColegiado", "nombreColegiado", 
 				"fecha", "estadoS", "abonado"});
 		view.getTblColegiados().setModel(tmodel);
 		String[] titulos = new String[] {"Apellidos", "Nombre", 

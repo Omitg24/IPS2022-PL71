@@ -164,7 +164,7 @@ public class ConsolidacionView extends JFrame {
 		if (bottomPanel == null) {
 			bottomPanel = new JPanel();
 			bottomPanel.setBackground(Color.WHITE);
-			bottomPanel.add(getBtConsolidacion());
+			bottomPanel.add(getBtnConsolidacion());
 		}
 		return bottomPanel;		
 	}
@@ -173,13 +173,14 @@ public class ConsolidacionView extends JFrame {
 	 * Método getBtConsolidacion
 	 * @return btConsolidacion
 	 */
-	public JButton getBtConsolidacion() {
+	private JButton getBtnConsolidacion() {
 		if (btConsolidacion == null) {
 			btConsolidacion = new JButton("Consolidar");
 			btConsolidacion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btConsolidacion.setForeground(Color.WHITE);
 			btConsolidacion.setFont(new Font("Tahoma", Font.BOLD, 22));
 			btConsolidacion.setBackground(new Color(34, 139, 34));
+			btConsolidacion.setEnabled(false);
 		}
 		return btConsolidacion;
 	}
@@ -293,5 +294,9 @@ public class ConsolidacionView extends JFrame {
 	 */
 	public JFrame getFrame() {
 		return frame;
+	}
+	
+	public JButton getBtConsolidacion() {
+		return btConsolidacion;		
 	}
 }
