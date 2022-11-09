@@ -35,16 +35,16 @@ public class IdentificadorView {
 	private JButton btnEntrar;
 	private JTextField textFieldId;
 
-	private InscripcionView inscripcion;
+	private Inscripcion inscripcion;
 
 	/**
 	 * Create the frame.
 	 */
-	public IdentificadorView() {
-		initialize();
+	public IdentificadorView(Inscripcion ins) {
+		initialize(ins);
 	}
 
-	private void initialize() {
+	private void initialize(Inscripcion ins) {
 		frmIntroduzcaCredenciales = new JFrame();
 		frmIntroduzcaCredenciales.setResizable(false);
 		frmIntroduzcaCredenciales.setTitle("Administración COIIPA");
@@ -61,9 +61,10 @@ public class IdentificadorView {
 		contentPane.add(getPnCentro(), BorderLayout.CENTER);
 		contentPane.add(getPnSuperior(), BorderLayout.NORTH);
 		contentPane.add(getPnInferior(), BorderLayout.SOUTH);
+		frmIntroduzcaCredenciales.getRootPane().setDefaultButton(btnEntrar);
 
-		inscripcion = new InscripcionView();
-	}
+		inscripcion = ins.getInscripcion();
+	} 
 
 	public void reiniciarCampos() {
 
@@ -140,7 +141,7 @@ public class IdentificadorView {
 		}
 		return textFieldId;
 	}
-	public InscripcionView getInscripcion() {
+	public Inscripcion getInscripcion() {
 		return inscripcion;
 	}
 }

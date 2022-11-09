@@ -1,6 +1,6 @@
 package colegiado.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Título: Clase SolicitanteDTO
@@ -359,22 +359,7 @@ public class ColegiadoDTO {
 		this.estadoAsignacionPericial = estadoAsignacionPericial;
 	}
 	
-	/**
-	 * Método getFechaColegiacion
-	 * @return fechaColegiacion
-	 */
-	public Date getFechaColegiacion() {
-		return fechaColegiacion;
-	}
-	
-	/**
-	 * Método setFechaColegiacion
-	 * @param fechaColegiacion
-	 */
-	public void setFechaColegiacion(Date fechaColegiacion) {
-		this.fechaColegiacion = fechaColegiacion;
-	}
-	
+
 	/**
 	 * Método toString
 	 * @return string

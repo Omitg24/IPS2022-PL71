@@ -1,7 +1,9 @@
 package util;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -23,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import inscritos.model.InscritoDTO;
+
 /**
  * Utilidades varias con metodos generales de serializacion, conversion a csv y
  * conversion de fechas
@@ -31,7 +35,7 @@ public class Util {
 	/**
 	 * Constante RECEIPTS_PATH
 	 */
-	private static final String RECEIPTS_PATH = "src/main/resources/files/receipts.csv";	
+	private static final String RECEIPTS_PATH = "src/main/resources/files/receipts.csv";
 	
 	/**
 	 * Constructor Util
@@ -266,5 +270,35 @@ public class Util {
 	    return dateToConvert.toInstant()
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDateTime();
+	}
+	
+	/**
+	 * Método readFinanceFIles
+	 * @param fileName
+	 * @param listaPreinscritos
+	 */
+	public static boolean readFinanceFiles(String fileName, List<InscritoDTO> listaPreinscritos){		
+		String linea;
+	    String[] datosInscrito= null;	   
+	    String filePath = "src/main/resources/files/finance_files/"+fileName+".csv";
+	    try {
+	    	   BufferedReader fichero = new BufferedReader(new FileReader(filePath));
+	    		while (fichero.ready()) {
+	    			linea = fichero.readLine();
+	    			datosInscrito = linea.split(";");
+	    			listaPreinscritos.add(new InscritoDTO(datosInscrito[0], datosInscrito[1],
+	    							datosInscrito[2], datosInscrito[4], null, Double.valueOf(datosInscrito[3])));
+	    		}
+	    		fichero.close();
+	    		return true;
+	    }
+	    catch (FileNotFoundException fnfe) {
+	    	System.out.println("El archivo no se ha encontrado.");
+	      	return false;
+	    }
+	    catch (IOException ioe) {
+	    	new RuntimeException("Error de entrada/salida.");
+	    	return false;
+	    }
 	}
 }

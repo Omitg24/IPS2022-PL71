@@ -40,7 +40,7 @@ public class InscritosController {
 		String titulo = view.getComboBoxCursos().getSelectedItem().toString();
 		List<InscritoDTO> inscritos = model.getListaInscrito(titulo);
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(inscritos, 
-				new String[] {"apellidosSol","nombreSol","fecha","estadoS","abonado"});
+				new String[] {"apellidosColegiado","nombreColegiado","fecha","estadoS","abonado"});
 		view.getTableInscritos().setModel(tmodel);
 		String[] titles = new String[] { "Apellidos", "Nombre", "Fecha", "Situacion",
 				"Abonado"};

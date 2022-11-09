@@ -15,10 +15,10 @@ public class ColegiadoModel {
 	 * Constante SQL_ADD_APPLICANT
 	 */
 	public static final String SQL_ADD_APPLICANT =
-			"INSERT INTO COLEGIADO (dniColegiado, nombreColegiado, apellidosColegiado, localidadColegiado, telefonoColegiado, "
-					+ "titulacionColegiado, centroColegiado, anioColegiado, ibanColegiado, tipoColegiado, estadoColegiado, estadoCuota,"
-					+ "estadoAsignacionPericial, fechaColegiacion)"
-					+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			"INSERT INTO COLEGIADO (DNICOLEGIADO, NOMBRECOLEGIADO, APELLIDOSCOLEGIADO, LOCALIDADCOLEGIADO, TELEFONOCOLEGIADO, "
+					+ "TITULACIONCOLEGIADO, CENTROCOLEGIADO, ANIOCOLEGIADO, IBANCOLEGIADO, TIPOCOLEGIADO, ESTADOCOLEGIADO, ESTADOCUOTA,"
+					+ "ESTADOASIGNACIONPERICIAL, FECHACOLEGIACION)"
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	/**
 	 * Constante DEFAULT_TYPE
 	 */

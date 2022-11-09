@@ -11,10 +11,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import apertura.AperturaMain;
+import asignacionpericial.AsignacionPericialMain;
 import colegiado.ColegiadoMain;
+import consolidacion.ConsolidacionMain;
 import curso.CursoMain;
 import emision.EmisionMain;
 import inscripcion.InscripcionMain;
+import inscripcionpericial.InscripcionPericialMain;
 import inscritos.InscritosMain;
 import util.Database;
 
@@ -25,12 +28,15 @@ public class Main extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
-	private JButton btnNewButton_2;
-	private JButton btnNewButton_3;
-	private JButton btnNewButton_4;
-	private JButton btnNewButton_5;
+	private JButton btnAperturaCursos;
+	private JButton btnAltaColegiado;
+	private JButton btnPlanificarCursos;
+	private JButton btnEmitirRecibo;
+	private JButton btnInscripcionCurso;
+	private JButton btnListarInscritos;
+	private JButton btnInscribirPerito;
+	private JButton btnConsolidacionPago;
+	private JButton btnAsignarInformePericial;
 
 	/**
 	 * Launch the application.
@@ -60,83 +66,126 @@ public class Main extends JFrame {
 	public Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 651, 374);
+		setLocationRelativeTo(null);
+		setTitle("Administración COIIPA");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.add(getBtnNewButton());
-		contentPane.add(getBtnNewButton_2());
-		contentPane.add(getBtnNewButton_1());
-		contentPane.add(getBtnNewButton_3());
-		contentPane.add(getBtnNewButton_4());
-		contentPane.add(getBtnNewButton_5());
+		contentPane.add(getBtnAperturaCursos());
+		contentPane.add(getBtnAltaColegiado());
+		contentPane.add(getBtnPlanificarCursos());
+		contentPane.add(getBtnEmitirRecibo());
+		contentPane.add(getBtnInscripcionCurso());
+		contentPane.add(getBtnListarInscritos());
+		contentPane.add(getBtnInscribirPerito());
+		contentPane.add(getBtnConsolidacionPago());
+		contentPane.add(getBtnAsignarInformePericial());
 	}
 
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("Apertura Cursos");
-			btnNewButton.addActionListener(new ActionListener() {
+	private JButton getBtnAperturaCursos() {
+		if (btnAperturaCursos == null) {
+			btnAperturaCursos = new JButton("Apertura Cursos");
+			btnAperturaCursos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new AperturaMain().main(null);;
 				}
 			});
 		}
-		return btnNewButton;
+		return btnAperturaCursos;
 	}
-	private JButton getBtnNewButton_1() {
-		if (btnNewButton_1 == null) {
-			btnNewButton_1 = new JButton("Alta Colegiado");
-			btnNewButton_1.addActionListener(new ActionListener() {
+	private JButton getBtnAltaColegiado() {
+		if (btnAltaColegiado == null) {
+			btnAltaColegiado = new JButton("Alta Colegiado");
+			btnAltaColegiado.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new ColegiadoMain().main(null);;
 				}
 			});
 		}
-		return btnNewButton_1;
+		return btnAltaColegiado;
 	}
-	private JButton getBtnNewButton_2() {
-		if (btnNewButton_2 == null) {
-			btnNewButton_2 = new JButton("Palnificar Cursos");
-			btnNewButton_2.addActionListener(new ActionListener() {
+	
+	private JButton getBtnPlanificarCursos() {
+		if (btnPlanificarCursos == null) {
+			btnPlanificarCursos = new JButton("Planificar Cursos");
+			btnPlanificarCursos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new CursoMain().main(null);
 				}
 			});
 		}
-		return btnNewButton_2;
+		return btnPlanificarCursos;
 	}
-	private JButton getBtnNewButton_3() {
-		if (btnNewButton_3 == null) {
-			btnNewButton_3 = new JButton("Emitir Recibo");
-			btnNewButton_3.addActionListener(new ActionListener() {
+	private JButton getBtnEmitirRecibo() {
+		if (btnEmitirRecibo == null) {
+			btnEmitirRecibo = new JButton("Emitir Recibo");
+			btnEmitirRecibo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new EmisionMain().main(null);;
 				}
 			});
 		} 
-		return btnNewButton_3;
+		return btnEmitirRecibo;
 	}
-	private JButton getBtnNewButton_4() {
-		if (btnNewButton_4 == null) {
-			btnNewButton_4 = new JButton("Inscripcion Curso");
-			btnNewButton_4.addActionListener(new ActionListener() {
+	
+	private JButton getBtnInscripcionCurso() {
+		if (btnInscripcionCurso == null) {
+			btnInscripcionCurso = new JButton("Inscripcion Curso");
+			btnInscripcionCurso.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new InscripcionMain().main(null);;
 				}
 			});
 		}
-		return btnNewButton_4;
+		return btnInscripcionCurso;
 	}
-	private JButton getBtnNewButton_5() {
-		if (btnNewButton_5 == null) {
-			btnNewButton_5 = new JButton("Listar Inscritos");
-			btnNewButton_5.addActionListener(new ActionListener() {
+	private JButton getBtnListarInscritos() {
+		if (btnListarInscritos == null) {
+			btnListarInscritos = new JButton("Listar Inscritos");
+			btnListarInscritos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new InscritosMain().main(null);;
 				}
 			});
 		}
-		return btnNewButton_5;
+		return btnListarInscritos;
+	}
+	
+	private JButton getBtnInscribirPerito() {
+		if (btnInscribirPerito == null) {
+			btnInscribirPerito = new JButton("Inscribir Perito");
+			btnInscribirPerito.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new InscripcionPericialMain().main(null);;
+				}
+			});
+		}
+		return btnInscribirPerito;
+	}
+	
+	private JButton getBtnConsolidacionPago() {
+		if (btnConsolidacionPago == null) {
+			btnConsolidacionPago = new JButton("Consolidacion de pagos");
+			btnConsolidacionPago.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new ConsolidacionMain().main(null);;
+				}
+			});
+		}
+		return btnConsolidacionPago;
+	}
+	
+	private JButton getBtnAsignarInformePericial() {
+		if (btnAsignarInformePericial == null) {
+			btnAsignarInformePericial = new JButton("Asginar Informe Pericial");
+			btnAsignarInformePericial.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new AsignacionPericialMain().main(null);;
+				}
+			});
+		}
+		return btnAsignarInformePericial;
 	}
 }

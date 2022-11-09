@@ -7,12 +7,20 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
@@ -20,16 +28,6 @@ import inscripcion.controller.InscripcionController;
 import ui_events.ChangeColor;
 import ui_events.ChangeDateColor;
 import util.SwingUtil;
-
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
 
 public class TarjetaView extends JDialog {
 

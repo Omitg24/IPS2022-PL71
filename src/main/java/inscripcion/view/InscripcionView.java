@@ -30,7 +30,7 @@ import javax.swing.border.TitledBorder;
  * @author Adrián Alves Morales, UO284288
  * @version 12 oct 2022
  */
-public class InscripcionView {
+public class InscripcionView implements Inscripcion {
 
 	private JFrame frmAdministracinCoiipa;
 	private JPanel contentPane;
@@ -271,5 +271,10 @@ public class InscripcionView {
 			btTransferencia.setBackground(new Color(34, 139, 34));
 		}
 		return btTransferencia;
+	}
+
+	@Override
+	public Inscripcion getInscripcion() {
+		return this;
 	}
 }
