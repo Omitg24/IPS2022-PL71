@@ -1,7 +1,6 @@
 package asignacionpericial.model;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.List;
 
 import inscripcionpericial.model.InscripcionPericialDTO;
@@ -26,11 +25,11 @@ public class AsignacionPericialModel {
 			"Update Colegiado set estadoAsignacionPericial=? where dniColegiado=?";
 
 	private static final String SQL_BUSCAR_PERITOS_ASIGNADAS = 
-			"Select DISTINCT i.*,c.estadoAsignacionPericial "
+			"Select DISTINCT i.*,c.estadoAsignacionPericial,s.fecha "
 			+ "from InscripcionPericial i, SolicitudPericial s, Colegiado c "
 			+ "where i.dniColegiado=s.dni and i.estadoInscripcion=? "
 			+ "and i.dniColegiado= c.dniColegiado and c.estadoAsignacionPericial=? "
-			+ "order by s.fecha desc";
+			+ "order by s.fecha asc";
 	
 	private Database db = new Database();
 	
@@ -48,7 +47,7 @@ public class AsignacionPericialModel {
 	}
 	
 	public void asignarInforme(String dni, String  id) {
-		db.executeUpdate(SQL_ASIGNAR_INFORME, id,dni,"Asignada",Date.valueOf(LocalDate.now()));
+		db.executeUpdate(SQL_ASIGNAR_INFORME, id,dni,"Asignada",new Timestamp(System.currentTimeMillis()));
 	}
 	
 	public void asignarPerito(String dni) {
