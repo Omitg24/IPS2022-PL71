@@ -51,11 +51,12 @@ public class AsignacionPericialController {
 	
 	private void getListaPeritos() {
 		List<InscripcionPericialDTO> peritos = model.getPeritos();
+		peritos.addAll(model.getPeritosAsignados());
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(peritos,
-				new String[] { "dniColegiado", "fechaInscripcion", "posicionLista", "estadoInscripcion"});
+				new String[] { "dniColegiado", "fechaInscripcion", "posicionLista", "estadoInscripcion","estadoAsignacionPericial"});
 		view.getTablePeritos().setModel(tmodel);
 
-		String[] titles = new String[] { "DNI", "Fecha Inscripción", "Turno", "Inscripción"};
+		String[] titles = new String[] { "DNI", "Fecha Inscripción", "Turno", "Inscripción","Asignación"};
 		for (int i = 0; i < titles.length; i++) {
 			view.getTablePeritos().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
 		}
