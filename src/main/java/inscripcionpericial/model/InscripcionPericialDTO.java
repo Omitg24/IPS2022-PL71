@@ -6,6 +6,7 @@ public class InscripcionPericialDTO {
     public String fechaInscripcion;
     private int posicionLista;
     private String estadoInscripcion ;
+    private String estadoAsignacionPericial;
     
     public InscripcionPericialDTO() {}
     
@@ -15,6 +16,23 @@ public class InscripcionPericialDTO {
 		this.fechaInscripcion = fechaInscripcion;
 		this.posicionLista = posicionLista;
 		this.estadoInscripcion = estadoInscripcion;
+	}
+	
+	public InscripcionPericialDTO(String dniColegiado, String fechaInscripcion, int posicionLista,
+			String estadoInscripcion,String estadoAsignacionPericial) {
+		this.dniColegiado = dniColegiado;
+		this.fechaInscripcion = fechaInscripcion;
+		this.posicionLista = posicionLista;
+		this.estadoInscripcion = estadoInscripcion;
+		this.estadoAsignacionPericial=estadoAsignacionPericial;
+	}
+
+	public String getEstadoAsignacionPericial() {
+		return estadoAsignacionPericial;
+	}
+
+	public void setEstadoAsignacionPericial(String estadoAsignacionPericial) {
+		this.estadoAsignacionPericial = estadoAsignacionPericial;
 	}
 
 	public String getDniColegiado() {

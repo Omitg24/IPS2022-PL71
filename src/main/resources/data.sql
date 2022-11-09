@@ -72,17 +72,11 @@ VALUES
 ('9876452397R', '2021-2-23', 9, 'Inscrito')
 ;
 
-Insert into SolicitudPericial(dni, id, estado)
+Insert into SolicitudPericial(dni, id,fecha, estado)
 VALUES
-('7348920547A', '53451213', 'NA'),
-('6435634566K', '62345234', 'NA'),
-('4728129374H', '42345234', 'Asignada'),
-('1234312432J', '53551213', 'NA'),
-('4546574389B', '57987513', 'Asignada'),
-('9385783921W', '53251217', 'NA'),
-('2124678952G', '53451213', 'Asignada'),
-('2348597612B', '59951567', 'NA'),
-('9876452397R', '23543563', 'NA')
+('4728129374H', '42345234', "2022-10-28",'Asignada'),
+('4546574389B', '57987513', "2022-10-28",'Asignada'),
+('2124678952G', '53451213', "2022-10-28",'Asignada')
 ;
 
 Insert into Informes(dni, id, urgencia, nombre, correo, telefono, descripcion)

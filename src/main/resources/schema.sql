@@ -75,6 +75,7 @@ CREATE TABLE InscripcionPericial (
 CREATE TABLE SolicitudPericial (
     dni varchar(20) ,
     id varchar NOT NULL,
+    fecha date,
     estado varchar NOT NULL,
 
     CONSTRAINT PK_SOLICITUDPERICIAL PRIMARY KEY (dni,id),
