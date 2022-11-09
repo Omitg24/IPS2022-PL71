@@ -36,10 +36,10 @@ public class AsignacionPericialController {
 	private void getListaInformes() {
 		List<InformeDTO> informes = model.getInformes();
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(informes,
-				new String[] { "id", "nombre", "dni", "correo", "telefono", "descripcion", "urgencia" });
+				new String[] { "nombre", "dni", "correo", "telefono", "descripcion", "urgencia" });
 		view.getTableInformes().setModel(tmodel);
 
-		String[] titles = new String[] { "Id", "Nombre", "DNI", "Correo", "Telefono", "Descripción", "Urgencia" };
+		String[] titles = new String[] { "Nombre", "DNI", "Correo", "Telefono", "Descripción", "Urgencia" };
 		for (int i = 0; i < titles.length; i++) {
 			view.getTableInformes().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
 		}
@@ -78,14 +78,16 @@ public class AsignacionPericialController {
 			SwingUtil.showInformationDialog("Debe seleccionar un informe y un perito");
 		else {
 			int indexPerito= view.getTablePeritos().getSelectedRow();
-			String dni = (String) view.getTablePeritos().getValueAt(indexPerito, 0);
+			String dniPerito = (String) view.getTablePeritos().getValueAt(indexPerito, 0);
 			int indexInforme= view.getTableInformes().getSelectedRow();
-			String id = (String) view.getTableInformes().getValueAt(indexInforme, 0);
-			model.asignarInforme(dni, id);
-			model.asignarPerito(dni);
+			String dniInforme = (String) view.getTableInformes().getValueAt(indexInforme, 1);
+			String nombre = (String) view.getTableInformes().getValueAt(indexInforme, 0);
+			
+			model.asignarInforme(dniPerito, nombre);
+			model.asignarPerito(dniPerito);
 			actualizarTablas();
 			SwingUtil.showInformationDialog(
-					"Se ha asignado el informe "+id+" al perito con dni "+ dni);
+					"Se ha asignado el informe de "+nombre+", \ncon dni/cif: "+ dniInforme + " al perito con dni: "+ dniPerito);
 		}
 	}
 

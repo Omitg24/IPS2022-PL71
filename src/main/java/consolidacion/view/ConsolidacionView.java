@@ -206,8 +206,7 @@ public class ConsolidacionView extends JFrame {
 	private JScrollPane getScrollPaneCursos() {
 		if (scrollPaneCursos == null) {
 			scrollPaneCursos = new JScrollPane();
-			scrollPaneCursos.setBorder(new TitledBorder(new LineBorder(Color.BLACK),
-					"Cursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			scrollPaneCursos.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Lista de cursos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			scrollPaneCursos.setViewportView(getTableCursos());
 		}
 		return scrollPaneCursos;
@@ -220,8 +219,7 @@ public class ConsolidacionView extends JFrame {
 	private JScrollPane getScrollPaneColegiados() {
 		if (scrollPaneColegiados == null) {
 			scrollPaneColegiados = new JScrollPane();
-			scrollPaneColegiados.setBorder(new TitledBorder(new LineBorder(Color.BLACK), 
-					"Colegiados", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			scrollPaneColegiados.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Lista de pre-inscritos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			scrollPaneColegiados.setViewportView(getTableColegiados());
 		}
 		return scrollPaneColegiados;
@@ -245,7 +243,7 @@ public class ConsolidacionView extends JFrame {
 			tableCursos.setName("Tabla de Cursos");
 			tableCursos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			tableCursos.setDefaultEditor(Object.class, null);
-			tableCursos.setBackground(SystemColor.scrollbar);			
+			tableCursos.setBackground(Color.decode("#f0f0f0"));;			
 		}
 		return tableCursos;
 	}
@@ -267,7 +265,7 @@ public class ConsolidacionView extends JFrame {
 			tableColegiados.setGridColor(SystemColor.windowBorder);
 			tableColegiados.setName("Tabla de Colegiados");
 			tableColegiados.setDefaultEditor(Object.class, null);
-			tableColegiados.setBackground(SystemColor.scrollbar);
+			tableColegiados.setBackground(Color.decode("#f0f0f0"));;
 		}
 		return tableColegiados;
 	}

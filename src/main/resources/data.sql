@@ -10,12 +10,12 @@ insert into Colegiado (dniColegiado, nombreColegiado, apellidosColegiado, locali
 	('7348920547A' ,'manolo', 'sanchez rodriguez', 'madrid', '472381032', 'panadero', 'uniovi', 1986, '3412431434789', '2020-2306', 'Colegiado', 'Pendiente', 'Emitido', 'NA', '2020-9-13'),
 	('6435634566K' ,'pablo', 'gonzalez martinez', 'asturias', '584022938', 'carnicero', 'fundacion minabo', 1983, '5342453352345', '2022-2598', 'Colegiado', 'Anulado', 'Pendiente', 'NA', '2021-6-16'),
 	('4728129374H' ,'juan', 'garcia del monte quemao', 'cataluña', '544356789', 'bombero', 'grupo entuhuerto', 1991, '7653756537456', '2020-2359', 'Colegiado', 'Activo', 'Pagado', 'Asignado', '2022-1-3'),
-	('1234312432J' ,'hernesto', 'alvarez alvarez', 'gallego', '549999789', 'ganadero', 'grupo entuhuerto', 1989, '6185993986753', '2019-2278', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', '2019-12-29'),
-	('4546574389B' ,'kazuya', 'mishima wins', 'japonés', '549566543', 'ingeniero', 'fundación topota', 1995, '5467892034987', '2020-2306', 'Pre-colegiado', 'Anulado', 'Pendiente', 'Asignado', '2021-8-23'),
-	('9385783921W' ,'hermenegildo', 'gonzalez rose', 'canario', '546743453', 'bombero', 'unitoby', 1990, '6185993986753', '2018-2123', 'Pre-colegiado', 'Pendiente', 'Pagado', 'NA', '2022-3-2'),
-	('2124678952G' ,'sol', 'bad guy', 'japonés', '654342645', 'camionero', 'gears sa', 1990, '3948579283019213', '2018-2125', 'Colegiado', 'Pendiente', 'Pagado', 'Asignado', '2021-2-8'),
-	('2348597612B' ,'bruce', 'wayne batman', 'estadounidense', '634323654', 'superheroe', 'wayne enterprises', 1988, '7654674567456774', '2021-2449', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', '2020-1-24'),
-	('9876452397R' ,'geralt', 'de rivia', 'polaco', '967317211', 'policía', 'fundacion minabo', 1981, '2341236574982345', '2022-2564', 'Colegiado', 'Pendiente', 'Pagado', 'NA', '2021-3-3')
+	('1234312432J' ,'hernesto', 'alvarez alvarez', 'galicia', '549999789', 'ganadero', 'grupo entuhuerto', 1989, '6185993986753', '2019-2278', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', '2019-12-29'),
+	('4546574389B' ,'kazuya', 'mishima wins', 'japón', '549566543', 'ingeniero', 'fundación topota', 1995, '5467892034987', '2020-2306', 'Pre-colegiado', 'Anulado', 'Pendiente', 'Asignado', '2021-8-23'),
+	('9385783921W' ,'hermenegildo', 'gonzalez rose', 'canarias', '546743453', 'bombero', 'unitoby', 1990, '6185993986753', '2018-2123', 'Pre-colegiado', 'Pendiente', 'Pagado', 'NA', '2022-3-2'),
+	('2124678952G' ,'sol', 'bad guy', 'japón', '654342645', 'camionero', 'gears sa', 1990, '3948579283019213', '2018-2125', 'Colegiado', 'Pendiente', 'Pagado', 'Asignado', '2021-2-8'),
+	('2348597612B' ,'bruce', 'wayne batman', 'gotham', '634323654', 'caballero oscuro', 'wayne enterprises', 1988, '7654674567456774', '2021-2449', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', '2020-1-24'),
+	('9876452397R' ,'geralt', 'de rivia', 'polaco', '967317211', 'brujero', 'fundacion minabo', 1981, '2341236574982345', '2022-2564', 'Colegiado', 'Pendiente', 'Pagado', 'NA', '2021-3-3')
 ;
 
 Insert into Curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,estadoc,nplazas) 

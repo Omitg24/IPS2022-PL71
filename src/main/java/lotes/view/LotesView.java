@@ -24,6 +24,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
+import java.awt.SystemColor;
 
 /**
  * Título: Clase AperturaView
@@ -62,7 +63,7 @@ public class LotesView {
 		frmAdministracinCoiipa.setResizable(false);
 		frmAdministracinCoiipa.setTitle("Administración COIIPA - Envío de lotes");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmAdministracinCoiipa.setBounds(100, 100, 730, 502);
+		frmAdministracinCoiipa.setBounds(100, 100, 1000, 640);
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -131,7 +132,7 @@ public class LotesView {
 		if (lbTitulo == null) {
 			lbTitulo = new JLabel("Envío de lotes");
 			lbTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-			lbTitulo.setFont(new Font("High Tower Text", Font.PLAIN, 35));
+			lbTitulo.setFont(new Font("Baskerville Old Face", Font.PLAIN, 56));
 		}
 		return lbTitulo;
 	}
@@ -159,13 +160,24 @@ public class LotesView {
 			tableCursos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			tableCursos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			tableCursos.setDefaultEditor(Object.class, null);
+			tableCursos.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+			tableCursos.setRowMargin(5);
+			tableCursos.setAutoscrolls(false);
+			tableCursos.setFillsViewportHeight(true);
+			tableCursos.setRowHeight(30);
+			tableCursos.setSelectionForeground(Color.WHITE);
+			tableCursos.setSelectionBackground(Color.GRAY);
+			tableCursos.setGridColor(SystemColor.windowBorder);
+			tableCursos.setName("Tabla de Cursos");
+			tableCursos.setDefaultEditor(Object.class, null);
+			tableCursos.setBackground(Color.decode("#f0f0f0"));	
 		}
 		return tableCursos;
 	}
 	private JPanel getPnRegistro() {
 		if (pnRegistro == null) {
 			pnRegistro = new JPanel();
-			pnRegistro.setPreferredSize(new Dimension(520, 200));
+			pnRegistro.setPreferredSize(new Dimension(800, 360));
 			pnRegistro.setName("");
 			pnRegistro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Listado de solicitudes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnRegistro.setBackground(Color.WHITE);
@@ -187,6 +199,8 @@ public class LotesView {
 	public JTextField getTextFieldTitulacion() {
 		if (textFieldTitulacion == null) {
 			textFieldTitulacion = new JTextField();
+			textFieldTitulacion.setBackground(Color.WHITE);
+			textFieldTitulacion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFieldTitulacion.setEditable(false);
 			textFieldTitulacion.setColumns(20);
 		}
@@ -204,9 +218,10 @@ public class LotesView {
 	public JButton getBtEnviar() {
 		if (btAlta == null) {
 			btAlta = new JButton("Enviar");
+			btAlta.setEnabled(false);
 			btAlta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btAlta.setForeground(Color.WHITE);
-			btAlta.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			btAlta.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btAlta.setFocusable(false);
 			btAlta.setBackground(new Color(34, 139, 34));
 		}
@@ -215,6 +230,7 @@ public class LotesView {
 	private JLabel getLblTitulacion() {
 		if (lblTitulacion == null) {
 			lblTitulacion = new JLabel("Titulación: ");
+			lblTitulacion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lblTitulacion;
 	}

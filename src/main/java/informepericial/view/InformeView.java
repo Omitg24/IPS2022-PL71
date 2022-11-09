@@ -74,7 +74,7 @@ public class InformeView {
 		frmAdministracinCoiipa.setResizable(false);
 		frmAdministracinCoiipa.setTitle("Administración COIIPA - Solicitud de informe pericial");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmAdministracinCoiipa.setBounds(100, 100, 778, 502);
+		frmAdministracinCoiipa.setBounds(100, 100, 1000, 640);
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -144,7 +144,7 @@ public class InformeView {
 			btConfirmar.setFocusable(false);
 			btConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btConfirmar.setForeground(Color.WHITE);
-			btConfirmar.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			btConfirmar.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btConfirmar.setBackground(new Color(34, 139, 34));
 		}
 		return btConfirmar;
@@ -161,7 +161,7 @@ public class InformeView {
 		if (lbSolicitud == null) {
 			lbSolicitud = new JLabel("Solicitud de informe pericial");
 			lbSolicitud.setHorizontalAlignment(SwingConstants.CENTER);
-			lbSolicitud.setFont(new Font("High Tower Text", Font.PLAIN, 30));
+			lbSolicitud.setFont(new Font("Baskerville Old Face", Font.PLAIN, 50));
 		}
 		return lbSolicitud;
 	}
@@ -222,9 +222,10 @@ public class InformeView {
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
 			lblNombre = new JLabel("Nombre/Empresa");
-			lblNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblNombre.setBorder(new EmptyBorder(12, 0, 0, 0));
+			lblNombre.setFont(new Font("Tahoma", Font.BOLD, 18));
 			lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNombre.setMaximumSize(new Dimension(200, 30));
+			lblNombre.setMaximumSize(new Dimension(200, 50));
 			lblNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 		}
 		return lblNombre;
@@ -241,8 +242,9 @@ public class InformeView {
 	private JLabel getLblCorreo() {
 		if (lblCorreo == null) {
 			lblCorreo = new JLabel("Correo");
-			lblCorreo.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblCorreo.setMaximumSize(new Dimension(200, 30));
+			lblCorreo.setBorder(new EmptyBorder(12, 0, 0, 0));
+			lblCorreo.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblCorreo.setMaximumSize(new Dimension(200, 50));
 			lblCorreo.setHorizontalAlignment(SwingConstants.CENTER);
 			lblCorreo.setAlignmentX(0.5f);
 		}
@@ -260,9 +262,10 @@ public class InformeView {
 	private JLabel getLblDescripcion() {
 		if (lblDescripcion == null) {
 			lblDescripcion = new JLabel("Descripción");
-			lblDescripcion.setMinimumSize(new Dimension(200, 30));
-			lblDescripcion.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblDescripcion.setMaximumSize(new Dimension(200, 30));
+			lblDescripcion.setBorder(new EmptyBorder(10, 0, 0, 0));
+			lblDescripcion.setMinimumSize(new Dimension(200, 50));
+			lblDescripcion.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblDescripcion.setMaximumSize(new Dimension(200, 50));
 			lblDescripcion.setHorizontalAlignment(SwingConstants.CENTER);
 			lblDescripcion.setAlignmentX(0.5f);
 		}
@@ -271,8 +274,9 @@ public class InformeView {
 	private JLabel getLblDni() {
 		if (lblDni == null) {
 			lblDni = new JLabel("DNI");
-			lblDni.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblDni.setMaximumSize(new Dimension(200, 30));
+			lblDni.setBorder(new EmptyBorder(12, 0, 0, 0));
+			lblDni.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblDni.setMaximumSize(new Dimension(200, 50));
 			lblDni.setHorizontalAlignment(SwingConstants.CENTER);
 			lblDni.setAlignmentX(0.5f);
 		}
@@ -290,8 +294,9 @@ public class InformeView {
 	private JLabel getLblTelefono() {
 		if (lblTelefono == null) {
 			lblTelefono = new JLabel("Teléfono");
-			lblTelefono.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblTelefono.setMaximumSize(new Dimension(200, 30));
+			lblTelefono.setBorder(new EmptyBorder(12, 0, 0, 0));
+			lblTelefono.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblTelefono.setMaximumSize(new Dimension(200, 50));
 			lblTelefono.setHorizontalAlignment(SwingConstants.CENTER);
 			lblTelefono.setAlignmentX(0.5f);
 		}
@@ -309,10 +314,10 @@ public class InformeView {
 	private JLabel getLblUrgencia() {
 		if (lblUrgencia == null) {
 			lblUrgencia = new JLabel("Urgencia");
-			lblUrgencia.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblUrgencia.setFont(new Font("Tahoma", Font.BOLD, 18));
 			lblUrgencia.setAlignmentX(Component.CENTER_ALIGNMENT);
-			lblUrgencia.setBorder(new EmptyBorder(32, 48, 0, 0));
-			lblUrgencia.setMaximumSize(new Dimension(180, 48));
+			lblUrgencia.setBorder(new EmptyBorder(16, 48, 0, 0));
+			lblUrgencia.setMaximumSize(new Dimension(180, 72));
 			lblUrgencia.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return lblUrgencia;
@@ -320,6 +325,8 @@ public class InformeView {
 	public JRadioButton getRdbtnUrgente() {
 		if (rdbtnUrgente == null) {
 			rdbtnUrgente = new JRadioButton("Urgente");
+			rdbtnUrgente.setAlignmentX(0.1f);
+			rdbtnUrgente.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			rdbtnUrgente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			rdbtnUrgente.setMaximumSize(new Dimension(100, 23));
 			rdbtnUrgente.setBackground(Color.WHITE);
@@ -329,6 +336,8 @@ public class InformeView {
 	public JRadioButton getRdbtnNormal() {
 		if (rdbtnNormal == null) {
 			rdbtnNormal = new JRadioButton("Normal");
+			rdbtnNormal.setAlignmentX(0.1f);
+			rdbtnNormal.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			rdbtnNormal.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			rdbtnNormal.setMaximumSize(new Dimension(100, 23));
 			rdbtnNormal.setBackground(Color.WHITE);

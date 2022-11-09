@@ -76,14 +76,19 @@ public class LotesController {
 	}
 	
 	public void mostrarTitulacion(ListSelectionEvent e) {
+		view.getBtEnviar().setEnabled(true);
 		int index = view.getTableColegiados().getSelectedRow();
 		String text = model.getColegiados().get(index).getTitulacionColegiado();
 				
 		view.getTextFieldTitulacion().setText(text);
 		if (validValues.contains(text)) {
-			view.getTextFieldTitulacion().setForeground(Color.GREEN);
+			view.getTextFieldTitulacion().setForeground(Color.WHITE);
+			view.getTextFieldTitulacion().setBackground(Color.decode("#008000"));
 		}
-		else view.getTextFieldTitulacion().setForeground(Color.BLACK);
+		else {
+			view.getTextFieldTitulacion().setForeground(Color.BLACK);
+			view.getTextFieldTitulacion().setBackground(Color.WHITE);
+		}
 	}
 
 	public void listo() {

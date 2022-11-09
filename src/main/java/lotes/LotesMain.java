@@ -6,14 +6,14 @@ import lotes.view.LotesView;
 import util.Database;
 
 /**
- * Título: Clase AperturaMain
+ * Título: Clase LotesMain
  *
  * @author Adrián Alves Morales, UO284288
  * @version 12 oct 2022
  */
 public class LotesMain {
 	
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		
 		LotesView view = new LotesView();
 		LotesModel model = new LotesModel();

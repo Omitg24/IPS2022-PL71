@@ -1,5 +1,7 @@
 package informepericial.model;
 
+import java.util.UUID;
+
 import util.Database;
 
 /**
@@ -13,7 +15,7 @@ public class InformeModel {
 	private Database db = new Database();
 	
 	public static final String SQL_INSERTAR_INFORME_PERICIAL=
-			"insert into Informes(nombre, telefono, correo, dni, descripcion, urgencia) values (?, ?, ?, ?, ?, ?)";
+			"insert into Informes(id, nombre, telefono, correo, dni, descripcion, urgencia) values (?, ?, ?, ?, ?, ?, ?)";
 	
 	public static final String SQL_OBTENER_INFORMES_POR_DNI=
 			"select * from Informes where dni=?";
@@ -23,7 +25,7 @@ public class InformeModel {
 	 */
 	public void addInformePericial(String nombre, String telefono, String correo, String dni, String descripcion, boolean normal) {
 		String urgencia = normal ? "Normal" : "Urgente";
-		db.executeUpdate(SQL_INSERTAR_INFORME_PERICIAL, nombre, telefono, correo, dni, descripcion, urgencia);
+		db.executeUpdate(SQL_INSERTAR_INFORME_PERICIAL, UUID.randomUUID().toString(), nombre, telefono, correo, dni, descripcion, urgencia);
 	}
 
 	/**

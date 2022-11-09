@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -40,6 +41,8 @@ public class TarjetaView extends JDialog {
 	private JLabel lbNumero;
 	private JTextField txtFechaCaducidad;
 	private JLabel lbFechaCaducidad;
+	private JTextField txtCvv;
+	private JLabel lbCvv;
 
 	/**
 	 * Create the dialog.
@@ -48,9 +51,9 @@ public class TarjetaView extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TarjetaView.class.getResource("/images/coiipa_symbol.png")));
 		setResizable(false);
 		setModal(true);
-		setTitle("Confirmar pago con tarjeta");
+		setTitle("Administración COIIPA - Confirmar pago tarjeta");
 		setFont(new Font("Calibri", Font.PLAIN, 14));
-		setBounds(100, 100, 618, 368);
+		setBounds(100, 100, 680, 410);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -62,7 +65,7 @@ public class TarjetaView extends JDialog {
 					new TitledBorder(null, "Datos tarjeta", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			pnDatos.setBackground(Color.WHITE);
 			contentPanel.add(pnDatos);
-			pnDatos.setLayout(new GridLayout(2, 1, 0, 0));
+			pnDatos.setLayout(new GridLayout(3, 1, 0, 0));
 			{
 				JPanel pnNumero = new JPanel();
 				pnNumero.setBackground(Color.WHITE);
@@ -110,6 +113,28 @@ public class TarjetaView extends JDialog {
 					pnFecha.add(txtFechaCaducidad);
 				}
 			}
+			{
+				JPanel pnNumero = new JPanel();
+				pnNumero.setBackground(Color.WHITE);
+				pnDatos.add(pnNumero);
+				{
+					lbCvv = new JLabel("CVV:");
+					lbCvv.setFont(new Font("Calibri", Font.BOLD, 14));
+					lbCvv.setDisplayedMnemonic('C');
+					lbCvv.setBackground(Color.WHITE);
+					pnNumero.add(lbCvv);
+				}
+				{
+					txtCvv = new JPasswordField();
+					lbCvv.setLabelFor(txtCvv);
+					txtCvv.setHorizontalAlignment(SwingConstants.CENTER);
+					txtCvv.setFont(new Font("Calibri", Font.PLAIN, 14));
+					txtCvv.setColumns(10);
+					txtCvv.setBackground(Color.LIGHT_GRAY);
+					txtCvv.addFocusListener(new ChangeColor());
+					pnNumero.add(txtCvv);
+				}
+			}
 		}
 		{
 			JPanel pnSur = new JPanel();
@@ -132,7 +157,7 @@ public class TarjetaView extends JDialog {
 				pnTituloSup.setBackground(Color.WHITE);
 				pnSuperior.add(pnTituloSup);
 				{
-					JLabel lbInscripcion = new JLabel("Confrimar Pago");
+					JLabel lbInscripcion = new JLabel("Confirmar pago");
 					lbInscripcion.setHorizontalAlignment(SwingConstants.CENTER);
 					lbInscripcion.setFont(new Font("High Tower Text", Font.PLAIN, 32));
 					pnTituloSup.add(lbInscripcion);

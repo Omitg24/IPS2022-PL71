@@ -1,6 +1,7 @@
 package colegiado.controller;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
 
@@ -72,6 +73,8 @@ public class ColegiadoController {
 			checkField(view.getCenter()) || checkField(view.getYear()) || 
 			checkField(view.getIban())) {
 			SwingUtil.showErrorDialog("Los campos no pueden estar vacios");			
+		} else if (Integer.valueOf(view.getYear()) > LocalDate.now().getYear()){
+			SwingUtil.showErrorDialog("El año de titulación no puede ser posterior al actual");	
 		} else {
 			String dni = view.getDni();
 			String name = view.getName();
