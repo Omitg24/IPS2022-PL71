@@ -79,12 +79,18 @@ public class AsignacionPericialController {
 		else {
 			int indexPerito= view.getTablePeritos().getSelectedRow();
 			String dniPerito = (String) view.getTablePeritos().getValueAt(indexPerito, 0);
+			for(int i =indexPerito;i< view.getTablePeritos().getRowCount();i++) {
+				String dniPeritoAnterior = (String) view.getTablePeritos().getValueAt(i, 0);
+				model.actualizarTurnoAnt(dniPeritoAnterior);
+			}
+			
 			int indexInforme= view.getTableInformes().getSelectedRow();
 			String dniInforme = (String) view.getTableInformes().getValueAt(indexInforme, 1);
 			String nombre = (String) view.getTableInformes().getValueAt(indexInforme, 0);
 			
 			model.asignarInforme(dniPerito, nombre);
 			model.asignarPerito(dniPerito);
+			model.actualizarTurno(dniPerito);
 			actualizarTablas();
 			SwingUtil.showInformationDialog(
 					"Se ha asignado el informe de "+nombre+", \ncon dni/cif: "+ dniInforme + " al perito con dni: "+ dniPerito);

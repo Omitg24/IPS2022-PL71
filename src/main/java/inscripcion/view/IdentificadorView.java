@@ -6,6 +6,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import inscripcionpericial.view.InscripcionPericialView;
 
 /**
  * Título: Clase AperturaView
@@ -49,6 +52,8 @@ public class IdentificadorView {
 		frmIntroduzcaCredenciales.setResizable(false);
 		frmIntroduzcaCredenciales.setTitle("Administración COIIPA");
 		frmIntroduzcaCredenciales.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		frmIntroduzcaCredenciales.setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(InscripcionPericialView.class.getResource("/images/coiipa_symbol.png")));
 		frmIntroduzcaCredenciales.setBounds(100, 100, 380, 200);
 		frmIntroduzcaCredenciales.setLocationRelativeTo(null);
 
@@ -123,7 +128,7 @@ public class IdentificadorView {
 			btnEntrar = new JButton("Entrar");
 			btnEntrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnEntrar.setForeground(Color.WHITE);
-			btnEntrar.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 14));
 			btnEntrar.setFocusable(false);
 			btnEntrar.setBackground(new Color(34, 139, 34));
 		}
@@ -134,7 +139,7 @@ public class IdentificadorView {
 			textFieldId = new JTextField();
 			textFieldId.setPreferredSize(new Dimension(55, 35));
 			textFieldId.setHorizontalAlignment(SwingConstants.CENTER);
-			textFieldId.setFont(new Font("High Tower Text", Font.PLAIN, 17));
+			textFieldId.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			textFieldId.setColumns(16);
 			textFieldId.setBorder(new LineBorder(new Color(171, 173, 179)));
 			textFieldId.setBackground(Color.LIGHT_GRAY);

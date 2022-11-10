@@ -105,7 +105,6 @@ public class InscripcionController {
 			crearEmision();
 			getListaPreInscritos();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 			SwingUtil.showErrorDialog("Ya ha presentado una solicitud para este curso");
 		}
 	}

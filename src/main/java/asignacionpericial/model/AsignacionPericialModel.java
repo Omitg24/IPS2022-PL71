@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import inscripcionpericial.model.InscripcionPericialDTO;
+import inscripcionpericial.model.InscripcionPericialModel;
 import util.Database;
 
 public class AsignacionPericialModel {
@@ -30,6 +31,12 @@ public class AsignacionPericialModel {
 			+ "where i.dniColegiado=s.dni and i.estadoInscripcion=? "
 			+ "and i.dniColegiado= c.dniColegiado and c.estadoAsignacionPericial=? "
 			+ "order by s.fecha asc";
+
+	private static final String SQL_ACTUALIZAR_TURNO = "update InscripcionPericial set posicionLista=? "
+			+ "where dniColegiado=?";
+
+	private static final String SQL_ACTUALIZAR_TURNO_ANT =  "update InscripcionPericial set posicionLista= posicionLista-1 "
+			+ "where dniColegiado=?";;
 	
 	private Database db = new Database();
 	
@@ -52,6 +59,16 @@ public class AsignacionPericialModel {
 	
 	public void asignarPerito(String dni) {
 		db.executeUpdate(SQL_ACTUALIZAR_ESTADO_PERITO, "Asignado",dni);
+	}
+	
+	public void actualizarTurno(String dni) {
+		int turno =  new InscripcionPericialModel().getUltimoTurnoPericial()+1;
+		db.executeUpdate(SQL_ACTUALIZAR_TURNO,turno,dni);
+	}
+
+	public void actualizarTurnoAnt(String dniPeritoAnterior) {
+		db.executeUpdate(SQL_ACTUALIZAR_TURNO_ANT,dniPeritoAnterior);
+		
 	}
 	
 

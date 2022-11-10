@@ -25,6 +25,12 @@ import javax.swing.border.TitledBorder;
 import inscripcion.view.Inscripcion;
 import ui_events.ProccessKeyNoDigits;
 
+/**
+ * Titulo: Clase InscripcionPericialView
+ *
+ * @author David Leszek Warzynski Abril, UO278968
+ * @version 17 oct 2022
+ */
 public class InscripcionPericialView implements Inscripcion {
 
 	// -- ATRIBUTOS

@@ -25,7 +25,7 @@ public class InscripcionPericialModel {
 			+ "where dniColegiado=?";
 
 	private static final String SQL_OBTENER_ULTIMO_TURNO = 
-			"Select * from InscripcionPericial "
+			"Select * from InscripcionPericial where estadoInscripcion=?"
 			+ "order by (posicionLista) desc";
 	
 	public void insertarInscripcionPericial(InscripcionPericialDTO d) {
@@ -64,7 +64,7 @@ public class InscripcionPericialModel {
 
 	public int getUltimoTurnoPericial() {
 		return db.executeQueryPojo(InscripcionPericialDTO.class, 
-				SQL_OBTENER_ULTIMO_TURNO).get(0).getPosicionLista();
+				SQL_OBTENER_ULTIMO_TURNO,"Inscrito").get(0).getPosicionLista();
 	}
 
 }

@@ -7,31 +7,31 @@ delete from Colegiado;
 delete from Curso;
 
 insert into Colegiado (dniColegiado, nombreColegiado, apellidosColegiado, localidadColegiado, telefonoColegiado, titulacionColegiado, centroColegiado, anioColegiado, ibanColegiado, numeroColegiado, tipoColegiado, estadoColegiado, estadoCuota, estadoAsignacionPericial, fechaColegiacion) values
-	('7348920547A' ,'manolo', 'sanchez rodriguez', 'madrid', '472381032', 'panadero', 'uniovi', 1986, '3412431434789', '2020-2306', 'Colegiado', 'Pendiente', 'Emitido', 'NA', '2020-9-13'),
-	('6435634566K' ,'pablo', 'gonzalez martinez', 'asturias', '584022938', 'carnicero', 'fundacion minabo', 1983, '5342453352345', '2022-2598', 'Colegiado', 'Anulado', 'Pendiente', 'NA', '2021-6-16'),
-	('4728129374H' ,'juan', 'garcia del monte quemao', 'cataluña', '544356789', 'bombero', 'grupo entuhuerto', 1991, '7653756537456', '2020-2359', 'Colegiado', 'Activo', 'Pagado', 'Asignado', '2022-1-3'),
-	('1234312432J' ,'hernesto', 'alvarez alvarez', 'gallego', '549999789', 'ganadero', 'grupo entuhuerto', 1989, '6185993986753', '2019-2278', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', '2019-12-29'),
-	('4546574389B' ,'kazuya', 'mishima wins', 'japonés', '549566543', 'ingeniero', 'fundación topota', 1995, '5467892034987', '2020-2306', 'Pre-colegiado', 'Anulado', 'Pendiente', 'Asignado', '2021-8-23'),
-	('9385783921W' ,'hermenegildo', 'gonzalez rose', 'canario', '546743453', 'bombero', 'unitoby', 1990, '6185993986753', '2018-2123', 'Pre-colegiado', 'Pendiente', 'Pagado', 'NA', '2022-3-2'),
-	('2124678952G' ,'sol', 'bad guy', 'japonés', '654342645', 'camionero', 'gears sa', 1990, '3948579283019213', '2018-2125', 'Colegiado', 'Pendiente', 'Pagado', 'Asignado', '2021-2-8'),
-	('2348597612B' ,'bruce', 'wayne batman', 'estadounidense', '634323654', 'superheroe', 'wayne enterprises', 1988, '7654674567456774', '2021-2449', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', '2020-1-24'),
-	('9876452397R' ,'geralt', 'de rivia', 'polaco', '967317211', 'policía', 'fundacion minabo', 1981, '2341236574982345', '2022-2564', 'Colegiado', 'Pendiente', 'Pagado', 'NA', '2021-3-3')
+	('7348920547A' ,'Manolo', 'Sanchez Rodriguez', 'Vallecas', '472381032', 'Panadero', 'Uniovi', 1986, '3412431434789', '2020-2306', 'Colegiado', 'Pendiente', 'Emitido', 'NA', '2020-9-13'),
+	('6435634566K' ,'Pablo', 'Gonzalez Martinez', 'Langreo', '584022938', 'Carnicero', 'Fundacion Minabo', 1983, '5342453352345', '2022-2598', 'Colegiado', 'Anulado', 'Pendiente', 'NA', '2021-6-16'),
+	('4728129374H' ,'Juan', 'Garcia del Monte Quemao', 'La Palma', '544356789', 'Bombero', 'Grupo Entuhuerto', 1991, '7653756537456', '2020-2359', 'Colegiado', 'Activo', 'Pagado', 'Asignado', '2022-1-3'),
+	('1234312432J' ,'Hernesto', 'Alvarez Alvarez', 'Rias Baixas', '549999789', 'Ganadero', 'Grupo Entuhuerto', 1989, '6185993986753', '2019-2278', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', '2019-12-29'),
+	('4546574389B' ,'Kazuya', 'Mishima Wins', 'Kyoto', '549566543', 'Ingeniero', 'Fundación Topota', 1995, '5467892034987', '2020-2306', 'Pre-colegiado', 'Anulado', 'Pendiente', 'Asignado', '2021-8-23'),
+	('9385783921W' ,'Hermenegildo', 'Gonzalez Rose', 'Terrasa', '546743453', 'Bombero', 'Unitoby', 1990, '6185993986753', '2018-2123', 'Pre-colegiado', 'Pendiente', 'Pagado', 'NA', '2022-3-2'),
+	('2124678952G' ,'Sol', 'Bad Guy', 'Shibuya', '654342645', 'Camionero', 'Gears SA', 1990, '3948579283019213', '2018-2125', 'Colegiado', 'Pendiente', 'Pagado', 'Asignado', '2021-2-8'),
+	('2348597612B' ,'Bruce', 'Wayne Batman', 'Gotham', '634323654', 'Caballerro Oscuro', 'Wayne Enterprises', 1988, '7654674567456774', '2021-2449', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', '2020-1-24'),
+	('9876452397R' ,'Geralt', 'de Rivia', 'Cracovia', '967317211', 'Brujo', 'Fundacion Minabo', 1981, '2341236574982345', '2022-2564', 'Colegiado', 'Pendiente', 'Pagado', 'NA', '2021-3-3')
 ;
 
 Insert into Curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,estadoc,nplazas) 
 values 
 ('Desarrollo web','2022-11-26','500','2022-9-17','2023-11-3','Abierta','78'),
-('Informática forense y auditoría','2023-1-20','250','2022-11-17','2023-3-1','Abierta','24')
+('Informática forense y auditoría','2023-1-20','250','2022-11-17','2023-3-1','Abierta','24'),
+('Desarrollo de aplicaciones moviles','2022-09-13','135','2022-06-20','2022-08-20','Abierta', '60'),
+('Desarrollo de robots','2022-06-17','90','2022-05-01','2022-06-15','Abierta', '70'),
+('Desarrollo de robots','2022-07-13','80','2022-05-01','2022-06-15','Abierta', '90'),
+('Desarrollo de videojuegos','2022-11-21','165','2022-09-30','2022-11-01','Abierta', '150'),
+('Desarrollo de videojuegos','2022-06-11','170','2022-04-30','2022-06-01','Abierta', '20'),
+('Desarrollo de bases de datos', '2022-12-04', '70','2022-11-15','2022-12-01', 'Abierta', '30')
 ;
 
 Insert into Curso (titulocurso,fechacurso,precio,estadoc)
 VALUES
-('Desarrollo de aplicaciones moviles','2022-09-13','135','Planificado'),
-('Desarrollo de robots','2022-06-17','90','Planificado'),
-('Desarrollo de robots','2022-07-13','80','Planificado'),
-('Desarrollo de videojuegos','2022-11-21','165','Planificado'),
-('Desarrollo de videojuegos','2022-06-11','170','Planificado'),
-('Desarrollo de bases de datos', '2022-12-04', '70', 'Planificado'),
 ('Desarrollo de sistemas inteligentes', '2022-12-31', '1000', 'Planificado')
 ;
 
@@ -67,9 +67,9 @@ VALUES
 ('7348920547A', '2020-9-11', 1, 'Inscrito'),
 ('6435634566K', '2021-6-8', 2, 'Inscrito'),
 ('1234312432J', '2019-11-25', 4, 'No inscrito'),
-('9385783921W', '2022-2-21', 6, 'Inscrito'),
+('9385783921W', '2022-2-21', 3, 'Inscrito'),
 ('2348597612B', '2020-1-11', 8, 'No inscrito'),
-('9876452397R', '2021-2-23', 9, 'Inscrito')
+('9876452397R', '2021-2-23', 4, 'Inscrito')
 ;
 
 Insert into SolicitudPericial(dni, id,fecha, estado)
