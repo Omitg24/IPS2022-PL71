@@ -39,10 +39,12 @@ CREATE TABLE Curso (
     fechaFinIns date,
     precio decimal(10, 2) NOT NULL,
     estadoC varchar(20) NOT NULL,
-    nPlazas decimal(4, 0) ,
+    nPlazas decimal(4, 0),
+	cancelable boolean,
+	porcentajeDevolucion decimal(2, 2),
 
     CONSTRAINT PK_CURSO PRIMARY KEY (tituloCurso,fechaCurso),
-    CONSTRAINT CK_ESTADO_CURSO CHECK (estadoC in ('Planificado', 'Abierta', 'Cerrada', 'Cancelada')),
+    CONSTRAINT CK_ESTADO_CURSO CHECK (estadoC in ('Planificado', 'Abierta', 'Cerrada', 'Cancelado')),
     CONSTRAINT CK_FECHA_CURSO CHECK (fechaInicioIns < fechaFinIns)
 );
 
@@ -54,6 +56,8 @@ CREATE TABLE Inscribe (
     estadoS varchar(20) NOT NULL,
     abonado decimal(10, 2),
     incidencia varchar,
+	enEspera boolean,
+	posicionEspera decimal,
 
     CONSTRAINT PK_INSCRIBE PRIMARY KEY (dniColegiado, tituloCurso, fechaCurso),
     CONSTRAINT FK_INSCRIBE_COLEGIADO FOREIGN KEY (dniColegiado) REFERENCES Colegiado (dniColegiado),
@@ -77,6 +81,7 @@ CREATE TABLE SolicitudPericial (
     id varchar NOT NULL,
     fecha TIMESTAMP,
     estado varchar NOT NULL,
+	motivoAnulacion varchar,
 
     CONSTRAINT PK_SOLICITUDPERICIAL PRIMARY KEY (dni,id),
     CONSTRAINT FK_INSCRIPCION_PERITO FOREIGN KEY (dni) REFERENCES Colegiado (dniColegiado),
@@ -95,5 +100,30 @@ CREATE TABLE Informes (
 
     CONSTRAINT PK_INFORME PRIMARY KEY (id),
     CONSTRAINT CK_URGENCIA_INFORME CHECK (urgencia in ('Urgente', 'Normal'))
+);
+
+CREATE TABLE SolicitudVisado (
+	id varchar,
+	dni varchar(20),
+	nombre varchar,
+	apellidos varchar,
+	descripcion varchar NOT NULL,
+	
+	CONSTRAINT PK_SOLICITUD VISADO PRIMARY KEY(id, dni),
+	CONSTRAINT FK_SOLICITUD_VISADO_INFORMES FOREIGN KEY (id) REFERENCES Informes(id),
+	CONSTRAINT FK_SOLICITUD_VISADO_COLEGIADO FOREIGN KEY (dni) REFERENCES Colegiado(dni),
+);
+
+CREATE TABLE AsignaVisado (
+	id varchar,
+	dniVisado varchar(20),
+	dniVisador varchar,
+	estadoVisado varchar,
+	fecha date,
+	
+	CONSTRAINT PK_ASIGNA_VISADO PRIMARY KEY(id, dniVisado, dniVisador),
+	CONSTRAINT FK_ASIGNA_VISADO_SOLICITUD_VISADO FOREIGN KEY (dniVisado, id) REFERENCES SolicitudVisado(dni, id),
+	CONSTRAINT FK_ASIGNA_VISADO_COLEGIADO FOREIGN KEY (dniVisador) REFERENCES Colegiado(dni),
+	CONSTRAINT CK_ESTADO_ASIGNACION CHECK (estadoVisado in ('Aceptado', 'Rechazado'))
 );
 
