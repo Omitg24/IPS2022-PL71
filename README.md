@@ -46,4 +46,13 @@ Con esta aplicación se pretende llegar a una introducción al desarrollo de sof
   - Adrián: Como secretaria administrativa quiero poder enviar lotes de solicitudes al ministerio y recepcionarlos para completar el proceso de colegiación
 #### Sprint 3:
 
-  - Como
+  - Omar: Como secretaria administrativa quiero poder anular asignaciones periciales para cancelarlas.
+  - Adrían: Como secretaria administrativa quiero poder filtrar la lista de periciales privadas para buscar aquellos que cumplan con los requisitos que me interesan.
+  - David: Como colegiado inscrito a un curso quiero poder cancelar mi inscripción para anular mi asistencia a éste.
+  - Omar: Como secretaria administrativa quiero poder ver las listas de espera de los cursos para llevar un control de los inscritos a los cursos correspondientes.
+  - Omar: Como colegiado quiero poder entrar en una lista de espera cuando el número/cupo de plazas ya esté lleno en el curso en cuestión para poder acceder posteriormente.
+  - David: Como secretaria administrativa quiero poder planificar un curso como cancelable para que los inscritos a él tenga la posibilidad de anular su inscripción/pre-inscripción.
+  - Adrián: Como secretaria administrativa quiero poder cancelar cursos para anular su impartición.
+  - David: Como perito quiero poder visar un informe pericial terminado para darle un sello de calidad.
+  - David: Como secretaria administrativa quiero poder asignar un visador para poder calificar (visar) un informe pericial terminado.
+  - NO ASIGNADA POR SUPERAR EL CUPO DE DÍAS: Como colegiado quiero poder darme de baja en el COIIPA para dejar de tener los privilegios que éste me ofrece.
