@@ -7,6 +7,8 @@ DROP TABLE Inscribe;
 DROP TABLE InscripcionPericial;
 DROP TABLE SolicitudPericial;
 DROP TABLE Informes;
+DROP TABLE SolicitudVisado;
+DROP TABLE AsignaVisado;
 
 CREATE TABLE Colegiado (
     dniColegiado varchar(20) NOT NULL,
@@ -109,7 +111,7 @@ CREATE TABLE SolicitudVisado (
 	apellidos varchar,
 	descripcion varchar NOT NULL,
 	
-	CONSTRAINT PK_SOLICITUD VISADO PRIMARY KEY(id, dni),
+	CONSTRAINT PK_SOLICITUD_VISADO PRIMARY KEY(id, dni),
 	CONSTRAINT FK_SOLICITUD_VISADO_INFORMES FOREIGN KEY (id) REFERENCES Informes(id),
 	CONSTRAINT FK_SOLICITUD_VISADO_COLEGIADO FOREIGN KEY (dni) REFERENCES Colegiado(dni),
 );

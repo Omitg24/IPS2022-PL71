@@ -22,17 +22,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import apertura.AperturaMain;
-import asignacionpericial.AsignacionPericialMain;
-import colegiado.ColegiadoMain;
-import consolidacion.ConsolidacionMain;
-import curso.CursoMain;
-import emision.EmisionMain;
-import informepericial.InformeMain;
-import inscripcion.InscripcionMain;
-import inscripcionpericial.InscripcionPericialMain;
-import inscritos.InscritosMain;
-import lotes.LotesMain;
+import main.launchers.AperturaMain;
+import main.launchers.AsignacionPericialMain;
+import main.launchers.ColegiadoMain;
+import main.launchers.ConsolidacionMain;
+import main.launchers.CursoMain;
+import main.launchers.EmisionMain;
+import main.launchers.InformeMain;
+import main.launchers.InscripcionMain;
+import main.launchers.InscripcionPericialMain;
+import main.launchers.InscritosMain;
+import main.launchers.LotesMain;
 import util.Database;
 
 public class Main extends JFrame {

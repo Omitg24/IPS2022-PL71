@@ -37,6 +37,7 @@ Con esta aplicación se pretende llegar a una introducción al desarrollo de sof
   - Adrián: Como colegiado ó precolegiado deseo inscribirme en un curso de formación del COIIPA (sin realizar el pago).
   - David: Como secretaría administrativa quiero obtener el listado de inscritos de un determinado curso de formación.
   - Omar: Como secretaría administrativa quiero realizar la emisión de los recibos de cuotas a los colegiados y precolegiados.
+  
 #### Sprint 2:
   - David: Como colegiado/pre-colegiado pre-inscrito en un curso de formación quiero realizar el pago del curso.  
   - David: Como colegiado quiero inscribirme como perito privado para poder realizar informes periciales.
@@ -44,8 +45,8 @@ Con esta aplicación se pretende llegar a una introducción al desarrollo de sof
   - Adrián: Como entidad quiero poder solicitar un informe pericial para realizar la tarea solicitada.
   - Omar: Como secretaria administrativa quiero poder consolidar los pagos por transferencia para poder inscribir al solicitante al curso.
   - Adrián: Como secretaria administrativa quiero poder enviar lotes de solicitudes al ministerio y recepcionarlos para completar el proceso de colegiación
+  
 #### Sprint 3:
-
   - Omar: Como secretaria administrativa quiero poder anular asignaciones periciales para cancelarlas.
   - Adrían: Como secretaria administrativa quiero poder filtrar la lista de periciales privadas para buscar aquellos que cumplan con los requisitos que me interesan.
   - David: Como colegiado inscrito a un curso quiero poder cancelar mi inscripción para anular mi asistencia a éste.
