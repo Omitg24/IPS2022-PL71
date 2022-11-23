@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import inscritos.model.InscritoDTO;
+import coiipa.model.dto.InscritoDTO;
 
 /**
  * Utilidades varias con metodos generales de serializacion, conversion a csv y
