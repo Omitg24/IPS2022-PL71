@@ -24,6 +24,7 @@ import javax.swing.border.TitledBorder;
 
 import main.launchers.AperturaMain;
 import main.launchers.AsignacionPericialMain;
+import main.launchers.AsignacionVisadorMain;
 import main.launchers.ColegiadoMain;
 import main.launchers.ConsolidacionMain;
 import main.launchers.CursoMain;
@@ -58,6 +59,7 @@ public class Main extends JFrame {
 	private JButton btnAsignarInformePericial;
 	private JButton btnLotes;
 	private JButton btnInforme;
+	private JButton btnAsignarVisador;
 	private JButton btnNuevaFuncionalidad;
 
 	/**
@@ -149,6 +151,7 @@ public class Main extends JFrame {
 			pnBotones.add(getBtnLotes());
 			pnBotones.add(getBtnLotes());
 			pnBotones.add(getBtnInforme());
+			pnBotones.add(getBtnAsignarVisador());
 			pnBotones.add(getBtnNuevaFuncionalidad());
 		}
 		return pnBotones;
@@ -322,6 +325,22 @@ public class Main extends JFrame {
 			});
 		}
 		return btnInforme;
+	}
+	
+	private JButton getBtnAsignarVisador() {
+		if (btnAsignarVisador == null) {
+			btnAsignarVisador = new JButton("Asiginar Visador");
+			btnAsignarVisador.setBackground(Color.LIGHT_GRAY);
+			btnAsignarVisador.setBorder(new LineBorder(Color.BLACK));
+			btnAsignarVisador.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnAsignarVisador.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnAsignarVisador.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new AsignacionVisadorMain().main(null);
+				}
+			});
+		}
+		return btnAsignarVisador;
 	}
 	
 	private JButton getBtnNuevaFuncionalidad() {
