@@ -340,5 +340,9 @@ public class AsignacionPericialView extends JFrame {
 	
 	public JButton getAsignar() {
 		return this.btAsignar;
+	}
+	
+	public JButton getAnular() {
+		return this.btAnular;
 	}	
 }

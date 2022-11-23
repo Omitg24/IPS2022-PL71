@@ -6,7 +6,7 @@ DROP TABLE Curso;
 DROP TABLE Inscribe;
 DROP TABLE InscripcionPericial;
 DROP TABLE SolicitudPericial;
-DROP TABLE Informe;
+DROP TABLE Informes;
 DROP TABLE SolicitudVisado;
 DROP TABLE AsignaVisado;
 
@@ -87,11 +87,11 @@ CREATE TABLE SolicitudPericial (
 
     CONSTRAINT PK_SOLICITUDPERICIAL PRIMARY KEY (dni,id),
     CONSTRAINT FK_INSCRIPCION_PERITO FOREIGN KEY (dni) REFERENCES Colegiado (dniColegiado),
-    CONSTRAINT FK_INFORME_SOLICITUD FOREIGN KEY (id) REFERENCES Informe (id),
+    CONSTRAINT FK_INFORME_SOLICITUD FOREIGN KEY (id) REFERENCES Informes (id),
     CONSTRAINT CK_SOLICITUD_ESTADO CHECK (estado in ('Asignada', 'NA','Realizada','Anulada'))
 );
 
-CREATE TABLE Informe (
+CREATE TABLE Informes (
     id varchar,
     nombre varchar NOT NULL,
     dni varchar(20) NOT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE SolicitudVisado (
 	descripcion varchar NOT NULL,
 	
 	CONSTRAINT PK_SOLICITUD_VISADO PRIMARY KEY (id, dni),
-	CONSTRAINT FK_SOLICITUD_VISADO_INFORME FOREIGN KEY (id) REFERENCES Informe(id),
+	CONSTRAINT FK_SOLICITUD_VISADO_INFORMES FOREIGN KEY (id) REFERENCES Informes(id),
 	CONSTRAINT FK_SOLICITUD_VISADO_COLEGIADO FOREIGN KEY (dni) REFERENCES Colegiado(dni)
 );
 

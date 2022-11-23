@@ -17,8 +17,8 @@ import util.Database;
 public class AsignacionPericialModel {	
 	
 	private static final String SQL_BUSCAR_INFORMES_NO_ASIGNADOS=
-			"Select * from Informe  where id "
-			+ "not in (select id from SolicitudPericial where estado='Asignada' or estado='Realizada')";
+			"Select * from Informes  where id "
+			+ "not in (select id from SolicitudPericial)";
 	
 	private static final String SQL_BUSCAR_PERITOS_NO_ASIGNADAS=
 			"Select i.*,c.estadoAsignacionPericial from InscripcionPericial i, Colegiado c "
@@ -45,7 +45,7 @@ public class AsignacionPericialModel {
 			+ "where dniColegiado=?";;
 			
 	private static final String SQL_BUSCAR_ASIGNACIONES_ASIGNADAS =
-			"SELECT * FROM SOLICITUDPERICIAL P, INFORME I WHERE ESTADO = 'Asignada'";
+			"SELECT * FROM SOLICITUDPERICIAL WHERE ESTADO = 'Asignada'";
 	
 	private Database db = new Database();
 	

@@ -9,6 +9,7 @@ import coiipa.model.dto.InscripcionPericialDTO;
 import coiipa.model.dto.SolicitudPericialDTO;
 import coiipa.model.model.AsignacionPericialModel;
 import coiipa.view.AsignacionPericialView;
+import coiipa.view.asignacionpericial.AnulacionView;
 import util.SwingUtil;
 
 /**
@@ -21,10 +22,13 @@ public class AsignacionPericialController {
 
 	private AsignacionPericialModel model;
 	private AsignacionPericialView view;
+	private AnulacionView anulacionView;
+	private List<InformeDTO> informes;
 
 	public AsignacionPericialController(AsignacionPericialModel model, AsignacionPericialView view) {
 		this.model = model;
 		this.view = view;
+		this.anulacionView = new AnulacionView();
 
 		this.initView();
 	}
@@ -32,7 +36,6 @@ public class AsignacionPericialController {
 	private void initView() {
 		actualizarTablas();
 		view.getFrame().setVisible(true);
-
 	}
 
 	private void actualizarTablas() {
@@ -42,7 +45,7 @@ public class AsignacionPericialController {
 	}
 
 	private void getListaInformes() {
-		List<InformeDTO> informes = model.getInformes();
+		informes = model.getInformes();
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(informes,
 				new String[] { "nombre", "dni", "correo", "telefono", "descripcion", "urgencia" });
 		view.getTableInformes().setModel(tmodel);
@@ -78,7 +81,7 @@ public class AsignacionPericialController {
 				new String[] { "id", "dni", "fecha", "estado"});
 		view.getTableAsignaciones().setModel(tmodel);
 
-		String[] titles = new String[] { "Identifier", "DNI", "Fecha", "Estado"};
+		String[] titles = new String[] { "Identifier", "DNI del Perito", "Fecha de la asignación", "Estado de la asignación"};
 		for (int i = 0; i < titles.length; i++) {
 			view.getTableAsignaciones().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
 		}
@@ -90,13 +93,15 @@ public class AsignacionPericialController {
 	public void initController() {
 		view.getAsignar().addActionListener(
 				e -> SwingUtil.exceptionWrapper(() -> asignar()));
+		view.getAnular().addActionListener(
+				e -> SwingUtil.exceptionWrapper(() -> anular()));
 
 	}
 
 	private void asignar() {
 		if(view.getTableInformes().getSelectedRowCount()==0 
 				|| view.getTablePeritos().getSelectedRowCount()==0)
-			SwingUtil.showErrorDialog("Debe seleccionar un informe y un perito");
+			SwingUtil.showInformationDialog("Debe seleccionar un informe y un perito");
 		else {
 			int indexPerito= view.getTablePeritos().getSelectedRow();
 			String dniPerito = (String) view.getTablePeritos().getValueAt(indexPerito, 0);
@@ -107,14 +112,14 @@ public class AsignacionPericialController {
 			
 			int indexInforme= view.getTableInformes().getSelectedRow();
 			String dniInforme = (String) view.getTableInformes().getValueAt(indexInforme, 1);
-			String nombre = (String) view.getTableInformes().getValueAt(indexInforme, 0);
+			String id = informes.get(indexInforme).getId();
 			
-			model.asignarInforme(dniPerito, nombre);
+			model.asignarInforme(dniPerito, id);
 			model.asignarPerito(dniPerito);
 			model.actualizarTurno(dniPerito);
 			actualizarTablas();
 			SwingUtil.showInformationDialog(
-					"Se ha asignado el informe de "+nombre+", \ncon dni/cif: "+ dniInforme + " al perito con dni: "+ dniPerito);
+					"Se ha asignado el informe "+id+", \ncon dni/cif: "+ dniInforme + " al perito con dni: "+ dniPerito);
 		}
 	}
 	
@@ -122,7 +127,7 @@ public class AsignacionPericialController {
 		if (view.getTableAsignaciones().getSelectedRowCount() == 0) {
 			SwingUtil.showErrorDialog("Debe seleccionar una asignación a anular");
 		}
-		
+		anulacionView.setVisible(true);
 	}
 
 }

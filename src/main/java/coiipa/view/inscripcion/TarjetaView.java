@@ -53,7 +53,7 @@ public class TarjetaView extends JDialog {
 		setModal(true);
 		setTitle("Administración COIIPA - Confirmar pago tarjeta");
 		setFont(new Font("Calibri", Font.PLAIN, 14));
-		setBounds(100, 100, 680, 410);
+		setBounds(100, 100, 700, 450);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -159,7 +159,7 @@ public class TarjetaView extends JDialog {
 				{
 					JLabel lbInscripcion = new JLabel("Confirmar pago");
 					lbInscripcion.setHorizontalAlignment(SwingConstants.CENTER);
-					lbInscripcion.setFont(new Font("High Tower Text", Font.PLAIN, 32));
+					lbInscripcion.setFont(new Font("Baskerville Old Face", Font.PLAIN, 40));
 					pnTituloSup.add(lbInscripcion);
 				}
 			}
