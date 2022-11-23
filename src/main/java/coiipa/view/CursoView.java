@@ -19,6 +19,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.JCheckBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CursoView {
 
@@ -41,6 +44,11 @@ public class CursoView {
 	private JButton btAddCurso;
 	private JPanel pnTituloSup;
 	private JLabel lbPlan;
+	private JPanel pnCancelable;
+	private JCheckBox chCancelable;
+	private JPanel pnDevolucion;
+	private JLabel lbDevolución;
+	private JTextField txtDevolución;
 
 	/**
 	 * Create the frame.
@@ -114,15 +122,17 @@ public class CursoView {
 	private JPanel getPnRegistro() {
 		if (pnRegistro == null) {
 			pnRegistro = new JPanel();
-			pnRegistro.setPreferredSize(new Dimension(400, 200));
+			pnRegistro.setPreferredSize(new Dimension(400, 250));
 			pnRegistro.setName("");
 			pnRegistro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Informaci\u00F3n curso",
 					TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnRegistro.setBackground(Color.WHITE);
-			pnRegistro.setLayout(new GridLayout(3, 1, 0, 5));
+			pnRegistro.setLayout(new GridLayout(5, 1, 0, 5));
 			pnRegistro.add(getPnTitulo());
 			pnRegistro.add(getPnFecha());
 			pnRegistro.add(getPnPrecio());
+			pnRegistro.add(getPnCancelable());
+			pnRegistro.add(getPnDevolucion());
 		}
 		return pnRegistro;
 	}
@@ -242,7 +252,7 @@ public class CursoView {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
 			FlowLayout flowLayout = (FlowLayout) pnInferior.getLayout();
-			flowLayout.setVgap(40);
+			flowLayout.setVgap(20);
 			flowLayout.setHgap(0);
 			pnInferior.setBackground(Color.WHITE);
 			pnInferior.add(getBtAddCurso());
@@ -293,5 +303,75 @@ public class CursoView {
 
 	public String getFecha() {
 		return getTxtFecha().getText();
+	}
+	
+	public boolean getCancelable() {
+		return getChCancelable().isSelected();
+	}
+	
+	public String getDevoculicion() {
+		return getTxtDevolucion().getText();
+	}
+	
+	private JPanel getPnCancelable() {
+		if (pnCancelable == null) {
+			pnCancelable = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) pnCancelable.getLayout();
+			flowLayout.setHgap(35);
+			flowLayout.setAlignment(FlowLayout.LEFT);
+			pnCancelable.setBackground(Color.WHITE);
+			pnCancelable.add(getChCancelable());
+		}
+		return pnCancelable;
+	}
+	private JCheckBox getChCancelable() {
+		if (chCancelable == null) {
+			chCancelable = new JCheckBox("Cancelable");
+			chCancelable.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JCheckBox j = (JCheckBox) e.getSource();
+					if(j.isSelected()) 
+						getTxtDevolucion().setEnabled(true);
+					else
+						getTxtDevolucion().setEnabled(false);
+				}
+			});
+			chCancelable.setFont(new Font("Tahoma", Font.BOLD, 14));
+			chCancelable.setBackground(Color.WHITE);
+		}
+		return chCancelable;
+	}
+	private JPanel getPnDevolucion() {
+		if (pnDevolucion == null) {
+			pnDevolucion = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) pnDevolucion.getLayout();
+			flowLayout.setHgap(20);
+			flowLayout.setAlignment(FlowLayout.LEFT);
+			pnDevolucion.setBackground(Color.WHITE);
+			pnDevolucion.add(getLbDevolucion());
+			pnDevolucion.add(getTxtDevolucion());
+		}
+		return pnDevolucion;
+	}
+	private JLabel getLbDevolucion() {
+		if (lbDevolución == null) {
+			lbDevolución = new JLabel("Política devolución:");
+			lbDevolución.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			lbDevolución.setDisplayedMnemonic('P');
+		}
+		return lbDevolución;
+	}
+	public JTextField getTxtDevolucion() {
+		if (txtDevolución == null) {
+			txtDevolución = new JTextField();
+			txtDevolución.setPreferredSize(new Dimension(10, 25));
+			txtDevolución.setHorizontalAlignment(SwingConstants.CENTER);
+			txtDevolución.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtDevolución.setColumns(10);
+			txtDevolución.setBorder(new LineBorder(new Color(171, 173, 179)));
+			txtDevolución.setBackground(Color.LIGHT_GRAY);
+			txtDevolución.setEnabled(false);
+		}
+		return txtDevolución;
 	}
 }

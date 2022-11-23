@@ -17,6 +17,8 @@ public class CursoModel {
 	public static final String SQL_INCLUIR_CURSOS = "Insert into curso (tituloCurso, fechaCurso, precio, estadoC) values (?,?,?,?)";
 	
 	public static final String SQL_BUSCAR_CURSOS = "Select * from curso where tituloCurso=?";
+	private static final String SQL_INCLUIR_CURSOS_CANCELABLE = 
+			"Insert into curso (tituloCurso, fechaCurso, precio, estadoC,cancelable,porcentajeDevolucion) values (?,?,?,?,?,?)";
 
 	public void planificarCurso(String titulo, Date inicio, double precio) {
 		validateFechaInicio(inicio);
@@ -25,6 +27,16 @@ public class CursoModel {
 		Util.validateCondition(precio >= 0, "El precio del curso no puede ser negativo");
 		db.executeUpdate(SQL_INCLUIR_CURSOS, titulo, Util.dateToIsoString(inicio), precio, DEFAULT_ESTADO);
 
+	}
+	
+	public void planificarCurso(String titulo, Date inicio, double precio,
+			boolean cancelable,double porcentaje) {
+		validateFechaInicio(inicio);
+		Util.validateNotNull(titulo, "El titulo del curso no puede ser nulo");
+		Util.validateNotNull(precio, "El precio del curso no puede ser nulo");
+		Util.validateCondition(precio >= 0, "El precio del curso no puede ser negativo");
+		db.executeUpdate(SQL_INCLUIR_CURSOS_CANCELABLE, titulo, 
+				Util.dateToIsoString(inicio), precio, DEFAULT_ESTADO,cancelable,porcentaje);
 	}
 	
 	public List<CursoDTO> buscarCursoPorTitulo(String titulo) {

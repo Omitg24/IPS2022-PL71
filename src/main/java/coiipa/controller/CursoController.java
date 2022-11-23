@@ -27,6 +27,7 @@ public class CursoController {
 		view.getTxtFecha().addFocusListener(new ChangeDateColor());
 		view.getTxtTitulo().addFocusListener(new ChangeColor());
 		view.getTxtPrecio().addFocusListener(new ChangeColor());
+		view.getTxtDevolucion().addFocusListener(new ChangeColor());
 	}
 
 	private void planificarCurso() {
@@ -44,7 +45,13 @@ public class CursoController {
 			String titulo = view.getTitulo();
 			Date fecha = Util.isoStringToDate(view.getFecha());
 			double precio = Double.parseDouble(view.getPrecio());
-			model.planificarCurso(titulo, fecha, precio);
+			boolean cancelable = false;
+			double porcentaje=0;
+			if(view.getCancelable()) {
+				cancelable = true;
+				porcentaje = Double.parseDouble(view.getDevoculicion());
+			}
+			model.planificarCurso(titulo, fecha, precio,cancelable,porcentaje);
 			view.reiniciarCampos();
 			String str= "'" + titulo+ "'";
 			SwingUtil.showInformationDialog("El curso " +str+" se ha añadido correctamente");
