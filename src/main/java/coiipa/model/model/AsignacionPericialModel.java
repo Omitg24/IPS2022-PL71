@@ -5,10 +5,16 @@ import java.util.List;
 
 import coiipa.model.dto.InformeDTO;
 import coiipa.model.dto.InscripcionPericialDTO;
+import coiipa.model.dto.SolicitudPericialDTO;
 import util.Database;
 
-public class AsignacionPericialModel {
-	
+/**
+ * Título: Clase AsignacionPericialModel
+ *
+ * @author David Warzynski Abril, UO278968 y Omar Teixeira González, UO281847
+ * @version 23 nov 2022
+ */
+public class AsignacionPericialModel {	
 	
 	private static final String SQL_BUSCAR_INFORMES_NO_ASIGNADOS=
 			"Select * from Informes  where id "
@@ -37,6 +43,9 @@ public class AsignacionPericialModel {
 
 	private static final String SQL_ACTUALIZAR_TURNO_ANT =  "update InscripcionPericial set posicionLista= posicionLista-1 "
 			+ "where dniColegiado=?";;
+			
+	private static final String SQL_BUSCAR_ASIGNACIONES_ASIGNADAS =
+			"SELECT * FROM SOLICITUDPERICIAL WHERE ESTADO = 'Asignada'";
 	
 	private Database db = new Database();
 	
@@ -67,9 +76,11 @@ public class AsignacionPericialModel {
 	}
 
 	public void actualizarTurnoAnt(String dniPeritoAnterior) {
-		db.executeUpdate(SQL_ACTUALIZAR_TURNO_ANT,dniPeritoAnterior);
-		
+		db.executeUpdate(SQL_ACTUALIZAR_TURNO_ANT,dniPeritoAnterior);		
 	}
 	
+	public List<SolicitudPericialDTO> getAsignaciones() {
+		return db.executeQueryPojo(SolicitudPericialDTO.class, SQL_BUSCAR_ASIGNACIONES_ASIGNADAS);
+	}
 
 }

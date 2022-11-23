@@ -6,19 +6,29 @@ import javax.swing.table.TableModel;
 
 import coiipa.model.dto.InformeDTO;
 import coiipa.model.dto.InscripcionPericialDTO;
+import coiipa.model.dto.SolicitudPericialDTO;
 import coiipa.model.model.AsignacionPericialModel;
 import coiipa.view.AsignacionPericialView;
+import coiipa.view.asignacionpericial.AnulacionView;
 import util.SwingUtil;
 
+/**
+ * Título: Clase AsignacionPericialController
+ *
+ * @author David Warzynski Abril, UO278968 y Omar Teixeira González, UO281847
+ * @version 23 nov 2022
+ */
 public class AsignacionPericialController {
 
 	private AsignacionPericialModel model;
 	private AsignacionPericialView view;
+	private AnulacionView anulacionView;
 	private List<InformeDTO> informes;
 
 	public AsignacionPericialController(AsignacionPericialModel model, AsignacionPericialView view) {
 		this.model = model;
 		this.view = view;
+		this.anulacionView = new AnulacionView();
 
 		this.initView();
 	}
@@ -26,12 +36,12 @@ public class AsignacionPericialController {
 	private void initView() {
 		actualizarTablas();
 		view.getFrame().setVisible(true);
-
 	}
 
 	private void actualizarTablas() {
 		getListaPeritos();
 		getListaInformes();
+		getListaAsignaciones();
 	}
 
 	private void getListaInformes() {
@@ -47,7 +57,6 @@ public class AsignacionPericialController {
 		SwingUtil.autoAdjustColumns(view.getTableInformes());
 		view.getTableInformes().getTableHeader().setReorderingAllowed(false);
 		view.getTableInformes().getTableHeader().setResizingAllowed(false);
-
 	}
 	
 	private void getListaPeritos() {
@@ -64,12 +73,28 @@ public class AsignacionPericialController {
 		SwingUtil.autoAdjustColumns(view.getTablePeritos());
 		view.getTablePeritos().getTableHeader().setReorderingAllowed(false);
 		view.getTablePeritos().getTableHeader().setResizingAllowed(false);
+	}
+	
+	private void getListaAsignaciones() {
+		List<SolicitudPericialDTO> asignaciones = model.getAsignaciones();
+		TableModel tmodel = SwingUtil.getTableModelFromPojos(asignaciones,
+				new String[] { "id", "dni", "fecha", "estado"});
+		view.getTableAsignaciones().setModel(tmodel);
 
+		String[] titles = new String[] { "Identifier", "DNI del Perito", "Fecha de la asignación", "Estado de la asignación"};
+		for (int i = 0; i < titles.length; i++) {
+			view.getTableAsignaciones().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
+		}
+		SwingUtil.autoAdjustColumns(view.getTableAsignaciones());
+		view.getTableAsignaciones().getTableHeader().setReorderingAllowed(false);
+		view.getTableAsignaciones().getTableHeader().setResizingAllowed(false);
 	}
 
 	public void initController() {
 		view.getAsignar().addActionListener(
 				e -> SwingUtil.exceptionWrapper(() -> asignar()));
+		view.getAnular().addActionListener(
+				e -> SwingUtil.exceptionWrapper(() -> anular()));
 
 	}
 
@@ -96,6 +121,13 @@ public class AsignacionPericialController {
 			SwingUtil.showInformationDialog(
 					"Se ha asignado el informe "+id+", \ncon dni/cif: "+ dniInforme + " al perito con dni: "+ dniPerito);
 		}
+	}
+	
+	private void anular() {
+		if (view.getTableAsignaciones().getSelectedRowCount() == 0) {
+			SwingUtil.showErrorDialog("Debe seleccionar una asignación a anular");
+		}
+		anulacionView.setVisible(true);
 	}
 
 }
