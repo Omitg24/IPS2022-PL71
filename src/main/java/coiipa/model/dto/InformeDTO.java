@@ -68,6 +68,13 @@ public class InformeDTO {
 	public void setUrgencia(String urgencia) {
 		this.urgencia = urgencia;
 	}
+
+
+	@Override
+	public String toString() {
+		return "InformeDTO [id=" + id + ", nombre=" + nombre + ", dni=" + dni + ", correo=" + correo + ", telefono="
+				+ telefono + ", descripcion=" + descripcion + ", urgencia=" + urgencia + "]";
+	}
     
     
     

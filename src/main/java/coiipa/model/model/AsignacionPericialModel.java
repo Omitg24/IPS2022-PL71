@@ -12,7 +12,7 @@ public class AsignacionPericialModel {
 	
 	private static final String SQL_BUSCAR_INFORMES_NO_ASIGNADOS=
 			"Select * from Informes  where id "
-			+ "not in (select id from SolicitudPericial)";
+			+ "not in (select id from SolicitudPericial )";
 	
 	private static final String SQL_BUSCAR_PERITOS_NO_ASIGNADAS=
 			"Select i.*,c.estadoAsignacionPericial from InscripcionPericial i, Colegiado c "

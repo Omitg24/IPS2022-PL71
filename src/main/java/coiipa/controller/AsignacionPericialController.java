@@ -14,6 +14,7 @@ public class AsignacionPericialController {
 
 	private AsignacionPericialModel model;
 	private AsignacionPericialView view;
+	private List<InformeDTO> informes;
 
 	public AsignacionPericialController(AsignacionPericialModel model, AsignacionPericialView view) {
 		this.model = model;
@@ -34,7 +35,7 @@ public class AsignacionPericialController {
 	}
 
 	private void getListaInformes() {
-		List<InformeDTO> informes = model.getInformes();
+		informes = model.getInformes();
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(informes,
 				new String[] { "nombre", "dni", "correo", "telefono", "descripcion", "urgencia" });
 		view.getTableInformes().setModel(tmodel);
@@ -86,14 +87,14 @@ public class AsignacionPericialController {
 			
 			int indexInforme= view.getTableInformes().getSelectedRow();
 			String dniInforme = (String) view.getTableInformes().getValueAt(indexInforme, 1);
-			String nombre = (String) view.getTableInformes().getValueAt(indexInforme, 0);
+			String id = informes.get(indexInforme).getId();
 			
-			model.asignarInforme(dniPerito, nombre);
+			model.asignarInforme(dniPerito, id);
 			model.asignarPerito(dniPerito);
 			model.actualizarTurno(dniPerito);
 			actualizarTablas();
 			SwingUtil.showInformationDialog(
-					"Se ha asignado el informe de "+nombre+", \ncon dni/cif: "+ dniInforme + " al perito con dni: "+ dniPerito);
+					"Se ha asignado el informe "+id+", \ncon dni/cif: "+ dniInforme + " al perito con dni: "+ dniPerito);
 		}
 	}
 
