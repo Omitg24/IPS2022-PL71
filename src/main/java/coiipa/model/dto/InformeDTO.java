@@ -24,8 +24,6 @@ public class InformeDTO {
 		this.urgencia = urgencia;
 	}
 
-
-
 	public String getId() {
 		return id;
 	}

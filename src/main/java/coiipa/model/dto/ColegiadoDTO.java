@@ -3,7 +3,7 @@ package coiipa.model.dto;
 import java.sql.Date;
 
 /**
- * Título: Clase SolicitanteDTO
+ * Título: Clase ColegiadoDTO
  *
  * @author Omar Teixeira González, UO281847
  * @version 9 oct 2022
