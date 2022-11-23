@@ -86,17 +86,18 @@ public class AsignacionVisadorController {
 			String dniVisador = (String) view.getTableVisadores().getValueAt(indexVisador, 0);
 
 			int indexSolicitud = view.getTableVisados().getSelectedRow();
-			String dniVisado = (String) view.getTableVisados().getValueAt(indexSolicitud, 1);
+			String dniVisado = (String) view.getTableVisados().getValueAt(indexSolicitud, 0);
 			String id = informes.get(indexSolicitud).getId();
 
 			if (dniVisado.equals(dniVisador)) {
-				SwingUtil.showErrorDialog("El visador nu puede sellar su propia solicitud");
+				SwingUtil.showErrorDialog("El visador no puede sellar su propia solicitud");
 			} else {
 				model.asignarVisado(dniVisado, id, dniVisador);
+				actualizarTablas();
+				SwingUtil.showInformationDialog(
+						"Se ha asignado la solicitud del perito con DNI: " + dniVisado + ", al visador con dni: " + dniVisador);
 			}
-			actualizarTablas();
-			SwingUtil.showInformationDialog(
-					"Se ha asignado la solicitud con DNI: " + dniVisado + ", al visador con dni: " + dniVisador);
+
 		}
 	}
 

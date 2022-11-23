@@ -27,7 +27,7 @@ public class AsignacionVisadorModel {
 			+ "where i.dniColegiado=c.dniColegiado ";
 	
 	private static final String SQL_ASIGNAR_VISADO=
-			"Insert into AsignaVisado (id,dniVisado,dniVisador,estadoVisado,fecha) values (?,?,?,?,?)";
+			"Insert into AsignaVisado (id,dniVisado,dniVisador,fecha) values (?,?,?,?)";
 
 	
 	private Database db = new Database();
@@ -42,7 +42,7 @@ public class AsignacionVisadorModel {
 	}
 	
 	public void asignarVisado(String dniVisado, String  id,String dniVisador) {
-		db.executeUpdate(SQL_ASIGNAR_VISADO, id,dniVisado,dniVisador,"Asignado",
+		db.executeUpdate(SQL_ASIGNAR_VISADO, id,dniVisado,dniVisador,
 				Date.valueOf(LocalDate.now()));
 	}
 	

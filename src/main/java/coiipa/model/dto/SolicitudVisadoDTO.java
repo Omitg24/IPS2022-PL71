@@ -15,9 +15,9 @@ public class SolicitudVisadoDTO {
 	private String apellidos;
 	private String descripcion;
 	
-	SolicitudVisadoDTO(){}
+	public SolicitudVisadoDTO(){}
 	
-	
+
 
 	public SolicitudVisadoDTO(String id, String dni, String nombre, String apellidos, String descripcion) {
 		this.id = id;

@@ -34,6 +34,7 @@ import main.launchers.InscripcionMain;
 import main.launchers.InscripcionPericialMain;
 import main.launchers.InscritosMain;
 import main.launchers.LotesMain;
+import main.launchers.SolicitudVisadoMain;
 import util.Database;
 
 public class Main extends JFrame {
@@ -60,6 +61,7 @@ public class Main extends JFrame {
 	private JButton btnLotes;
 	private JButton btnInforme;
 	private JButton btnAsignarVisador;
+	private JButton btnSolicitudVisado;
 	private JButton btnNuevaFuncionalidad;
 
 	/**
@@ -152,6 +154,7 @@ public class Main extends JFrame {
 			pnBotones.add(getBtnLotes());
 			pnBotones.add(getBtnInforme());
 			pnBotones.add(getBtnAsignarVisador());
+			pnBotones.add(getBtnSolicitudVisado());
 			pnBotones.add(getBtnNuevaFuncionalidad());
 		}
 		return pnBotones;
@@ -341,6 +344,22 @@ public class Main extends JFrame {
 			});
 		}
 		return btnAsignarVisador;
+	}
+	
+	private JButton getBtnSolicitudVisado() {
+		if (btnSolicitudVisado == null) {
+			btnSolicitudVisado = new JButton("Solicitud Visado");
+			btnSolicitudVisado.setBackground(Color.LIGHT_GRAY);
+			btnSolicitudVisado.setBorder(new LineBorder(Color.BLACK));
+			btnSolicitudVisado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnSolicitudVisado.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnSolicitudVisado.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new SolicitudVisadoMain().main(null);
+				}
+			});
+		}
+		return btnSolicitudVisado;
 	}
 	
 	private JButton getBtnNuevaFuncionalidad() {
