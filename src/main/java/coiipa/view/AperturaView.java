@@ -125,7 +125,7 @@ public class AperturaView {
 			btModificar.setFocusable(false);
 			btModificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btModificar.setForeground(Color.WHITE);
-			btModificar.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			btModificar.setFont(new Font("Tahoma", Font.BOLD, 16));
 			btModificar.setBackground(new Color(34, 139, 34));
 		}
 		return btModificar;
@@ -142,7 +142,7 @@ public class AperturaView {
 		if (lbApertura == null) {
 			lbApertura = new JLabel("Apertura de cursos");
 			lbApertura.setHorizontalAlignment(SwingConstants.CENTER);
-			lbApertura.setFont(new Font("High Tower Text", Font.PLAIN, 35));
+			lbApertura.setFont(new Font("Baskerville Old Face", Font.PLAIN, 60));
 		}
 		return lbApertura;
 	}

@@ -232,6 +232,7 @@ public class ConsolidacionView extends JFrame {
 	private JTable getTableCursos() {
 		if (tableCursos == null) {
 			tableCursos = new JTable();			
+			tableCursos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			tableCursos.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tableCursos.setRowMargin(5);
 			tableCursos.setAutoscrolls(false);
@@ -243,7 +244,7 @@ public class ConsolidacionView extends JFrame {
 			tableCursos.setName("Tabla de Cursos");
 			tableCursos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			tableCursos.setDefaultEditor(Object.class, null);
-			tableCursos.setBackground(Color.decode("#f0f0f0"));;			
+			tableCursos.setBackground(Color.decode("#f0f0f0"));			
 		}
 		return tableCursos;
 	}
@@ -255,6 +256,7 @@ public class ConsolidacionView extends JFrame {
 	private JTable getTableColegiados() {
 		if (tableColegiados == null) {
 			tableColegiados = new JTable();
+			tableColegiados.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			tableColegiados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tableColegiados.setRowMargin(5);
 			tableColegiados.setAutoscrolls(false);

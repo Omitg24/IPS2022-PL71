@@ -79,8 +79,8 @@ CREATE TABLE InscripcionPericial (
 );
 
 CREATE TABLE SolicitudPericial (
-    dni varchar(20) ,
-    id varchar NOT NULL,
+	id varchar NOT NULL,
+    dni varchar(20) ,    
     fecha TIMESTAMP,
     estado varchar NOT NULL,
 	motivoAnulacion varchar,
