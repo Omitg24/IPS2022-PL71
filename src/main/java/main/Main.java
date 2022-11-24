@@ -140,7 +140,7 @@ public class Main extends JFrame {
 			pnBotones = new JPanel();
 			pnBotones.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Funcionalidades", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnBotones.setBackground(Color.WHITE);
-			pnBotones.setLayout(new GridLayout(3, 4, 40, 40));
+			pnBotones.setLayout(new GridLayout(0, 4, 40, 40));
 			pnBotones.add(getBtnAperturaCursos());
 			pnBotones.add(getBtnAltaColegiado());
 			pnBotones.add(getBtnPlanificarCursos());
@@ -374,11 +374,11 @@ public class Main extends JFrame {
 					JDialog j = new JDialog();
 					j.setBounds(0, 0, 500, 500);
 					j.setLocationRelativeTo(null);
-					j.setLayout(new BorderLayout());
+					j.getContentPane().setLayout(new BorderLayout());
 					JLabel l = new JLabel();
 					l.setIcon(new ImageIcon(Main.class.getResource("/images/altoke.png")));
 					l.setHorizontalAlignment(SwingConstants.CENTER);
-					j.add(l, BorderLayout.CENTER);
+					j.getContentPane().add(l, BorderLayout.CENTER);
 					j.setVisible(true);
 				}
 			});

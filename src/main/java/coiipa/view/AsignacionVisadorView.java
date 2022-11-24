@@ -143,6 +143,7 @@ public class AsignacionVisadorView extends JFrame {
 	private JTable getTbVisadores() {
 		if (tbVisadores == null) {
 			tbVisadores = new JTable();
+			tbVisadores.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			tbVisadores.setBackground(Color.WHITE);
 			tbVisadores.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			tbVisadores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -173,6 +174,7 @@ public class AsignacionVisadorView extends JFrame {
 	private JTable getTbVisados() {
 		if (tbVisados == null) {
 			tbVisados = new JTable();
+			tbVisados.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			tbVisados.setBackground(Color.WHITE);
 			tbVisados.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			tbVisados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
