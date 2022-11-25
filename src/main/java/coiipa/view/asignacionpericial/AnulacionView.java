@@ -1,70 +1,129 @@
 package coiipa.view.asignacionpericial;
 
-import javax.swing.JDialog;
-import javax.swing.WindowConstants;
-import javax.swing.border.EmptyBorder;
-
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
-import java.awt.GridLayout;
-import javax.swing.JButton;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+import javax.swing.border.LineBorder;
 
+import coiipa.controller.AsignacionPericialController;
+import coiipa.view.inscripcion.TarjetaView;
+import util.SwingUtil;
+
+/**
+ * Titulo: Clase AnulacionView
+ *
+ * @author Omar Teixeira González, UO281847
+ * @version 25 nov 2022
+ */
 public class AnulacionView extends JDialog {
-
 	/**
-	 * 
+	 * Constante serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JDialog frame;
+	/**
+	 * Atributo contentPane
+	 */
 	private JPanel contentPane;
+	/**
+	 * Atributo pnSuperior
+	 */
 	private JPanel pnSuperior;
+	/**
+	 * Atributo lbLogo
+	 */
 	private JLabel lbLogo;
+	/**
+	 * Atributo pnCentral
+	 */
 	private JPanel pnCentral;
+	/**
+	 * Atributo lblAnularAsignaciones
+	 */
 	private JLabel lblAnularAsignaciones;
+	/**
+	 * Atributo pnInferior
+	 */
 	private JPanel pnInferior;
+	/**
+	 * Atributo btnConfirmar
+	 */
 	private JButton btnConfirmar;
+	/**
+	 * Atributo lblMotivo
+	 */
 	private JLabel lblMotivo;
-	private JTextArea textArea;
+	/**
+	 * Atributo textAreaMotivo
+	 */
+	private JTextArea textAreaMotivo;
+	/**
+	 * Atributo lblAux1
+	 */
+	private JLabel lblAux1;
+	/**
+	 * Atributo lblAux2
+	 */
+	private JLabel lblAux2;
+	/**
+	 * Atributo lblAux3
+	 */
+	private JLabel lblAux3;	
+	/**
+	 * Atributo asignacionController
+	 */
+	private AsignacionPericialController asignacionController;	
+	
+	/**
+	 * Constructor AnulacionView
+	 * @param asignacionController
+	 */
+	public AnulacionView(AsignacionPericialController asignacionController) {
+		this.asignacionController = asignacionController;
+		initialize();
+	}
 
 	/**
-	 * Create the dialog.
+	 * Método initialize
 	 */
-	public AnulacionView() {		
-		initialize();		
-	}
-	
 	private void initialize() {
-		frame = new JDialog();
-		frame.setModal(true);
-		frame.setType(Type.POPUP);
-		frame.setResizable(false);
-		frame.setTitle("Administración COIIPA");
-		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frame.setBounds(100, 100, 425, 330);
-		frame.setLocationRelativeTo(null);		
-		frame.setTitle("Anular asignaciones");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TarjetaView.class.getResource("/images/coiipa_symbol.png")));
+		setModal(true);
+		setType(Type.POPUP);
+		setVisible(false);
+		setResizable(false);
+		setFont(new Font("Tahoma", Font.PLAIN, 20));
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 700, 450);
+		setLocationRelativeTo(null);		
+		setTitle("Administración COIIPA - Anular asignaciones");
 		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new BorderLayout(10, 0));
 		contentPane.add(getPnSuperior(), BorderLayout.NORTH);
 		contentPane.add(getPnCentral(), BorderLayout.CENTER);
 		contentPane.add(getPnInferior(), BorderLayout.SOUTH);
 		
-		frame.setContentPane(contentPane);
+		setContentPane(contentPane);
 	}
+	
+	/**
+	 * Método getPnSuperior
+	 * @return
+	 */
 	private JPanel getPnSuperior() {
 		if (pnSuperior == null) {
 			pnSuperior = new JPanel();
@@ -75,6 +134,11 @@ public class AnulacionView extends JDialog {
 		}
 		return pnSuperior;
 	}
+	
+	/**
+	 * Métogo getLbLogo
+	 * @return lbLogo
+	 */
 	private JLabel getLbLogo() {
 		if (lbLogo == null) {
 			lbLogo = new JLabel("");
@@ -82,29 +146,28 @@ public class AnulacionView extends JDialog {
 		}
 		return lbLogo;
 	}
+	
+	/**
+	 * Método getPnCentral
+	 * @return pnCentral
+	 */
 	private JPanel getPnCentral() {
 		if (pnCentral == null) {
 			pnCentral = new JPanel();
-			GridBagLayout gbl_pnCentral = new GridBagLayout();
-			gbl_pnCentral.columnWidths = new int[]{684, 0};
-			gbl_pnCentral.rowHeights = new int[] {125, 250};
-			gbl_pnCentral.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-			gbl_pnCentral.rowWeights = new double[]{0.0, 0.0};
-			pnCentral.setLayout(gbl_pnCentral);
-			GridBagConstraints gbc_lblMotivo = new GridBagConstraints();
-			gbc_lblMotivo.fill = GridBagConstraints.BOTH;
-			gbc_lblMotivo.insets = new Insets(0, 0, 5, 0);
-			gbc_lblMotivo.gridx = 0;
-			gbc_lblMotivo.gridy = 0;
-			pnCentral.add(getLblMotivo(), gbc_lblMotivo);
-			GridBagConstraints gbc_textArea = new GridBagConstraints();
-			gbc_textArea.fill = GridBagConstraints.BOTH;
-			gbc_textArea.gridx = 0;
-			gbc_textArea.gridy = 1;
-			pnCentral.add(getTextArea(), gbc_textArea);
+			pnCentral.setLayout(new BorderLayout(10, 10));
+			pnCentral.add(getLblMotivo(), BorderLayout.NORTH);
+			pnCentral.add(getTextAreaMotivo(), BorderLayout.CENTER);
+			pnCentral.add(getLblAux1(), BorderLayout.WEST);
+			pnCentral.add(getLblAux2(), BorderLayout.EAST);
+			pnCentral.add(getLblAux3(), BorderLayout.SOUTH);
 		}
 		return pnCentral;
 	}
+	
+	/**
+	 * Método getLblAnularAsignaciones
+	 * @return lblAnularAsignaciones
+	 */
 	private JLabel getLblAnularAsignaciones() {
 		if (lblAnularAsignaciones == null) {
 			lblAnularAsignaciones = new JLabel("Anular asignaciones");
@@ -113,6 +176,11 @@ public class AnulacionView extends JDialog {
 		}
 		return lblAnularAsignaciones;
 	}
+	
+	/**
+	 * Método getPnInferior
+	 * @return pnInferior
+	 */
 	private JPanel getPnInferior() {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
@@ -120,16 +188,27 @@ public class AnulacionView extends JDialog {
 		}
 		return pnInferior;
 	}
+	
+	/**
+	 * Método getBtnConfirmar
+	 * @return btnConfirmar
+	 */
 	private JButton getBtnConfirmar() {
 		if (btnConfirmar == null) {
-			btnConfirmar = new JButton("Confirmar");
+			btnConfirmar = new JButton("Confirmar");			
 			btnConfirmar.setPreferredSize(new Dimension(170, 35));
 			btnConfirmar.setForeground(Color.WHITE);
 			btnConfirmar.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btnConfirmar.setBackground(new Color(34, 139, 34));
+			btnConfirmar.addActionListener(e -> SwingUtil.exceptionWrapper(() -> comprobarCampos(asignacionController)));
 		}
 		return btnConfirmar;
 	}
+	
+	/**
+	 * Método getLblMotivo
+	 * @return
+	 */
 	private JLabel getLblMotivo() {
 		if (lblMotivo == null) {
 			lblMotivo = new JLabel("Motivo");
@@ -138,10 +217,62 @@ public class AnulacionView extends JDialog {
 		}
 		return lblMotivo;
 	}
-	private JTextArea getTextArea() {
-		if (textArea == null) {
-			textArea = new JTextArea();
+	
+	/**
+	 * Método getTextAreaMotivo
+	 * @return textAreaMotivos
+	 */
+	private JTextArea getTextAreaMotivo() {
+		if (textAreaMotivo == null) {
+			textAreaMotivo = new JTextArea();
+			textAreaMotivo.setBorder(new LineBorder(new Color(0, 0, 0)));
 		}
-		return textArea;
+		return textAreaMotivo;
+	}
+	
+	
+	/**
+	 * Método getLbAux1
+	 * @return lbAux1
+	 */
+	private JLabel getLblAux1() {
+		if (lblAux1 == null) {
+			lblAux1 = new JLabel("               ");
+		}
+		return lblAux1;
+	}
+	
+	/**
+	 * Método getLbAux2
+	 * @return lblAux2
+	 */
+	private JLabel getLblAux2() {
+		if (lblAux2 == null) {
+			lblAux2 = new JLabel("               ");
+		}
+		return lblAux2;
+	}
+	
+	/**
+	 * Método getLbAux3
+	 * @return lblAux3
+	 */
+	private JLabel getLblAux3() {
+		if (lblAux3 == null) {
+			lblAux3 = new JLabel(" ");
+		}
+		return lblAux3;
+	}
+	
+	/**
+	 * Método comprobarCampos
+	 * @param asignacionController
+	 */
+	private void comprobarCampos(AsignacionPericialController asignacionController) {
+		if (textAreaMotivo.getText().isBlank()) {
+			SwingUtil.showErrorDialog("El motivo de la anulación es obligatorio");
+		} else {
+			asignacionController.anularAsignacion(textAreaMotivo.getText());
+		}
 	}
 }

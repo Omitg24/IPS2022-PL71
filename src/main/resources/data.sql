@@ -74,17 +74,17 @@ VALUES
 
 Insert into SolicitudPericial(dni, id,fecha, estado)
 VALUES
-('4728129374H', '42345234', "2022-10-28",'Asignada'),
-('4546574389B', '57987513', "2022-10-28",'Asignada'),
-('2124678952G', '53451213', "2022-10-28",'Asignada')
+('9385783921W', '42345234', "2022-10-28", 'Asignada'),
+('9876452397R', '57987513', "2022-10-28", 'Asignada'),
+('6435634566K', '53451213', "2022-10-28", 'Asignada')
 ;
 
 Insert into Informes(dni, id, urgencia, nombre, correo, telefono, descripcion)
 values
-('7348920547A', '53451213', 'Normal', 'manolo','manoloelmejor@gmail.com', '644928301', 'esta bien'),
-('4546574389B', '57987513', 'Normal', 'kazuya','kazuyamichimatekken@bandai.com', '666431212', 'esta moderadamente mal'),
-('9385783921W', '53251217', 'Normal', 'hermenegildo','hermenegildoelguay@hotmail.com', '932893432', ''),
-('2124678952G', '73423441', 'Urgente', 'sol','letsrock1223@gamil.com', '', ''),
-('2348597612B', '59951567', 'Normal', 'bruce','soybatman1939@gotham.com', '', ''),
-('9876452397R', '23543563', 'Urgente', 'geralt','gerardodelarivera@capcom.com', '844303989', 'no esta mal')
+('7348920547A', '53451213', 'Normal', 'Manolo','manoloelmejor@gmail.com', '644928301', 'Esta bien'),
+('4546574389B', '57987513', 'Normal', 'Kazuya','kazuyamichimatekken@bandai.com', '666431212', 'Esta moderadamente mal'),
+('9385783921W', '53251217', 'Normal', 'Hermenegildo','hermenegildoelguay@hotmail.com', '932893432', ''),
+('2124678952G', '73423441', 'Urgente', 'Sol','letsrock1223@gamil.com', '', ''),
+('2348597612B', '59951567', 'Normal', 'Bruce','soybatman1939@gotham.com', '', ''),
+('9876452397R', '23543563', 'Urgente', 'Geralt','gerardodelarivera@capcom.com', '844303989', 'No esta mal')
 ;

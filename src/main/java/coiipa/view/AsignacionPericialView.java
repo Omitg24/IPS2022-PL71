@@ -59,12 +59,16 @@ public class AsignacionPericialView extends JFrame {
 	private JTable tbPeritos;
 	private JTable tbAsignaciones;
 	private JPanel pnAsignar;
-	private JPanel pnAnular;
+	private JPanel pnAnular;	
 
 	/**
 	 * Create the frame.
 	 */
 	public AsignacionPericialView() {
+		initialize();
+	}
+	
+	private void initialize() {
 		frame = new JFrame();
 		frame.setPreferredSize(new Dimension(1200, 800));
 		frame.setSize(new Dimension(1500, 1000));
@@ -84,8 +88,7 @@ public class AsignacionPericialView extends JFrame {
 		contentPane.add(getPnCentro(), BorderLayout.CENTER);
 		contentPane.add(getPnInferior(), BorderLayout.SOUTH);
 
-		frame.setContentPane(contentPane);
-
+		frame.setContentPane(contentPane);		
 	}
 
 	private JPanel getPnSuperior() {
@@ -215,7 +218,7 @@ public class AsignacionPericialView extends JFrame {
 			pnPeritos = new JPanel();
 			pnPeritos.setBackground(Color.WHITE);
 			pnPeritos.setLayout(new BorderLayout(0, 0));
-			pnPeritos.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Peritos no asignados", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			pnPeritos.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Peritos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			pnPeritos.add(getSPPeritos(), BorderLayout.CENTER);
 		}
 		return pnPeritos;

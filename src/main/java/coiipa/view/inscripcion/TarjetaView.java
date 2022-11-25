@@ -52,7 +52,7 @@ public class TarjetaView extends JDialog {
 		setResizable(false);
 		setModal(true);
 		setTitle("Administración COIIPA - Confirmar pago tarjeta");
-		setFont(new Font("Calibri", Font.PLAIN, 14));
+		setFont(new Font("Tahoma", Font.PLAIN, 20));
 		setBounds(100, 100, 700, 450);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
