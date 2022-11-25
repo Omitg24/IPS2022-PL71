@@ -71,7 +71,7 @@ public class AsignacionPericialView extends JFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setPreferredSize(new Dimension(1200, 800));
-		frame.setSize(new Dimension(1500, 1000));
+		frame.setSize(new Dimension(1500, 800));
 		frame.setResizable(false);
 		frame.setTitle("Administración COIIPA - Gestion de Asignaciones Periciales");
 		frame.setIconImage(Toolkit.getDefaultToolkit()
@@ -187,7 +187,7 @@ public class AsignacionPericialView extends JFrame {
 			GridBagLayout gbl_pnAsignacion = new GridBagLayout();
 			gbl_pnAsignacion.columnWidths = new int[] {982, 491};
 			gbl_pnAsignacion.rowHeights = new int[]{387, 0};
-			gbl_pnAsignacion.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+			gbl_pnAsignacion.columnWeights = new double[]{0.0, 0.0};
 			gbl_pnAsignacion.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 			pnAsignacion.setLayout(gbl_pnAsignacion);
 			GridBagConstraints gbc_pnInformes = new GridBagConstraints();
