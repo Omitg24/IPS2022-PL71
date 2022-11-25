@@ -186,7 +186,7 @@ public class AsignacionPericialView extends JFrame {
 			pnAsignacion = new JPanel();
 			GridBagLayout gbl_pnAsignacion = new GridBagLayout();
 			gbl_pnAsignacion.columnWidths = new int[] {982, 491};
-			gbl_pnAsignacion.rowHeights = new int[]{387, 0};
+			gbl_pnAsignacion.rowHeights = new int[] {290, 0};
 			gbl_pnAsignacion.columnWeights = new double[]{0.0, 0.0};
 			gbl_pnAsignacion.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 			pnAsignacion.setLayout(gbl_pnAsignacion);
@@ -266,7 +266,7 @@ public class AsignacionPericialView extends JFrame {
 	private JTable getTbInformes() {
 		if (tbInformes == null) {
 			tbInformes = new JTable();			
-			tbInformes.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tbInformes.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			tbInformes.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tbInformes.setRowMargin(5);
 			tbInformes.setAutoscrolls(false);
@@ -287,7 +287,7 @@ public class AsignacionPericialView extends JFrame {
 	private JTable getTbPeritos() {
 		if (tbPeritos == null) {
 			tbPeritos = new JTable();			
-			tbPeritos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tbPeritos.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			tbPeritos.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tbPeritos.setRowMargin(5);
 			tbPeritos.setAutoscrolls(false);
@@ -308,7 +308,7 @@ public class AsignacionPericialView extends JFrame {
 	private JTable getTbAsignaciones() {
 		if (tbAsignaciones == null) {
 			tbAsignaciones = new JTable();			
-			tbAsignaciones.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tbAsignaciones.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			tbAsignaciones.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tbAsignaciones.setRowMargin(5);
 			tbAsignaciones.setAutoscrolls(false);
