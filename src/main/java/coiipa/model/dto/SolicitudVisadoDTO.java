@@ -68,7 +68,11 @@ public class SolicitudVisadoDTO {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
 
+
+	@Override
+	public String toString() {
+		return "SolicitudVisadoDTO [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", descripcion=" + descripcion + "]";
+	}
 }

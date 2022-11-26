@@ -173,5 +173,12 @@ public class AsignacionPericialDTO {
 	 */
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "AsignacionPericialDTO [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", dniColegiado="
+				+ dniColegiado + ", nombreColegiado=" + nombreColegiado + ", fecha=" + fecha + ", estado=" + estado
+				+ "]";
+	}
 }
