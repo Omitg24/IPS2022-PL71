@@ -16,6 +16,8 @@ public class InscritoDTO {
 	private String fecha;
 	private String estadoS;
 	private double abonado;
+	private boolean enEspera;
+	private int posicionEspera;
 	
 	public InscritoDTO() {}
 	
@@ -35,6 +37,13 @@ public class InscritoDTO {
 		this.tituloCurso = tituloCurso;
 		this.fechaCurso = fechaCurso;
 	}	
+	
+	public InscritoDTO(String dniColegiado, String tituloCurso, String apellidosColegiado, String nombreColegiado,
+			String fechaCurso, String fecha, String estadoS, double abonado, boolean enEspera, int posicionEspera) {
+		this(dniColegiado, tituloCurso, apellidosColegiado, nombreColegiado, fechaCurso, fecha, estadoS, abonado);
+		this.enEspera = enEspera;
+		this.posicionEspera = posicionEspera;
+	}
 	
 	public String getDniColegiado() {
 		return dniColegiado;
@@ -98,5 +107,21 @@ public class InscritoDTO {
 
 	public void setAbonado(double abonado) {
 		this.abonado = abonado;
+	}
+
+	public boolean isEnEspera() {
+		return enEspera;
+	}
+
+	public void setEnEspera(boolean enEspera) {
+		this.enEspera = enEspera;
+	}
+
+	public int getPosicionEspera() {
+		return posicionEspera;
+	}
+
+	public void setPosicionEspera(int posicionEspera) {
+		this.posicionEspera = posicionEspera;
 	}	
 }
