@@ -26,39 +26,101 @@ import javax.swing.border.TitledBorder;
 /**
  * Título: Clase InscritosView
  *
- * @author David Warzynski Abril, UO278968
- * @version 13 oct 2022
+ * @author David Warzynski Abril, UO278968 y Omar Teixeira González, UO281847
+ * @version 23 nov 2022
  */
 public class InscritosView {
-	
+	/**
+	 * Atributo frame
+	 */
 	private JFrame frame;
+	/**
+	 * Atributo contentPane
+	 */
 	private JPanel contentPane;
+	/**
+	 * Atributo pnCentro
+	 */
 	private JPanel pnCentro;
+	/**
+	 * Atributo pnSuperior
+	 */
 	private JPanel pnSuperior;
+	/**
+	 * Atributo lbLogo
+	 */
 	private JLabel lbLogo;
+	/**
+	 * Atributo pnInferior
+	 */
 	private JPanel pnInferior;
+	/**
+	 * Atributo pnTituloSup
+	 */
 	private JPanel pnTituloSup;
+	/**
+	 * Atributo lbPlan
+	 */
 	private JLabel lbPlan;
+	/**
+	 * Atributo tbInscritos
+	 */
 	private JTable tbInscritos;
+	/**
+	 * Atributo scListaInscritos
+	 */
 	private JScrollPane scListaInscritos;
+	/**
+	 * Atributo pnInscritos
+	 */
 	private JPanel pnInscritos;
+	/**
+	 * Atributo pnCursos
+	 */
 	private JPanel pnCursos;
-	private JScrollPane scCursos;
+	/**
+	 * Atributo scListaCursos
+	 */
+	private JScrollPane scListaCursos;
+	/**
+	 * Atributo tbCursos
+	 */
 	private JTable tbCursos;
+	/**
+	 * Atributo pnEspera
+	 */
 	private JPanel pnEspera;
+	/**
+	 * Atributo scListaEspera
+	 */
 	private JScrollPane scListaEspera;
+	/**
+	 * Atributo tbEspera
+	 */
 	private JTable tbEspera;
+	/**
+	 * Atributo lbTotal
+	 */
 	private JLabel lbTotal;
+	/**
+	 * Atributo txtTotal
+	 */
 	private JTextField txtTotal;
+	/**
+	 * Atributo btCancelar
+	 */
 	private JButton btCancelar;
 
 	/**
-	 * Create the frame.
+	 * Constructor sin parámetros
 	 */
 	public InscritosView() {
 		initialize();
 	}
 
+	/**
+	 * Método initialize
+	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -80,7 +142,10 @@ public class InscritosView {
 		contentPane.add(getPnInferior(), BorderLayout.SOUTH);
 	}
 
-
+	/**
+	 * Método getPnCentro
+	 * @return pnCentro
+	 */
 	private JPanel getPnCentro() {
 		if (pnCentro == null) {
 			pnCentro = new JPanel();
@@ -93,6 +158,10 @@ public class InscritosView {
 		return pnCentro;
 	}
 
+	/**
+	 * Método getPnSuperior
+	 * @return pnSuperior
+	 */
 	private JPanel getPnSuperior() {
 		if (pnSuperior == null) {
 			pnSuperior = new JPanel();
@@ -104,6 +173,10 @@ public class InscritosView {
 		return pnSuperior;
 	}
 
+	/**
+	 * Método getLbLogo
+	 * @return lbLogo
+	 */
 	private JLabel getLbLogo() {
 		if (lbLogo == null) {
 			lbLogo = new JLabel("");
@@ -112,6 +185,10 @@ public class InscritosView {
 		return lbLogo;
 	}
 
+	/**
+	 * Método getPnInferior
+	 * @return pnInferior
+	 */
 	private JPanel getPnInferior() {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
@@ -124,6 +201,10 @@ public class InscritosView {
 		return pnInferior;
 	}
 
+	/**
+	 * Método getPnTituloSup
+	 * @return pnTituloSup
+	 */
 	private JPanel getPnTituloSup() {
 		if (pnTituloSup == null) {
 			pnTituloSup = new JPanel();
@@ -133,6 +214,10 @@ public class InscritosView {
 		return pnTituloSup;
 	}
 
+	/**
+	 * Método getLbPlan
+	 * @return lbPlan
+	 */
 	private JLabel getLbPlan() {
 		if (lbPlan == null) {
 			lbPlan = new JLabel("Inscripciones cursos");
@@ -142,28 +227,39 @@ public class InscritosView {
 		return lbPlan;
 	}
 	
-	
+	/**
+	 * Método getPnCursos
+	 * @return pnCursos
+	 */
 	private JPanel getPnCursos() {
 		if (pnCursos == null) {
 			pnCursos = new JPanel();
 			pnCursos.setLayout(new GridLayout(0, 1, 0, 0));
-			pnCursos.add(getScCursos());
+			pnCursos.add(getScListaCursos());
 		}
 		return pnCursos;
 	}
 	
-	private JScrollPane getScCursos() {
-		if (scCursos == null) {
-			scCursos = new JScrollPane();
-			scCursos.setPreferredSize(new Dimension(410, 200));
-			scCursos.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			scCursos.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Cursos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			scCursos.setBackground(Color.WHITE);
-			scCursos.setViewportView(getTbCursos());
+	/**
+	 * Método getScListaCursos
+	 * @return scListaCursos
+	 */
+	private JScrollPane getScListaCursos() {
+		if (scListaCursos == null) {
+			scListaCursos = new JScrollPane();
+			scListaCursos.setPreferredSize(new Dimension(410, 200));
+			scListaCursos.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			scListaCursos.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Cursos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			scListaCursos.setBackground(Color.WHITE);
+			scListaCursos.setViewportView(getTbCursos());
 		}
-		return scCursos;
+		return scListaCursos;
 	}
 	
+	/**
+	 * Método getTbCursos
+	 * @return tbCursos
+	 */
 	private JTable getTbCursos() {
 		if (tbCursos == null) {
 			tbCursos = new JTable();			
@@ -184,6 +280,10 @@ public class InscritosView {
 		return tbCursos;
 	}
 	
+	/**
+	 * Método getPnInscritos
+	 * @return pnInscritos
+	 */
 	private JPanel getPnInscritos() {
 		if (pnInscritos == null) {
 			pnInscritos = new JPanel();
@@ -193,6 +293,10 @@ public class InscritosView {
 		return pnInscritos;
 	}
 	
+	/**
+	 * Método getScListaInscritos
+	 * @return scListaInscritos
+	 */
 	private JScrollPane getScListaInscritos() {
 		if (scListaInscritos == null) {
 			scListaInscritos = new JScrollPane();
@@ -205,6 +309,10 @@ public class InscritosView {
 		return scListaInscritos;
 	}
 	
+	/**
+	 * Método getTbInscritos
+	 * @return tbInscritos
+	 */
 	private JTable getTbInscritos() {
 		if (tbInscritos == null) {
 			tbInscritos = new JTable();			
@@ -225,6 +333,10 @@ public class InscritosView {
 		return tbInscritos;
 	}	
 	
+	/**
+	 * Método getPnEspera
+	 * @return pnEspera
+	 */
 	private JPanel getPnEspera() {
 		if (pnEspera == null) {
 			pnEspera = new JPanel();
@@ -233,6 +345,11 @@ public class InscritosView {
 		}
 		return pnEspera;
 	}
+	
+	/**
+	 * Método getScListaEspera
+	 * @return scListaEspera
+	 */
 	private JScrollPane getScListaEspera() {
 		if (scListaEspera == null) {
 			scListaEspera = new JScrollPane();
@@ -244,6 +361,11 @@ public class InscritosView {
 		}
 		return scListaEspera;
 	}
+	
+	/**
+	 * Método getTbEspera
+	 * @return tbEspera
+	 */
 	private JTable getTbEspera() {
 		if (tbEspera == null) {
 			tbEspera = new JTable();			
@@ -264,6 +386,10 @@ public class InscritosView {
 		return tbEspera;
 	}
 	
+	/**
+	 * Método getLbTotal
+	 * @return lbTotal
+	 */
 	private JLabel getLbTotal() {
 		if (lbTotal == null) {
 			lbTotal = new JLabel("Total abonado:");
@@ -274,6 +400,11 @@ public class InscritosView {
 		}
 		return lbTotal;
 	}
+	
+	/**
+	 * Método getTxtTotal
+	 * @return txtTotal
+	 */
 	private JTextField getTxtTotal() {
 		if (txtTotal == null) {
 			txtTotal = new JTextField();
@@ -285,6 +416,11 @@ public class InscritosView {
 		}
 		return txtTotal;
 	}
+	
+	/**
+	 * Método getBtCancelar
+	 * @return btCancelar
+	 */
 	private JButton getBtCancelar() {
 		if (btCancelar == null) {
 			btCancelar = new JButton("Cancelar");
@@ -295,22 +431,42 @@ public class InscritosView {
 		return btCancelar;
 	}
 	
+	/**
+	 * Método getFrame
+	 * @return frame
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 	
+	/**
+	 * Método getTotal
+	 * @return txtTotal
+	 */
 	public JTextField getTotal() {
 		return txtTotal;
 	}
 	
+	/**
+	 * Método getTableCursos
+	 * @return tbCursos
+	 */
 	public JTable getTableCursos() {
 		return tbCursos;
 	}
 	
+	/**
+	 * Método getTableInscritos
+	 * @return tbInscritos
+	 */
 	public JTable getTableInscritos() {
 		return tbInscritos;
 	}	
 	
+	/**
+	 * Método getTableEspera
+	 * @return tbEspera
+	 */
 	public JTable getTableEspera() {
 		return tbEspera;
 	}

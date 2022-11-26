@@ -11,17 +11,26 @@ import coiipa.view.InscritosView;
 import util.SwingUtil;
 
 /**
- * 
  * Título: Clase InscritosController
  *
  * @author David Warzynski Abril, UO278968 y Omar Teixeira González, UO281847
  * @version 26 nov 2022
  */
 public class InscritosController {	
-	
+	/**
+	 * Atributo model
+	 */
 	private InscritosModel model;
+	/**
+	 * Atributo view
+	 */
 	private InscritosView view;
 
+	/**
+	 * Constructor con parámetros
+	 * @param model
+	 * @param view
+	 */
 	public InscritosController(InscritosModel model, InscritosView view) {
 		this.model=model;
 		this.view=view;
@@ -29,13 +38,18 @@ public class InscritosController {
 		this.initView();
 	}
 
+	/**
+	 * Método initView
+	 */
 	public void initView() {
-		// Abre la ventana (sustituye al main generado por WindowBuilder)
 		this.getListaCursos();
 		actualizarTotal();
 		view.getFrame().setVisible(true);
 	}
 	
+	/**
+	 * Método initController
+	 */
 	public void initController() {
 		view.getTableCursos().getSelectionModel().addListSelectionListener(
 				e -> SwingUtil.exceptionWrapper(() -> getListaInscritos()));
@@ -43,6 +57,9 @@ public class InscritosController {
 				e -> SwingUtil.exceptionWrapper(() -> getListaEspera()));
 	}
 	
+	/**
+	 * Método getListaCursos
+	 */
 	private void getListaCursos() {
 		List<CursoDTO> cursos = model.getListaCursos();
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(cursos, 
@@ -63,10 +80,13 @@ public class InscritosController {
 		view.getTableCursos().getTableHeader().setResizingAllowed(false);
 	}
 	
+	/**
+	 * Método getListaInscritos
+	 */
 	private void getListaInscritos() {
 		String titulo = view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 0).toString();
 		String fecha = view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 1).toString();
-		List<InscritoDTO> inscritos = model.getListaInscrito(titulo, fecha);
+		List<InscritoDTO> inscritos = model.getListaInscritos(titulo, fecha);
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(inscritos, 
 				new String[] {"apellidosColegiado","nombreColegiado","fecha","estadoS","abonado"});
 		view.getTableInscritos().setModel(tmodel);
@@ -82,11 +102,14 @@ public class InscritosController {
 		actualizarTotal();
 	}
 	
+	/**
+	 * Método getListaEspera
+	 */
 	private void getListaEspera() {
 		String titulo = view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 0).toString();
 		String fecha = view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 1).toString();
-		List<InscritoDTO> inscritos = model.getListaEspera(titulo, fecha);
-		TableModel tmodel = SwingUtil.getTableModelFromPojos(inscritos, 
+		List<InscritoDTO> espera = model.getListaEspera(titulo, fecha);
+		TableModel tmodel = SwingUtil.getTableModelFromPojos(espera, 
 				new String[] {"apellidosColegiado", "nombreColegiado", "fecha", "estadoS", "posicionEspera"});
 		view.getTableEspera().setModel(tmodel);
 		String[] titles = new String[] { "Apellidos", "Nombre", "Fecha de inscripción",
@@ -99,6 +122,9 @@ public class InscritosController {
 		view.getTableEspera().getTableHeader().setResizingAllowed(false);
 	}
 	
+	/**
+	 * Método actualizarTotal
+	 */
 	private void actualizarTotal() {
 		double total=0;
 		for(int i =0; i< view.getTableInscritos().getRowCount();i++) {
@@ -106,5 +132,4 @@ public class InscritosController {
 		}
 		view.getTotal().setText(total + " €");
 	}
-
 }
