@@ -114,7 +114,7 @@ public class AsignacionVisadorView extends JFrame {
 		if (pnCentro == null) {
 			pnCentro = new JPanel();
 			pnCentro.setBackground(Color.WHITE);
-			pnCentro.setLayout(new FlowLayout(FlowLayout.CENTER, 200, 20));
+			pnCentro.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 20));
 			pnCentro.add(getPnVisadores());
 			pnCentro.add(getPnVisados());
 		}
@@ -132,7 +132,7 @@ public class AsignacionVisadorView extends JFrame {
 		if (sPVisadores == null) {
 			sPVisadores = new JScrollPane();
 			sPVisadores.setBackground(Color.WHITE);
-			sPVisadores.setPreferredSize(new Dimension(500, 425));
+			sPVisadores.setPreferredSize(new Dimension(600, 425));
 			sPVisadores.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Lista visadores", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			sPVisadores.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			sPVisadores.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -143,7 +143,14 @@ public class AsignacionVisadorView extends JFrame {
 	private JTable getTbVisadores() {
 		if (tbVisadores == null) {
 			tbVisadores = new JTable();
-			tbVisadores.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tbVisadores.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			tbVisadores.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 16));
+			tbVisadores.setRowMargin(5);
+			tbVisadores.setShowVerticalLines(false);
+			tbVisadores.setAutoscrolls(false);
+			tbVisadores.setFillsViewportHeight(true);
+			tbVisadores.setRowHeight(30);
+			tbVisadores.setGridColor(Color.BLACK);
 			tbVisadores.setBackground(Color.WHITE);
 			tbVisadores.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			tbVisadores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -163,7 +170,7 @@ public class AsignacionVisadorView extends JFrame {
 		if (sPVisados == null) {
 			sPVisados = new JScrollPane();
 			sPVisados.setBackground(Color.WHITE);
-			sPVisados.setPreferredSize(new Dimension(500, 425));
+			sPVisados.setPreferredSize(new Dimension(600, 425));
 			sPVisados.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Solicitudes de visado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			sPVisados.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			sPVisados.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -174,7 +181,14 @@ public class AsignacionVisadorView extends JFrame {
 	private JTable getTbVisados() {
 		if (tbVisados == null) {
 			tbVisados = new JTable();
-			tbVisados.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tbVisados.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			tbVisados.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 16));
+			tbVisados.setRowMargin(5);
+			tbVisados.setAutoscrolls(false);
+			tbVisados.setShowVerticalLines(false);
+			tbVisados.setFillsViewportHeight(true);
+			tbVisados.setRowHeight(30);
+			tbVisados.setGridColor(Color.BLACK);
 			tbVisados.setBackground(Color.WHITE);
 			tbVisados.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			tbVisados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
