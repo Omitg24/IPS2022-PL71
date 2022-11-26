@@ -34,6 +34,7 @@ import main.launchers.InscripcionMain;
 import main.launchers.InscripcionPericialMain;
 import main.launchers.InscritosMain;
 import main.launchers.LotesMain;
+import main.launchers.PericialesMain;
 import main.launchers.SolicitudVisadoMain;
 import util.Database;
 
@@ -63,6 +64,7 @@ public class Main extends JFrame {
 	private JButton btnAsignarVisador;
 	private JButton btnSolicitudVisado;
 	private JButton btnNuevaFuncionalidad;
+	private JButton btnListadoPericial;
 
 	/**
 	 * Launch the application.
@@ -155,6 +157,7 @@ public class Main extends JFrame {
 			pnBotones.add(getBtnInforme());
 			pnBotones.add(getBtnAsignarVisador());
 			pnBotones.add(getBtnSolicitudVisado());
+			pnBotones.add(getBtnListadoPericial());
 			pnBotones.add(getBtnNuevaFuncionalidad());
 		}
 		return pnBotones;
@@ -386,4 +389,19 @@ public class Main extends JFrame {
 		return btnNuevaFuncionalidad;
 	}
 
+	private JButton getBtnListadoPericial() {
+		if (btnListadoPericial == null) {
+			btnListadoPericial = new JButton("Listado de solicitudes");
+			btnListadoPericial.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnListadoPericial.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnListadoPericial.setBorder(new LineBorder(Color.BLACK));
+			btnListadoPericial.setBackground(Color.LIGHT_GRAY);
+			btnListadoPericial.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					new PericialesMain().main(null);
+				}
+			});
+		}
+		return btnListadoPericial;
+	}
 }
