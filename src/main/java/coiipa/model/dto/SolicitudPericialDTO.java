@@ -1,5 +1,11 @@
 package coiipa.model.dto;
 
+/**
+ * Título: Clase SolicitudPericialDTO
+ *
+ * @author David Warzynski Abril, UO278968
+ * @version 18 nov 2022
+ */
 public class SolicitudPericialDTO {
 
 	private String dni;
@@ -49,4 +55,8 @@ public class SolicitudPericialDTO {
 		this.fecha = fecha;
 	}
 
+	@Override
+	public String toString() {
+		return "SolicitudPericialDTO [dni=" + dni + ", id=" + id + ", estado=" + estado + ", fecha=" + fecha + "]";
+	}		
 }

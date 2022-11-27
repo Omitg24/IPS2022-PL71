@@ -81,13 +81,8 @@ public class InscribeDTO {
 
 	@Override
 	public String toString() {
-		return "InscribeDTO [dniColegiado=" + dniColegiado + ", tituloCurso=" + tituloCurso + ", fechaCurso=" + fechaCurso
-				+ ", fecha=" + fecha + ", estadoS=" + estadoS + ", abonado=" + abonado + ", incidencia=" + incidencia
-				+ "]";
+		return "InscribeDTO [dniColegiado=" + dniColegiado + ", tituloCurso=" + tituloCurso + ", fechaCurso="
+				+ fechaCurso + ", fecha=" + fecha + ", estadoS=" + estadoS + ", abonado=" + abonado + ", incidencia="
+				+ incidencia + "]";
 	}
-	
-	
-    
-    
-
 }

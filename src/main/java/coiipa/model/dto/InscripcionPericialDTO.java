@@ -36,9 +36,7 @@ public class InscripcionPericialDTO {
 		this.estadoInscripcion = estadoInscripcion;
 		this.estadoAsignacionPericial=estadoAsignacionPericial;
 		this.fecha=fecha;
-	}
-	
-	
+	}	
 
 	public String getFecha() {
 		return fecha;
@@ -87,8 +85,11 @@ public class InscripcionPericialDTO {
 	public void setEstadoInscripcion(String estadoInscripcion) {
 		this.estadoInscripcion = estadoInscripcion;
 	}
-    
-    
-    
 
+	@Override
+	public String toString() {
+		return "InscripcionPericialDTO [dniColegiado=" + dniColegiado + ", fechaInscripcion=" + fechaInscripcion
+				+ ", posicionLista=" + posicionLista + ", estadoInscripcion=" + estadoInscripcion
+				+ ", estadoAsignacionPericial=" + estadoAsignacionPericial + ", fecha=" + fecha + "]";
+	}
 }

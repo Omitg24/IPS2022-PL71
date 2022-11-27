@@ -9,6 +9,7 @@ public class CursoDTO {
 	private String fechaFinIns;
 	private String estadoc;
 	private int nplazas;
+	private int ninscritos;
 	private String fecha;
 	
 	public CursoDTO() {}
@@ -20,20 +21,20 @@ public class CursoDTO {
 		this.fechaFinIns = fechaFinIns;
 		this.fechaCurso = fechaCurso;
 		this.precio = precio;
-		this.nplazas = nplazas;
 		this.estadoc = estadoc;
+		this.nplazas = nplazas;		
 	}
 	
 	public CursoDTO(String titulocurso, String fechaCurso, double precio, String fechaInicioIns, 
 			String fechaFinIns, String estadoc, int nplazas,String fecha) {
-		this.tituloCurso = titulocurso;
-		this.fechaInicioIns = fechaInicioIns;
-		this.fechaFinIns = fechaFinIns;
-		this.fechaCurso = fechaCurso;
-		this.precio = precio;
-		this.nplazas = nplazas;
-		this.estadoc = estadoc;
+		this(titulocurso, fechaCurso, precio, fechaInicioIns, fechaFinIns, estadoc, nplazas);
 		this.fecha=fecha;
+	}
+	
+	public CursoDTO(String titulocurso, String fechaCurso, double precio, String fechaInicioIns, 
+			String fechaFinIns, String estadoc, int nplazas, int ninscritos, String fecha) {
+		this(titulocurso, fechaCurso, precio, fechaInicioIns, fechaFinIns, estadoc, nplazas, fecha);
+		this.ninscritos=ninscritos;
 	}
 	
 	
@@ -99,10 +100,21 @@ public class CursoDTO {
 
 	public void setNplazas(int nplazas) {
 		this.nplazas = nplazas;
+	}	
+
+	public int getNinscritos() {
+		return ninscritos;
 	}
 
-	public String toString() {
-		return tituloCurso + " " + " " + fechaCurso + " " + fechaInicioIns + " " + fechaFinIns
-				+ " " + precio + " " + estadoc + " " + nplazas;
+	public void setNinscritos(int ninscritos) {
+		this.ninscritos = ninscritos;
 	}
+
+	@Override
+	public String toString() {
+		return "CursoDTO [tituloCurso=" + tituloCurso + ", fechaCurso=" + fechaCurso + ", precio=" + precio
+				+ ", fechaInicioIns=" + fechaInicioIns + ", fechaFinIns=" + fechaFinIns + ", estadoc=" + estadoc
+				+ ", nplazas=" + nplazas + ", ninscritos=" + ninscritos + ", fecha=" + fecha + "]";
+	}
+	
 }

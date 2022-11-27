@@ -3,7 +3,7 @@ package coiipa.model.dto;
 import java.sql.Date;
 
 /**
- * Título: Clase SolicitanteDTO
+ * Título: Clase ColegiadoDTO
  *
  * @author Omar Teixeira González, UO281847
  * @version 9 oct 2022
@@ -346,8 +346,23 @@ public class ColegiadoDTO {
 	public void setEstadoAsignacionPericial(String estadoAsignacionPericial) {
 		this.estadoAsignacionPericial = estadoAsignacionPericial;
 	}
-	
 
+	/**
+	 * Método getFechaColegiacion
+	 * @return fechaColegiacion
+	 */
+	public Date getFechaColegiacion() {
+		return fechaColegiacion;
+	}
+
+	/**
+	 * Método setFechaColegiacion
+	 * @param fechaColegiacion
+	 */
+	public void setFechaColegiacion(Date fechaColegiacion) {
+		this.fechaColegiacion = fechaColegiacion;
+	}
+	
 	/**
 	 * Método toString
 	 * @return string
@@ -362,8 +377,5 @@ public class ColegiadoDTO {
 				+ tipoColegiado + ", estadoColegiado=" + estadoColegiado + ", estadoCuota=" + estadoCuota
 				+ ", estadoAsignacionPericial=" + estadoAsignacionPericial + ", fechaColegiacion=" + fechaColegiacion
 				+ "]";
-	}	
-	
-	
-	
+	}		
 }

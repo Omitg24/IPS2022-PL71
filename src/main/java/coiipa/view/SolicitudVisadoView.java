@@ -260,7 +260,6 @@ public class SolicitudVisadoView {
 				System.out.println("Excepción capturada: JFormattedTextField");
 			}
 			textFieldDni = new JFormattedTextField(mf);	
-			textFieldDni = new JTextField();
 			textFieldDni.setBackground(Color.LIGHT_GRAY);
 			textFieldDni.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldDni.setMaximumSize(new Dimension(280, 30));

@@ -11,7 +11,6 @@ import coiipa.view.AsignacionVisadorView;
 import util.SwingUtil;
 
 /**
- * 
  * Título: Clase AsignacionVisador
  *
  * @author David Warzynski Abril, UO278968

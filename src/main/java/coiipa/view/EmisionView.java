@@ -6,6 +6,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
@@ -74,6 +75,7 @@ public class EmisionView extends JFrame {
 	 * Atributo btGenerateReceipts
 	 */
 	private JButton btGenerateReceipts;
+	private JLabel label;
 	
 
 //-- INTERFAZ GRÁFICA ----------------------------------------------------------
@@ -93,7 +95,7 @@ public class EmisionView extends JFrame {
 		frame.setTitle("Administración COIIPA - Emisión de recibos");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(EmisionView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setBounds(100, 100, 425, 330);
+		frame.setBounds(100, 100, 700, 450);
 		frame.setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
@@ -140,7 +142,7 @@ public class EmisionView extends JFrame {
 		if (lbTitle == null) {
 			lbTitle = new JLabel("Emisión de recibos");
 			lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
-			lbTitle.setFont(new Font("High Tower Text", Font.PLAIN, 35));
+			lbTitle.setFont(new Font("Baskerville Old Face", Font.PLAIN, 40));
 		}
 		return lbTitle;
 	}
@@ -167,10 +169,11 @@ public class EmisionView extends JFrame {
 	private JPanel getLabelPanel() {
 		if (labelPanel == null) {
 			labelPanel = new JPanel();
-			labelPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			labelPanel.setLayout(new GridLayout(0, 1, 0, 0));
 			labelPanel.add(getLbTitle());
 			labelPanel.add(getLblIndication());
 			labelPanel.add(getLblIndication2());
+			labelPanel.add(getLabel());
 		}
 		return labelPanel;
 	}
@@ -195,6 +198,7 @@ public class EmisionView extends JFrame {
 	private JLabel getLblIndication2() {
 		if (lblIndication2 == null) {
 			lblIndication2 = new JLabel("de los colegiados y precolegiados");
+			lblIndication2.setHorizontalAlignment(SwingConstants.CENTER);
 			lblIndication2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		}
 		return lblIndication2;
@@ -207,6 +211,7 @@ public class EmisionView extends JFrame {
 	private JPanel getButtonPanel() {
 		if (buttonPanel == null) {
 			buttonPanel = new JPanel();
+			buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			buttonPanel.add(getBtGenerateReceipts());
 		}
 		return buttonPanel;
@@ -219,10 +224,10 @@ public class EmisionView extends JFrame {
 	public JButton getBtGenerateReceipts() {
 		if (btGenerateReceipts == null) {
 			btGenerateReceipts = new JButton("Generar recibos");
-			btGenerateReceipts.setPreferredSize(new Dimension(150, 35));
+			btGenerateReceipts.setPreferredSize(new Dimension(250, 35));
 			btGenerateReceipts.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btGenerateReceipts.setForeground(Color.WHITE);
-			btGenerateReceipts.setFont(new Font("High Tower Text", Font.BOLD, 16));
+			btGenerateReceipts.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btGenerateReceipts.setBackground(new Color(34, 139, 34));
 		}
 		return btGenerateReceipts;
@@ -235,5 +240,11 @@ public class EmisionView extends JFrame {
 	 */
 	public JFrame getFrame() {
 		return frame;
+	}
+	private JLabel getLabel() {
+		if (label == null) {
+			label = new JLabel("");
+		}
+		return label;
 	}
 }
