@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,13 +33,16 @@ public class IdentificadorView {
 	private JFrame frmIntroduzcaCredenciales;
 	private JPanel contentPane;
 	private JPanel pnCentro;
-	private JPanel pnSuperior;
 	private JPanel pnInferior;
 	private JLabel lblIntroduzcaId;
 	private JButton btnEntrar;
 	private JTextField textFieldId;
 
 	private Inscripcion inscripcion;
+	private JPanel pnSuperior;
+	private JLabel lbLogo;
+	private JPanel pnTituloSup;
+	private JLabel lblIniciarSesin;
 
 	/**
 	 * Create the frame.
@@ -54,7 +58,7 @@ public class IdentificadorView {
 		frmIntroduzcaCredenciales.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frmIntroduzcaCredenciales.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(InscripcionPericialView.class.getResource("/images/coiipa_symbol.png")));
-		frmIntroduzcaCredenciales.setBounds(100, 100, 380, 200);
+		frmIntroduzcaCredenciales.setBounds(100, 100, 800, 500);
 		frmIntroduzcaCredenciales.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -64,9 +68,9 @@ public class IdentificadorView {
 		frmIntroduzcaCredenciales.setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(getPnCentro(), BorderLayout.CENTER);
-		contentPane.add(getPnSuperior(), BorderLayout.NORTH);
 		contentPane.add(getPnInferior(), BorderLayout.SOUTH);
 		frmIntroduzcaCredenciales.getRootPane().setDefaultButton(btnEntrar);
+		contentPane.add(getPnSuperior_1(), BorderLayout.NORTH);
 
 		inscripcion = ins.getInscripcion();
 	} 
@@ -80,21 +84,10 @@ public class IdentificadorView {
 			pnCentro = new JPanel();
 			pnCentro.setBackground(Color.WHITE);
 			pnCentro.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			pnCentro.add(getLblIntroduzcaId());
 			pnCentro.add(getTextId());
 		}
 		return pnCentro;
-	}
-	private JPanel getPnSuperior() {
-		if (pnSuperior == null) {
-			pnSuperior = new JPanel();
-			FlowLayout flowLayout = (FlowLayout) pnSuperior.getLayout();
-			flowLayout.setVgap(12);
-			flowLayout.setHgap(0);
-			pnSuperior.setBackground(Color.WHITE);
-			pnSuperior.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 15));
-			pnSuperior.add(getLblIntroduzcaId());
-		}
-		return pnSuperior;
 	}
 
 	private JPanel getPnInferior() {
@@ -120,6 +113,7 @@ public class IdentificadorView {
 	private JLabel getLblIntroduzcaId() {
 		if (lblIntroduzcaId == null) {
 			lblIntroduzcaId = new JLabel("Introduzca su DNI:");
+			lblIntroduzcaId.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lblIntroduzcaId;
 	}
@@ -128,7 +122,7 @@ public class IdentificadorView {
 			btnEntrar = new JButton("Entrar");
 			btnEntrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnEntrar.setForeground(Color.WHITE);
-			btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btnEntrar.setFocusable(false);
 			btnEntrar.setBackground(new Color(34, 139, 34));
 		}
@@ -139,7 +133,7 @@ public class IdentificadorView {
 			textFieldId = new JTextField();
 			textFieldId.setPreferredSize(new Dimension(55, 35));
 			textFieldId.setHorizontalAlignment(SwingConstants.CENTER);
-			textFieldId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			textFieldId.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			textFieldId.setColumns(16);
 			textFieldId.setBorder(new LineBorder(new Color(171, 173, 179)));
 			textFieldId.setBackground(Color.LIGHT_GRAY);
@@ -148,5 +142,38 @@ public class IdentificadorView {
 	}
 	public Inscripcion getInscripcion() {
 		return inscripcion;
+	}
+	private JPanel getPnSuperior_1() {
+		if (pnSuperior == null) {
+			pnSuperior = new JPanel();
+			pnSuperior.setBackground(Color.WHITE);
+			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
+			pnSuperior.add(getLbLogo());
+			pnSuperior.add(getPnTituloSup());
+		}
+		return pnSuperior;
+	}
+	private JLabel getLbLogo() {
+		if (lbLogo == null) {
+			lbLogo = new JLabel("");
+			lbLogo.setIcon(new ImageIcon(IdentificadorView.class.getResource("/images/coiipa_logo.jpg")));
+		}
+		return lbLogo;
+	}
+	private JPanel getPnTituloSup() {
+		if (pnTituloSup == null) {
+			pnTituloSup = new JPanel();
+			pnTituloSup.setBackground(Color.WHITE);
+			pnTituloSup.add(getLblIniciarSesin());
+		}
+		return pnTituloSup;
+	}
+	private JLabel getLblIniciarSesin() {
+		if (lblIniciarSesin == null) {
+			lblIniciarSesin = new JLabel("Iniciar sesión");
+			lblIniciarSesin.setHorizontalAlignment(SwingConstants.CENTER);
+			lblIniciarSesin.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
+		}
+		return lblIniciarSesin;
 	}
 }

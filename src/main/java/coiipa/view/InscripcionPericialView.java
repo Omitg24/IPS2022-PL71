@@ -173,7 +173,7 @@ public class InscripcionPericialView implements Inscripcion {
 	private void initialize() {
 		frmAdministracinCoiipa = new JFrame();
 		frmAdministracinCoiipa.setPreferredSize(new Dimension(1200, 800));
-		frmAdministracinCoiipa.setSize(new Dimension(1200, 800));
+		frmAdministracinCoiipa.setSize(new Dimension(1500, 1000));
 		frmAdministracinCoiipa.setResizable(false);
 		frmAdministracinCoiipa.setTitle("Administración COIIPA - Inscripcion Pericial");
 		frmAdministracinCoiipa.setIconImage(Toolkit.getDefaultToolkit()

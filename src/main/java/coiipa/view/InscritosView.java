@@ -99,6 +99,14 @@ public class InscritosView {
 	 */
 	private JTable tbEspera;
 	/**
+	 * Atributo pnDcha
+	 */
+	private JPanel pnDcha;
+	/**
+	 * Atributo pnIzda
+	 */
+	private JPanel pnIzda;
+	/**
 	 * Atributo lbTotal
 	 */
 	private JLabel lbTotal;
@@ -109,7 +117,7 @@ public class InscritosView {
 	/**
 	 * Atributo btCancelar
 	 */
-	private JButton btCancelar;
+	private JButton btCancelar;	
 
 	/**
 	 * Constructor sin parámetros
@@ -193,10 +201,9 @@ public class InscritosView {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
 			pnInferior.setBackground(Color.WHITE);
-			pnInferior.setLayout(new GridLayout(0, 3, 10, 10));
-			pnInferior.add(getLbTotal());
-			pnInferior.add(getTxtTotal());
-			pnInferior.add(getBtCancelar());
+			pnInferior.setLayout(new GridLayout(0, 2, 0, 0));
+			pnInferior.add(getPnIzda());
+			pnInferior.add(getPnDcha());
 		}
 		return pnInferior;
 	}
@@ -249,7 +256,7 @@ public class InscritosView {
 			scListaCursos = new JScrollPane();
 			scListaCursos.setPreferredSize(new Dimension(410, 200));
 			scListaCursos.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			scListaCursos.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Cursos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			scListaCursos.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Lista de cursos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			scListaCursos.setBackground(Color.WHITE);
 			scListaCursos.setViewportView(getTbCursos());
 		}
@@ -387,6 +394,33 @@ public class InscritosView {
 	}
 	
 	/**
+	 * Método getPnDcha
+	 * @return pnDcha
+	 */
+	private JPanel getPnDcha() {
+		if (pnDcha == null) {
+			pnDcha = new JPanel();
+			pnDcha.add(getBtCancelar());
+		}
+		return pnDcha;
+	}
+	
+	/**
+	 * Método getPnIzda
+	 * @return pnIzda
+	 */
+	private JPanel getPnIzda() {
+		if (pnIzda == null) {
+			pnIzda = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) pnIzda.getLayout();
+			flowLayout.setHgap(50);
+			pnIzda.add(getLbTotal());
+			pnIzda.add(getTxtTotal());
+		}
+		return pnIzda;
+	}
+	
+	/**
 	 * Método getLbTotal
 	 * @return lbTotal
 	 */
@@ -469,5 +503,5 @@ public class InscritosView {
 	 */
 	public JTable getTableEspera() {
 		return tbEspera;
-	}
+	}	
 }

@@ -92,7 +92,7 @@ public class Main extends JFrame {
 	public Main() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/images/coiipa_symbol.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 600);
+		setBounds(100, 100, 1300, 750);
 		setLocationRelativeTo(null);
 		setTitle("Administración COIIPA");
 		contentPane = new JPanel();
@@ -133,7 +133,7 @@ public class Main extends JFrame {
 		if (lblAdministracinCoiipa == null) {
 			lblAdministracinCoiipa = new JLabel("Administración COIIPA");
 			lblAdministracinCoiipa.setHorizontalAlignment(SwingConstants.CENTER);
-			lblAdministracinCoiipa.setFont(new Font("Baskerville Old Face", Font.PLAIN, 56));
+			lblAdministracinCoiipa.setFont(new Font("Baskerville Old Face", Font.BOLD, 56));
 		}
 		return lblAdministracinCoiipa;
 	}

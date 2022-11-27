@@ -2,7 +2,6 @@ package coiipa.view.inscripcion;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -53,7 +52,7 @@ public class TarjetaView extends JDialog {
 		setModal(true);
 		setTitle("Administración COIIPA - Confirmar pago tarjeta");
 		setFont(new Font("Tahoma", Font.PLAIN, 20));
-		setBounds(100, 100, 700, 450);
+		setBounds(100, 100, 800, 500);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -137,12 +136,6 @@ public class TarjetaView extends JDialog {
 			}
 		}
 		{
-			JPanel pnSur = new JPanel();
-			pnSur.setPreferredSize(new Dimension(10, 35));
-			pnSur.setBackground(Color.WHITE);
-			contentPanel.add(pnSur, BorderLayout.SOUTH);
-		}
-		{
 			JPanel pnSuperior = new JPanel();
 			pnSuperior.setBackground(Color.WHITE);
 			contentPanel.add(pnSuperior, BorderLayout.NORTH);
@@ -159,18 +152,18 @@ public class TarjetaView extends JDialog {
 				{
 					JLabel lbInscripcion = new JLabel("Confirmar pago");
 					lbInscripcion.setHorizontalAlignment(SwingConstants.CENTER);
-					lbInscripcion.setFont(new Font("Baskerville Old Face", Font.PLAIN, 40));
+					lbInscripcion.setFont(new Font("Baskerville Old Face", Font.PLAIN, 60));
 					pnTituloSup.add(lbInscripcion);
 				}
 			}
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			contentPanel.add(buttonPane, BorderLayout.SOUTH);
 			buttonPane.setBackground(Color.WHITE);
 			FlowLayout fl_buttonPane = new FlowLayout(FlowLayout.RIGHT);
 			fl_buttonPane.setHgap(50);
 			buttonPane.setLayout(fl_buttonPane);
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Confirmar");
 				okButton.setForeground(Color.WHITE);

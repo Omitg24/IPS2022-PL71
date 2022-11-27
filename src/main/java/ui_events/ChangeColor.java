@@ -22,7 +22,6 @@ public class ChangeColor implements FocusListener {
 	@Override
 	public void focusGained(FocusEvent e) {
 		((JTextField) e.getSource()).setBackground(Color.WHITE);
-
 	}
 
 	/**
@@ -34,6 +33,5 @@ public class ChangeColor implements FocusListener {
 		JTextField f = ((JTextField) e.getSource());
 		if (f.getText().isBlank())
 			f.setBackground(Color.LIGHT_GRAY);
-
 	}
 }

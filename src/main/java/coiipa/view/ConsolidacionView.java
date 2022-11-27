@@ -102,7 +102,7 @@ public class ConsolidacionView extends JFrame {
 		frame.setTitle("Administración COIIPA - Consolidación de pagos");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ConsolidacionView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setBounds(100, 100, 1200, 800);
+		frame.setBounds(100, 100, 1500, 1000);
 		frame.setLocationRelativeTo(null);
 		frame.getRootPane().setDefaultButton(btConsolidacion);
 		
