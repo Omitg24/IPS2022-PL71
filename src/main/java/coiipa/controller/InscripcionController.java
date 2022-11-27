@@ -1,5 +1,6 @@
 package coiipa.controller;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -16,6 +17,7 @@ import coiipa.view.InscripcionView;
 import coiipa.view.inscripcion.AvisoEsperaView;
 import coiipa.view.inscripcion.EmisionInscripcionView;
 import coiipa.view.inscripcion.IdentificadorView;
+import coiipa.view.inscripcion.JustificanteCancelarInscripcion;
 import coiipa.view.inscripcion.TarjetaView;
 import ui_events.ChangeColor;
 import util.SwingUtil;
@@ -130,6 +132,7 @@ public class InscripcionController {
 				e -> SwingUtil.exceptionWrapper(() -> gestionDeSolicitados()));
 		view.getTbEspera().getSelectionModel().addListSelectionListener(
 				e -> SwingUtil.exceptionWrapper(() -> gestionDeEspera()));
+		view.getButtonCancelar().addActionListener(e -> SwingUtil.exceptionWrapper(()->cancelarInscripcion()));
 	}
 	
 	/**
@@ -226,9 +229,9 @@ public class InscripcionController {
 		this.preinscritos = model.getCursosSolicitados(colegiado.getDniColegiado());
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(preinscritos, 
 				new String[] {"tituloCurso", "fechaCurso", 
-						"fecha", "estadoc", "precio"});
+						"fecha", "estadoc", "precio", "cancelable"});
 		view.getTbSolicitados().setModel(tmodel);
-		String[] titles = new String[] { "Título del curso", "Fecha del curso", "Fecha de inscripción", "Estado del curso", "Precio del curso"};
+		String[] titles = new String[] { "Título del curso", "Fecha del curso", "Fecha de inscripción", "Estado del curso", "Precio del curso","Cancelable"};
 		for (int i = 0; i < titles.length; i++) {
 			view.getTbSolicitados().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
 		}
@@ -379,6 +382,72 @@ public class InscripcionController {
 		} else {
 			SwingUtil.showInformationDialog("No puede pagar un curso en el que se encuentra en lista de espera");
 		}
+	}
+	
+	/**
+	 * Método para cancelar la inscripción a un curso
+	 */
+	private void cancelarInscripcion() {
+		String titulo = SwingUtil.getSelectedKey(view.getTbSolicitados());
+		String fecha = SwingUtil.getSelectedKey(view.getTbSolicitados(),1);
+		CursoDTO c = model.getCursoTituloFecha(titulo, fecha);
+		if(comprobarCancelable(c) && comprobarFechaCurso(c)) {
+			mostrarJustificante(c);
+		}
+	}
+
+	private void mostrarJustificante(CursoDTO c) {
+		JustificanteCancelarInscripcion j = new JustificanteCancelarInscripcion();
+		j.getBtnConfirmar().addActionListener(e-> SwingUtil.exceptionWrapper(() -> confirmarCancelacion(j,c)));
+		InscribeDTO i = model.buscarInscripcionCurso(dniColegiado, c.getTituloCurso(), c.getFechaCurso());
+		j.setDni(dniColegiado);
+		j.setTituloCurso(c.getTituloCurso());
+		j.setFechaCurso(c.getFechaCurso());
+		j.setFechaCancelacion(LocalDate.now().toString());
+		j.setDineroDevuelt((c.getPorcentajeDevolucion()/100)*i.getAbonado()+"");
+		j.getFrame().setVisible(true);
+	}
+	
+	private void confirmarCancelacion(JustificanteCancelarInscripcion j, CursoDTO c) {
+		model.actualizarEstadoInscripcion(colegiado.getDniColegiado(), 
+				c.getTituloCurso(), c.getFechaCurso(), "Cancelado");
+		j.getFrame().dispose();
+		getTablaCursosSolicitados();
+	}
+
+	private boolean comprobarCancelable(CursoDTO c) {
+		if(c.isCancelable()) {
+			return true;
+		}
+		SwingUtil.showInformationDialog("El curso no permite cancelaciones");
+		return false;
+	}
+
+	/**
+	 * Método para comprobar la validez de la fecha de cancelación
+	 * @param c curso de la inscripción
+	 * @return valida o no
+	 */
+	private boolean comprobarFechaCurso(CursoDTO c) {
+		if(c.getEstadoc()=="Cerrada") {
+			SwingUtil.showInformationDialog("El curso ya ha finalizado");
+			return false;
+		}
+		else if(LocalDate.now().isAfter(LocalDate.parse(c.getFechaCurso()))) {
+			SwingUtil.showInformationDialog("El curso ya ha empezado");
+			return false;
+		}
+		else {
+			LocalDate fecha = Date.valueOf(c.getFechaCurso()).toLocalDate();
+			LocalDate hoy=LocalDate.now().minusDays(7);
+			if(hoy.isAfter(fecha)) {
+				SwingUtil.showInformationDialog(
+						"No se puede cancelar la inscripción a falta de una semana");
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 	/**

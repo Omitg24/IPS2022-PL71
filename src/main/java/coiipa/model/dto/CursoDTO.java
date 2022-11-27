@@ -13,6 +13,8 @@ public class CursoDTO {
 	private int nplazas;
 	private int ninscritos;
 	private String fecha;
+	private boolean cancelable;
+	private double porcentajeDevolucion;
 	
 	public CursoDTO() {}
 	
@@ -25,6 +27,13 @@ public class CursoDTO {
 		this.precio = precio;
 		this.estadoc = estadoc;
 		this.nplazas = nplazas;		
+	}
+	
+	public CursoDTO(String titulocurso, String fechaCurso, double precio, String fechaInicioIns, 
+			String fechaFinIns, String estadoc, int nplazas, boolean cancelable,double porcentajeDevolucion ) {
+		this(titulocurso, fechaCurso, precio, fechaInicioIns, fechaFinIns, estadoc, nplazas);
+		this.cancelable=cancelable;
+		this.porcentajeDevolucion=porcentajeDevolucion;
 	}
 	
 	public CursoDTO(String titulocurso, String fechaCurso, double precio, String fechaInicioIns, 
@@ -111,12 +120,32 @@ public class CursoDTO {
 	public void setNinscritos(int ninscritos) {
 		this.ninscritos = ninscritos;
 	}
+	
+
+	public boolean isCancelable() {
+		return cancelable;
+	}
+
+	public void setCancelable(boolean cancelable) {
+		this.cancelable = cancelable;
+	}
+
+	public double getPorcentajeDevolucion() {
+		return porcentajeDevolucion;
+	}
+
+	public void setPorcentajeDevolucion(double porcentajeDevolucion) {
+		this.porcentajeDevolucion = porcentajeDevolucion;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "CursoDTO [tituloCurso=" + tituloCurso + ", fechaCurso=" + fechaCurso + ", precio=" + precio
 				+ ", fechaInicioIns=" + fechaInicioIns + ", fechaFinIns=" + fechaFinIns + ", estadoc=" + estadoc
-				+ ", nplazas=" + nplazas + ", ninscritos=" + ninscritos + ", fecha=" + fecha + "]";
+				+ ", nplazas=" + nplazas + ", ninscritos=" + ninscritos + ", fecha=" + fecha + ", cancelable="
+				+ cancelable + ", porcentajeDevolucion=" + porcentajeDevolucion + "]";
 	}
 
 	@Override

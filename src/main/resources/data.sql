@@ -20,6 +20,10 @@ insert into Colegiado (dniColegiado, nombreColegiado, apellidosColegiado, locali
 	('2341512341L' ,'Kratos', 'Fantasma de Esparta', 'Esparta', '932849182', 'Asesino de dioses', 'Sony', 1995, '1999811277564738', '2022-2570', 'Colegiado', 'Pendiente', 'Emitido', 'NA', '2019-1-8')
 ;
 
+Insert into Curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,estadoc,nplazas,cancelable, porcentajeDevolucion)
+values
+('Desarrollo de bases de datos', '2022-12-04', '70','2022-11-15','2022-12-01', 'Abierta', '0',true,'69'); 
+
 Insert into Curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,estadoc,nplazas) 
 values 
 ('Desarrollo web','2022-11-26','500','2022-9-17','2023-11-3','Abierta','78'),
@@ -28,8 +32,7 @@ values
 ('Desarrollo de robots','2022-06-17','90','2022-05-01','2022-06-15','Abierta', '70'),
 ('Desarrollo de robots','2022-07-13','80','2022-05-01','2022-06-15','Abierta', '90'),
 ('Desarrollo de videojuegos','2022-11-21','165','2022-09-30','2022-11-01','Abierta', '150'),
-('Desarrollo de videojuegos','2022-06-11','170','2022-04-30','2022-06-01','Abierta', '20'),
-('Desarrollo de bases de datos', '2022-12-04', '70','2022-11-15','2022-12-01', 'Abierta', '0')
+('Desarrollo de videojuegos','2022-06-11','170','2022-04-30','2022-06-01','Abierta', '20')
 ;
 
 Insert into Curso (titulocurso,fechacurso,precio,estadoc)

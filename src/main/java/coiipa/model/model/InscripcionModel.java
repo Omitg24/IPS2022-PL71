@@ -39,10 +39,10 @@ public class InscripcionModel {
 	 * Constante SQL_LISTAR_CURSOS_SOLICITADO
 	 */
 	private static final String SQL_LISTAR_CURSOS_SOLICITADOS = 
-			"Select c.tituloCurso, c.fechaCurso, c.precio, c.estadoC, i.fecha "
+			"Select c.tituloCurso, c.fechaCurso, c.precio, c.estadoC, i.fecha, c.cancelable "
 			+ "from Curso c, Inscribe i "
-			+ "where c.tituloCurso=i.tituloCurso and i.enEspera=false "
-			+ "and c.fechaCurso=i.fechaCurso and i.dniColegiado=? ";	
+			+ "where c.tituloCurso=i.tituloCurso and i.enEspera=false and i.estadoS<> 'Cancelado' "
+			+ "and c.fechaCurso=i.fechaCurso and i.dniColegiado=?  ";	
 	/**
 	 * Constante SQL_OBTENER_CURSO
 	 */

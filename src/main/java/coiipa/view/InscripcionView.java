@@ -178,10 +178,11 @@ public class InscripcionView implements Inscripcion {
 	private void initialize() {
 		frmAdministracinCoiipa = new JFrame();
 		frmAdministracinCoiipa.setIconImage(Toolkit.getDefaultToolkit().getImage(InscripcionView.class.getResource("/images/coiipa_symbol.png")));
-		frmAdministracinCoiipa.setResizable(false);
+		frmAdministracinCoiipa.setResizable(true);
 		frmAdministracinCoiipa.setTitle("Administración COIIPA - Inscripción a cursos");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frmAdministracinCoiipa.setBounds(100, 100, 1500, 1000);
+		frmAdministracinCoiipa.setMinimumSize(new Dimension(1500,1000));
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
