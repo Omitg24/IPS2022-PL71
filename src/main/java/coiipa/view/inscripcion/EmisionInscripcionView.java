@@ -51,7 +51,7 @@ public class EmisionInscripcionView {
 		frmEmision.setResizable(false);
 		frmEmision.setTitle("Administración COIIPA");
 		frmEmision.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmEmision.setBounds(100, 100, 425, 330);
+		frmEmision.setBounds(100, 100, 800, 500);
 		frmEmision.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();

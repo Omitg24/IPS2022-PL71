@@ -1,17 +1,19 @@
 package coiipa.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.TableModel;
 
 import coiipa.model.dto.ColegiadoDTO;
 import coiipa.model.dto.CursoDTO;
 import coiipa.model.dto.InscribeDTO;
+import coiipa.model.dto.InscritoDTO;
 import coiipa.model.model.InscripcionModel;
 import coiipa.view.InscripcionView;
+import coiipa.view.inscripcion.AvisoEsperaView;
 import coiipa.view.inscripcion.EmisionInscripcionView;
 import coiipa.view.inscripcion.IdentificadorView;
 import coiipa.view.inscripcion.TarjetaView;
@@ -22,21 +24,80 @@ import util.Util;
 /**
  * Título: Clase InscripcionController
  *
- * @author Adrián Alves Morales, UO284288
+ * @author Adrián Alves Morales, UO284288 y Omar Teixeira González, UO281847
  * @version 12 oct 2022
  */
 public class InscripcionController {
-
+	/**
+	 * Atributo model
+	 */
 	private InscripcionModel model;
+	/**
+	 * Atributo viewId
+	 */
 	private IdentificadorView viewId;
+	/**
+	 * Atributo view
+	 */
 	private InscripcionView view;
+	/**
+	 * Atributo emision
+	 */
 	private EmisionInscripcionView emision;
+	/**
+	 * Atributo tarjetaView
+	 */
 	private TarjetaView tarjetaView;
+	/**
+	 * Atributo avisoEsperaView
+	 */
+	private AvisoEsperaView avisoEsperaView;	
+	/**
+	 * Atributo colegiado
+	 */
 	private ColegiadoDTO colegiado;
+	/**
+	 * Atributo curso
+	 */
 	private CursoDTO curso;
+	/**
+	 * Atributo preinscritos
+	 */
+	private List<CursoDTO> preinscritos;
+	/**
+	 * Atributo dniColegiado
+	 */
+	private String dniColegiado;
+	/**
+	 * Atributo nombreColegiado
+	 */
+	private String nombreColegiado;
+	/**
+	 * Atributo apellidosColegiado
+	 */
+	private String apellidosColegiado;
+	/**
+	 * Atributo tituloCurso
+	 */
+	private String tituloCurso;
+	/**
+	 * Atributo fechaCurso
+	 */
+	private String fechaCurso;	
+	/**
+	 * Atributo posicion
+	 */
+	private int posicion;
+	/**
+	 * Atributo enEspera
+	 */
+	private boolean enEspera;
 
-	TableModel t;
-
+	/**
+	 * Constructor InscripcionController
+	 * @param m
+	 * @param v
+	 */
 	public InscripcionController(InscripcionModel m, IdentificadorView v) {
 		this.model = m;
 		this.viewId = v;
@@ -45,95 +106,187 @@ public class InscripcionController {
 
 		this.initView();
 	}
+	
+	/**
+	 * Método initView
+	 */
+	public void initView() {
+		viewId.getFrame().setVisible(true);
+	}
 
+	/**
+	 * Método initController
+	 */
 	public void initController() {
 		viewId.getTextId().addFocusListener(new ChangeColor());
 		viewId.getBtnEntrar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> entrar()));
 		view.getBtInscribirse().addActionListener(e -> SwingUtil.exceptionWrapper(() -> inscribirse()));
 		emision.getBtnConfirmar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> cerrarEmision()));
-		view.getBtTarjeta().addActionListener(e -> SwingUtil.exceptionWrapper(() -> abrirPagoTarjeta()));
-		view.getBtTransferencia().addActionListener(e -> SwingUtil.exceptionWrapper(() -> confirmarPago("Transferencia")));
-		view.getTablePreinscritos().getSelectionModel().addListSelectionListener(
-				e -> SwingUtil.exceptionWrapper(() -> activarPagos(e)));
-		addCursosToList();
+		view.getButtonTarjeta().addActionListener(e -> SwingUtil.exceptionWrapper(() -> abrirPagoTarjeta()));
+		view.getButtonTransferencia().addActionListener(e -> SwingUtil.exceptionWrapper(() -> confirmarPago("Transferencia")));
+		view.getTbDisponibles().getSelectionModel().addListSelectionListener(
+				e -> SwingUtil.exceptionWrapper(() -> activarBotonInscribirse()));
+		view.getTbSolicitados().getSelectionModel().addListSelectionListener(
+				e -> SwingUtil.exceptionWrapper(() -> gestionDeSolicitados()));
+		view.getTbEspera().getSelectionModel().addListSelectionListener(
+				e -> SwingUtil.exceptionWrapper(() -> gestionDeEspera()));
+	}
+	
+	/**
+	 * Método actualizarTablas
+	 */
+	private void actualizarTablas() {
+		getTablaCursosDisponibles();
+		getTablaCursosSolicitados();
+		getTablaCursosEnEspera();
+	}
+	
+	/**
+	 * Método activarBotonInscribirse
+	 */
+	private void activarBotonInscribirse() {
+		view.getButtonInscribirse().setEnabled(true);
+	}
+	
+	/**
+	 * Método gestionDeSolicitados
+	 */
+	private void gestionDeSolicitados() {
+		view.getButtonCancelar().setEnabled(true);
+		view.getButtonTarjeta().setEnabled(true);
+		view.getButtonTransferencia().setEnabled(true);
+		view.getTbEspera().getSelectionModel().clearSelection();		
+        this.enEspera = false;		
 	}
 
-	private void activarPagos(ListSelectionEvent e) {
-		view.getBtTarjeta().setEnabled(true);
-		view.getBtTransferencia().setEnabled(true);
+	/**
+	 * Método gestionDeEspera
+	 */
+	private void gestionDeEspera() {		
+		view.getButtonCancelar().setEnabled(true);		
+		view.getTbSolicitados().getSelectionModel().clearSelection();		
+        this.enEspera = true;		
 	}
-
-	private void abrirPagoTarjeta() {
-		tarjetaView= new TarjetaView(this);
-		tarjetaView.setLocationRelativeTo(null);
-		tarjetaView.setVisible(true);
-	}
-
-	private void getListaPreInscritos() {
-		List<CursoDTO> preinscritos = model.buscarCursoPorInscrito(colegiado.getDniColegiado());
-		TableModel tmodel = SwingUtil.getTableModelFromPojos(preinscritos, 
-				new String[] {"tituloCurso", "fechaCurso","fecha", "precio"});
-		view.getTablePreinscritos().setModel(tmodel);
-		String[] titles = new String[] { "Título del curso", "Fecha de inicio","Fecha Inscripción", "Precio"};
-		for (int i = 0; i < titles.length; i++) {
-			view.getTablePreinscritos().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
-		}
-		SwingUtil.autoAdjustColumns(view.getTablePreinscritos());
-		view.getTablePreinscritos().getTableHeader().setReorderingAllowed(false);
-		view.getTablePreinscritos().getTableHeader().setResizingAllowed(false);
-		
-	}
-
-	public void entrar() {
+	
+	/**
+	 * Método entrar
+	 */
+	public void entrar() {		
 		if (comprobarId(viewId.getTextId().getText())) {
-			colegiado = model.getSolicitanteFromKey(viewId.getTextId().getText());
-			getListaPreInscritos();
-			viewId.getFrame().setVisible(false);
+			this.dniColegiado = viewId.getTextId().getText();
+			this.nombreColegiado = model.getColegiado(dniColegiado).getNombreColegiado();
+			this.apellidosColegiado = model.getColegiado(dniColegiado).getApellidosColegiado();
+			this.colegiado = model.getColegiado(dniColegiado);
+			actualizarTablas();
+			viewId.getFrame().setVisible(false);			
 			view.getFrame().setVisible(true);
-		}
-		else {
+			view.getTextDni().setText(dniColegiado);
+			view.getTextNombre().setText(nombreColegiado);
+			view.getTextApellidos().setText(apellidosColegiado);
+		} else {
 			SwingUtil.showErrorDialog("El identificador introducido no es válido");
 			viewId.getTextId().setText("");
 		}
 	}
-
-	public void inscribirse() {
-		String key = SwingUtil.getSelectedKey(view.getTableCursos());
-		curso = model.getCursoFromKey(key);
-		try {
-			model.insertarInscribe(curso, colegiado);
-			crearEmision();
-			getListaPreInscritos();
-		} catch (Exception e) {
-			SwingUtil.showErrorDialog("Ya ha presentado una solicitud para este curso");
-		}
-	}
-
-	public void initView() {
-		viewId.getFrame().setVisible(true);
-	}
-
-	public void cerrarEmision() {
-		emision.getFrame().setVisible(false);
-	}
-
-	public void addCursosToList() {
-		t = SwingUtil.getTableModelFromPojos(model.getCursosAbiertos(), new String[] { "tituloCurso", "fechaCurso", "precio"});
-		view.getTableCursos().setModel(t);
-		String[] titles = new String[] { "                  Título del curso                  ", "      Fecha de inicio      ", "  Precio  "};
-		for (int i = 0; i < titles.length; i++) {
-			view.getTableCursos().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
-		}
-		SwingUtil.autoAdjustColumns(view.getTableCursos());
-		view.getTableCursos().getTableHeader().setReorderingAllowed(false);
-		view.getTableCursos().getTableHeader().setResizingAllowed(false);
-	}
-
+	
+	/**
+	 * Método comprobarId
+	 * @param s
+	 * @return true o false
+	 */
 	public boolean comprobarId(String s) {
-		if (model.getSolicitanteFromKey(s) == null) return false;
-		return true;
+		return model.getColegiado(s) != null;
+	}
+	
+	/**
+	 * Método getTablaCursosDisponibles
+	 */
+	public void getTablaCursosDisponibles() {
+		List<CursoDTO> cursos = model.getCursosDisponibles();
+		TableModel tmodel = SwingUtil.getTableModelFromPojos(cursos, new String[] {"tituloCurso", "fechaCurso", 
+				"fechaInicioIns", "fechaFinIns", 
+				"precio", "estadoc", "nplazas"});
+		view.getTbDisponibles().setModel(tmodel);
+		String[] titles = new String[] {"Titulo", "Fecha", 
+				"Fecha de inicio de inscripción", 
+				"Fecha de fin de inscripción",
+				"Precio", "Estado del curso", "Nº de plazas restantes"};
+		for (int i = 0; i < titles.length; i++) {
+			view.getTbDisponibles().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
+		}
+		SwingUtil.autoAdjustColumns(view.getTbDisponibles());
+		view.getTbDisponibles().getTableHeader().setReorderingAllowed(false);
+		view.getTbDisponibles().getTableHeader().setResizingAllowed(false);
 	}
 
+	/**
+	 * Método getTablaCursoSolicitados
+	 */
+	private void getTablaCursosSolicitados() {
+		this.preinscritos = model.getCursosSolicitados(colegiado.getDniColegiado());
+		TableModel tmodel = SwingUtil.getTableModelFromPojos(preinscritos, 
+				new String[] {"tituloCurso", "fechaCurso", 
+						"fecha", "estadoc", "precio"});
+		view.getTbSolicitados().setModel(tmodel);
+		String[] titles = new String[] { "Título del curso", "Fecha del curso", "Fecha de inscripción", "Estado del curso", "Precio del curso"};
+		for (int i = 0; i < titles.length; i++) {
+			view.getTbSolicitados().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
+		}
+		SwingUtil.autoAdjustColumns(view.getTbSolicitados());
+		view.getTbSolicitados().getTableHeader().setReorderingAllowed(false);
+		view.getTbSolicitados().getTableHeader().setResizingAllowed(false);		
+	}
+	
+	/**
+	 * Método getTablaCursosEnEspera
+	 */
+	private void getTablaCursosEnEspera() {
+		List<InscritoDTO> listaEspera = model.getListaDeEspera(dniColegiado);		
+		TableModel tmodel = SwingUtil.getTableModelFromPojos(listaEspera, 
+				new String[] {"tituloCurso", "fechaCurso", 
+						"fecha", "estadoS", "posicionEspera"});
+		view.getTbEspera().setModel(tmodel);
+		String[] titles = new String[] { "Título del curso", "Fecha del curso", "Fecha de inscripción", "Estado de la solicitud", "Posicion en la lista de espera"};
+		for (int i = 0; i < titles.length; i++) {
+			view.getTbEspera().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
+		}
+		SwingUtil.autoAdjustColumns(view.getTbEspera());
+		view.getTbEspera().getTableHeader().setReorderingAllowed(false);
+		view.getTbEspera().getTableHeader().setResizingAllowed(false);
+	}
+
+	/**
+	 * Método inscribirse
+	 */
+	public void inscribirse() {
+		this.tituloCurso = view.getTbDisponibles().getModel().getValueAt(view.getTbDisponibles().getSelectedRow(), 0).toString();
+		this.fechaCurso = view.getTbDisponibles().getModel().getValueAt(view.getTbDisponibles().getSelectedRow(), 1).toString();		
+		CursoDTO aux = model.getCursoInscrito(tituloCurso, fechaCurso, dniColegiado);
+		
+		if (!preinscritos.contains(aux) || aux == null) {
+			curso = model.getCursoTituloFecha(tituloCurso, fechaCurso);
+			if (curso.getNplazas() > 0) {
+				model.inscribir(curso, colegiado);
+				crearEmision();
+				actualizarTablas();
+			} else {
+	            notificarEspera();
+			}
+		} else {
+			SwingUtil.showErrorDialog("Ya ha solicitado plaza en el siguiente curso:\n\nTítulo: " + tituloCurso + "\nFecha: "+ fechaCurso);
+		}		
+	}	
+	
+	/**
+	 * Método cerrarEmision
+	 */
+	public void cerrarEmision() {
+		emision.getFrame().dispose();
+	}	
+
+	/**
+	 * Método crearEmision
+	 */
 	public void crearEmision() {
 		String nombre = colegiado.getNombreColegiado().substring(0, 1).toUpperCase()
 				+ colegiado.getNombreColegiado().substring(1);
@@ -155,37 +308,97 @@ public class InscripcionController {
 		emision.getFrame().setVisible(true);
 	}
 
+	/**
+	 * Método notificarEspera
+	 */
+	private void notificarEspera() {
+		this.posicion = model.getPosicionEnEspera(tituloCurso, fechaCurso) + 1;
+		
+		avisoEsperaView = new AvisoEsperaView(this);
+		avisoEsperaView.getTextTituloCurso().setText(tituloCurso);
+		avisoEsperaView.getTextFechaCurso().setText(fechaCurso);
+		avisoEsperaView.getTextFechaInscripcionCurso().setText(LocalDate.now().toString());
+		avisoEsperaView.getTextNombreColegiado().setText(nombreColegiado);
+		avisoEsperaView.getTextApellidosColegiado().setText(apellidosColegiado);
+		avisoEsperaView.getTextDniColegiado().setText(dniColegiado);
+		avisoEsperaView.getTextPosicion().setText(String.valueOf(posicion));
+		
+		avisoEsperaView.setLocationRelativeTo(null);
+		avisoEsperaView.setVisible(true);		
+	}
+	
+	/**
+	 * Método insertarEnEspera
+	 */
+	public void insertarEnEspera() {
+		model.insertarEnEspera(dniColegiado, tituloCurso, fechaCurso, LocalDate.now().toString(), posicion);
+		SwingUtil.showInformationDialog("Se la ha añadido a la lista de espera del siguiente curso:\n\nTítulo: " + tituloCurso + "\nFecha: "+ fechaCurso);
+		avisoEsperaView.dispose();
+		actualizarTablas();
+	}
+	
+	/**
+	 * Método abrirPagoTarjeta
+	 */
+	private void abrirPagoTarjeta() {
+		if (!enEspera) {
+			tarjetaView= new TarjetaView(this);
+			tarjetaView.setLocationRelativeTo(null);
+			tarjetaView.setVisible(true);
+		} else {
+			SwingUtil.showInformationDialog("No puede pagar un curso en el que se encuentra en lista de espera");
+		}		
+	}
+
+	/**
+	 * Método confirmarPago
+	 * @param tipoPago
+	 */
 	public void confirmarPago(String tipoPago) {
-		String titulo = SwingUtil.getSelectedKey(view.getTablePreinscritos());
-		String fecha = SwingUtil.getSelectedKey(view.getTablePreinscritos(),1);
-		CursoDTO c = model.getCursoFromKey(titulo, fecha);
-		if(comprobarFechaInscripcion(c) && comprobarPlazas(c)) {
-			String estado ="";
-			switch(tipoPago) {
-			case "Tarjeta":
-				estado="Inscrito";
-			case "Transferencia":
-				estado="Pendiente";
+		if (!enEspera) {
+			String titulo = SwingUtil.getSelectedKey(view.getTbSolicitados());
+			String fecha = SwingUtil.getSelectedKey(view.getTbSolicitados(),1);
+			CursoDTO c = model.getCursoTituloFecha(titulo, fecha);
+			if(comprobarFechaInscripcion(c) && comprobarPlazas(c)) {
+				String estado ="";
+				switch(tipoPago) {
+				case "Tarjeta":
+					estado="Inscrito";
+				case "Transferencia":
+					estado="Pendiente";
+				}
+				if(tarjetaView!=null)
+					tarjetaView.dispose();
+				model.actualizarEstadoInscripcion(colegiado.getDniColegiado(), 
+							curso.getTituloCurso(), curso.getFechaCurso(), estado);
+				getTablaCursosSolicitados();
+				SwingUtil.showInformationDialog("Se ha registrado el pago del curso: "
+							+ c.getTituloCurso()+", con fecha de inicio: "+
+						c.getFechaCurso());
 			}
-			if(tarjetaView!=null)
-				tarjetaView.dispose();
-			model.actualizarEstadoInscripcion(colegiado.getDniColegiado(), 
-						curso.getTituloCurso(), curso.getFechaCurso(), estado);
-			getListaPreInscritos();
-			SwingUtil.showInformationDialog("Se ha registrado el pago del curso: "
-						+ c.getTituloCurso()+", con fecha de inicio: "+
-					c.getFechaCurso());
+		} else {
+			SwingUtil.showInformationDialog("No puede pagar un curso en el que se encuentra en lista de espera");
 		}
 	}
 
+	/**
+	 * Método comprobarPlazas
+	 * @param curso
+	 * @return true o false
+	 */
 	private boolean comprobarPlazas(CursoDTO curso) {
-		if(curso.getNplazas()>=1)
+		if(curso.getNplazas()>=1) {
 			return true;
-		else
-			SwingUtil.showInformationDialog("No quedan plazas disponibles");
+		}
+		SwingUtil.showInformationDialog("No quedan plazas disponibles");
 		return false;
 	}
 
+	/**
+	 * Método comprobarFechaInscripcion
+	 * @param curso
+	 * @return true o false
+	 */
 	private boolean comprobarFechaInscripcion(CursoDTO curso) {
 		InscribeDTO i=
 				model.buscarInscripcionCurso(colegiado.getDniColegiado(), 

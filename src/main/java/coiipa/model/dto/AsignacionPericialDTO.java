@@ -176,7 +176,11 @@ public class AsignacionPericialDTO {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
+	
+	/**
+	 * Método toString
+	 * @return toString
+	 */
 	@Override
 	public String toString() {
 		return "AsignacionPericialDTO [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", dniColegiado="
@@ -184,11 +188,17 @@ public class AsignacionPericialDTO {
 				+ "]";
 	}
 
+	/**
+	 * Método hashCode
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(dni, dniColegiado, estado, fecha, nombre, nombreColegiado);
 	}
 
+	/**
+	 * Método equals
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -201,5 +211,5 @@ public class AsignacionPericialDTO {
 		return Objects.equals(dni, other.dni) && Objects.equals(dniColegiado, other.dniColegiado)
 				&& Objects.equals(estado, other.estado) && Objects.equals(fecha, other.fecha)
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(nombreColegiado, other.nombreColegiado);
-	}
+	}	
 }

@@ -106,7 +106,7 @@ public class AnulacionView extends JDialog {
 		setResizable(false);
 		setFont(new Font("Tahoma", Font.PLAIN, 20));
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 700, 450);
+		setBounds(100, 100, 800, 500);
 		setLocationRelativeTo(null);		
 		setTitle("Administración COIIPA - Anular asignaciones");
 		

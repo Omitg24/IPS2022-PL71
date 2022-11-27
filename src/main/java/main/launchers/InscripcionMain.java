@@ -17,7 +17,7 @@ public class InscripcionMain {
 	
 		IdentificadorView view = new IdentificadorView(new InscripcionView());
 		InscripcionModel model = new InscripcionModel();
-		System.out.println(model.getCursosAbiertos());
+		//System.out.println(model.getCursosAbiertos());
 		InscripcionController controller = new InscripcionController(model,view);
 		
 		view.getFrame().setVisible(true);

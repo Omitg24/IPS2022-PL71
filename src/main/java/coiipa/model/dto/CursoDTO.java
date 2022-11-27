@@ -1,5 +1,7 @@
 package coiipa.model.dto;
 
+import java.util.Objects;
+
 public class CursoDTO {
 	
 	private String tituloCurso;
@@ -116,5 +118,21 @@ public class CursoDTO {
 				+ ", fechaInicioIns=" + fechaInicioIns + ", fechaFinIns=" + fechaFinIns + ", estadoc=" + estadoc
 				+ ", nplazas=" + nplazas + ", ninscritos=" + ninscritos + ", fecha=" + fecha + "]";
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(fechaCurso, tituloCurso);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CursoDTO other = (CursoDTO) obj;
+		return Objects.equals(fechaCurso, other.fechaCurso) && Objects.equals(tituloCurso, other.tituloCurso);
+	}	
 }

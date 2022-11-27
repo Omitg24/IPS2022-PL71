@@ -23,13 +23,13 @@ insert into Colegiado (dniColegiado, nombreColegiado, apellidosColegiado, locali
 Insert into Curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,estadoc,nplazas) 
 values 
 ('Desarrollo web','2022-11-26','500','2022-9-17','2023-11-3','Abierta','78'),
-('Informática forense y auditoría','2023-1-20','250','2022-11-17','2023-3-1','Abierta','24'),
+('Informática forense y auditoría','2023-1-20','250','2022-11-17','2023-3-1','Abierta','25'),
 ('Desarrollo de aplicaciones moviles','2022-09-13','135','2022-06-20','2022-08-20','Abierta', '60'),
 ('Desarrollo de robots','2022-06-17','90','2022-05-01','2022-06-15','Abierta', '70'),
 ('Desarrollo de robots','2022-07-13','80','2022-05-01','2022-06-15','Abierta', '90'),
 ('Desarrollo de videojuegos','2022-11-21','165','2022-09-30','2022-11-01','Abierta', '150'),
 ('Desarrollo de videojuegos','2022-06-11','170','2022-04-30','2022-06-01','Abierta', '20'),
-('Desarrollo de bases de datos', '2022-12-04', '70','2022-11-15','2022-12-01', 'Abierta', '30')
+('Desarrollo de bases de datos', '2022-12-04', '70','2022-11-15','2022-12-01', 'Abierta', '0')
 ;
 
 Insert into Curso (titulocurso,fechacurso,precio,estadoc)
@@ -43,7 +43,7 @@ values
 ('4728129374H','Desarrollo de aplicaciones moviles','2022-09-13','2022-01-24','Pre-inscrito','ninguna', false, 0),
 ('2348597612B','Desarrollo de aplicaciones moviles','2022-09-13','2022-03-24','Inscrito','ninguna', false, 0),
 ('9876452397R','Desarrollo de aplicaciones moviles','2022-09-13','2022-08-08','Pre-inscrito','ninguna', false, 0),
-('2341512341L','Desarrollo de aplicaciones moviles','2022-09-13','2022-08-08','Pendiente','ninguna', true, 1),
+('2341512341L','Desarrollo de aplicaciones moviles','2022-09-13','2022-08-08','Pendiente','ninguna', false, 1),
 ('7348920547A','Desarrollo de robots','2022-06-17','2022-01-31','Inscrito','ninguna', false, 0),
 ('6435634566K','Desarrollo de robots','2022-06-17','2022-11-09','Pre-inscrito','ninguna', false, 0),
 ('2348597612B','Desarrollo de robots','2022-06-17','2022-05-15','Pre-inscrito','ninguna', false, 0),

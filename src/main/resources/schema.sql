@@ -45,7 +45,7 @@ CREATE TABLE Curso (
 	cancelable boolean,
 	porcentajeDevolucion decimal(2, 2),
 
-    CONSTRAINT PK_CURSO PRIMARY KEY (tituloCurso,fechaCurso),
+    CONSTRAINT PK_CURSO PRIMARY KEY (tituloCurso, fechaCurso),
     CONSTRAINT CK_ESTADO_CURSO CHECK (estadoC in ('Planificado', 'Abierta', 'Cerrada', 'Cancelado')),
     CONSTRAINT CK_FECHA_CURSO CHECK (fechaInicioIns < fechaFinIns)
 );

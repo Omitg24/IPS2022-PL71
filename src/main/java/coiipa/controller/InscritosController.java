@@ -70,7 +70,7 @@ public class InscritosController {
 		String[] titles = new String[] {"Titulo", "Fecha", 
 				"Fecha de inicio de inscripción", 
 				"Fecha de fin de inscripción",
-				"Precio", "Estado del curso", "Nº de plazas", "Nº de inscritos"};
+				"Precio", "Estado del curso", "Nº de plazas restantes", "Nº de inscritos"};
 		
 		for (int i = 0; i < titles.length; i++) {
 			view.getTableCursos().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
