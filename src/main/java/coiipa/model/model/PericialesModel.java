@@ -42,7 +42,7 @@ public class PericialesModel {
 			"SELECT P.ID, I.DNI, I.NOMBRE, "
 		            + "C.DNICOLEGIADO, C.NOMBRECOLEGIADO, P.FECHA, P.ESTADO "
 		            + "FROM SOLICITUDPERICIAL P, COLEGIADO C, INFORMES I "
-		            + "WHERE P.DNI=C.DNICOLEGIADO AND P.ID=I.ID AND P.ESTADO = 'NA'";
+		            + "WHERE P.DNI=C.DNICOLEGIADO AND P.ID=I.ID AND P.ESTADO = 'Asignada'";
 
 	private static final String SQL_OBTENER_ASIGNACIONES_ANULADAS =
 			"SELECT P.ID, I.DNI, I.NOMBRE, "
@@ -162,24 +162,30 @@ public class PericialesModel {
 		if (realizadas) r = getRealizadas();
 		if (noRealizadas) n = getNoRealizadas();
 		if (anuladas) a = getAnuladas();
-		if (!realizadas && !noRealizadas && !anuladas) {
-			r = getRealizadas();
-			n = getNoRealizadas();
-			a = getAnuladas();
-		}
+		System.out.println("1 " + result);
 		if (!dniPerito.isEmpty()) dni = getPorPerito(dniPerito);
 
 		// Hacemos la insersección de todas las listas
-		if (realizadas)
-			result.retainAll(r);
-		if (noRealizadas)
-			result.retainAll(n);
-		if (anuladas)
-			result.retainAll(a);
-		if (!dniPerito.isEmpty())
-			result.retainAll(dni);
+		if (!anuladas && !realizadas && !noRealizadas || anuladas && realizadas && noRealizadas) {
+			
+			if (!dniPerito.isEmpty())
+				result.retainAll(dni);
 
-		return result;
+			return result;
+		}
+		else {
+			if (realizadas)
+				result.retainAll(r);
+			if (noRealizadas)
+				result.retainAll(n);
+			if (anuladas)
+				result.retainAll(a);
+			if (!dniPerito.isEmpty())
+				result.retainAll(dni);
+
+			return result;
+		}
+		
 	}
 
 //	/*
