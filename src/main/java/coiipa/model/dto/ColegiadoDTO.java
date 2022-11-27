@@ -1,7 +1,5 @@
 package coiipa.model.dto;
 
-import java.sql.Date;
-
 /**
  * Título: Clase ColegiadoDTO
  *
@@ -68,7 +66,7 @@ public class ColegiadoDTO {
 	/**
 	 * Atributo fechaColegiacion
 	 */
-	private Date fechaColegiacion;
+	private String fechaColegiacion;
 	
 	/**
 	 * Constructor ColegiadoDTO
@@ -105,7 +103,7 @@ public class ColegiadoDTO {
 	public ColegiadoDTO(String dniColegiado, String nombreColegiado, String apellidosColegiado, String numeroColegiado,
 			String localidadColegiado, String telefonoColegiado, String titulacionColegiado, String centroColegiado,
 			String anioColegiado, String ibanColegiado, String tipoColegiado, String estadoColegiado,
-			String estadoCuota, String estadoAsignacionPericial, Date fechaColegiacion) {
+			String estadoCuota, String estadoAsignacionPericial, String fechaColegiacion) {
 		this.dniColegiado = dniColegiado;
 		this.nombreColegiado = nombreColegiado;
 		this.apellidosColegiado = apellidosColegiado;
@@ -351,7 +349,7 @@ public class ColegiadoDTO {
 	 * Método getFechaColegiacion
 	 * @return fechaColegiacion
 	 */
-	public Date getFechaColegiacion() {
+	public String getFechaColegiacion() {
 		return fechaColegiacion;
 	}
 
@@ -359,7 +357,7 @@ public class ColegiadoDTO {
 	 * Método setFechaColegiacion
 	 * @param fechaColegiacion
 	 */
-	public void setFechaColegiacion(Date fechaColegiacion) {
+	public void setFechaColegiacion(String fechaColegiacion) {
 		this.fechaColegiacion = fechaColegiacion;
 	}
 	

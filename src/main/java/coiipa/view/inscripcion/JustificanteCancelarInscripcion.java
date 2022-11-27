@@ -1,4 +1,4 @@
-package coiipa.view.inscripcionpericial;
+package coiipa.view.inscripcion;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,6 +8,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Window.Type;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -20,30 +22,28 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 /**
- * Título: Clase JustificanteInscripcionPericial
+ * Título: Clase JustificanteCancelarInscripcion
  *
  * @author David Warzynski Abril, UO278968
  * @version 27 nov 2022
  */
-public class JustificanteInscripcionPericial {
+public class JustificanteCancelarInscripcion {
 
 	private JDialog frmEmision;
 	private JPanel contentPane;
-	private JLabel lblNombre;
-	private JLabel lblApellido;
-	private JLabel lblNumero;
 	private JLabel lbDni;
-	private JLabel lbTelefono;
 	private JPanel panelConfirmar;
 	private JButton btnConfirmar;
-	private JLabel lbLocalidad;
-	private JLabel lbFecha;
-	private JLabel lbTurno;
+	private JButton btnCancelar;
+	private JLabel lbTituloCurso;
+	private JLabel lbFechaCurso;
+	private JLabel lbFechaCancelacion;
+	private JLabel lbDineroDevuelto;
 
 	/**
 	 * Create the frame.
 	 */
-	public JustificanteInscripcionPericial() {
+	public JustificanteCancelarInscripcion() {
 		initialize();
 	}
 
@@ -63,62 +63,50 @@ public class JustificanteInscripcionPericial {
 
 		frmEmision.setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel pnInsRealizada = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) pnInsRealizada.getLayout();
 		flowLayout.setVgap(15);
 		pnInsRealizada.setBackground(Color.WHITE);
 		contentPane.add(pnInsRealizada, BorderLayout.NORTH);
-		
-		JLabel lblInsRealizada = new JLabel("Confirmar Inscripción");
+
+		JLabel lblInsRealizada = new JLabel("Confirmar Cancelación");
 		lblInsRealizada.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		pnInsRealizada.add(lblInsRealizada);
-		
+
 		JPanel panelDatos = new JPanel();
 		panelDatos.setBackground(Color.WHITE);
 		panelDatos.setBorder(new CompoundBorder(new EmptyBorder(6, 6, 6, 6), new LineBorder(new Color(0, 0, 0))));
 		contentPane.add(panelDatos, BorderLayout.CENTER);
 		panelDatos.setLayout(new GridLayout(5, 1, 0, 0));
-		
-		lblNombre = new JLabel("Nombre");
-		lblNombre.setBorder(new EmptyBorder(0, 6, 0, 0));
-		panelDatos.add(lblNombre);
-		
-		lblApellido = new JLabel("Apellidos");
-		lblApellido.setBorder(new EmptyBorder(0, 6, 0, 0));
-		panelDatos.add(lblApellido);
-		
-		lblNumero = new JLabel("Nº Colegiado");
-		lblNumero.setBorder(new EmptyBorder(0, 6, 0, 0));
-		panelDatos.add(lblNumero);
-		
+
 		lbDni = new JLabel("Dni");
 		lbDni.setBorder(new EmptyBorder(0, 6, 0, 0));
 		panelDatos.add(lbDni);
-		
-		lbTelefono = new JLabel("Telefono");
-		lbTelefono.setBorder(new EmptyBorder(0, 6, 0, 0));
-		panelDatos.add(lbTelefono);
-		
-		lbLocalidad = new JLabel("Localidad");
-		lbLocalidad.setBorder(new EmptyBorder(0, 6, 0, 0));
-		panelDatos.add(lbLocalidad);
-		
-		lbFecha = new JLabel("Fecha Inscripción");
-		lbFecha.setBorder(new EmptyBorder(0, 6, 0, 0));
-		panelDatos.add(lbFecha);
-		
-		lbTurno = new JLabel("Turno");
-		lbTurno.setBorder(new EmptyBorder(0, 6, 0, 0));
-		panelDatos.add(lbTurno);
-		
+
+		lbTituloCurso = new JLabel("Titulo curso");
+		lbTituloCurso.setBorder(new EmptyBorder(0, 6, 0, 0));
+		panelDatos.add(lbTituloCurso);
+
+		lbFechaCurso = new JLabel("Fecha curso");
+		lbFechaCurso.setBorder(new EmptyBorder(0, 6, 0, 0));
+		panelDatos.add(lbFechaCurso);
+
+		lbFechaCancelacion = new JLabel("Fecha cancelación");
+		lbFechaCancelacion.setBorder(new EmptyBorder(0, 6, 0, 0));
+		panelDatos.add(lbFechaCancelacion);
+
+		lbDineroDevuelto = new JLabel("Dinero devuelto");
+		lbDineroDevuelto.setBorder(new EmptyBorder(0, 6, 0, 0));
+		panelDatos.add(lbDineroDevuelto);
+
 		panelConfirmar = new JPanel();
 		panelConfirmar.setBackground(Color.WHITE);
 		FlowLayout flowLayout_1 = (FlowLayout) panelConfirmar.getLayout();
 		flowLayout_1.setAlignment(FlowLayout.RIGHT);
 		panelConfirmar.setPreferredSize(new Dimension(10, 30));
 		contentPane.add(panelConfirmar, BorderLayout.SOUTH);
-		
+
 		btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConfirmar.setForeground(Color.WHITE);
@@ -126,50 +114,59 @@ public class JustificanteInscripcionPericial {
 		btnConfirmar.setFocusable(false);
 		btnConfirmar.setBackground(new Color(34, 139, 34));
 		panelConfirmar.add(btnConfirmar);
+
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnCancelar.setForeground(Color.WHITE);
+		btnCancelar.setFont(new Font("High Tower Text", Font.BOLD, 14));
+		btnCancelar.setFocusable(false);
+		btnCancelar.setBackground(Color.red);
+		btnCancelar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cancelar();
+
+			}
+		});
+		panelConfirmar.add(btnCancelar);
 	}
-	
+
+	public void cancelar() {
+		frmEmision.dispose();
+
+	}
+
 	public JDialog getDialog() {
 		return frmEmision;
 	}
 
-	public void setNombre(String texto) {
-		lblNombre.setText("Nombre: " + texto);
+	public void setDni(String dni) {
+		lbDni.setText("Dni: " + dni);
 	}
-	
-	public void setApellido(String texto) {
-		lblApellido.setText("Apellidos: " + texto);
+
+	public void setTituloCurso(String titulo) {
+		lbTituloCurso.setText("Titulo curso: " + titulo);
 	}
-	
-	public void setNumero(String texto) {
-		lblNumero.setText("Nº colegiado: " + texto);
+
+	public void setFechaCurso(String fechaCurso) {
+		lbFechaCurso.setText("Fecha curso: " + fechaCurso);
 	}
-	
-	public void setDni(String texto) {
-		lbDni.setText("DNI: " + texto);
+
+	public void setFechaCancelacion(String fechaCancelacion) {
+		lbFechaCancelacion.setText("Fecha cancelación: " + fechaCancelacion);
 	}
-	
-	public void setTelefono(String texto) {
-		lbTelefono.setText("Telefono: " + texto);
+
+	public void setDineroDevuelt(String dinero) {
+		lbDineroDevuelto.setText("Dinero devuelto: " + dinero + "€");
 	}
-	
-	public void setLocalidad(String texto) {
-		lbLocalidad.setText("Localidad: " + texto);
-	}
-	
-	public void setFecha(String texto) {
-		lbFecha.setText("Fecha Inscripción: " + texto);
-	}
-	
-	public void setTurno(String texto) {
-		lbTurno.setText("Turno: " + texto);
-	}
-	
+
 	public JButton getBtnConfirmar() {
 		return btnConfirmar;
 	}
-	
+
 	public void reiniciarCampos() {
-		
+
 	}
 
 	public JDialog getFrame() {
