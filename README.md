@@ -57,3 +57,9 @@ Con esta aplicación se pretende llegar a una introducción al desarrollo de sof
   - David: Como perito quiero poder visar un informe pericial terminado para darle un sello de calidad.
   - David: Como secretaria administrativa quiero poder asignar un visador para poder calificar (visar) un informe pericial terminado.
   - NO ASIGNADA POR SUPERAR EL CUPO DE DÍAS: Como colegiado quiero poder darme de baja en el COIIPA para dejar de tener los privilegios que éste me ofrece.
+
+### *Finalización de las HU*
+---
+  - Adrián Alves Morales:
+  - David Leszek Warzynski Abril:
+  - Omar Teixeira González: Finalizado con 3 días de antelación, a día 27/11/2022.
