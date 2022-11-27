@@ -79,9 +79,9 @@ VALUES
 
 Insert into SolicitudPericial(dni, id,fecha, estado)
 VALUES
-('9385783921W', '42345234', "2022-10-28", 'Asignada'),
-('9876452397R', '57987513', "2022-10-28", 'Asignada'),
-('6435634566K', '53451213', "2022-10-28", 'Asignada')
+('9385783921W', '42345234', "1669400529998", 'Asignada'),
+('9876452397R', '57987513', "1669100529998", 'Asignada'),
+('6435634566K', '53451213', "1668400529998", 'Asignada')
 ;
 
 Insert into Informes(dni, id, urgencia, nombre, correo, telefono, descripcion)

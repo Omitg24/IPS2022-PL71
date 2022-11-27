@@ -28,10 +28,10 @@ import coiipa.view.inscripcion.EmisionInscripcionView;
 import coiipa.view.inscripcion.Inscripcion;
 
 /**
- * Título: Clase AperturaView
+ * Título: Clase InscripcionView
  *
- * @author Adrián Alves Morales, UO284288
- * @version 12 oct 2022
+ * @author Adrián Alves Morales, UO284288 y Omar Teixeira González, UO281847
+ * @version 27 nov 2022
  */
 public class InscripcionView implements Inscripcion {
 

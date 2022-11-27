@@ -110,8 +110,11 @@ public class CursoDTO {
 		this.ninscritos = ninscritos;
 	}
 
+	@Override
 	public String toString() {
-		return tituloCurso + " " + " " + fechaCurso + " " + fechaInicioIns + " " + fechaFinIns
-				+ " " + precio + " " + estadoc + " " + nplazas;
+		return "CursoDTO [tituloCurso=" + tituloCurso + ", fechaCurso=" + fechaCurso + ", precio=" + precio
+				+ ", fechaInicioIns=" + fechaInicioIns + ", fechaFinIns=" + fechaFinIns + ", estadoc=" + estadoc
+				+ ", nplazas=" + nplazas + ", ninscritos=" + ninscritos + ", fecha=" + fecha + "]";
 	}
+	
 }

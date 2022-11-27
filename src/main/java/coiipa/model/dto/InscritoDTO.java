@@ -268,5 +268,17 @@ public class InscritoDTO {
 	 */
 	public void setPosicionEspera(int posicionEspera) {
 		this.posicionEspera = posicionEspera;
+	}
+
+	/**
+	 * Método toString
+	 * @return string
+	 */
+	@Override
+	public String toString() {
+		return "InscritoDTO [dniColegiado=" + dniColegiado + ", tituloCurso=" + tituloCurso + ", apellidosColegiado="
+				+ apellidosColegiado + ", nombreColegiado=" + nombreColegiado + ", fechaCurso=" + fechaCurso
+				+ ", fecha=" + fecha + ", estadoS=" + estadoS + ", abonado=" + abonado + ", enEspera=" + enEspera
+				+ ", posicionEspera=" + posicionEspera + "]";
 	}	
 }

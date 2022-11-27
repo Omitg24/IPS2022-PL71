@@ -55,4 +55,8 @@ public class SolicitudPericialDTO {
 		this.fecha = fecha;
 	}
 
+	@Override
+	public String toString() {
+		return "SolicitudPericialDTO [dni=" + dni + ", id=" + id + ", estado=" + estado + ", fecha=" + fecha + "]";
+	}		
 }

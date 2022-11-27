@@ -73,8 +73,4 @@ public class InformeDTO {
 		return "InformeDTO [id=" + id + ", nombre=" + nombre + ", dni=" + dni + ", correo=" + correo + ", telefono="
 				+ telefono + ", descripcion=" + descripcion + ", urgencia=" + urgencia + "]";
 	}
-    
-    
-    
-
 }

@@ -1,5 +1,7 @@
 package coiipa.model.dto;
 
+import java.util.Objects;
+
 /**
  * Titulo: Clase AsignacionPericialDTO
  *
@@ -173,5 +175,31 @@ public class AsignacionPericialDTO {
 	 */
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "AsignacionPericialDTO [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", dniColegiado="
+				+ dniColegiado + ", nombreColegiado=" + nombreColegiado + ", fecha=" + fecha + ", estado=" + estado
+				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dni, dniColegiado, estado, fecha, nombre, nombreColegiado);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AsignacionPericialDTO other = (AsignacionPericialDTO) obj;
+		return Objects.equals(dni, other.dni) && Objects.equals(dniColegiado, other.dniColegiado)
+				&& Objects.equals(estado, other.estado) && Objects.equals(fecha, other.fecha)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(nombreColegiado, other.nombreColegiado);
+	}
 }
