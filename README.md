@@ -61,5 +61,5 @@ Con esta aplicación se pretende llegar a una introducción al desarrollo de sof
 ### *Finalización de las HU*
 ---
   - Adrián Alves Morales:
-  - David Leszek Warzynski Abril:
+  - David Leszek Warzynski Abril: Finalizado con 2 días de antelación, a día 28/11/2022.
   - Omar Teixeira González: Finalizado con 3 días de antelación, a día 27/11/2022.
