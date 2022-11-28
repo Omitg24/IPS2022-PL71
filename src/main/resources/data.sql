@@ -96,3 +96,12 @@ values
 ('2348597612B', '59951567', 'Normal', 'Bruce','soybatman1939@gotham.com', '', ''),
 ('9876452397R', '23543563', 'Urgente', 'Geralt','gerardodelarivera@capcom.com', '844303989', 'No esta mal')
 ;
+
+Insert into SolicitudVisado(id, dni, nombre, apellidos, descripcion )
+values
+('cf4c7f82-6f4c-11ed-a1eb-0242ac120002','7348920547A','Manolo', 'Sanchez Rodriguez','Visar último informe realizado'),
+('e145cc0c-6f4c-11ed-a1eb-0242ac120002','6435634566K','Pablo', 'Gonzalez Martinez','Visar último informe realizado' ),
+('e8af6494-6f4c-11ed-a1eb-0242ac120002','9385783921W', 'Hermenegildo', 'Gonzalez Rose','Visar último informe realizado'),
+('f1d826aa-6f4c-11ed-a1eb-0242ac120002','9876452397R', 'Geralt', 'de Rivia','Visar último informe realizado')
+;
+
