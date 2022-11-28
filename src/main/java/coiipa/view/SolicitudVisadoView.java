@@ -25,6 +25,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.text.MaskFormatter;
+import javax.swing.border.TitledBorder;
 
 /**
  * 
@@ -86,6 +87,7 @@ public class SolicitudVisadoView {
 	private JPanel getPnCentro() {
 		if (pnCentro == null) {
 			pnCentro = new JPanel();
+			pnCentro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Datos solicitud", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			pnCentro.setBackground(Color.WHITE);
 			pnCentro.setLayout(new GridLayout(1, 2, 0, 0));
 			pnCentro.add(getPanelNombre());
@@ -198,6 +200,7 @@ public class SolicitudVisadoView {
 	public JTextField getTextFieldNombre() {
 		if (textFieldNombre == null) {
 			textFieldNombre = new JTextField();
+			textFieldNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			textFieldNombre.setBackground(Color.LIGHT_GRAY);
 			textFieldNombre.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldNombre.setMaximumSize(new Dimension(280, 30));
@@ -220,6 +223,7 @@ public class SolicitudVisadoView {
 	public JTextField getTextFieldApellido() {
 		if (textFieldApellido == null) {
 			textFieldApellido = new JTextField();
+			textFieldApellido.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			textFieldApellido.setBackground(Color.LIGHT_GRAY);
 			textFieldApellido.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldApellido.setMaximumSize(new Dimension(280, 30));
@@ -260,6 +264,7 @@ public class SolicitudVisadoView {
 				System.out.println("Excepción capturada: JFormattedTextField");
 			}
 			textFieldDni = new JFormattedTextField(mf);	
+			textFieldDni.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			textFieldDni.setBackground(Color.LIGHT_GRAY);
 			textFieldDni.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldDni.setMaximumSize(new Dimension(280, 30));
@@ -270,6 +275,7 @@ public class SolicitudVisadoView {
 	public JTextArea getTextAreaDescripcion() {
 		if (textAreaDescripcion == null) {
 			textAreaDescripcion = new JTextArea();
+			textAreaDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			textAreaDescripcion.setBorder(new LineBorder(new Color(0, 0, 0)));
 			textAreaDescripcion.setMinimumSize(new Dimension(280, 90));
 			textAreaDescripcion.setLineWrap(true);

@@ -39,7 +39,8 @@ public class InscripcionModel {
 	 * Constante SQL_LISTAR_CURSOS_SOLICITADO
 	 */
 	private static final String SQL_LISTAR_CURSOS_SOLICITADOS = 
-			"Select c.tituloCurso, c.fechaCurso, c.precio, c.estadoC, i.fecha, c.cancelable "
+			"Select c.tituloCurso, c.fechaCurso, c.precio, c.estadoC, i.fecha,"
+			+ " c.cancelable, c.porcentajeDevolucion "
 			+ "from Curso c, Inscribe i "
 			+ "where c.tituloCurso=i.tituloCurso and i.enEspera=false and i.estadoS<> 'Cancelado' "
 			+ "and c.fechaCurso=i.fechaCurso and i.dniColegiado=?  ";	
@@ -59,6 +60,14 @@ public class InscripcionModel {
 	 */
 	private static final String SQL_REDUCIR_NPLAZAS = 
 			"update curso set nplazas=nplazas-1 where titulocurso = ? and fechaCurso=?";	
+	/**
+	 * Constante SQL_ACTUALIZAR_INSCRITO
+	 */
+	private static final String SQL_ACTUALIZAR_INSCRITO_ABONADO=
+			"Update Inscribe "
+			+ "set estadoS=?, abonado=? "
+			+ "where dniColegiado=? and tituloCurso=? and fechaCurso=?";
+	
 	/**
 	 * Constante SQL_ACTUALIZAR_INSCRITO
 	 */
@@ -152,6 +161,22 @@ public class InscripcionModel {
 		Util.validateNotNull(fecha, "La fecha no puede ser nulo");
 		Util.validateNotNull(estado, "El estado no puede ser nulo");
 		db.executeUpdate(SQL_ACTUALIZAR_INSCRITO, estado,dni,titulo,fecha);
+	}
+	
+	/**
+	 * Método actualizarEstadoInscripcion
+	 * @param dni
+	 * @param titulo
+	 * @param fecha
+	 * @param estado
+	 */
+	public void actualizarEstadoInscripcion(String dni, String titulo,
+			String fecha,String estado,double abonado) {
+		Util.validateNotNull(dni, "El dni no puede ser nulo");
+		Util.validateNotNull(titulo, "El titulo no puede ser nulo");
+		Util.validateNotNull(fecha, "La fecha no puede ser nulo");
+		Util.validateNotNull(estado, "El estado no puede ser nulo");
+		db.executeUpdate(SQL_ACTUALIZAR_INSCRITO_ABONADO, estado,abonado,dni,titulo,fecha);
 	}
 	
 	/**

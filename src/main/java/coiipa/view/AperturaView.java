@@ -28,8 +28,8 @@ import coiipa.view.apertura.ModificacionView;
 /**
  * Título: Clase AperturaView
  *
- * @author Adrián Alves Morales, UO284288
- * @version 12 oct 2022
+ * @author Adrián Alves Morales, UO284288 y David Warzynski Abril, UO278968
+ * @version 28 nov 2022
  */
 public class AperturaView {
 
@@ -60,7 +60,7 @@ public class AperturaView {
 		frmAdministracinCoiipa.setResizable(false);
 		frmAdministracinCoiipa.setTitle("Administración COIIPA - Apertura de cursos");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmAdministracinCoiipa.setBounds(100, 100, 778, 502);
+		frmAdministracinCoiipa.setBounds(100, 100, 1000, 600);
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -85,7 +85,7 @@ public class AperturaView {
 		if (pnCentro == null) {
 			pnCentro = new JPanel();
 			pnCentro.setBackground(Color.WHITE);
-			pnCentro.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			pnCentro.setLayout(new BorderLayout(0, 0));
 			pnCentro.add(getPnRegistro());
 		}
 		return pnCentro;
@@ -167,6 +167,7 @@ public class AperturaView {
 	public JTable getTableCursos() {
 		if (tableCursos == null) {
 			tableCursos = new JTable();
+			tableCursos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			tableCursos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			tableCursos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			tableCursos.setDefaultEditor(Object.class, null);

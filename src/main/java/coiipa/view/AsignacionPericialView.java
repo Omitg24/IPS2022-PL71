@@ -72,7 +72,8 @@ public class AsignacionPericialView extends JFrame {
 		frame = new JFrame();
 		frame.setPreferredSize(new Dimension(1200, 800));
 		frame.setSize(new Dimension(1500, 800));
-		frame.setResizable(false);
+		frame.setMinimumSize(new Dimension(1500,1000));
+		frame.setResizable(true);
 		frame.setTitle("Administración COIIPA - Gestion de Asignaciones Periciales");
 		frame.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(InscripcionPericialView.class.getResource("/images/coiipa_symbol.png")));

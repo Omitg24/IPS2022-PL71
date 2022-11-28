@@ -22,7 +22,7 @@ insert into Colegiado (dniColegiado, nombreColegiado, apellidosColegiado, locali
 
 Insert into Curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,estadoc,nplazas,cancelable, porcentajeDevolucion)
 values
-('Desarrollo de bases de datos', '2022-12-04', '70','2022-11-15','2022-12-01', 'Abierta', '0',true,'69'); 
+('Desarrollo de bases de datos', '2022-12-04', '70','2022-11-15','2022-12-01', 'Abierta', '40',true,69); 
 
 Insert into Curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,estadoc,nplazas) 
 values 
@@ -60,7 +60,7 @@ values
 ('4546574389B','Desarrollo de videojuegos','2022-06-11','2022-07-10','Pendiente','ninguna', true, 2),
 ('2341512341L','Desarrollo de videojuegos','2022-06-11','2022-07-10','Pendiente','ninguna', true, 3),
 ('7348920547A','Desarrollo de bases de datos','2022-12-04','2022-04-23','Pre-inscrito','ninguna', false, 0),
-('6435634566K','Desarrollo de bases de datos','2022-12-04','2022-09-11','Pre-inscrito','ninguna', false, 0),
+('6435634566K','Desarrollo de bases de datos','2022-12-04','2022-11-28','Pre-inscrito','ninguna', false, 0),
 ('4728129374H','Desarrollo de bases de datos','2022-12-04','2022-11-12','Pre-inscrito','ninguna', false, 0),
 ('1234312432J','Desarrollo de bases de datos','2022-12-04','2022-03-25','Pre-inscrito','ninguna', false, 0),
 ('4546574389B','Desarrollo de bases de datos','2022-12-04','2022-02-28','Pendiente','ninguna', true, 1),

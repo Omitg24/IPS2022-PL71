@@ -156,7 +156,7 @@ public class CursoView {
 			lbTitulo.setLabelFor(getTxtTitulo());
 			lbTitulo.setDisplayedMnemonic('T');
 			lbTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-			lbTitulo.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			lbTitulo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		}
 		return lbTitulo;
 	}
@@ -168,7 +168,7 @@ public class CursoView {
 			txtTitulo.setBackground(Color.LIGHT_GRAY);
 			txtTitulo.setPreferredSize(new Dimension(10, 25));
 			txtTitulo.setBorder(new LineBorder(new Color(171, 173, 179)));
-			txtTitulo.setFont(new Font("High Tower Text", Font.PLAIN, 14));
+			txtTitulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			txtTitulo.setColumns(10);
 		}
 		return txtTitulo;
@@ -192,7 +192,7 @@ public class CursoView {
 			lbFecha = new JLabel("Fecha del curso:");
 			lbFecha.setLabelFor(getTxtFecha());
 			lbFecha.setDisplayedMnemonic('F');
-			lbFecha.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			lbFecha.setFont(new Font("Tahoma", Font.BOLD, 14));
 		}
 		return lbFecha;
 	}
@@ -206,7 +206,7 @@ public class CursoView {
 			txtFecha.setText("(YYYY-MM-DD)");
 			txtFecha.setPreferredSize(new Dimension(10, 25));
 			txtFecha.setBorder(new LineBorder(new Color(171, 173, 179)));
-			txtFecha.setFont(new Font("High Tower Text", Font.PLAIN, 14));
+			txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			txtFecha.setColumns(10);
 		}
 		return txtFecha;
@@ -230,7 +230,7 @@ public class CursoView {
 			lbPrecio = new JLabel("Precio del curso:");
 			lbPrecio.setLabelFor(getTxtPrecio());
 			lbPrecio.setDisplayedMnemonic('P');
-			lbPrecio.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			lbPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		}
 		return lbPrecio;
 	}
@@ -242,7 +242,7 @@ public class CursoView {
 			txtPrecio.setBackground(Color.LIGHT_GRAY);
 			txtPrecio.setPreferredSize(new Dimension(10, 25));
 			txtPrecio.setBorder(new LineBorder(new Color(171, 173, 179)));
-			txtPrecio.setFont(new Font("High Tower Text", Font.PLAIN, 14));
+			txtPrecio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			txtPrecio.setColumns(10);
 		}
 		return txtPrecio;
@@ -265,7 +265,7 @@ public class CursoView {
 			btAddCurso = new JButton("Planificar");
 			btAddCurso.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btAddCurso.setForeground(Color.WHITE);
-			btAddCurso.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			btAddCurso.setFont(new Font("Tahoma", Font.BOLD, 14));
 			btAddCurso.setBackground(new Color(34, 139, 34));
 		}
 		return btAddCurso;
@@ -284,7 +284,7 @@ public class CursoView {
 		if (lbPlan == null) {
 			lbPlan = new JLabel("Planificación cursos");
 			lbPlan.setHorizontalAlignment(SwingConstants.CENTER);
-			lbPlan.setFont(new Font("High Tower Text", Font.PLAIN, 35));
+			lbPlan.setFont(new Font("Baskerville Old Face", Font.PLAIN, 35));
 		}
 		return lbPlan;
 	}
@@ -332,8 +332,10 @@ public class CursoView {
 					JCheckBox j = (JCheckBox) e.getSource();
 					if(j.isSelected()) 
 						getTxtDevolucion().setEnabled(true);
-					else
+					else {
+						getTxtDevolucion().setText("");
 						getTxtDevolucion().setEnabled(false);
+					}
 				}
 			});
 			chCancelable.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -356,7 +358,7 @@ public class CursoView {
 	private JLabel getLbDevolucion() {
 		if (lbDevolución == null) {
 			lbDevolución = new JLabel("Política devolución:");
-			lbDevolución.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			lbDevolución.setFont(new Font("Tahoma", Font.BOLD, 14));
 			lbDevolución.setDisplayedMnemonic('P');
 		}
 		return lbDevolución;

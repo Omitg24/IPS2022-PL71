@@ -138,11 +138,9 @@ public class PericialesModel {
 	 */
 	public List<AsignacionPericialDTO> getPorPerito(String perito) {
 		List<AsignacionPericialDTO> asig = db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES_POR_PERITO, perito);
-		System.out.println(perito);
 		for (AsignacionPericialDTO a : asig)
 			a.setFecha(Instant.ofEpochMilli(Long.valueOf(
 					a.getFecha())).atZone(ZoneId.systemDefault()).toLocalDate().toString());
-		System.out.println(asig);
 		return asig;
 	}
 
@@ -162,7 +160,6 @@ public class PericialesModel {
 		if (realizadas) r = getRealizadas();
 		if (noRealizadas) n = getNoRealizadas();
 		if (anuladas) a = getAnuladas();
-		System.out.println("1 " + result);
 		if (!dniPerito.isEmpty()) dni = getPorPerito(dniPerito);
 
 		// Hacemos la insersección de todas las listas

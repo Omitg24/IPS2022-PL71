@@ -16,7 +16,6 @@ public class AperturaMain {
 		
 		AperturaView view = new AperturaView();
 		AperturaModel model = new AperturaModel();
-		System.out.println(model.getCursos());
 		AperturaController controller = new AperturaController(model,view);
 		
 		controller.initController();

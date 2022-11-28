@@ -7,6 +7,7 @@ import javax.swing.table.TableModel;
 import coiipa.model.model.AperturaModel;
 import coiipa.view.AperturaView;
 import coiipa.view.apertura.ModificacionView;
+import ui_events.ChangeColor;
 import ui_events.ChangeDateColor;
 import util.SwingUtil;
 import util.Util;
@@ -14,8 +15,8 @@ import util.Util;
 /**
  * Título: Clase AperturaController
  *
- * @author Adrián Alves Morales, UO284288
- * @version 12 oct 2022
+ * @author Adrián Alves Morales, UO284288 y David Warzynski Abril, UO278968
+ * @version 28 nov 2022
  */
 public class AperturaController {
 
@@ -38,24 +39,24 @@ public class AperturaController {
 		modificacion.getBtListo().addActionListener(e -> SwingUtil.exceptionWrapper(() -> listo()));
 		modificacion.getTextInicio().addFocusListener(new ChangeDateColor());
 		modificacion.getTextFin().addFocusListener(new ChangeDateColor());
+		modificacion.getTextFieldNplazas().addFocusListener(new ChangeColor());
 		addCursosToList();
 	}
 
 	public void modificarCurso() {
+		modificacion.reiniciarCampos();
 		view.getModificacion().getFrame().setVisible(true);
 	}
 
 	public void listo() {
-		String key = SwingUtil.getSelectedKey(view.getTableCursos());
-		// System.out.println(key);
+		String titulo = SwingUtil.getSelectedKey(view.getTableCursos());
+		String fecha = SwingUtil.getSelectedKey(view.getTableCursos(),1);
 		Date inicio = Util.isoStringToDate(modificacion.getTextInicio().getText());
-		// System.out.println(inicio);
 		Date fin = Util.isoStringToDate(modificacion.getTextFin().getText());
 		int nplazas = Integer.parseInt(modificacion.getTextFieldNplazas().getText());
-		// System.out.println(fin);
-		model.updateFechasCurso(inicio, fin, nplazas, key);
-		modificacion.getFrame().setVisible(false);
-		// System.out.println(model.getCursos());
+		model.updateFechasCurso(inicio, fin, nplazas, titulo,fecha);
+		modificacion.getFrame().dispose();
+		modificacion.reiniciarCampos();
 		addCursosToList();
 	}
 
@@ -66,10 +67,10 @@ public class AperturaController {
 
 	public void addCursosToList() {
 		t = SwingUtil.getTableModelFromPojos(model.getCursos(), new String[] { "tituloCurso", "fechaCurso", "precio",
-				"fechaInicioIns", "fechaFinIns", "estadoc", "nplazas" });
+				"fechaInicioIns", "fechaFinIns", "estadoc", "nplazas","cancelable", "porcentajeDevolucion" });
 		view.getTableCursos().setModel(t);
 		String[] titles = new String[] { "Título del curso", "Fecha de inicio", "Precio", "Fecha inicio ins.",
-				"Fecha fin ins.", "Estado", "Nº de plazas" };
+				"Fecha fin ins.", "Estado", "Nº de plazas","Cancelable","Porcentaje devolución"};
 		for (int i = 0; i < titles.length; i++) {
 			view.getTableCursos().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
 		}

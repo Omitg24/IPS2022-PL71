@@ -3,6 +3,7 @@ package coiipa.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -98,11 +99,12 @@ public class ConsolidacionView extends JFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setTitle("Administración COIIPA - Consolidación de pagos");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ConsolidacionView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 1500, 1000);
+		frame.setMinimumSize(new Dimension(1500,1000));
 		frame.setLocationRelativeTo(null);
 		frame.getRootPane().setDefaultButton(btConsolidacion);
 		

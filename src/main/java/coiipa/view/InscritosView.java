@@ -131,12 +131,13 @@ public class InscritosView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setTitle("Administración COIIPA - Inscripciones de cursos");
 		frame.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(InscritosView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 1500, 1000);
+		frame.setMinimumSize(new Dimension(1500,1000));
 		frame.setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();

@@ -56,11 +56,9 @@ public class LotesModel {
 		List<ColegiadoDTO> listDTOs = db.executeQueryPojo(ColegiadoDTO.class, SQL_OBTENER_NUMS_COLEGIADO);
 		List<ColegiadoDTO> listBatched = LotesUtil.getColegiadosFromBatchCsv(BATCH_PATH);
 		List<Integer> ints = new ArrayList<Integer>();
-		System.out.println(listDTOs);
 		for (int i = 0; i < listDTOs.size(); i++) 
 			ints.add(Integer.parseInt(listDTOs.get(i).getNumeroColegiado().split("-")[1]));
 		for (int j = 0; j < listBatched.size(); j++) {
-			System.out.println(listBatched.get(j));
 			ints.add(Integer.parseInt(listBatched.get(j).getNumeroColegiado().split("-")[1]));
 			
 		}

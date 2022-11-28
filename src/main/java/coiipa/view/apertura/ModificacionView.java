@@ -23,8 +23,8 @@ import javax.swing.border.LineBorder;
 /**
  * Título: Clase AperturaView
  *
- * @author Adrián Alves Morales, UO284288
- * @version 12 oct 2022
+ * @author Adrián Alves Morales, UO284288 y David Warzynski Abril, UO278968
+ * @version 28 nov 2022
  */
 public class ModificacionView {
 
@@ -81,6 +81,8 @@ public class ModificacionView {
 		textFin.setText("(YYYY-MM-DD)");
 		textFin.setForeground(Color.WHITE);
 		textFin.setBackground(Color.LIGHT_GRAY);
+		textFieldNplazas.setText("");
+		textFieldNplazas.setBackground(Color.LIGHT_GRAY);
 	}
 
 	private JPanel getPnCentro() {
@@ -122,7 +124,7 @@ public class ModificacionView {
 			btListo.setFocusable(false);
 			btListo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btListo.setForeground(Color.WHITE);
-			btListo.setFont(new Font("High Tower Text", Font.BOLD, 14));
+			btListo.setFont(new Font("Tahoma", Font.BOLD, 14));
 			btListo.setBackground(new Color(34, 139, 34));
 		}
 		return btListo;
@@ -169,7 +171,7 @@ public class ModificacionView {
 			textFin.setPreferredSize(new Dimension(10, 25));
 			textFin.setHorizontalAlignment(SwingConstants.CENTER);
 			textFin.setForeground(Color.WHITE);
-			textFin.setFont(new Font("High Tower Text", Font.PLAIN, 14));
+			textFin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			textFin.setColumns(10);
 			textFin.setBorder(new LineBorder(new Color(171, 173, 179)));
 			textFin.setBackground(Color.LIGHT_GRAY);
@@ -183,7 +185,7 @@ public class ModificacionView {
 			textInicio.setPreferredSize(new Dimension(10, 25));
 			textInicio.setHorizontalAlignment(SwingConstants.CENTER);
 			textInicio.setForeground(Color.WHITE);
-			textInicio.setFont(new Font("High Tower Text", Font.PLAIN, 14));
+			textInicio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			textInicio.setColumns(10);
 			textInicio.setBorder(new LineBorder(new Color(171, 173, 179)));
 			textInicio.setBackground(Color.LIGHT_GRAY);
@@ -223,8 +225,8 @@ public class ModificacionView {
 			textFieldNplazas = new JTextField();
 			textFieldNplazas.setPreferredSize(new Dimension(10, 25));
 			textFieldNplazas.setHorizontalAlignment(SwingConstants.CENTER);
-			textFieldNplazas.setForeground(Color.WHITE);
-			textFieldNplazas.setFont(new Font("High Tower Text", Font.PLAIN, 14));
+			textFieldNplazas.setForeground(Color.BLACK);
+			textFieldNplazas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			textFieldNplazas.setColumns(10);
 			textFieldNplazas.setBorder(new LineBorder(new Color(171, 173, 179)));
 			textFieldNplazas.setBackground(Color.LIGHT_GRAY);

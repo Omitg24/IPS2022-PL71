@@ -229,9 +229,11 @@ public class InscripcionController {
 		this.preinscritos = model.getCursosSolicitados(colegiado.getDniColegiado());
 		TableModel tmodel = SwingUtil.getTableModelFromPojos(preinscritos, 
 				new String[] {"tituloCurso", "fechaCurso", 
-						"fecha", "estadoc", "precio", "cancelable"});
+						"fecha", "estadoc", "precio", "cancelable","porcentajeDevolucion"});
 		view.getTbSolicitados().setModel(tmodel);
-		String[] titles = new String[] { "Título del curso", "Fecha del curso", "Fecha de inscripción", "Estado del curso", "Precio del curso","Cancelable"};
+		String[] titles = new String[] { "Título del curso", "Fecha del curso", 
+				"Fecha de inscripción", "Estado del curso", "Precio del curso",
+				"Cancelable","Porcentaje Devolución"};
 		for (int i = 0; i < titles.length; i++) {
 			view.getTbSolicitados().getColumnModel().getColumn(i).setHeaderValue(titles[i]);
 		}
@@ -364,16 +366,18 @@ public class InscripcionController {
 			CursoDTO c = model.getCursoTituloFecha(titulo, fecha);
 			if(comprobarFechaInscripcion(c) && comprobarPlazas(c)) {
 				String estado ="";
+				double pagado=0;
 				switch(tipoPago) {
 				case "Tarjeta":
 					estado="Inscrito";
+					pagado = c.getPrecio();
 				case "Transferencia":
 					estado="Pendiente";
 				}
 				if(tarjetaView!=null)
 					tarjetaView.dispose();
 				model.actualizarEstadoInscripcion(colegiado.getDniColegiado(), 
-							curso.getTituloCurso(), curso.getFechaCurso(), estado);
+							c.getTituloCurso(),c.getFechaCurso(), estado,pagado);
 				getTablaCursosSolicitados();
 				SwingUtil.showInformationDialog("Se ha registrado el pago del curso: "
 							+ c.getTituloCurso()+", con fecha de inicio: "+
