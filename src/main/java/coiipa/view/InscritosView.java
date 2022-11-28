@@ -22,11 +22,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import java.awt.Cursor;
 
 /**
  * Título: Clase InscritosView
  *
- * @author David Warzynski Abril, UO278968 y Omar Teixeira González, UO281847
+ * @author David Warzynski Abril, UO278968, Omar Teixeira González, UO281847
+ * 		   y Adrián Alves Morales, UO284288
  * @version 23 nov 2022
  */
 public class InscritosView {
@@ -456,9 +458,11 @@ public class InscritosView {
 	 * Método getBtCancelar
 	 * @return btCancelar
 	 */
-	private JButton getBtCancelar() {
+	public JButton getBtCancelar() {
 		if (btCancelar == null) {
 			btCancelar = new JButton("Cancelar");
+			btCancelar.setEnabled(false);
+			btCancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btCancelar.setForeground(Color.WHITE);
 			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 22));
 			btCancelar.setBackground(new Color(34, 139, 34));

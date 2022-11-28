@@ -32,8 +32,19 @@ public class InscritosModel {
 	 */
 	public static final String SQL_LISTAR_INSCRITOS = "Select DISTINCT apellidosColegiado , nombreColegiado, "
 			+ " fecha, estadoS, abonado from Curso c, Inscribe i ,Colegiado o "
-			+ "where c.tituloCurso = i.tituloCurso and i.dniColegiado = o.dniColegiado and i.estados<> 'Pendiente' and "
-			+ "i.tituloCurso = ? and i.fechaCurso = ? order by o.apellidosColegiado, nombreColegiado";
+			+ "where c.tituloCurso = i.tituloCurso and i.dniColegiado = o.dniColegiado "
+			+ "and i.estados<> 'Pendiente' "
+			+ "and i.estados<> 'Cancelado' "
+			+ "and i.tituloCurso = ? "
+			+ "and i.fechaCurso = ? "
+			+ "order by o.apellidosColegiado, nombreColegiado";
+	/**
+	 * Constante SQL_LISTAR_INSCRITOS_CON_CURSOS
+	 */
+	public static final String SQL_LISTAR_INSCRITOS_A_ELIMINAR = "Select i.dniColegiado , i.tituloCurso, "
+			+ " o.apellidosColegiado, o.nombreColegiado, i.fechaCurso, i.fecha, i.estadoS from Curso c, Inscribe i ,Colegiado o "
+			+ "where c.tituloCurso = i.tituloCurso and i.dniColegiado = o.dniColegiado and "
+			+ "i.tituloCurso = ? and i.fechaCurso = ? order by o.apellidosColegiado, o.nombreColegiado";
 	/**
 	 * Constante SQL_LISTAR_ESPERA
 	 */
@@ -42,6 +53,18 @@ public class InscritosModel {
 			+ "WHERE I.ESTADOS='Pendiente' AND I.ENESPERA=TRUE AND CO.DNICOLEGIADO=I.DNICOLEGIADO "
 			+ "AND I.TITULOCURSO=CU.TITULOCURSO AND I.FECHACURSO=CU.FECHACURSO "
 			+ "AND CU.TITULOCURSO=? AND CU.FECHACURSO=? ORDER BY I.POSICIONESPERA";
+	/**
+	 * Constante SQL_CANCELAR_CURSO
+	 */
+	public static final String SQL_CANCELAR_CURSO = "UPDATE CURSO "
+			+ "set estadoc = 'Cancelado', porcentajeDevolucion = 1 "
+			+ "where tituloCurso = ? and fechaCurso = ?";
+	/**
+	 * Constante SQL_CANCELAR_INSCRIPCIÓN
+	 */
+	public static final String SQL_CANCELAR_INSCRIPCION = "UPDATE INSCRIBE "
+			+ "set estadoS = 'Cancelado', abonado = 1, incidencia = ? "
+			+ "where tituloCurso = ? and fechaCurso = ?";
 	
 	/**
 	 * Atributo db
@@ -78,5 +101,38 @@ public class InscritosModel {
 		Util.validateNotNull(tituloCurso, "El titulo del curso no puede ser null o estar vacio");
 		Util.validateNotNull(fechaCurso, "La fecha del curso no puede ser null o estar vacio");
 		return db.executeQueryPojo(InscritoDTO.class, SQL_LISTAR_ESPERA, tituloCurso, fechaCurso);
+	}
+	
+	/**
+	 * Método getListaInscritosAEliminar
+	 * @param tituloCurso
+	 * @param fechaCurso
+	 * @return inscritos
+	 */
+	public List<InscritoDTO> getListaInscritosAEliminar(String tituloCurso, String fechaCurso) {
+		Util.validateNotNull(tituloCurso, "El titulo del curso no puede ser null o estar vacio");
+		Util.validateNotNull(fechaCurso, "La fecha del curso no puede ser null o estar vacio");
+		return db.executeQueryPojo(InscritoDTO.class, SQL_LISTAR_INSCRITOS_A_ELIMINAR, tituloCurso, fechaCurso);
+	}
+	
+	/**
+	 * Método cancelarCurso
+	 * @param tituloCurso
+	 */
+	public void cancelarCurso(String tituloCurso, String fechaCurso) {
+		db.executeUpdate(SQL_CANCELAR_CURSO, tituloCurso, fechaCurso);
+	}
+
+	/**
+	 * Método anularInscripcion
+	 * @param tituloCurso
+	 */
+	public void anularInscripcion(List<InscritoDTO> inscritos) {
+		for (InscritoDTO i : inscritos) {
+			if (i.getTituloCurso() != null) {
+				String incidencia = "Se han devuelto " + i.getAbonado() + "€ por la cancelación del curso " + i.getTituloCurso();
+				db.executeUpdate(SQL_CANCELAR_INSCRIPCION, incidencia, i.getTituloCurso(), i.getFechaCurso());
+			}
+		}		
 	}
 }

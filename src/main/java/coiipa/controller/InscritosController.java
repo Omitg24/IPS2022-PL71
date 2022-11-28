@@ -13,7 +13,8 @@ import util.SwingUtil;
 /**
  * Título: Clase InscritosController
  *
- * @author David Warzynski Abril, UO278968 y Omar Teixeira González, UO281847
+ * @author David Warzynski Abril, UO278968, Omar Teixeira González, UO281847
+ * 		   y Adrián Alves Morales, UO284288
  * @version 26 nov 2022
  */
 public class InscritosController {	
@@ -51,6 +52,8 @@ public class InscritosController {
 	 * Método initController
 	 */
 	public void initController() {
+		view.getBtCancelar().addActionListener(
+				e -> SwingUtil.exceptionWrapper(() -> cancelarCurso()));
 		view.getTableCursos().getSelectionModel().addListSelectionListener(
 				e -> SwingUtil.exceptionWrapper(() -> getListaInscritos()));
 		view.getTableCursos().getSelectionModel().addListSelectionListener(
@@ -100,6 +103,7 @@ public class InscritosController {
 		view.getTableInscritos().getTableHeader().setResizingAllowed(false);
 		
 		actualizarTotal();
+		view.getBtCancelar().setEnabled(true);
 	}
 	
 	/**
@@ -131,5 +135,28 @@ public class InscritosController {
 			total+=Double.parseDouble(view.getTableInscritos().getValueAt(i, 4).toString());
 		}
 		view.getTotal().setText(total + " €");
+	}
+	
+	/**
+	 * Método cancelarCurso
+	 */
+	public void cancelarCurso() {
+		if (!view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 5).equals("Cancelado")) {
+			String fecha = view.getTableCursos().getValueAt(
+				view.getTableCursos().getSelectedRow(), 1).toString();
+		String tituloCurso = view.getTableCursos().getValueAt(
+				view.getTableCursos().getSelectedRow(), 0).toString();
+		
+		List<InscritoDTO> inscritos = model.getListaInscritosAEliminar(tituloCurso, fecha);
+		if (!inscritos.isEmpty())
+			model.anularInscripcion(inscritos);
+		model.cancelarCurso(tituloCurso, fecha);
+		
+		
+		view.getTableCursos().getModel().setValueAt("Cancelado", view.getTableCursos().getSelectedRow(), 5);
+		getListaInscritos();
+		getListaEspera();
+		}
+		else SwingUtil.showErrorDialog("El curso seleccionado ya ha sido cancelado");
 	}
 }
