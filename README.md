@@ -60,6 +60,11 @@ Con esta aplicación se pretende llegar a una introducción al desarrollo de sof
 
 ### *Finalización de las HU*
 ---
-  - Adrián Alves Morales:
+  - Adrián Alves Morales: Finalizado con 2 días de antelación, a día 28/11/2022.
   - David Leszek Warzynski Abril: Finalizado con 2 días de antelación, a día 28/11/2022.
   - Omar Teixeira González: Finalizado con 3 días de antelación, a día 27/11/2022.
+
+### *Gráfico final*
+---
+<img src="https://user-images.githubusercontent.com/91057639/204363327-7d59d8de-e062-4d23-937b-e4bdbe5a8943.png" alt="Logo del COIIPA">
+
