@@ -6,6 +6,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
@@ -41,7 +42,6 @@ public class IdentificadorView {
 	private Inscripcion inscripcion;
 	private JPanel pnSuperior;
 	private JLabel lbLogo;
-	private JPanel pnTituloSup;
 	private JLabel lblIniciarSesin;
 
 	/**
@@ -53,12 +53,12 @@ public class IdentificadorView {
 
 	private void initialize(Inscripcion ins) {
 		frmIntroduzcaCredenciales = new JFrame();
-		frmIntroduzcaCredenciales.setResizable(false);
-		frmIntroduzcaCredenciales.setTitle("Administración COIIPA");
+		frmIntroduzcaCredenciales.setTitle("Administración COIIPA - Iniciar sesión");
 		frmIntroduzcaCredenciales.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frmIntroduzcaCredenciales.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(InscripcionPericialView.class.getResource("/images/coiipa_symbol.png")));
-		frmIntroduzcaCredenciales.setBounds(100, 100, 800, 500);
+		frmIntroduzcaCredenciales.setBounds(100, 100, 800, 450);
+		frmIntroduzcaCredenciales.setMinimumSize(new Dimension(800, 450));
 		frmIntroduzcaCredenciales.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -113,7 +113,7 @@ public class IdentificadorView {
 	private JLabel getLblIntroduzcaId() {
 		if (lblIntroduzcaId == null) {
 			lblIntroduzcaId = new JLabel("Introduzca su DNI:");
-			lblIntroduzcaId.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblIntroduzcaId.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lblIntroduzcaId;
 	}
@@ -133,7 +133,7 @@ public class IdentificadorView {
 			textFieldId = new JTextField();
 			textFieldId.setPreferredSize(new Dimension(55, 35));
 			textFieldId.setHorizontalAlignment(SwingConstants.CENTER);
-			textFieldId.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			textFieldId.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFieldId.setColumns(16);
 			textFieldId.setBorder(new LineBorder(new Color(171, 173, 179)));
 			textFieldId.setBackground(Color.LIGHT_GRAY);
@@ -147,9 +147,9 @@ public class IdentificadorView {
 		if (pnSuperior == null) {
 			pnSuperior = new JPanel();
 			pnSuperior.setBackground(Color.WHITE);
-			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
+			pnSuperior.setLayout(new GridLayout(0, 2, 0, 0));
 			pnSuperior.add(getLbLogo());
-			pnSuperior.add(getPnTituloSup());
+			pnSuperior.add(getLblIniciarSesin_1());
 		}
 		return pnSuperior;
 	}
@@ -160,19 +160,11 @@ public class IdentificadorView {
 		}
 		return lbLogo;
 	}
-	private JPanel getPnTituloSup() {
-		if (pnTituloSup == null) {
-			pnTituloSup = new JPanel();
-			pnTituloSup.setBackground(Color.WHITE);
-			pnTituloSup.add(getLblIniciarSesin());
-		}
-		return pnTituloSup;
-	}
-	private JLabel getLblIniciarSesin() {
+	private JLabel getLblIniciarSesin_1() {
 		if (lblIniciarSesin == null) {
 			lblIniciarSesin = new JLabel("Iniciar sesión");
 			lblIniciarSesin.setHorizontalAlignment(SwingConstants.CENTER);
-			lblIniciarSesin.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
+			lblIniciarSesin.setFont(new Font("Baskerville Old Face", Font.BOLD, 30));
 		}
 		return lblIniciarSesin;
 	}

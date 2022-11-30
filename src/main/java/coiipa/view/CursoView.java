@@ -42,13 +42,12 @@ public class CursoView {
 	private JTextField txtPrecio;
 	private JPanel pnInferior;
 	private JButton btAddCurso;
-	private JPanel pnTituloSup;
-	private JLabel lbPlan;
 	private JPanel pnCancelable;
 	private JCheckBox chCancelable;
 	private JPanel pnDevolucion;
 	private JLabel lbDevolución;
 	private JTextField txtDevolución;
+	private JLabel lblPlanificacinDeCursos;
 
 	/**
 	 * Create the frame.
@@ -59,12 +58,13 @@ public class CursoView {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setTitle("Administración COIIPA - Planificación de cursos");
 		frame.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(CursoView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setBounds(100, 100, 800, 500);
+		frame.setBounds(100, 100, 1500, 900);
+		frame.setMinimumSize(new Dimension(1500,900));
 		frame.setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
@@ -94,7 +94,7 @@ public class CursoView {
 		if (pnCentro == null) {
 			pnCentro = new JPanel();
 			pnCentro.setBackground(Color.WHITE);
-			pnCentro.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			pnCentro.setLayout(new BorderLayout(0, 0));
 			pnCentro.add(getPnRegistro());
 		}
 		return pnCentro;
@@ -106,7 +106,7 @@ public class CursoView {
 			pnSuperior.setBackground(Color.WHITE);
 			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
 			pnSuperior.add(getLbLogo());
-			pnSuperior.add(getPnTituloSup());
+			pnSuperior.add(getLbPlan_1());
 		}
 		return pnSuperior;
 	}
@@ -124,8 +124,7 @@ public class CursoView {
 			pnRegistro = new JPanel();
 			pnRegistro.setPreferredSize(new Dimension(400, 250));
 			pnRegistro.setName("");
-			pnRegistro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Informaci\u00F3n curso",
-					TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			pnRegistro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Datos del curso", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnRegistro.setBackground(Color.WHITE);
 			pnRegistro.setLayout(new GridLayout(5, 1, 0, 5));
 			pnRegistro.add(getPnTitulo());
@@ -156,7 +155,7 @@ public class CursoView {
 			lbTitulo.setLabelFor(getTxtTitulo());
 			lbTitulo.setDisplayedMnemonic('T');
 			lbTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-			lbTitulo.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lbTitulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lbTitulo;
 	}
@@ -168,7 +167,7 @@ public class CursoView {
 			txtTitulo.setBackground(Color.LIGHT_GRAY);
 			txtTitulo.setPreferredSize(new Dimension(10, 25));
 			txtTitulo.setBorder(new LineBorder(new Color(171, 173, 179)));
-			txtTitulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtTitulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtTitulo.setColumns(10);
 		}
 		return txtTitulo;
@@ -192,7 +191,7 @@ public class CursoView {
 			lbFecha = new JLabel("Fecha del curso:");
 			lbFecha.setLabelFor(getTxtFecha());
 			lbFecha.setDisplayedMnemonic('F');
-			lbFecha.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lbFecha.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lbFecha;
 	}
@@ -206,7 +205,7 @@ public class CursoView {
 			txtFecha.setText("(YYYY-MM-DD)");
 			txtFecha.setPreferredSize(new Dimension(10, 25));
 			txtFecha.setBorder(new LineBorder(new Color(171, 173, 179)));
-			txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtFecha.setColumns(10);
 		}
 		return txtFecha;
@@ -230,7 +229,7 @@ public class CursoView {
 			lbPrecio = new JLabel("Precio del curso:");
 			lbPrecio.setLabelFor(getTxtPrecio());
 			lbPrecio.setDisplayedMnemonic('P');
-			lbPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lbPrecio.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lbPrecio;
 	}
@@ -242,7 +241,7 @@ public class CursoView {
 			txtPrecio.setBackground(Color.LIGHT_GRAY);
 			txtPrecio.setPreferredSize(new Dimension(10, 25));
 			txtPrecio.setBorder(new LineBorder(new Color(171, 173, 179)));
-			txtPrecio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtPrecio.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtPrecio.setColumns(10);
 		}
 		return txtPrecio;
@@ -252,7 +251,6 @@ public class CursoView {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
 			FlowLayout flowLayout = (FlowLayout) pnInferior.getLayout();
-			flowLayout.setVgap(20);
 			flowLayout.setHgap(0);
 			pnInferior.setBackground(Color.WHITE);
 			pnInferior.add(getBtAddCurso());
@@ -265,28 +263,10 @@ public class CursoView {
 			btAddCurso = new JButton("Planificar");
 			btAddCurso.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btAddCurso.setForeground(Color.WHITE);
-			btAddCurso.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btAddCurso.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btAddCurso.setBackground(new Color(34, 139, 34));
 		}
 		return btAddCurso;
-	}
-
-	private JPanel getPnTituloSup() {
-		if (pnTituloSup == null) {
-			pnTituloSup = new JPanel();
-			pnTituloSup.setBackground(Color.WHITE);
-			pnTituloSup.add(getLbPlan());
-		}
-		return pnTituloSup;
-	}
-
-	private JLabel getLbPlan() {
-		if (lbPlan == null) {
-			lbPlan = new JLabel("Planificación cursos");
-			lbPlan.setHorizontalAlignment(SwingConstants.CENTER);
-			lbPlan.setFont(new Font("Baskerville Old Face", Font.PLAIN, 35));
-		}
-		return lbPlan;
 	}
 
 	public JFrame getFrame() {
@@ -338,7 +318,7 @@ public class CursoView {
 					}
 				}
 			});
-			chCancelable.setFont(new Font("Tahoma", Font.BOLD, 14));
+			chCancelable.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			chCancelable.setBackground(Color.WHITE);
 		}
 		return chCancelable;
@@ -358,7 +338,7 @@ public class CursoView {
 	private JLabel getLbDevolucion() {
 		if (lbDevolución == null) {
 			lbDevolución = new JLabel("Política devolución:");
-			lbDevolución.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lbDevolución.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			lbDevolución.setDisplayedMnemonic('P');
 		}
 		return lbDevolución;
@@ -368,12 +348,20 @@ public class CursoView {
 			txtDevolución = new JTextField();
 			txtDevolución.setPreferredSize(new Dimension(10, 25));
 			txtDevolución.setHorizontalAlignment(SwingConstants.CENTER);
-			txtDevolución.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtDevolución.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtDevolución.setColumns(10);
 			txtDevolución.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtDevolución.setBackground(Color.LIGHT_GRAY);
 			txtDevolución.setEnabled(false);
 		}
 		return txtDevolución;
+	}
+	private JLabel getLbPlan_1() {
+		if (lblPlanificacinDeCursos == null) {
+			lblPlanificacinDeCursos = new JLabel("Planificación de cursos");
+			lblPlanificacinDeCursos.setHorizontalAlignment(SwingConstants.CENTER);
+			lblPlanificacinDeCursos.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
+		}
+		return lblPlanificacinDeCursos;
 	}
 }

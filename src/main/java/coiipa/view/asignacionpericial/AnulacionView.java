@@ -2,6 +2,7 @@ package coiipa.view.asignacionpericial;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import coiipa.controller.AsignacionPericialController;
@@ -103,16 +105,17 @@ public class AnulacionView extends JDialog {
 		setModal(true);
 		setType(Type.POPUP);
 		setVisible(false);
-		setResizable(false);
 		setFont(new Font("Tahoma", Font.PLAIN, 20));
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 800, 450);
+		setMinimumSize(new Dimension(800, 450));
 		setLocationRelativeTo(null);		
 		setTitle("Administración COIIPA - Anular asignaciones");
 		
 		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setLayout(new BorderLayout(10, 0));
+		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(getPnSuperior(), BorderLayout.NORTH);
 		contentPane.add(getPnCentral(), BorderLayout.CENTER);
 		contentPane.add(getPnInferior(), BorderLayout.SOUTH);
@@ -154,6 +157,7 @@ public class AnulacionView extends JDialog {
 	private JPanel getPnCentral() {
 		if (pnCentral == null) {
 			pnCentral = new JPanel();
+			pnCentral.setBackground(Color.WHITE);
 			pnCentral.setLayout(new BorderLayout(10, 10));
 			pnCentral.add(getLblMotivo(), BorderLayout.NORTH);
 			pnCentral.add(getTextAreaMotivo(), BorderLayout.CENTER);
@@ -172,7 +176,7 @@ public class AnulacionView extends JDialog {
 		if (lblAnularAsignaciones == null) {
 			lblAnularAsignaciones = new JLabel("Anular asignaciones");
 			lblAnularAsignaciones.setHorizontalAlignment(SwingConstants.CENTER);
-			lblAnularAsignaciones.setFont(new Font("Baskerville Old Face", Font.PLAIN, 40));
+			lblAnularAsignaciones.setFont(new Font("Baskerville Old Face", Font.BOLD, 30));
 		}
 		return lblAnularAsignaciones;
 	}
@@ -184,6 +188,7 @@ public class AnulacionView extends JDialog {
 	private JPanel getPnInferior() {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
+			pnInferior.setBackground(Color.WHITE);
 			pnInferior.add(getBtnConfirmar());
 		}
 		return pnInferior;
@@ -195,8 +200,8 @@ public class AnulacionView extends JDialog {
 	 */
 	private JButton getBtnConfirmar() {
 		if (btnConfirmar == null) {
-			btnConfirmar = new JButton("Confirmar");			
-			btnConfirmar.setPreferredSize(new Dimension(170, 35));
+			btnConfirmar = new JButton("Confirmar");
+			btnConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnConfirmar.setForeground(Color.WHITE);
 			btnConfirmar.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btnConfirmar.setBackground(new Color(34, 139, 34));
@@ -212,7 +217,8 @@ public class AnulacionView extends JDialog {
 	private JLabel getLblMotivo() {
 		if (lblMotivo == null) {
 			lblMotivo = new JLabel("Motivo");
-			lblMotivo.setFont(new Font("Tahoma", Font.BOLD, 24));
+			lblMotivo.setBackground(Color.WHITE);
+			lblMotivo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			lblMotivo.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return lblMotivo;
@@ -225,6 +231,7 @@ public class AnulacionView extends JDialog {
 	private JTextArea getTextAreaMotivo() {
 		if (textAreaMotivo == null) {
 			textAreaMotivo = new JTextArea();
+			textAreaMotivo.setFont(new Font("Monospaced", Font.PLAIN, 16));
 			textAreaMotivo.setBorder(new LineBorder(new Color(0, 0, 0)));
 		}
 		return textAreaMotivo;

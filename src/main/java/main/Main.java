@@ -3,6 +3,7 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -13,7 +14,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,6 +38,13 @@ import main.launchers.PericialesMain;
 import main.launchers.SolicitudVisadoMain;
 import util.Database;
 
+/**
+ * Titulo: Clase Main
+ *
+ * @author Adrián Alves Morales, UO284288, Omar Teixeira González, UO281847 y
+ * 		   David Warzynski Abril, UO278968
+ * @version 30 nov 2022
+ */
 public class Main extends JFrame {
 
 	/**
@@ -47,8 +54,6 @@ public class Main extends JFrame {
 	private JPanel contentPane;
 	private JPanel pnSuperior;
 	private JLabel lbLogo;
-	private JPanel pnTituloSup;
-	private JLabel lblAdministracinCoiipa;
 	private JPanel pnBotones;
 	private JButton btnAperturaCursos;
 	private JButton btnAltaColegiado;
@@ -63,8 +68,8 @@ public class Main extends JFrame {
 	private JButton btnInforme;
 	private JButton btnAsignarVisador;
 	private JButton btnSolicitudVisado;
-	private JButton btnNuevaFuncionalidad;
 	private JButton btnListadoPericial;
+	private JLabel lblAdministracinCoiipa;
 
 	/**
 	 * Launch the application.
@@ -92,7 +97,8 @@ public class Main extends JFrame {
 	public Main() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/images/coiipa_symbol.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1300, 750);
+		setBounds(100, 100, 1500, 900);
+		setMinimumSize(new Dimension(1500, 900));
 		setLocationRelativeTo(null);
 		setTitle("Administración COIIPA");
 		contentPane = new JPanel();
@@ -110,7 +116,7 @@ public class Main extends JFrame {
 			pnSuperior.setBackground(Color.WHITE);
 			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
 			pnSuperior.add(getLbLogo());
-			pnSuperior.add(getPnTituloSup());
+			pnSuperior.add(getLblAdministracinCoiipa_1());
 		}
 		return pnSuperior;
 	}
@@ -120,22 +126,6 @@ public class Main extends JFrame {
 			lbLogo.setIcon(new ImageIcon(Main.class.getResource("/images/coiipa_logo.jpg")));
 		}
 		return lbLogo;
-	}
-	private JPanel getPnTituloSup() {
-		if (pnTituloSup == null) {
-			pnTituloSup = new JPanel();
-			pnTituloSup.setBackground(Color.WHITE);
-			pnTituloSup.add(getLblAdministracinCoiipa());
-		}
-		return pnTituloSup;
-	}
-	private JLabel getLblAdministracinCoiipa() {
-		if (lblAdministracinCoiipa == null) {
-			lblAdministracinCoiipa = new JLabel("Administración COIIPA");
-			lblAdministracinCoiipa.setHorizontalAlignment(SwingConstants.CENTER);
-			lblAdministracinCoiipa.setFont(new Font("Baskerville Old Face", Font.BOLD, 56));
-		}
-		return lblAdministracinCoiipa;
 	}
 	private JPanel getPnBotones() {
 		if (pnBotones == null) {
@@ -158,7 +148,6 @@ public class Main extends JFrame {
 			pnBotones.add(getBtnAsignarVisador());
 			pnBotones.add(getBtnSolicitudVisado());
 			pnBotones.add(getBtnListadoPericial());
-			pnBotones.add(getBtnNuevaFuncionalidad());
 		}
 		return pnBotones;
 	}
@@ -364,30 +353,6 @@ public class Main extends JFrame {
 		}
 		return btnSolicitudVisado;
 	}
-	
-	private JButton getBtnNuevaFuncionalidad() {
-		if (btnNuevaFuncionalidad== null) {
-			btnNuevaFuncionalidad = new JButton("*Próxima Funcionalidad*");
-			btnNuevaFuncionalidad.setBackground(Color.LIGHT_GRAY);
-			btnNuevaFuncionalidad.setBorder(new LineBorder(Color.BLACK));
-			btnNuevaFuncionalidad.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnNuevaFuncionalidad.setFont(new Font("Tahoma", Font.BOLD, 14));
-			btnNuevaFuncionalidad.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					JDialog j = new JDialog();
-					j.setBounds(0, 0, 500, 500);
-					j.setLocationRelativeTo(null);
-					j.getContentPane().setLayout(new BorderLayout());
-					JLabel l = new JLabel();
-					l.setIcon(new ImageIcon(Main.class.getResource("/images/altoke.png")));
-					l.setHorizontalAlignment(SwingConstants.CENTER);
-					j.getContentPane().add(l, BorderLayout.CENTER);
-					j.setVisible(true);
-				}
-			});
-		}
-		return btnNuevaFuncionalidad;
-	}
 
 	private JButton getBtnListadoPericial() {
 		if (btnListadoPericial == null) {
@@ -403,5 +368,13 @@ public class Main extends JFrame {
 			});
 		}
 		return btnListadoPericial;
+	}
+	private JLabel getLblAdministracinCoiipa_1() {
+		if (lblAdministracinCoiipa == null) {
+			lblAdministracinCoiipa = new JLabel("Administración COIIPA");
+			lblAdministracinCoiipa.setHorizontalAlignment(SwingConstants.CENTER);
+			lblAdministracinCoiipa.setFont(new Font("Baskerville Old Face", Font.BOLD, 56));
+		}
+		return lblAdministracinCoiipa;
 	}
 }

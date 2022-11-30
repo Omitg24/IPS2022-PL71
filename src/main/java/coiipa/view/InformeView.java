@@ -8,8 +8,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 /**
  * Título: Clase AperturaView
@@ -40,8 +41,6 @@ public class InformeView {
 	private JLabel lbLogo;
 	private JPanel pnInferior;
 	private JButton btConfirmar;
-	private JPanel pnTituloSup;
-	private JLabel lbSolicitud;
 	private JPanel panelNombre;
 	private JPanel panelCorreoTel;
 	private JPanel panelDescripción;
@@ -60,6 +59,10 @@ public class InformeView {
 	private JRadioButton rdbtnNormal;
 	private ButtonGroup bg;
 	private JTextArea textAreaDescripcion;
+	private JLabel lblAux1;
+	private JLabel lblAux2;
+	private JLabel lblAux3;
+	private JLabel lbSolicitud;
 
 	/**
 	 * Create the frame.
@@ -70,10 +73,11 @@ public class InformeView {
 
 	private void initialize() {
 		frmAdministracinCoiipa = new JFrame();
-		frmAdministracinCoiipa.setResizable(false);
+		frmAdministracinCoiipa.setIconImage(Toolkit.getDefaultToolkit().getImage(InformeView.class.getResource("/images/coiipa_symbol.png")));
 		frmAdministracinCoiipa.setTitle("Administración COIIPA - Solicitud de informe pericial");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmAdministracinCoiipa.setBounds(100, 100, 1000, 640);
+		frmAdministracinCoiipa.setBounds(100, 100, 1500, 900);
+		frmAdministracinCoiipa.setMinimumSize(new Dimension(1500,900));
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -114,7 +118,7 @@ public class InformeView {
 			pnSuperior.setBackground(Color.WHITE);
 			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
 			pnSuperior.add(getLbLogo());
-			pnSuperior.add(getPnTituloSup());
+			pnSuperior.add(getLbSolicitud_1());
 		}
 		return pnSuperior;
 	}
@@ -130,7 +134,6 @@ public class InformeView {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
 			FlowLayout flowLayout = (FlowLayout) pnInferior.getLayout();
-			flowLayout.setVgap(40);
 			flowLayout.setHgap(0);
 			pnInferior.setBackground(Color.WHITE);
 			pnInferior.add(getBtConfirmar());
@@ -148,22 +151,6 @@ public class InformeView {
 		}
 		return btConfirmar;
 	}
-	private JPanel getPnTituloSup() {
-		if (pnTituloSup == null) {
-			pnTituloSup = new JPanel();
-			pnTituloSup.setBackground(Color.WHITE);
-			pnTituloSup.add(getLbSolicitud());
-		}
-		return pnTituloSup;
-	}
-	private JLabel getLbSolicitud() {
-		if (lbSolicitud == null) {
-			lbSolicitud = new JLabel("Solicitud de informe pericial");
-			lbSolicitud.setHorizontalAlignment(SwingConstants.CENTER);
-			lbSolicitud.setFont(new Font("Baskerville Old Face", Font.PLAIN, 50));
-		}
-		return lbSolicitud;
-	}
 
 	public JFrame getFrame() {
 		return frmAdministracinCoiipa;
@@ -176,8 +163,9 @@ public class InformeView {
 	private JPanel getPanelNombre() {
 		if (panelNombre == null) {
 			panelNombre = new JPanel();
+			panelNombre.setBorder(new TitledBorder(null, "Datos del solicitante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelNombre.setBackground(Color.WHITE);
-			panelNombre.setLayout(new BoxLayout(panelNombre, BoxLayout.Y_AXIS));
+			panelNombre.setLayout(new GridLayout(0, 1, 0, 0));
 			panelNombre.add(getLblNombre());
 			panelNombre.add(getTextFieldNombre());
 			panelNombre.add(getLblDni());
@@ -188,8 +176,9 @@ public class InformeView {
 	private JPanel getPanelCorreoTel() {
 		if (panelCorreoTel == null) {
 			panelCorreoTel = new JPanel();
+			panelCorreoTel.setBorder(new TitledBorder(null, "Datos del solicitante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelCorreoTel.setBackground(Color.WHITE);
-			panelCorreoTel.setLayout(new BoxLayout(panelCorreoTel, BoxLayout.Y_AXIS));
+			panelCorreoTel.setLayout(new GridLayout(0, 1, 0, 0));
 			panelCorreoTel.add(getLblCorreo());
 			panelCorreoTel.add(getTextFieldCorreo());
 			panelCorreoTel.add(getLblTelefono());
@@ -201,9 +190,12 @@ public class InformeView {
 		if (panelDescripción == null) {
 			panelDescripción = new JPanel();
 			panelDescripción.setBackground(Color.WHITE);
-			panelDescripción.setLayout(new BoxLayout(panelDescripción, BoxLayout.Y_AXIS));
-			panelDescripción.add(getLblDescripcion());
+			panelDescripción.setLayout(new BorderLayout(20, 50));
+			panelDescripción.add(getLblDescripcion(), BorderLayout.NORTH);
 			panelDescripción.add(getTextAreaDescripcion());
+			panelDescripción.add(getLblAux1(), BorderLayout.WEST);
+			panelDescripción.add(getLblAux2(), BorderLayout.EAST);
+			panelDescripción.add(getLblAux3(), BorderLayout.SOUTH);
 		}
 		return panelDescripción;
 	}
@@ -211,7 +203,7 @@ public class InformeView {
 		if (panelUrgencia == null) {
 			panelUrgencia = new JPanel();
 			panelUrgencia.setBackground(Color.WHITE);
-			panelUrgencia.setLayout(new BoxLayout(panelUrgencia, BoxLayout.Y_AXIS));
+			panelUrgencia.setLayout(new GridLayout(0, 1, 0, 0));
 			panelUrgencia.add(getLblUrgencia());
 			panelUrgencia.add(getRdbtnUrgente());
 			panelUrgencia.add(getRdbtnNormal());
@@ -314,9 +306,6 @@ public class InformeView {
 		if (lblUrgencia == null) {
 			lblUrgencia = new JLabel("Urgencia");
 			lblUrgencia.setFont(new Font("Tahoma", Font.BOLD, 18));
-			lblUrgencia.setAlignmentX(Component.CENTER_ALIGNMENT);
-			lblUrgencia.setBorder(new EmptyBorder(16, 48, 0, 0));
-			lblUrgencia.setMaximumSize(new Dimension(180, 72));
 			lblUrgencia.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return lblUrgencia;
@@ -324,10 +313,9 @@ public class InformeView {
 	public JRadioButton getRdbtnUrgente() {
 		if (rdbtnUrgente == null) {
 			rdbtnUrgente = new JRadioButton("Urgente");
-			rdbtnUrgente.setAlignmentX(0.1f);
+			rdbtnUrgente.setHorizontalAlignment(SwingConstants.CENTER);
 			rdbtnUrgente.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			rdbtnUrgente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			rdbtnUrgente.setMaximumSize(new Dimension(100, 23));
 			rdbtnUrgente.setBackground(Color.WHITE);
 		}
 		return rdbtnUrgente;
@@ -335,10 +323,9 @@ public class InformeView {
 	public JRadioButton getRdbtnNormal() {
 		if (rdbtnNormal == null) {
 			rdbtnNormal = new JRadioButton("Normal");
-			rdbtnNormal.setAlignmentX(0.1f);
+			rdbtnNormal.setHorizontalAlignment(SwingConstants.CENTER);
 			rdbtnNormal.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			rdbtnNormal.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			rdbtnNormal.setMaximumSize(new Dimension(100, 23));
 			rdbtnNormal.setBackground(Color.WHITE);
 		}
 		return rdbtnNormal;
@@ -346,11 +333,38 @@ public class InformeView {
 	public JTextArea getTextAreaDescripcion() {
 		if (textAreaDescripcion == null) {
 			textAreaDescripcion = new JTextArea();
+			textAreaDescripcion.setFont(new Font("Monospaced", Font.PLAIN, 16));
 			textAreaDescripcion.setBorder(new LineBorder(new Color(0, 0, 0)));
 			textAreaDescripcion.setMinimumSize(new Dimension(280, 90));
 			textAreaDescripcion.setLineWrap(true);
 			textAreaDescripcion.setMaximumSize(new Dimension(280, 90));
 		}
 		return textAreaDescripcion;
+	}
+	private JLabel getLblAux1() {
+		if (lblAux1 == null) {
+			lblAux1 = new JLabel("                         ");
+		}
+		return lblAux1;
+	}
+	private JLabel getLblAux2() {
+		if (lblAux2 == null) {
+			lblAux2 = new JLabel("                         ");
+		}
+		return lblAux2;
+	}
+	private JLabel getLblAux3() {
+		if (lblAux3 == null) {
+			lblAux3 = new JLabel("                         ");
+		}
+		return lblAux3;
+	}
+	private JLabel getLbSolicitud_1() {
+		if (lbSolicitud == null) {
+			lbSolicitud = new JLabel("Solicitud de informe pericial");
+			lbSolicitud.setHorizontalAlignment(SwingConstants.CENTER);
+			lbSolicitud.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
+		}
+		return lbSolicitud;
 	}
 }

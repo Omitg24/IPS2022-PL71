@@ -31,12 +31,10 @@ public class PericialesController {
 	public PericialesController(PericialesModel m, PericialesView v) {
 		this.model = m;
 		this.view = v;
-		// no hay inicializacion especifica del modelo, solo de la vista
 		this.initView();
 	}
 
 	public void initController() {
-		// view.getBtModificar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> modificarCurso()));
 		view.getSpnFecha().addChangeListener(
 				e -> SwingUtil.exceptionWrapper(() -> filtrarFechas(
 						(String) view.getSpnFecha().getValue())));

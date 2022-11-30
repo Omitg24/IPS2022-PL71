@@ -2,6 +2,7 @@ package coiipa.view.inscripcion;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
@@ -155,14 +157,15 @@ public class AvisoEsperaView extends JDialog {
 		setModal(true);
 		setType(Type.POPUP);
 		setVisible(false);
-		setResizable(false);
 		setFont(new Font("Tahoma", Font.PLAIN, 20));
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 800, 450);
+		setMinimumSize(new Dimension(800, 450));
 		setLocationRelativeTo(null);		
-		setTitle("Administración COIIPA - Anular asignaciones");
+		setTitle("Administración COIIPA - Unirse a la espera");
 		
 		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setLayout(new BorderLayout(10, 0));
 		contentPane.add(getPnSuperior(), BorderLayout.NORTH);
@@ -206,6 +209,7 @@ public class AvisoEsperaView extends JDialog {
 	private JPanel getPnCentral() {
 		if (pnCentral == null) {
 			pnCentral = new JPanel();
+			pnCentral.setBackground(Color.WHITE);
 			pnCentral.setLayout(new BorderLayout(0, 0));
 			pnCentral.add(getPnDatos(), BorderLayout.CENTER);
 			pnCentral.add(getPnPosicion(), BorderLayout.SOUTH);
@@ -221,7 +225,7 @@ public class AvisoEsperaView extends JDialog {
 		if (lblEspera == null) {
 			lblEspera = new JLabel("Unirse a la espera");
 			lblEspera.setHorizontalAlignment(SwingConstants.CENTER);
-			lblEspera.setFont(new Font("Baskerville Old Face", Font.PLAIN, 40));
+			lblEspera.setFont(new Font("Baskerville Old Face", Font.BOLD, 30));
 		}
 		return lblEspera;
 	}
@@ -233,6 +237,7 @@ public class AvisoEsperaView extends JDialog {
 	private JPanel getPnInferior() {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
+			pnInferior.setBackground(Color.WHITE);
 			pnInferior.add(getBtnConfirmar());
 		}
 		return pnInferior;
@@ -245,6 +250,7 @@ public class AvisoEsperaView extends JDialog {
 	private JButton getBtnConfirmar() {
 		if (btnConfirmar == null) {
 			btnConfirmar = new JButton("Confirmar");			
+			btnConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnConfirmar.setPreferredSize(new Dimension(170, 35));
 			btnConfirmar.setForeground(Color.WHITE);
 			btnConfirmar.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -269,6 +275,7 @@ public class AvisoEsperaView extends JDialog {
 	private JPanel getPnDatos() {
 		if (pnDatos == null) {
 			pnDatos = new JPanel();
+			pnDatos.setBackground(Color.WHITE);
 			pnDatos.setLayout(new GridLayout(1, 0, 10, 10));
 			pnDatos.add(getPnCurso());
 			pnDatos.add(getPnSolicitante());
@@ -283,6 +290,7 @@ public class AvisoEsperaView extends JDialog {
 	private JPanel getPnPosicion() {
 		if (pnPosicion == null) {
 			pnPosicion = new JPanel();
+			pnPosicion.setBackground(Color.WHITE);
 			pnPosicion.add(getLblPosicion());
 			pnPosicion.add(getTxtPosicion());
 		}
@@ -296,7 +304,7 @@ public class AvisoEsperaView extends JDialog {
 	private JLabel getLblPosicion() {
 		if (lblPosicion == null) {
 			lblPosicion = new JLabel("Entrará en la lista de espera en la posición:");
-			lblPosicion.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblPosicion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lblPosicion;
 	}
@@ -308,6 +316,7 @@ public class AvisoEsperaView extends JDialog {
 	private JTextField getTxtPosicion() {
 		if (txtPosicion == null) {
 			txtPosicion = new JTextField();
+			txtPosicion.setBorder(new LineBorder(Color.BLACK));
 			txtPosicion.setEditable(false);
 			txtPosicion.setHorizontalAlignment(SwingConstants.CENTER);
 			txtPosicion.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -323,6 +332,7 @@ public class AvisoEsperaView extends JDialog {
 	private JPanel getPnCurso() {
 		if (pnCurso == null) {
 			pnCurso = new JPanel();
+			pnCurso.setBackground(Color.WHITE);
 			pnCurso.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Datos del curso", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnCurso.setLayout(new GridLayout(6, 1, 0, 0));
 			pnCurso.add(getLblTituloCurso());
@@ -342,6 +352,7 @@ public class AvisoEsperaView extends JDialog {
 	private JPanel getPnSolicitante() {
 		if (pnSolicitante == null) {
 			pnSolicitante = new JPanel();
+			pnSolicitante.setBackground(Color.WHITE);
 			pnSolicitante.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Datos del solicitante", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnSolicitante.setLayout(new GridLayout(6, 1, 0, 0));
 			pnSolicitante.add(getLblDniColegiado());
@@ -387,8 +398,9 @@ public class AvisoEsperaView extends JDialog {
 	private JTextField getTxtTitulo() {
 		if (txtTitulo == null) {
 			txtTitulo = new JTextField();
+			txtTitulo.setBorder(new LineBorder(Color.BLACK));
 			txtTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-			txtTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			txtTitulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtTitulo.setEditable(false);
 			txtTitulo.setColumns(10);
 		}
@@ -402,8 +414,9 @@ public class AvisoEsperaView extends JDialog {
 	private JTextField getTxtFecha() {
 		if (txtFecha == null) {
 			txtFecha = new JTextField();
+			txtFecha.setBorder(new LineBorder(Color.BLACK));
 			txtFecha.setHorizontalAlignment(SwingConstants.CENTER);
-			txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtFecha.setEditable(false);
 			txtFecha.setColumns(10);
 		}
@@ -430,8 +443,9 @@ public class AvisoEsperaView extends JDialog {
 	private JTextField getTextFechaInscripcion() {
 		if (txtFechaInscripcion == null) {
 			txtFechaInscripcion = new JTextField();
+			txtFechaInscripcion.setBorder(new LineBorder(Color.BLACK));
 			txtFechaInscripcion.setHorizontalAlignment(SwingConstants.CENTER);
-			txtFechaInscripcion.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			txtFechaInscripcion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtFechaInscripcion.setEditable(false);
 			txtFechaInscripcion.setColumns(10);
 		}
@@ -458,8 +472,9 @@ public class AvisoEsperaView extends JDialog {
 	private JTextField getTxtDni() {
 		if (txtDni == null) {
 			txtDni = new JTextField();
+			txtDni.setBorder(new LineBorder(Color.BLACK));
 			txtDni.setHorizontalAlignment(SwingConstants.CENTER);
-			txtDni.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			txtDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtDni.setEditable(false);
 			txtDni.setColumns(10);
 		}
@@ -486,8 +501,9 @@ public class AvisoEsperaView extends JDialog {
 	private JTextField getTxtNombre() {
 		if (txtNombre == null) {
 			txtNombre = new JTextField();
+			txtNombre.setBorder(new LineBorder(Color.BLACK));
 			txtNombre.setHorizontalAlignment(SwingConstants.CENTER);
-			txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtNombre.setEditable(false);
 			txtNombre.setColumns(10);
 		}
@@ -514,8 +530,9 @@ public class AvisoEsperaView extends JDialog {
 	private JTextField getTxtApellidos() {
 		if (txtApellidos == null) {
 			txtApellidos = new JTextField();
+			txtApellidos.setBorder(new LineBorder(Color.BLACK));
 			txtApellidos.setHorizontalAlignment(SwingConstants.CENTER);
-			txtApellidos.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			txtApellidos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtApellidos.setEditable(false);
 			txtApellidos.setColumns(10);
 		}

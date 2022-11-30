@@ -52,14 +52,6 @@ public class InscripcionPericialView implements Inscripcion {
 	 */
 	private JLabel lbLogo;
 	/**
-	 * Atributo applicantPanel
-	 */
-	private JPanel pnTitulo;
-	/**
-	 * Atributo lbApplicant
-	 */
-	private JLabel lbTitulo;
-	/**
 	 * Atributo bottomPanel
 	 */
 	private JPanel pnInf;
@@ -158,6 +150,7 @@ public class InscripcionPericialView implements Inscripcion {
 	private JButton btVerificar;
 	private JPanel pnModificar;
 	private JPanel pnVerificar;
+	private JLabel lbTitulo;
 
 //-- INTERFAZ GRÁFICA ----------------------------------------------------------
 	/**
@@ -172,14 +165,12 @@ public class InscripcionPericialView implements Inscripcion {
 	 */
 	private void initialize() {
 		frmAdministracinCoiipa = new JFrame();
-		frmAdministracinCoiipa.setPreferredSize(new Dimension(1200, 800));
-		frmAdministracinCoiipa.setSize(new Dimension(1500, 1000));
-		frmAdministracinCoiipa.setResizable(false);
-		frmAdministracinCoiipa.setTitle("Administración COIIPA - Inscripcion Pericial");
+		frmAdministracinCoiipa.setTitle("Administración COIIPA - Inscripción pericial");
 		frmAdministracinCoiipa.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(InscripcionPericialView.class.getResource("/images/coiipa_symbol.png")));
 		frmAdministracinCoiipa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmAdministracinCoiipa.setBounds(100, 100, 895, 500);
+		frmAdministracinCoiipa.setBounds(100, 100, 1500, 900);
+		frmAdministracinCoiipa.setMinimumSize(new Dimension(1500,900));
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -205,7 +196,7 @@ public class InscripcionPericialView implements Inscripcion {
 			pnSuperior.setBackground(Color.WHITE);
 			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
 			pnSuperior.add(getLbLogo());
-			pnSuperior.add(getPnTitulo());
+			pnSuperior.add(getLbTitulo_1());
 		}
 		return pnSuperior;
 	}
@@ -221,34 +212,6 @@ public class InscripcionPericialView implements Inscripcion {
 			lbLogo.setIcon(new ImageIcon(InscripcionPericialView.class.getResource("/images/coiipa_logo.jpg")));
 		}
 		return lbLogo;
-	}
-
-	/**
-	 * Método getApplicationPanel
-	 * 
-	 * @return applicantPanel
-	 */
-	private JPanel getPnTitulo() {
-		if (pnTitulo == null) {
-			pnTitulo = new JPanel();
-			pnTitulo.setBackground(Color.WHITE);
-			pnTitulo.add(getLbTitulo());
-		}
-		return pnTitulo;
-	}
-
-	/**
-	 * getLbApplicant
-	 * 
-	 * @return lbApplicant
-	 */
-	private JLabel getLbTitulo() {
-		if (lbTitulo == null) {
-			lbTitulo = new JLabel("Inscripción Pericial");
-			lbTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-			lbTitulo.setFont(new Font("Baskerville Old Face", Font.PLAIN, 60));
-		}
-		return lbTitulo;
 	}
 
 	/**
@@ -280,7 +243,7 @@ public class InscripcionPericialView implements Inscripcion {
 			btModificar.setAlignmentX(Component.CENTER_ALIGNMENT);
 			btModificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btModificar.setForeground(Color.WHITE);
-			btModificar.setFont(new Font("Tahoma", Font.BOLD, 16));
+			btModificar.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btModificar.setBackground(new Color(34, 139, 34));
 		}
 		return btModificar;
@@ -331,7 +294,7 @@ public class InscripcionPericialView implements Inscripcion {
 		if (pnNumeroCol == null) {
 			pnNumeroCol = new JPanel();
 			pnNumeroCol.setBackground(Color.WHITE);
-			pnNumeroCol.setLayout(new GridLayout(2, 2, 0, 5));
+			pnNumeroCol.setLayout(new GridLayout(2, 2, 0, 25));
 			pnNumeroCol.add(getLbNumeroCol());
 			pnNumeroCol.add(getTxtNumeroCol());
 		}
@@ -349,7 +312,7 @@ public class InscripcionPericialView implements Inscripcion {
 			lbNumeroCol.setBorder(null);
 			lbNumeroCol.setLabelFor(getTxtNumeroCol());
 			lbNumeroCol.setHorizontalAlignment(SwingConstants.CENTER);
-			lbNumeroCol.setFont(new Font("Tahoma", Font.BOLD, 16));
+			lbNumeroCol.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lbNumeroCol;
 	}
@@ -365,7 +328,7 @@ public class InscripcionPericialView implements Inscripcion {
 			txtNumeroCol.setEditable(false);
 			txtNumeroCol.setPreferredSize(new Dimension(10, 25));
 			txtNumeroCol.setHorizontalAlignment(SwingConstants.CENTER);
-			txtNumeroCol.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			txtNumeroCol.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtNumeroCol.setColumns(10);
 			txtNumeroCol.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtNumeroCol.setBackground(Color.WHITE);
@@ -382,7 +345,7 @@ public class InscripcionPericialView implements Inscripcion {
 		if (pnDni == null) {
 			pnDni = new JPanel();
 			pnDni.setBackground(Color.WHITE);
-			pnDni.setLayout(new GridLayout(2, 2, 0, 5));
+			pnDni.setLayout(new GridLayout(2, 2, 0, 25));
 			pnDni.add(getLbDni());
 			pnDni.add(getTxtDni());
 		}
@@ -399,7 +362,7 @@ public class InscripcionPericialView implements Inscripcion {
 			lbDni = new JLabel("DNI");
 			lbDni.setLabelFor(getTxtDni());
 			lbDni.setHorizontalAlignment(SwingConstants.CENTER);
-			lbDni.setFont(new Font("Tahoma", Font.BOLD, 16));
+			lbDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lbDni;
 	}
@@ -415,7 +378,7 @@ public class InscripcionPericialView implements Inscripcion {
 			txtDni.setEditable(false);
 			txtDni.setPreferredSize(new Dimension(10, 25));
 			txtDni.setHorizontalAlignment(SwingConstants.CENTER);
-			txtDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			txtDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtDni.setColumns(10);
 			txtDni.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtDni.setBackground(Color.WHITE);
@@ -449,7 +412,7 @@ public class InscripcionPericialView implements Inscripcion {
 		if (pnNombre == null) {
 			pnNombre = new JPanel();
 			pnNombre.setBackground(Color.WHITE);
-			pnNombre.setLayout(new GridLayout(2, 2, 0, 5));
+			pnNombre.setLayout(new GridLayout(2, 2, 0, 25));
 			pnNombre.add(getLbNombre());
 			pnNombre.add(getTxtNombre());
 		}
@@ -466,7 +429,7 @@ public class InscripcionPericialView implements Inscripcion {
 			lbNombre = new JLabel("Nombre");
 			lbNombre.setLabelFor(getTxtNombre());
 			lbNombre.setHorizontalAlignment(SwingConstants.CENTER);
-			lbNombre.setFont(new Font("Tahoma", Font.BOLD, 16));
+			lbNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lbNombre;
 	}
@@ -482,7 +445,7 @@ public class InscripcionPericialView implements Inscripcion {
 			txtNombre.setEditable(false);
 			txtNombre.setPreferredSize(new Dimension(10, 25));
 			txtNombre.setHorizontalAlignment(SwingConstants.CENTER);
-			txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtNombre.setColumns(10);
 			txtNombre.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtNombre.setBackground(Color.WHITE);
@@ -500,7 +463,7 @@ public class InscripcionPericialView implements Inscripcion {
 		if (pnTelefono == null) {
 			pnTelefono = new JPanel();
 			pnTelefono.setBackground(Color.WHITE);
-			pnTelefono.setLayout(new GridLayout(2, 2, 0, 5));
+			pnTelefono.setLayout(new GridLayout(2, 2, 0, 25));
 			pnTelefono.add(getLbTelefono());
 			pnTelefono.add(getTxtTelefono());
 		}
@@ -517,7 +480,7 @@ public class InscripcionPericialView implements Inscripcion {
 			lbTelefono = new JLabel("Teléfono (*)");
 			lbTelefono.setLabelFor(getTxtTelefono());
 			lbTelefono.setHorizontalAlignment(SwingConstants.CENTER);
-			lbTelefono.setFont(new Font("Tahoma", Font.BOLD, 16));
+			lbTelefono.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lbTelefono;
 	}
@@ -533,7 +496,7 @@ public class InscripcionPericialView implements Inscripcion {
 			txtTelefono.setEditable(false);
 			txtTelefono.setPreferredSize(new Dimension(10, 25));
 			txtTelefono.setHorizontalAlignment(SwingConstants.CENTER);
-			txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtTelefono.setColumns(10);
 			txtTelefono.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtTelefono.setBackground(Color.WHITE);
@@ -566,7 +529,7 @@ public class InscripcionPericialView implements Inscripcion {
 		if (pnApellidos == null) {
 			pnApellidos = new JPanel();
 			pnApellidos.setBackground(Color.WHITE);
-			pnApellidos.setLayout(new GridLayout(2, 2, 0, 5));
+			pnApellidos.setLayout(new GridLayout(2, 2, 0, 25));
 			pnApellidos.add(getLbApellidos());
 			pnApellidos.add(getTxtApellidos());
 		}
@@ -583,7 +546,7 @@ public class InscripcionPericialView implements Inscripcion {
 			lbApellidos = new JLabel("Apellidos");
 			lbApellidos.setLabelFor(getTxtApellidos());
 			lbApellidos.setHorizontalAlignment(SwingConstants.CENTER);
-			lbApellidos.setFont(new Font("Tahoma", Font.BOLD, 16));
+			lbApellidos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lbApellidos;
 	}
@@ -599,7 +562,7 @@ public class InscripcionPericialView implements Inscripcion {
 			txtApellidos.setEditable(false);
 			txtApellidos.setPreferredSize(new Dimension(10, 25));
 			txtApellidos.setHorizontalAlignment(SwingConstants.CENTER);
-			txtApellidos.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			txtApellidos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtApellidos.setColumns(10);
 			txtApellidos.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtApellidos.setBackground(Color.WHITE);
@@ -616,7 +579,7 @@ public class InscripcionPericialView implements Inscripcion {
 		if (pnLocalidad == null) {
 			pnLocalidad = new JPanel();
 			pnLocalidad.setBackground(Color.WHITE);
-			pnLocalidad.setLayout(new GridLayout(2, 2, 0, 5));
+			pnLocalidad.setLayout(new GridLayout(2, 2, 0, 25));
 			pnLocalidad.add(getLbLocalidad());
 			pnLocalidad.add(getTxtLocalidad());
 		}
@@ -633,7 +596,7 @@ public class InscripcionPericialView implements Inscripcion {
 			lbLocalidad = new JLabel("Localidad (*)");
 			lbLocalidad.setLabelFor(getTxtLocalidad());
 			lbLocalidad.setHorizontalAlignment(SwingConstants.CENTER);
-			lbLocalidad.setFont(new Font("Tahoma", Font.BOLD, 16));
+			lbLocalidad.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lbLocalidad;
 	}
@@ -649,7 +612,7 @@ public class InscripcionPericialView implements Inscripcion {
 			txtLocalidad.setEditable(false);
 			txtLocalidad.setPreferredSize(new Dimension(10, 25));
 			txtLocalidad.setHorizontalAlignment(SwingConstants.CENTER);
-			txtLocalidad.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			txtLocalidad.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtLocalidad.setColumns(10);
 			txtLocalidad.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtLocalidad.setBackground(Color.WHITE);
@@ -726,9 +689,10 @@ public class InscripcionPericialView implements Inscripcion {
 	private JButton getBtVerificar() {
 		if (btVerificar == null) {
 			btVerificar = new JButton("Verificar");
+			btVerificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btVerificar.setAlignmentX(Component.CENTER_ALIGNMENT);
 			btVerificar.setForeground(Color.WHITE);
-			btVerificar.setFont(new Font("Tahoma", Font.BOLD, 16));
+			btVerificar.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btVerificar.setBackground(new Color(0, 128, 0));
 		}
 		return btVerificar;
@@ -753,5 +717,13 @@ public class InscripcionPericialView implements Inscripcion {
 	@Override
 	public Inscripcion getInscripcion() {
 		return this;
+	}
+	private JLabel getLbTitulo_1() {
+		if (lbTitulo == null) {
+			lbTitulo = new JLabel("Inscripción pericial");
+			lbTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+			lbTitulo.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
+		}
+		return lbTitulo;
 	}
 }

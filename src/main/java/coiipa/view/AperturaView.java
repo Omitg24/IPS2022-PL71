@@ -6,6 +6,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,13 +42,12 @@ public class AperturaView {
 	private JLabel lbLogo;
 	private JPanel pnInferior;
 	private JButton btModificar;
-	private JPanel pnTituloSup;
-	private JLabel lbApertura;
 	private JScrollPane scrollPaneCursos;
 	private JTable tableCursos;
 	private JPanel pnRegistro;
 
 	private ModificacionView modificacion;
+	private JLabel lbApertura;
 
 	/**
 	 * Create the frame.
@@ -57,10 +58,11 @@ public class AperturaView {
 
 	private void initialize() {
 		frmAdministracinCoiipa = new JFrame();
-		frmAdministracinCoiipa.setResizable(false);
+		frmAdministracinCoiipa.setIconImage(Toolkit.getDefaultToolkit().getImage(AperturaView.class.getResource("/images/coiipa_symbol.png")));
 		frmAdministracinCoiipa.setTitle("Administración COIIPA - Apertura de cursos");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmAdministracinCoiipa.setBounds(100, 100, 1000, 600);
+		frmAdministracinCoiipa.setBounds(100, 100, 1500, 900);
+		frmAdministracinCoiipa.setMinimumSize(new Dimension(1500,900));
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -96,7 +98,7 @@ public class AperturaView {
 			pnSuperior.setBackground(Color.WHITE);
 			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
 			pnSuperior.add(getLbLogo());
-			pnSuperior.add(getPnTituloSup());
+			pnSuperior.add(getLbApertura_1());
 		}
 		return pnSuperior;
 	}
@@ -112,7 +114,6 @@ public class AperturaView {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
 			FlowLayout flowLayout = (FlowLayout) pnInferior.getLayout();
-			flowLayout.setVgap(40);
 			flowLayout.setHgap(0);
 			pnInferior.setBackground(Color.WHITE);
 			pnInferior.add(getBtModificar());
@@ -125,26 +126,10 @@ public class AperturaView {
 			btModificar.setFocusable(false);
 			btModificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btModificar.setForeground(Color.WHITE);
-			btModificar.setFont(new Font("Tahoma", Font.BOLD, 16));
+			btModificar.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btModificar.setBackground(new Color(34, 139, 34));
 		}
 		return btModificar;
-	}
-	private JPanel getPnTituloSup() {
-		if (pnTituloSup == null) {
-			pnTituloSup = new JPanel();
-			pnTituloSup.setBackground(Color.WHITE);
-			pnTituloSup.add(getLbApertura());
-		}
-		return pnTituloSup;
-	}
-	private JLabel getLbApertura() {
-		if (lbApertura == null) {
-			lbApertura = new JLabel("Apertura de cursos");
-			lbApertura.setHorizontalAlignment(SwingConstants.CENTER);
-			lbApertura.setFont(new Font("Baskerville Old Face", Font.PLAIN, 60));
-		}
-		return lbApertura;
 	}
 
 	public JFrame getFrame() {
@@ -167,10 +152,20 @@ public class AperturaView {
 	public JTable getTableCursos() {
 		if (tableCursos == null) {
 			tableCursos = new JTable();
-			tableCursos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			tableCursos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			tableCursos.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			tableCursos.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+			tableCursos.setRowMargin(5);
+			tableCursos.setAutoscrolls(false);
+			tableCursos.setFillsViewportHeight(true);
+			tableCursos.setRowHeight(30);
+			tableCursos.setSelectionForeground(Color.WHITE);
+			tableCursos.setSelectionBackground(Color.GRAY);
+			tableCursos.setGridColor(SystemColor.windowBorder);
+			tableCursos.setName("Tabla de Cursos");
 			tableCursos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			tableCursos.setDefaultEditor(Object.class, null);
+			tableCursos.setBackground(Color.decode("#f0f0f0"));
 		}
 		return tableCursos;
 	}
@@ -179,7 +174,7 @@ public class AperturaView {
 			pnRegistro = new JPanel();
 			pnRegistro.setPreferredSize(new Dimension(670, 200));
 			pnRegistro.setName("");
-			pnRegistro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Listado de cursos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			pnRegistro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Lista de cursos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnRegistro.setBackground(Color.WHITE);
 			pnRegistro.setLayout(new BorderLayout(0, 0));
 			pnRegistro.add(getScrollPaneCursos());
@@ -189,5 +184,13 @@ public class AperturaView {
 
 	public ModificacionView getModificacion() {
 		return this.modificacion;
+	}
+	private JLabel getLbApertura_1() {
+		if (lbApertura == null) {
+			lbApertura = new JLabel("Apertura de cursos");
+			lbApertura.setHorizontalAlignment(SwingConstants.CENTER);
+			lbApertura.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
+		}
+		return lbApertura;
 	}
 }

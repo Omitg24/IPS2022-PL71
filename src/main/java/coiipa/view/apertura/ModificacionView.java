@@ -7,8 +7,10 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.Window.Type;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -34,7 +36,6 @@ public class ModificacionView {
 	private JPanel pnSuperior;
 	private JPanel pnInferior;
 	private JButton btListo;
-	private JLabel lblIntroduzca;
 	private JPanel panelInicio;
 	private JPanel panelFin;
 	private JTextField textFin;
@@ -44,6 +45,9 @@ public class ModificacionView {
 	private JPanel panelNplazas;
 	private JLabel lblNplazas;
 	private JTextField textFieldNplazas;
+	private JLabel lblIntroduzca;
+	private JLabel lblLogo;
+	private JLabel lblTitulo;
 
 	/**
 	 * Create the frame.
@@ -54,17 +58,18 @@ public class ModificacionView {
 
 	private void initialize() {
 		frmModificacion = new JDialog();
+		frmModificacion.setIconImage(Toolkit.getDefaultToolkit().getImage(ModificacionView.class.getResource("/images/coiipa_symbol.png")));
 		frmModificacion.setModal(true);
 		frmModificacion.setType(Type.POPUP);
-		frmModificacion.setResizable(false);
-		frmModificacion.setTitle("Establecimiento de plazos");
+		frmModificacion.setTitle("Administracion COIIPA - Establecimiento de plazos");
 		frmModificacion.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmModificacion.setBounds(100, 100, 340, 270);
+		frmModificacion.setBounds(100, 100, 800, 450);
+		frmModificacion.setMinimumSize(new Dimension(800, 450));
 		frmModificacion.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(Color.WHITE);
 
 		frmModificacion.setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -89,7 +94,8 @@ public class ModificacionView {
 		if (pnCentro == null) {
 			pnCentro = new JPanel();
 			pnCentro.setBackground(Color.WHITE);
-			pnCentro.setLayout(new GridLayout(3, 1, 0, 0));
+			pnCentro.setLayout(new GridLayout(4, 1, 0, 0));
+			pnCentro.add(getLblIntroduzca_1());
 			pnCentro.add(getPanelInicio());
 			pnCentro.add(getPanelFin());
 			pnCentro.add(getPanelNplazas());
@@ -100,8 +106,9 @@ public class ModificacionView {
 		if (pnSuperior == null) {
 			pnSuperior = new JPanel();
 			pnSuperior.setBackground(Color.WHITE);
-			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 12));
-			pnSuperior.add(getLblIntroduzca());
+			pnSuperior.setLayout(new GridLayout(0, 2, 0, 0));
+			pnSuperior.add(getLblLogo());
+			pnSuperior.add(getLblTitulo());
 		}
 		return pnSuperior;
 	}
@@ -110,7 +117,6 @@ public class ModificacionView {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
 			FlowLayout flowLayout = (FlowLayout) pnInferior.getLayout();
-			flowLayout.setAlignment(FlowLayout.RIGHT);
 			flowLayout.setVgap(10);
 			flowLayout.setHgap(10);
 			pnInferior.setBackground(Color.WHITE);
@@ -124,7 +130,7 @@ public class ModificacionView {
 			btListo.setFocusable(false);
 			btListo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btListo.setForeground(Color.WHITE);
-			btListo.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btListo.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btListo.setBackground(new Color(34, 139, 34));
 		}
 		return btListo;
@@ -137,12 +143,6 @@ public class ModificacionView {
 	public void mostrarDialogo(String string) {
 		JOptionPane.showMessageDialog(null, string);
 
-	}
-	private JLabel getLblIntroduzca() {
-		if (lblIntroduzca == null) {
-			lblIntroduzca = new JLabel("Por favor, introduzca los plazos de inscripción:");
-		}
-		return lblIntroduzca;
 	}
 	private JPanel getPanelInicio() {
 		if (panelInicio == null) {
@@ -168,10 +168,9 @@ public class ModificacionView {
 		if (textFin == null) {
 			textFin = new JTextField();
 			textFin.setText("(YYYY-MM-DD)");
-			textFin.setPreferredSize(new Dimension(10, 25));
 			textFin.setHorizontalAlignment(SwingConstants.CENTER);
 			textFin.setForeground(Color.WHITE);
-			textFin.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			textFin.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFin.setColumns(10);
 			textFin.setBorder(new LineBorder(new Color(171, 173, 179)));
 			textFin.setBackground(Color.LIGHT_GRAY);
@@ -182,10 +181,9 @@ public class ModificacionView {
 		if (textInicio == null) {
 			textInicio = new JTextField();
 			textInicio.setText("(YYYY-MM-DD)");
-			textInicio.setPreferredSize(new Dimension(10, 25));
 			textInicio.setHorizontalAlignment(SwingConstants.CENTER);
 			textInicio.setForeground(Color.WHITE);
-			textInicio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			textInicio.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textInicio.setColumns(10);
 			textInicio.setBorder(new LineBorder(new Color(171, 173, 179)));
 			textInicio.setBackground(Color.LIGHT_GRAY);
@@ -195,12 +193,14 @@ public class ModificacionView {
 	private JLabel getLblInicio() {
 		if (lblInicio == null) {
 			lblInicio = new JLabel("Inicio:     ");
+			lblInicio.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lblInicio;
 	}
 	private JLabel getLblFin() {
 		if (lblFin == null) {
-			lblFin = new JLabel("Fin:          ");
+			lblFin = new JLabel("Fin:        ");
+			lblFin.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lblFin;
 	}
@@ -217,20 +217,43 @@ public class ModificacionView {
 	private JLabel getLblNplazas() {
 		if (lblNplazas == null) {
 			lblNplazas = new JLabel("Nº plazas:");
+			lblNplazas.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lblNplazas;
 	}
 	public JTextField getTextFieldNplazas() {
 		if (textFieldNplazas == null) {
 			textFieldNplazas = new JTextField();
-			textFieldNplazas.setPreferredSize(new Dimension(10, 25));
 			textFieldNplazas.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldNplazas.setForeground(Color.BLACK);
-			textFieldNplazas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			textFieldNplazas.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFieldNplazas.setColumns(10);
 			textFieldNplazas.setBorder(new LineBorder(new Color(171, 173, 179)));
 			textFieldNplazas.setBackground(Color.LIGHT_GRAY);
 		}
 		return textFieldNplazas;
+	}
+	private JLabel getLblIntroduzca_1() {
+		if (lblIntroduzca == null) {
+			lblIntroduzca = new JLabel("Por favor, introduzca los plazos de inscripción:");
+			lblIntroduzca.setHorizontalAlignment(SwingConstants.CENTER);
+			lblIntroduzca.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		}
+		return lblIntroduzca;
+	}
+	private JLabel getLblLogo() {
+		if (lblLogo == null) {
+			lblLogo = new JLabel("");
+			lblLogo.setIcon(new ImageIcon(ModificacionView.class.getResource("/images/coiipa_logo.jpg")));
+		}
+		return lblLogo;
+	}
+	private JLabel getLblTitulo() {
+		if (lblTitulo == null) {
+			lblTitulo = new JLabel("Establecimiento de plazos");
+			lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+			lblTitulo.setFont(new Font("Baskerville Old Face", Font.BOLD, 30));
+		}
+		return lblTitulo;
 	}
 }

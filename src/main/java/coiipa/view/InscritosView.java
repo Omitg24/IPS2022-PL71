@@ -2,6 +2,7 @@ package coiipa.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -22,7 +23,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-import java.awt.Cursor;
 
 /**
  * Título: Clase InscritosView
@@ -56,14 +56,6 @@ public class InscritosView {
 	 * Atributo pnInferior
 	 */
 	private JPanel pnInferior;
-	/**
-	 * Atributo pnTituloSup
-	 */
-	private JPanel pnTituloSup;
-	/**
-	 * Atributo lbPlan
-	 */
-	private JLabel lbPlan;
 	/**
 	 * Atributo tbInscritos
 	 */
@@ -120,6 +112,7 @@ public class InscritosView {
 	 * Atributo btCancelar
 	 */
 	private JButton btCancelar;	
+	private JLabel lblInscripcionesDeCursos;
 
 	/**
 	 * Constructor sin parámetros
@@ -138,8 +131,8 @@ public class InscritosView {
 		frame.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(InscritosView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setBounds(100, 100, 1500, 1000);
-		frame.setMinimumSize(new Dimension(1500,1000));
+		frame.setBounds(100, 100, 1500, 900);
+		frame.setMinimumSize(new Dimension(1500,900));
 		frame.setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
@@ -179,7 +172,7 @@ public class InscritosView {
 			pnSuperior.setBackground(Color.WHITE);
 			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
 			pnSuperior.add(getLbLogo());
-			pnSuperior.add(getPnTituloSup());
+			pnSuperior.add(getLbPlan_1());
 		}
 		return pnSuperior;
 	}
@@ -209,32 +202,6 @@ public class InscritosView {
 			pnInferior.add(getPnDcha());
 		}
 		return pnInferior;
-	}
-
-	/**
-	 * Método getPnTituloSup
-	 * @return pnTituloSup
-	 */
-	private JPanel getPnTituloSup() {
-		if (pnTituloSup == null) {
-			pnTituloSup = new JPanel();
-			pnTituloSup.setBackground(Color.WHITE);
-			pnTituloSup.add(getLbPlan());
-		}
-		return pnTituloSup;
-	}
-
-	/**
-	 * Método getLbPlan
-	 * @return lbPlan
-	 */
-	private JLabel getLbPlan() {
-		if (lbPlan == null) {
-			lbPlan = new JLabel("Inscripciones cursos");
-			lbPlan.setHorizontalAlignment(SwingConstants.CENTER);
-			lbPlan.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
-		}
-		return lbPlan;
 	}
 	
 	/**
@@ -273,7 +240,8 @@ public class InscritosView {
 	private JTable getTbCursos() {
 		if (tbCursos == null) {
 			tbCursos = new JTable();			
-			tbCursos.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			tbCursos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			tbCursos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			tbCursos.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tbCursos.setRowMargin(5);
 			tbCursos.setAutoscrolls(false);
@@ -326,7 +294,8 @@ public class InscritosView {
 	private JTable getTbInscritos() {
 		if (tbInscritos == null) {
 			tbInscritos = new JTable();			
-			tbInscritos.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			tbInscritos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			tbInscritos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			tbInscritos.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tbInscritos.setRowMargin(5);
 			tbInscritos.setAutoscrolls(false);
@@ -379,7 +348,8 @@ public class InscritosView {
 	private JTable getTbEspera() {
 		if (tbEspera == null) {
 			tbEspera = new JTable();			
-			tbEspera.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			tbEspera.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			tbEspera.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			tbEspera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tbEspera.setRowMargin(5);
 			tbEspera.setAutoscrolls(false);
@@ -403,6 +373,7 @@ public class InscritosView {
 	private JPanel getPnDcha() {
 		if (pnDcha == null) {
 			pnDcha = new JPanel();
+			pnDcha.setBackground(Color.WHITE);
 			pnDcha.add(getBtCancelar());
 		}
 		return pnDcha;
@@ -415,6 +386,7 @@ public class InscritosView {
 	private JPanel getPnIzda() {
 		if (pnIzda == null) {
 			pnIzda = new JPanel();
+			pnIzda.setBackground(Color.WHITE);
 			FlowLayout flowLayout = (FlowLayout) pnIzda.getLayout();
 			flowLayout.setHgap(50);
 			pnIzda.add(getLbTotal());
@@ -432,7 +404,7 @@ public class InscritosView {
 			lbTotal = new JLabel("Total abonado:");
 			lbTotal.setHorizontalTextPosition(SwingConstants.CENTER);
 			lbTotal.setHorizontalAlignment(SwingConstants.CENTER);
-			lbTotal.setFont(new Font("Calibri", Font.PLAIN, 16));
+			lbTotal.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			lbTotal.setDisplayedMnemonic('T');
 		}
 		return lbTotal;
@@ -446,7 +418,7 @@ public class InscritosView {
 		if (txtTotal == null) {
 			txtTotal = new JTextField();
 			txtTotal.setHorizontalAlignment(SwingConstants.CENTER);
-			txtTotal.setFont(new Font("Calibri", Font.PLAIN, 16));
+			txtTotal.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtTotal.setEditable(false);
 			txtTotal.setColumns(6);
 			txtTotal.setBackground(Color.WHITE);
@@ -464,7 +436,7 @@ public class InscritosView {
 			btCancelar.setEnabled(false);
 			btCancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btCancelar.setForeground(Color.WHITE);
-			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 22));
+			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btCancelar.setBackground(new Color(34, 139, 34));
 		}
 		return btCancelar;
@@ -509,4 +481,12 @@ public class InscritosView {
 	public JTable getTableEspera() {
 		return tbEspera;
 	}	
+	private JLabel getLbPlan_1() {
+		if (lblInscripcionesDeCursos == null) {
+			lblInscripcionesDeCursos = new JLabel("Inscripciones de cursos");
+			lblInscripcionesDeCursos.setHorizontalAlignment(SwingConstants.CENTER);
+			lblInscripcionesDeCursos.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
+		}
+		return lblInscripcionesDeCursos;
+	}
 }

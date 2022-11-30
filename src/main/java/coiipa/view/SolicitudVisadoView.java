@@ -8,9 +8,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.text.ParseException;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -24,8 +24,8 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.text.MaskFormatter;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 
 /**
  * 
@@ -43,8 +43,6 @@ public class SolicitudVisadoView {
 	private JLabel lbLogo;
 	private JPanel pnInferior;
 	private JButton btConfirmar;
-	private JPanel pnTituloSup;
-	private JLabel lbSolicitud;
 	private JPanel panelNombre;
 	private JPanel panelDescripción;
 	private JLabel lblNombre;
@@ -55,6 +53,10 @@ public class SolicitudVisadoView {
 	private JLabel lblDni;
 	private JTextField textFieldDni;
 	private JTextArea textAreaDescripcion;
+	private JLabel lblAux1;
+	private JLabel lblAux2;
+	private JLabel lblAux3;
+	private JLabel lbSolicitud;
 
 	/**
 	 * Create the frame.
@@ -65,10 +67,12 @@ public class SolicitudVisadoView {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(SolicitudVisadoView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setResizable(false);
 		frame.setTitle("Administración COIIPA - Solicitud de visado");
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frame.setBounds(100, 100, 1000, 640);
+		frame.setBounds(100, 100, 1500, 900);
+		frame.setMinimumSize(new Dimension(1500,900));
 		frame.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -89,7 +93,7 @@ public class SolicitudVisadoView {
 			pnCentro = new JPanel();
 			pnCentro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Datos solicitud", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			pnCentro.setBackground(Color.WHITE);
-			pnCentro.setLayout(new GridLayout(1, 2, 0, 0));
+			pnCentro.setLayout(new GridLayout(1, 2, 10, 0));
 			pnCentro.add(getPanelNombre());
 			pnCentro.add(getPanelDescripción());
 		}
@@ -101,7 +105,7 @@ public class SolicitudVisadoView {
 			pnSuperior.setBackground(Color.WHITE);
 			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
 			pnSuperior.add(getLbLogo());
-			pnSuperior.add(getPnTituloSup());
+			pnSuperior.add(getLbSolicitud_1());
 		}
 		return pnSuperior;
 	}
@@ -116,8 +120,8 @@ public class SolicitudVisadoView {
 	private JPanel getPnInferior() {
 		if (pnInferior == null) {
 			pnInferior = new JPanel();
+			pnInferior.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			FlowLayout flowLayout = (FlowLayout) pnInferior.getLayout();
-			flowLayout.setVgap(40);
 			flowLayout.setHgap(0);
 			pnInferior.setBackground(Color.WHITE);
 			pnInferior.add(getBtConfirmar());
@@ -135,22 +139,6 @@ public class SolicitudVisadoView {
 		}
 		return btConfirmar;
 	}
-	private JPanel getPnTituloSup() {
-		if (pnTituloSup == null) {
-			pnTituloSup = new JPanel();
-			pnTituloSup.setBackground(Color.WHITE);
-			pnTituloSup.add(getLbSolicitud());
-		}
-		return pnTituloSup;
-	}
-	private JLabel getLbSolicitud() {
-		if (lbSolicitud == null) {
-			lbSolicitud = new JLabel("Solicitud de visado");
-			lbSolicitud.setHorizontalAlignment(SwingConstants.CENTER);
-			lbSolicitud.setFont(new Font("Baskerville Old Face", Font.PLAIN, 50));
-		}
-		return lbSolicitud;
-	}
 
 	public JFrame getFrame() {
 		return frame;
@@ -164,7 +152,7 @@ public class SolicitudVisadoView {
 		if (panelNombre == null) {
 			panelNombre = new JPanel();
 			panelNombre.setBackground(Color.WHITE);
-			panelNombre.setLayout(new BoxLayout(panelNombre, BoxLayout.Y_AXIS));
+			panelNombre.setLayout(new GridLayout(0, 1, 0, 10));
 			panelNombre.add(getLblDni());
 			panelNombre.add(getTextFieldDni());
 			panelNombre.add(getLblNombre());
@@ -179,9 +167,12 @@ public class SolicitudVisadoView {
 		if (panelDescripción == null) {
 			panelDescripción = new JPanel();
 			panelDescripción.setBackground(Color.WHITE);
-			panelDescripción.setLayout(new BoxLayout(panelDescripción, BoxLayout.Y_AXIS));
-			panelDescripción.add(getLblDescripcion());
+			panelDescripción.setLayout(new BorderLayout(25, 50));
+			panelDescripción.add(getLblDescripcion(), BorderLayout.NORTH);
 			panelDescripción.add(getTextAreaDescripcion());
+			panelDescripción.add(getLblAux1(), BorderLayout.WEST);
+			panelDescripción.add(getLblAux2(), BorderLayout.EAST);
+			panelDescripción.add(getLblAux3(), BorderLayout.SOUTH);
 		}
 		return panelDescripción;
 	}
@@ -189,8 +180,7 @@ public class SolicitudVisadoView {
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
 			lblNombre = new JLabel("Nombre");
-			lblNombre.setBorder(new EmptyBorder(12, 0, 0, 0));
-			lblNombre.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNombre.setMaximumSize(new Dimension(200, 50));
 			lblNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -200,7 +190,7 @@ public class SolicitudVisadoView {
 	public JTextField getTextFieldNombre() {
 		if (textFieldNombre == null) {
 			textFieldNombre = new JTextField();
-			textFieldNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			textFieldNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFieldNombre.setBackground(Color.LIGHT_GRAY);
 			textFieldNombre.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldNombre.setMaximumSize(new Dimension(280, 30));
@@ -212,8 +202,7 @@ public class SolicitudVisadoView {
 	private JLabel getLblApellido() {
 		if (lblApellido == null) {
 			lblApellido = new JLabel("Apellidos");
-			lblApellido.setBorder(new EmptyBorder(12, 0, 0, 0));
-			lblApellido.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			lblApellido.setHorizontalAlignment(SwingConstants.CENTER);
 			lblApellido.setMaximumSize(new Dimension(200, 50));
 			lblApellido.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -223,7 +212,7 @@ public class SolicitudVisadoView {
 	public JTextField getTextFieldApellido() {
 		if (textFieldApellido == null) {
 			textFieldApellido = new JTextField();
-			textFieldApellido.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			textFieldApellido.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFieldApellido.setBackground(Color.LIGHT_GRAY);
 			textFieldApellido.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldApellido.setMaximumSize(new Dimension(280, 30));
@@ -237,7 +226,7 @@ public class SolicitudVisadoView {
 			lblDescripcion = new JLabel("Descripción");
 			lblDescripcion.setBorder(new EmptyBorder(10, 0, 0, 0));
 			lblDescripcion.setMinimumSize(new Dimension(200, 50));
-			lblDescripcion.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			lblDescripcion.setMaximumSize(new Dimension(200, 50));
 			lblDescripcion.setHorizontalAlignment(SwingConstants.CENTER);
 			lblDescripcion.setAlignmentX(0.5f);
@@ -247,8 +236,7 @@ public class SolicitudVisadoView {
 	private JLabel getLblDni() {
 		if (lblDni == null) {
 			lblDni = new JLabel("DNI");
-			lblDni.setBorder(new EmptyBorder(12, 0, 0, 0));
-			lblDni.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			lblDni.setMaximumSize(new Dimension(200, 50));
 			lblDni.setHorizontalAlignment(SwingConstants.CENTER);
 			lblDni.setAlignmentX(0.5f);
@@ -264,7 +252,7 @@ public class SolicitudVisadoView {
 				System.out.println("Excepción capturada: JFormattedTextField");
 			}
 			textFieldDni = new JFormattedTextField(mf);	
-			textFieldDni.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			textFieldDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFieldDni.setBackground(Color.LIGHT_GRAY);
 			textFieldDni.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldDni.setMaximumSize(new Dimension(280, 30));
@@ -275,12 +263,38 @@ public class SolicitudVisadoView {
 	public JTextArea getTextAreaDescripcion() {
 		if (textAreaDescripcion == null) {
 			textAreaDescripcion = new JTextArea();
-			textAreaDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			textAreaDescripcion.setFont(new Font("Monospaced", Font.PLAIN, 16));
 			textAreaDescripcion.setBorder(new LineBorder(new Color(0, 0, 0)));
 			textAreaDescripcion.setMinimumSize(new Dimension(280, 90));
 			textAreaDescripcion.setLineWrap(true);
 			textAreaDescripcion.setMaximumSize(new Dimension(280, 150));
 		}
 		return textAreaDescripcion;
+	}
+	private JLabel getLblAux1() {
+		if (lblAux1 == null) {
+			lblAux1 = new JLabel("                ");
+		}
+		return lblAux1;
+	}
+	private JLabel getLblAux2() {
+		if (lblAux2 == null) {
+			lblAux2 = new JLabel("                ");
+		}
+		return lblAux2;
+	}
+	private JLabel getLblAux3() {
+		if (lblAux3 == null) {
+			lblAux3 = new JLabel("                ");
+		}
+		return lblAux3;
+	}
+	private JLabel getLbSolicitud_1() {
+		if (lbSolicitud == null) {
+			lbSolicitud = new JLabel("Solicitud de visado");
+			lbSolicitud.setHorizontalAlignment(SwingConstants.CENTER);
+			lbSolicitud.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
+		}
+		return lbSolicitud;
 	}
 }

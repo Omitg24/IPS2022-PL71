@@ -103,8 +103,8 @@ public class ConsolidacionView extends JFrame {
 		frame.setTitle("Administración COIIPA - Consolidación de pagos");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ConsolidacionView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setBounds(100, 100, 1500, 1000);
-		frame.setMinimumSize(new Dimension(1500,1000));
+		frame.setBounds(100, 100, 1500, 900);
+		frame.setMinimumSize(new Dimension(1500, 900));
 		frame.setLocationRelativeTo(null);
 		frame.getRootPane().setDefaultButton(btConsolidacion);
 		
@@ -153,7 +153,7 @@ public class ConsolidacionView extends JFrame {
 		if (lbConsolidacion == null) {
 			lbConsolidacion = new JLabel("Consolidación de pagos");
 			lbConsolidacion.setHorizontalAlignment(SwingConstants.CENTER);
-			lbConsolidacion.setFont(new Font("Baskerville Old Face", Font.PLAIN, 60));
+			lbConsolidacion.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
 		}
 		return lbConsolidacion;
 	}
@@ -180,7 +180,7 @@ public class ConsolidacionView extends JFrame {
 			btConsolidacion = new JButton("Consolidar");
 			btConsolidacion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btConsolidacion.setForeground(Color.WHITE);
-			btConsolidacion.setFont(new Font("Tahoma", Font.BOLD, 22));
+			btConsolidacion.setFont(new Font("Tahoma", Font.BOLD, 24));
 			btConsolidacion.setBackground(new Color(34, 139, 34));
 			btConsolidacion.setEnabled(false);
 		}
@@ -194,6 +194,7 @@ public class ConsolidacionView extends JFrame {
 	private JPanel getMiddlePanel() {
 		if (middlePanel == null) {
 			middlePanel = new JPanel();
+			middlePanel.setBackground(Color.WHITE);
 			middlePanel.setLayout(new GridLayout(2, 1, 10, 10));
 			middlePanel.add(getScrollPaneCursos());
 			middlePanel.add(getScrollPaneColegiados());
@@ -208,6 +209,7 @@ public class ConsolidacionView extends JFrame {
 	private JScrollPane getScrollPaneCursos() {
 		if (scrollPaneCursos == null) {
 			scrollPaneCursos = new JScrollPane();
+			scrollPaneCursos.setBackground(Color.WHITE);
 			scrollPaneCursos.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Lista de cursos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			scrollPaneCursos.setViewportView(getTableCursos());
 		}
@@ -221,6 +223,7 @@ public class ConsolidacionView extends JFrame {
 	private JScrollPane getScrollPaneColegiados() {
 		if (scrollPaneColegiados == null) {
 			scrollPaneColegiados = new JScrollPane();
+			scrollPaneColegiados.setBackground(Color.WHITE);
 			scrollPaneColegiados.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Lista de pre-inscritos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			scrollPaneColegiados.setViewportView(getTableColegiados());
 		}
@@ -234,7 +237,8 @@ public class ConsolidacionView extends JFrame {
 	private JTable getTableCursos() {
 		if (tableCursos == null) {
 			tableCursos = new JTable();			
-			tableCursos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tableCursos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			tableCursos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			tableCursos.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tableCursos.setRowMargin(5);
 			tableCursos.setAutoscrolls(false);
@@ -258,7 +262,8 @@ public class ConsolidacionView extends JFrame {
 	private JTable getTableColegiados() {
 		if (tableColegiados == null) {
 			tableColegiados = new JTable();
-			tableColegiados.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tableColegiados.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			tableColegiados.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			tableColegiados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tableColegiados.setRowMargin(5);
 			tableColegiados.setAutoscrolls(false);

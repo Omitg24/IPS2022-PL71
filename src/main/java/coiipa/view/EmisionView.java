@@ -48,10 +48,6 @@ public class EmisionView extends JFrame {
 	 */
 	private JLabel lblLogo;
 	/**
-	 * Atributo lbApplicant
-	 */
-	private JLabel lbTitle;	
-	/**
 	 * Atributo middlePanel
 	 */
 	private JPanel middlePanel;
@@ -75,7 +71,8 @@ public class EmisionView extends JFrame {
 	 * Atributo btGenerateReceipts
 	 */
 	private JButton btGenerateReceipts;
-	private JLabel label;
+	private JLabel lbTitle;
+	private JLabel lblIndication3;
 	
 
 //-- INTERFAZ GRÁFICA ----------------------------------------------------------
@@ -95,7 +92,8 @@ public class EmisionView extends JFrame {
 		frame.setTitle("Administración COIIPA - Emisión de recibos");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(EmisionView.class.getResource("/images/coiipa_symbol.png")));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setBounds(100, 100, 700, 450);
+		frame.setBounds(100, 100, 800, 450);
+		frame.setMinimumSize(new Dimension(800, 450));
 		frame.setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
@@ -117,8 +115,9 @@ public class EmisionView extends JFrame {
 		if (upperPanel == null) {
 			upperPanel = new JPanel();
 			upperPanel.setBackground(Color.WHITE);
-			upperPanel.setLayout(new BorderLayout(0, 0));
-			upperPanel.add(getLblLogo(), BorderLayout.NORTH);
+			upperPanel.setLayout(new GridLayout(0, 2, 0, 0));
+			upperPanel.add(getLblLogo());
+			upperPanel.add(getLbTitle_1());
 		}
 		return upperPanel;
 	}
@@ -134,18 +133,6 @@ public class EmisionView extends JFrame {
 		}
 		return lblLogo;
 	}
-	/**
-	 * getLbApplicant
-	 * @return lbApplicant
-	 */
-	private JLabel getLbTitle() {
-		if (lbTitle == null) {
-			lbTitle = new JLabel("Emisión de recibos");
-			lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
-			lbTitle.setFont(new Font("Baskerville Old Face", Font.PLAIN, 40));
-		}
-		return lbTitle;
-	}
 	
 	/**
 	 * Método getRegisterPanel
@@ -154,6 +141,7 @@ public class EmisionView extends JFrame {
 	private JPanel getMiddlePanel() {
 		if (middlePanel == null) {
 			middlePanel = new JPanel();
+			middlePanel.setBackground(Color.WHITE);
 			middlePanel.setBorder(null);
 			middlePanel.setLayout(new BorderLayout(5, 5));
 			middlePanel.add(getLabelPanel());
@@ -169,11 +157,11 @@ public class EmisionView extends JFrame {
 	private JPanel getLabelPanel() {
 		if (labelPanel == null) {
 			labelPanel = new JPanel();
+			labelPanel.setBackground(Color.WHITE);
 			labelPanel.setLayout(new GridLayout(0, 1, 0, 0));
-			labelPanel.add(getLbTitle());
 			labelPanel.add(getLblIndication());
 			labelPanel.add(getLblIndication2());
-			labelPanel.add(getLabel());
+			labelPanel.add(getLblIndication3());
 		}
 		return labelPanel;
 	}
@@ -184,8 +172,9 @@ public class EmisionView extends JFrame {
 	 */
 	private JLabel getLblIndication() {
 		if (lblIndication == null) {
-			lblIndication = new JLabel("Presione el botón para generar los recibos ");
-			lblIndication.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblIndication = new JLabel("Presione el botón para generar los recibos de los colegiados y precolegiados.");
+			lblIndication.setBackground(Color.WHITE);
+			lblIndication.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			lblIndication.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return lblIndication;
@@ -197,9 +186,10 @@ public class EmisionView extends JFrame {
 	 */
 	private JLabel getLblIndication2() {
 		if (lblIndication2 == null) {
-			lblIndication2 = new JLabel("de los colegiados y precolegiados");
+			lblIndication2 = new JLabel("Si ya se han generado los recibos correspondientes, recibirá un mensaje de aviso.");
+			lblIndication2.setBackground(Color.WHITE);
 			lblIndication2.setHorizontalAlignment(SwingConstants.CENTER);
-			lblIndication2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblIndication2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lblIndication2;
 	}
@@ -211,6 +201,7 @@ public class EmisionView extends JFrame {
 	private JPanel getButtonPanel() {
 		if (buttonPanel == null) {
 			buttonPanel = new JPanel();
+			buttonPanel.setBackground(Color.WHITE);
 			buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			buttonPanel.add(getBtGenerateReceipts());
 		}
@@ -241,10 +232,21 @@ public class EmisionView extends JFrame {
 	public JFrame getFrame() {
 		return frame;
 	}
-	private JLabel getLabel() {
-		if (label == null) {
-			label = new JLabel("");
+	private JLabel getLbTitle_1() {
+		if (lbTitle == null) {
+			lbTitle = new JLabel("Emisión de recibos");
+			lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
+			lbTitle.setFont(new Font("Baskerville Old Face", Font.BOLD, 30));
 		}
-		return label;
+		return lbTitle;
+	}
+	private JLabel getLblIndication3() {
+		if (lblIndication3 == null) {
+			lblIndication3 = new JLabel("En caso contrario, se generarán los recibos en el fichero que se indica.");
+			lblIndication3.setBackground(Color.WHITE);
+			lblIndication3.setHorizontalAlignment(SwingConstants.CENTER);
+			lblIndication3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		}
+		return lblIndication3;
 	}
 }

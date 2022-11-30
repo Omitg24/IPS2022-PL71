@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
@@ -41,8 +42,6 @@ public class PericialesView {
 	private JPanel pnCentro;
 	private JPanel pnSuperior;
 	private JLabel lbLogo;
-	private JPanel pnTituloSup;
-	private JLabel lbApertura;
 
 	private ModificacionView modificacion;
 	private JPanel pnFiltros;
@@ -60,6 +59,7 @@ public class PericialesView {
 	private JTextField txtPerito;
 	private JScrollPane scrollPanePeritos;
 	private JTable tablePeritos;
+	private JLabel lbApertura;
 
 	/**
 	 * Create the frame.
@@ -70,10 +70,11 @@ public class PericialesView {
 
 	private void initialize() {
 		frmAdministracinCoiipa = new JFrame();
-		frmAdministracinCoiipa.setResizable(false);
-		frmAdministracinCoiipa.setTitle("Administración COIIPA - Apertura de cursos");
+		frmAdministracinCoiipa.setIconImage(Toolkit.getDefaultToolkit().getImage(PericialesView.class.getResource("/images/coiipa_symbol.png")));
+		frmAdministracinCoiipa.setTitle("Administración COIIPA - Listado de peritos");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmAdministracinCoiipa.setBounds(100, 100, 1500, 800);
+		frmAdministracinCoiipa.setBounds(100, 100, 1500, 900);
+		frmAdministracinCoiipa.setMinimumSize(new Dimension(1500,900));
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -108,7 +109,7 @@ public class PericialesView {
 			pnSuperior.setBackground(Color.WHITE);
 			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
 			pnSuperior.add(getLbLogo());
-			pnSuperior.add(getPnTituloSup());
+			pnSuperior.add(getLbApertura_1());
 		}
 		return pnSuperior;
 	}
@@ -118,22 +119,6 @@ public class PericialesView {
 			lbLogo.setIcon(new ImageIcon(AperturaView.class.getResource("/images/coiipa_logo.jpg")));
 		}
 		return lbLogo;
-	}
-	private JPanel getPnTituloSup() {
-		if (pnTituloSup == null) {
-			pnTituloSup = new JPanel();
-			pnTituloSup.setBackground(Color.WHITE);
-			pnTituloSup.add(getLbApertura());
-		}
-		return pnTituloSup;
-	}
-	private JLabel getLbApertura() {
-		if (lbApertura == null) {
-			lbApertura = new JLabel("Listado de peritos");
-			lbApertura.setHorizontalAlignment(SwingConstants.CENTER);
-			lbApertura.setFont(new Font("Baskerville Old Face", Font.PLAIN, 60));
-		}
-		return lbApertura;
 	}
 
 	public JFrame getFrame() {
@@ -172,12 +157,14 @@ public class PericialesView {
 	private JLabel getLblFecha() {
 		if (lblFecha == null) {
 			lblFecha = new JLabel("Fecha:");
+			lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lblFecha;
 	}
 	public JSpinner getSpnFecha() {
 		if (spnFecha == null) {
 			spnFecha = new JSpinner();
+			spnFecha.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			spnFecha.setPreferredSize(new Dimension(100, 20));
 			spnFecha.setMinimumSize(new Dimension(1000, 20));
 			spnFecha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -195,6 +182,7 @@ public class PericialesView {
 	public JCheckBox getChckbxAnulado() {
 		if (chckbxAnulado == null) {
 			chckbxAnulado = new JCheckBox("Anulado");
+			chckbxAnulado.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			chckbxAnulado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			chckbxAnulado.setBackground(Color.WHITE);
 		}
@@ -211,6 +199,7 @@ public class PericialesView {
 	public JCheckBox getChckbxNoRealizado() {
 		if (chckbxNoRealizado == null) {
 			chckbxNoRealizado = new JCheckBox("No realizado");
+			chckbxNoRealizado.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			chckbxNoRealizado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			chckbxNoRealizado.setBackground(Color.WHITE);
 		}
@@ -227,6 +216,7 @@ public class PericialesView {
 	public JCheckBox getChckbxRealizado() {
 		if (chckbxRealizado == null) {
 			chckbxRealizado = new JCheckBox("Realizado");
+			chckbxRealizado.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			chckbxRealizado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			chckbxRealizado.setBackground(Color.WHITE);
 		}
@@ -236,6 +226,7 @@ public class PericialesView {
 		if (panelPerito == null) {
 			panelPerito = new JPanel();
 			panelPerito.setBackground(Color.WHITE);
+			panelPerito.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			panelPerito.add(getLblPerito());
 			panelPerito.add(getTxtPerito());
 		}
@@ -243,14 +234,18 @@ public class PericialesView {
 	}
 	private JLabel getLblPerito() {
 		if (lblPerito == null) {
-			lblPerito = new JLabel("DNI perito");
+			lblPerito = new JLabel("Nombre:");
+			lblPerito.setHorizontalAlignment(SwingConstants.CENTER);
+			lblPerito.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		}
 		return lblPerito;
 	}
 	public JTextField getTxtPerito() {
 		if (txtPerito == null) {
 			txtPerito = new JTextField();
-			txtPerito.setColumns(14);
+			txtPerito.setBorder(new LineBorder(new Color(171, 173, 179)));
+			txtPerito.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtPerito.setColumns(10);
 		}
 		return txtPerito;
 	}
@@ -267,7 +262,7 @@ public class PericialesView {
 		if (tablePeritos == null) {
 			tablePeritos = new JTable();
 			tablePeritos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			tablePeritos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tablePeritos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			tablePeritos.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tablePeritos.setRowMargin(5);
 			tablePeritos.setAutoscrolls(false);
@@ -276,11 +271,19 @@ public class PericialesView {
 			tablePeritos.setSelectionForeground(Color.WHITE);
 			tablePeritos.setSelectionBackground(Color.GRAY);
 			tablePeritos.setGridColor(SystemColor.windowBorder);
-			tablePeritos.setName("Tabla de Cursos");
+			tablePeritos.setName("Tabla de Peritos");
 			tablePeritos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			tablePeritos.setDefaultEditor(Object.class, null);
 			tablePeritos.setBackground(Color.decode("#f0f0f0"));
 		}
 		return tablePeritos;
+	}
+	private JLabel getLbApertura_1() {
+		if (lbApertura == null) {
+			lbApertura = new JLabel("Listado de peritos");
+			lbApertura.setHorizontalAlignment(SwingConstants.CENTER);
+			lbApertura.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
+		}
+		return lbApertura;
 	}
 }

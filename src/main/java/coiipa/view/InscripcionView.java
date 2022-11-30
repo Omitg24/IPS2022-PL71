@@ -65,14 +65,6 @@ public class InscripcionView implements Inscripcion {
 	 */
 	private JButton btInscribirse;
 	/**
-	 * Atributo pnTituloSup
-	 */
-	private JPanel pnTituloSup;
-	/**
-	 * Atributo lbInscripcion
-	 */
-	private JLabel lbInscripcion;
-	/**
 	 * Atributo scrollPaneCursos
 	 */
 	private JScrollPane scrollPaneCursos;
@@ -164,6 +156,7 @@ public class InscripcionView implements Inscripcion {
 	 * Atributo tableEspera
 	 */
 	private JTable tableEspera;
+	private JLabel lbInscripcion;
 
 	/**
 	 * Constructor sin parámetros de la clase InscripcionView
@@ -181,8 +174,8 @@ public class InscripcionView implements Inscripcion {
 		frmAdministracinCoiipa.setResizable(true);
 		frmAdministracinCoiipa.setTitle("Administración COIIPA - Inscripción a cursos");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmAdministracinCoiipa.setBounds(100, 100, 1500, 1000);
-		frmAdministracinCoiipa.setMinimumSize(new Dimension(1500,1000));
+		frmAdministracinCoiipa.setBounds(100, 100, 1500, 900);
+		frmAdministracinCoiipa.setMinimumSize(new Dimension(1500,900));
 		frmAdministracinCoiipa.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -240,7 +233,7 @@ public class InscripcionView implements Inscripcion {
 			pnSuperior.setBackground(Color.WHITE);
 			pnSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 5));
 			pnSuperior.add(getLbLogo());
-			pnSuperior.add(getPnTituloSup());
+			pnSuperior.add(getLbInscripcion_1());
 		}
 		return pnSuperior;
 	}
@@ -290,32 +283,6 @@ public class InscripcionView implements Inscripcion {
 	}
 	
 	/**
-	 * Método getPnTituloSup
-	 * @return pnTituloSup
-	 */
-	private JPanel getPnTituloSup() {
-		if (pnTituloSup == null) {
-			pnTituloSup = new JPanel();
-			pnTituloSup.setBackground(Color.WHITE);
-			pnTituloSup.add(getLbInscripcion());
-		}
-		return pnTituloSup;
-	}
-	
-	/**
-	 * Método getLbInscripcion
-	 * @return lbInscripcion
-	 */
-	private JLabel getLbInscripcion() {
-		if (lbInscripcion == null) {
-			lbInscripcion = new JLabel("Inscripción a cursos");
-			lbInscripcion.setHorizontalAlignment(SwingConstants.CENTER);
-			lbInscripcion.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
-		}
-		return lbInscripcion;
-	}
-	
-	/**
 	 * Método getPnDisponibles
 	 * @return pnRegistro
 	 */
@@ -353,7 +320,8 @@ public class InscripcionView implements Inscripcion {
 	private JTable getTableDisponibles() {
 		if (tableDisponibles == null) {
 			tableDisponibles = new JTable();			
-			tableDisponibles.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tableDisponibles.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			tableDisponibles.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			tableDisponibles.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tableDisponibles.setRowMargin(5);
 			tableDisponibles.setAutoscrolls(false);
@@ -407,7 +375,8 @@ public class InscripcionView implements Inscripcion {
 	private JTable getTableSolicitados() {
 		if (tableSolicitados == null) {
 			tableSolicitados = new JTable();			
-			tableSolicitados.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tableSolicitados.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			tableSolicitados.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			tableSolicitados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tableSolicitados.setRowMargin(5);
 			tableSolicitados.setAutoscrolls(false);
@@ -460,7 +429,8 @@ public class InscripcionView implements Inscripcion {
 	private JTable getTableEspera() {
 		if (tableEspera == null) {
 			tableEspera = new JTable();			
-			tableEspera.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tableEspera.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			tableEspera.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			tableEspera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 			tableEspera.setRowMargin(5);
 			tableEspera.setAutoscrolls(false);
@@ -517,6 +487,7 @@ public class InscripcionView implements Inscripcion {
 	private JButton getBtTarjeta() {
 		if (btTarjeta == null) {
 			btTarjeta = new JButton("Tarjeta");
+			btTarjeta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btTarjeta.setEnabled(false);
 			btTarjeta.setForeground(Color.WHITE);
 			btTarjeta.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -533,6 +504,7 @@ public class InscripcionView implements Inscripcion {
 	private JButton getBtTransferencia() {
 		if (btTransferencia == null) {
 			btTransferencia = new JButton("Transferencia");
+			btTransferencia.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btTransferencia.setEnabled(false);
 			btTransferencia.setForeground(Color.WHITE);
 			btTransferencia.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -549,6 +521,7 @@ public class InscripcionView implements Inscripcion {
 	private JButton getBtCancelar() {
 		if (btCancelar == null) {
 			btCancelar = new JButton("Cancelar");
+			btCancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btCancelar.setEnabled(false);
 			btCancelar.setForeground(Color.WHITE);
 			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -565,6 +538,7 @@ public class InscripcionView implements Inscripcion {
 	private JPanel getPnInfo() {
 		if (pnInfo == null) {
 			pnInfo = new JPanel();
+			pnInfo.setBackground(Color.WHITE);
 			FlowLayout flowLayout = (FlowLayout) pnInfo.getLayout();
 			flowLayout.setAlignment(FlowLayout.RIGHT);
 			pnInfo.add(getLblNombre());
@@ -584,6 +558,7 @@ public class InscripcionView implements Inscripcion {
 	private JPanel getPnTablas() {
 		if (pnTablas == null) {
 			pnTablas = new JPanel();
+			pnTablas.setBackground(Color.WHITE);
 			pnTablas.setLayout(new GridLayout(3, 1, 0, 0));
 			pnTablas.add(getPnDisponibles());
 			pnTablas.add(getPnSolicitados());
@@ -611,6 +586,7 @@ public class InscripcionView implements Inscripcion {
 	private JTextField getTxtNombre() {
 		if (txtNombre == null) {
 			txtNombre = new JTextField();
+			txtNombre.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtNombre.setHorizontalAlignment(SwingConstants.CENTER);
 			txtNombre.setEditable(false);
 			txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -638,6 +614,7 @@ public class InscripcionView implements Inscripcion {
 	private JTextField getTxtApellidos() {
 		if (txtApellidos == null) {
 			txtApellidos = new JTextField();
+			txtApellidos.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtApellidos.setHorizontalAlignment(SwingConstants.CENTER);
 			txtApellidos.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtApellidos.setEditable(false);
@@ -665,6 +642,7 @@ public class InscripcionView implements Inscripcion {
 	private JTextField getTxtDni() {
 		if (txtDni == null) {
 			txtDni = new JTextField();
+			txtDni.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtDni.setHorizontalAlignment(SwingConstants.CENTER);
 			txtDni.setEditable(false);
 			txtDni.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -768,5 +746,13 @@ public class InscripcionView implements Inscripcion {
 	 */
 	public JTable getTbEspera() {
 		return tableEspera;
+	}
+	private JLabel getLbInscripcion_1() {
+		if (lbInscripcion == null) {
+			lbInscripcion = new JLabel("Inscripción a cursos");
+			lbInscripcion.setHorizontalAlignment(SwingConstants.CENTER);
+			lbInscripcion.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
+		}
+		return lbInscripcion;
 	}
 }

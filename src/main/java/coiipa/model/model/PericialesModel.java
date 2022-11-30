@@ -54,7 +54,7 @@ public class PericialesModel {
 			"SELECT P.ID, I.DNI, I.NOMBRE, "
 		            + "C.DNICOLEGIADO, C.NOMBRECOLEGIADO, P.FECHA, P.ESTADO "
 		            + "FROM SOLICITUDPERICIAL P, COLEGIADO C, INFORMES I "
-		            + "WHERE P.DNI=C.DNICOLEGIADO AND P.ID=I.ID AND I.DNI = ?";
+		            + "WHERE P.DNI=C.DNICOLEGIADO AND P.ID=I.ID AND I.NOMBRECOLEGIADO = ?";
 
 
 	/**
