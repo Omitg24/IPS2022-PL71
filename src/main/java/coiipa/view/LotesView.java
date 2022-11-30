@@ -50,6 +50,8 @@ public class LotesView {
 	private JButton btAlta;
 	private JLabel lblTitulacion;
 	private JLabel lbTitulo;
+	private JPanel panelRecepcion;
+	private JButton btRecepcion;
 
 	/**
 	 * Create the frame.
@@ -115,8 +117,9 @@ public class LotesView {
 			pnInferior = new JPanel();
 			pnInferior.setSize(new Dimension(0, 200));
 			pnInferior.setBackground(Color.WHITE);
-			pnInferior.setLayout(new GridLayout(1, 2, 0, 0));
+			pnInferior.setLayout(new GridLayout(0, 3, 0, 0));
 			pnInferior.add(getPanelTitulacion());
+			pnInferior.add(getPanelRecepcion());
 			pnInferior.add(getPanelAlta());
 		}
 		return pnInferior;
@@ -226,5 +229,23 @@ public class LotesView {
 			lbTitulo.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
 		}
 		return lbTitulo;
+	}
+	private JPanel getPanelRecepcion() {
+		if (panelRecepcion == null) {
+			panelRecepcion = new JPanel();
+			panelRecepcion.setBackground(Color.WHITE);
+			panelRecepcion.add(getBtRecepcion());
+		}
+		return panelRecepcion;
+	}
+	public JButton getBtRecepcion() {
+		if (btRecepcion == null) {
+			btRecepcion = new JButton("Recepcionar");
+			btRecepcion.setForeground(Color.WHITE);
+			btRecepcion.setFont(new Font("Tahoma", Font.BOLD, 24));
+			btRecepcion.setFocusable(false);
+			btRecepcion.setBackground(new Color(34, 139, 34));
+		}
+		return btRecepcion;
 	}
 }

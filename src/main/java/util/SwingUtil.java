@@ -46,7 +46,7 @@ public class SwingUtil {
 		}
 	}
 
-	private static void showMessage(String message, String title, int type) {
+	public static void showMessage(String message, String title, int type) {
 		// Como este metodo no recibe el contexto de la ventana de la aplicacion,
 		// no usa el metodo estatico showMessageDialog de JOptionPane
 		// y establece la posicion para que no aparezca en el centro de la pantalla

@@ -141,22 +141,21 @@ public class InscritosController {
 	 * Método cancelarCurso
 	 */
 	public void cancelarCurso() {
-		if (!view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 5).equals("Cancelado")) {
-			String fecha = view.getTableCursos().getValueAt(
-				view.getTableCursos().getSelectedRow(), 1).toString();
-		String tituloCurso = view.getTableCursos().getValueAt(
-				view.getTableCursos().getSelectedRow(), 0).toString();
-		
-		List<InscritoDTO> inscritos = model.getListaInscritosAEliminar(tituloCurso, fecha);
-		if (!inscritos.isEmpty())
-			model.anularInscripcion(inscritos);
-		model.cancelarCurso(tituloCurso, fecha);
-		
-		
-		view.getTableCursos().getModel().setValueAt("Cancelado", view.getTableCursos().getSelectedRow(), 5);
-		getListaInscritos();
-		getListaEspera();
-		}
-		else SwingUtil.showErrorDialog("El curso seleccionado ya ha sido cancelado");
+		if (!view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 5)
+				.equals("Cancelado")) {
+			String fecha = view.getTableCursos().getValueAt(view.getTableCursos().getSelectedRow(), 1).toString();
+			String tituloCurso = view.getTableCursos().getValueAt(view.getTableCursos().getSelectedRow(), 0).toString();
+
+			List<InscritoDTO> inscritos = model.getListaInscritosAEliminar(tituloCurso, fecha);
+			if (!inscritos.isEmpty())
+				model.anularInscripcion(inscritos);
+			model.cancelarCurso(tituloCurso, fecha);
+
+			view.getTableCursos().getModel().setValueAt("Cancelado", view.getTableCursos().getSelectedRow(), 5);
+			getListaInscritos();
+			getListaEspera();
+			SwingUtil.showMessage("El curso '" + tituloCurso + "' con fecha " + fecha + " ha sido cancelado", "Administración COIIPA", 1);
+		} else
+			SwingUtil.showErrorDialog("El curso seleccionado ya ha sido cancelado");
 	}
 }

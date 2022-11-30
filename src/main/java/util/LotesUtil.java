@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,5 +110,32 @@ public class LotesUtil {
 		} catch (IOException ioe) {
 			new RuntimeException("Error de entrada/salida");
 		}
+	}
+
+	public static List<ColegiadoDTO> getProcesadosFromMinistryCsv(String filename, String numColegiado) {
+		ArrayList<ColegiadoDTO> result = new ArrayList<ColegiadoDTO>();
+		
+		try {
+			Path path = Paths.get(filename);
+			if (!Files.exists(path.getParent())) {
+				Files.createDirectory(path.getParent());
+			}
+			BufferedReader reader = new BufferedReader(new FileReader(filename));			
+			String line = reader.readLine();
+			while (line != null) {
+				String[] params = line.split(";");
+				ColegiadoDTO col = new ColegiadoDTO(params[0], params[1], params[2], numColegiado, params[3], params[4], params[5], params[6], params[7], params[8], "Colegiado", "Activo", "Pendiente", "NA", LocalDate.now().toString());
+				result.add(col);
+				line = reader.readLine();
+			}
+			reader.close();
+		}
+		catch (FileNotFoundException fnfe) {
+			System.out.println("El archivo no se ha podido leer");
+		} catch (IOException ioe) {
+			new RuntimeException("Error de entrada/salida");
+		}
+		
+		return result;
 	}
 }

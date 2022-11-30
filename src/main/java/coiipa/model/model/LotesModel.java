@@ -1,5 +1,6 @@
 package coiipa.model.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,19 +10,12 @@ import util.Database;
 import util.LotesUtil;
 
 /**
- * Título: Clase AperturaModel
+ * Título: Clase LotesModel
  *
  * @author Adrián Alves Morales, UO284288
  * @version 12 oct 2022
  */
 public class LotesModel {
-
-//	private static final String MSG_FECHA_CURSO_NO_NULA = 
-//			"La fecha de inscripcion no puede ser nula";
-//	private static final String DEFAULT_INICIOINS="2022-01-01";
-//	private static final String DEFAULT_FININS="2023-12-12";
-//	private static final String DEFAULT_ESTADO="Planificado";
-//	private static final int DEFAULT_NPLAZAS= 1;
 
 	private Database db = new Database();
 	
@@ -39,14 +33,22 @@ public class LotesModel {
 	public static final String SQL_ENCONTRAR_POR_DNI =
 			"select * from Colegiado where dniColegiado=?";
 	
+	public static final String SQL_INSERTAR_COLEGIADO =
+			"insert into colegiado values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	
 	public static final String REQUESTS_PATH = "src/main/resources/files/inscriptionrequests.csv";
 	public static final String BATCH_PATH = "src/main/resources/files/batch.csv";
+	public static final String MINISTRY_PATH = "src/main/resources/files/ministry.csv";
 	
 	/**
 	 * Método que convierte la lista de cursos a un array de String
 	 */
 	public List<ColegiadoDTO> getColegiados() {
 		return LotesUtil.getColegiadosFromRequestCsv(REQUESTS_PATH);
+	}
+	
+	public List<ColegiadoDTO> getProcesados() {
+		return LotesUtil.getProcesadosFromMinistryCsv(MINISTRY_PATH, calcularProximoNum());
 	}
 	
 	/**
@@ -101,5 +103,19 @@ public class LotesModel {
 	 */
 	public boolean findByDni(String dni) {
 		return db.executeQueryPojo(ColegiadoDTO.class, SQL_ENCONTRAR_POR_DNI, dni).isEmpty();
+	}
+	
+	
+	public String calcularProximoNum() {
+		String result = "" + LocalDate.now().getYear();
+		return  result + "-" + getLargestNumColegiado();
+	}
+	
+	public void addProcesados(List<ColegiadoDTO> col) {
+		for (ColegiadoDTO dto : col)
+			db.executeUpdate(SQL_INSERTAR_COLEGIADO, dto.getDniColegiado(), dto.getNombreColegiado(), dto.getApellidosColegiado(),
+					dto.getNumeroColegiado(), dto.getLocalidadColegiado(), dto.getTelefonoColegiado(), dto.getTitulacionColegiado(),
+					dto.getCentroColegiado(), dto.getAnioColegiado(), dto.getIbanColegiado(), dto.getTipoColegiado(), dto.getEstadoColegiado(),
+					dto.getEstadoCuota(), dto.getEstadoAsignacionPericial(), dto.getFechaColegiacion());
 	}
 }

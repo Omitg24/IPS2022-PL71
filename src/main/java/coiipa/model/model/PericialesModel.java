@@ -54,7 +54,7 @@ public class PericialesModel {
 			"SELECT P.ID, I.DNI, I.NOMBRE, "
 		            + "C.DNICOLEGIADO, C.NOMBRECOLEGIADO, P.FECHA, P.ESTADO "
 		            + "FROM SOLICITUDPERICIAL P, COLEGIADO C, INFORMES I "
-		            + "WHERE P.DNI=C.DNICOLEGIADO AND P.ID=I.ID AND I.NOMBRECOLEGIADO = ?";
+		            + "WHERE P.DNI=C.DNICOLEGIADO AND P.ID=I.ID AND I.NOMBRE = ?";
 
 
 	/**
@@ -149,7 +149,7 @@ public class PericialesModel {
 	 */
 	public List<AsignacionPericialDTO> getAsignacionesFiltradas(String fecha, boolean realizadas, boolean noRealizadas, boolean anuladas, String dniPerito) {
 
-		// Tomamos las fechas como base
+		List<AsignacionPericialDTO> temp = new ArrayList<>();
 		List<AsignacionPericialDTO> result = getAsignacionesPorFecha(fecha);
 		if (fecha.equals("Todas")) result = getAsignaciones();
 		List<AsignacionPericialDTO> r = new ArrayList<>();
@@ -171,12 +171,33 @@ public class PericialesModel {
 			return result;
 		}
 		else {
-			if (realizadas)
+			if (realizadas && !noRealizadas && !anuladas)
 				result.retainAll(r);
-			if (noRealizadas)
+			
+			if (!realizadas && noRealizadas && !anuladas) 
 				result.retainAll(n);
-			if (anuladas)
+			
+			if (!realizadas && !noRealizadas && anuladas) 
 				result.retainAll(a);
+			
+			
+			if (realizadas && noRealizadas && !anuladas) {
+				temp.addAll(r);
+				temp.addAll(n);
+				result.retainAll(temp);
+			}
+			if (!realizadas && noRealizadas && anuladas) {
+				temp.addAll(n);
+				temp.addAll(a);
+				result.retainAll(temp);
+			}
+			
+			if (realizadas && !noRealizadas && anuladas) {
+				temp.addAll(r);
+				temp.addAll(a);
+				result.retainAll(temp);
+			}
+
 			if (!dniPerito.isEmpty())
 				result.retainAll(dni);
 
@@ -184,18 +205,4 @@ public class PericialesModel {
 		}
 		
 	}
-
-//	/*
-//	 * Devuelve un curso dada una clave primaria
-//	 */
-//	public CursoDTO getCursoFromKey(String key) {
-//		return db.executeQueryPojo(CursoDTO.class, SQL_OBTENER_CURSO_POR_KEY, key).get(0);
-//	}
-//
-//	/*
-//	 * Modifica las fechas de inscripción y el estado de un curso con clave key
-//	 */
-//	public void updateFechasCurso(Date inicio, Date fin, int nplazas, String key) {
-//		db.executeUpdate(SQL_ACTUALIZAR_CURSOS, Util.dateToIsoString(inicio), Util.dateToIsoString(fin), nplazas, key);
-//	}
 }

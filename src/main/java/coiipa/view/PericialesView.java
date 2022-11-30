@@ -165,7 +165,7 @@ public class PericialesView {
 		if (spnFecha == null) {
 			spnFecha = new JSpinner();
 			spnFecha.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			spnFecha.setPreferredSize(new Dimension(100, 20));
+			spnFecha.setPreferredSize(new Dimension(120, 20));
 			spnFecha.setMinimumSize(new Dimension(1000, 20));
 			spnFecha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		}
@@ -198,7 +198,7 @@ public class PericialesView {
 	}
 	public JCheckBox getChckbxNoRealizado() {
 		if (chckbxNoRealizado == null) {
-			chckbxNoRealizado = new JCheckBox("No realizado");
+			chckbxNoRealizado = new JCheckBox("Realizado");
 			chckbxNoRealizado.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			chckbxNoRealizado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			chckbxNoRealizado.setBackground(Color.WHITE);
@@ -215,7 +215,7 @@ public class PericialesView {
 	}
 	public JCheckBox getChckbxRealizado() {
 		if (chckbxRealizado == null) {
-			chckbxRealizado = new JCheckBox("Realizado");
+			chckbxRealizado = new JCheckBox("No Realizado");
 			chckbxRealizado.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			chckbxRealizado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			chckbxRealizado.setBackground(Color.WHITE);
@@ -234,9 +234,9 @@ public class PericialesView {
 	}
 	private JLabel getLblPerito() {
 		if (lblPerito == null) {
-			lblPerito = new JLabel("Nombre:");
+			lblPerito = new JLabel("Nombre del perito:");
 			lblPerito.setHorizontalAlignment(SwingConstants.CENTER);
-			lblPerito.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			lblPerito.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		}
 		return lblPerito;
 	}

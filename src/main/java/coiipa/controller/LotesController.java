@@ -1,7 +1,7 @@
 package coiipa.controller;
 
 import java.awt.Color;
-import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ import util.LotesUtil;
 import util.SwingUtil;
 
 /**
- * Título: Clase AperturaController
+ * Título: Clase LotesController
  *
  * @author Adrián Alves Morales, UO284288
  * @version 12 oct 2022
@@ -25,7 +25,7 @@ public class LotesController {
 	private LotesModel model;
 	private LotesView view;
 	
-	private final static Set<String> validValues = Set.of("licenciado en informática", "titulado en informática", "máster en ingeniería informática");
+	private final static Set<String> validValues = Set.of("Licenciado en Informática", "Titulado en Informática", "Máster en Ingeniería Informática");
 
 	TableModel t;
 
@@ -38,9 +38,18 @@ public class LotesController {
 
 	public void initController() {
 		view.getBtEnviar().addActionListener(e -> SwingUtil.exceptionWrapper(() -> enviarSolicitud()));
+		view.getBtRecepcion().addActionListener(e -> SwingUtil.exceptionWrapper(() -> recepcionar()));
 		view.getTableColegiados().getSelectionModel().addListSelectionListener(
 				e -> SwingUtil.exceptionWrapper(() -> mostrarTitulacion(e)));
 		addSolicitudesToList();
+	}
+
+	private void recepcionar() {
+		List<ColegiadoDTO> result = model.getProcesados();
+		model.addProcesados(result);
+		JOptionPane.showMessageDialog(null, "Se han recepcionado los colegiados con éxito", 
+				"Administración COIIPA", JOptionPane.INFORMATION_MESSAGE);
+		view.getBtRecepcion().setEnabled(false);
 	}
 
 	public void enviarSolicitud() {
@@ -48,7 +57,7 @@ public class LotesController {
 		ColegiadoDTO col = model.getColegiados().get(index);
 		if (validValues.contains(col.getTitulacionColegiado())) {
 			if (!model.isSent(col.getDniColegiado())) {
-				LotesUtil.sendToBatchFile(LotesModel.BATCH_PATH, col, calcularProximoNum(col));
+				LotesUtil.sendToBatchFile(LotesModel.BATCH_PATH, col, model.calcularProximoNum());
 				JOptionPane.showMessageDialog(null, "Solicitud enviada con exito", 
 						"Administración COIIPA", JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -68,11 +77,6 @@ public class LotesController {
 						"Administración COIIPA", JOptionPane.ERROR_MESSAGE);
 			}
 		}	
-	}
-	
-	private String calcularProximoNum(ColegiadoDTO dto) {
-		String result = "" + LocalDate.now().getYear();
-		return  result + "-" + model.getLargestNumColegiado();
 	}
 	
 	public void mostrarTitulacion(ListSelectionEvent e) {

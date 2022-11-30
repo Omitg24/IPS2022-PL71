@@ -36,8 +36,7 @@ public class InformeController {
 			!view.getTextFieldDni().getText().isBlank() &&
 			!view.getTextFieldTelefono().getText().isBlank() &&
 			!view.getTextFieldCorreo().getText().isBlank() &&
-			!view.getTextAreaDescripcion().getText().isBlank() &&
-			!model.isSent(view.getTextFieldDni().getText())) {
+			!view.getTextAreaDescripcion().getText().isBlank()) {
 			model.addInformePericial(view.getTextFieldNombre().getText()
 					, view.getTextFieldTelefono().getText()
 					, view.getTextFieldCorreo().getText()
@@ -48,10 +47,10 @@ public class InformeController {
 					"Administración COIIPA", JOptionPane.INFORMATION_MESSAGE);
 			reiniciarCampos();
 		}
-		else if (model.isSent(view.getTextFieldDni().getText())) {
-			JOptionPane.showMessageDialog(null, "Ya existe una solicitud hecha por el DNI introducido", 
-					"Administración COIIPA", JOptionPane.ERROR_MESSAGE);
-		}
+//		else if (model.isSent(view.getTextFieldDni().getText())) {
+//			JOptionPane.showMessageDialog(null, "Ya existe una solicitud hecha por el DNI introducido", 
+//					"Administración COIIPA", JOptionPane.ERROR_MESSAGE);
+//		}
 		else {
 			JOptionPane.showMessageDialog(null, "Todos los campos deben estar rellenos", 
 					"Administración COIIPA", JOptionPane.ERROR_MESSAGE);

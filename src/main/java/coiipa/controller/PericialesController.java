@@ -115,7 +115,7 @@ public class PericialesController {
 		 * @param e
 		 */
 		@Override
-		public void keyTyped(KeyEvent e) {
+		public void keyReleased(KeyEvent e) {
 			p.filtrarPorPerito(p.getView().getTxtPerito().getText());
 		}
 	}
