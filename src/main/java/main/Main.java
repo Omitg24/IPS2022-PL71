@@ -8,6 +8,7 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,6 +71,8 @@ public class Main extends JFrame {
 	private JButton btnSolicitudVisado;
 	private JButton btnListadoPericial;
 	private JLabel lblAdministracinCoiipa;
+	private JButton btnAuxLeft;
+	private JButton btnAuxRight;
 
 	/**
 	 * Launch the application.
@@ -95,6 +98,7 @@ public class Main extends JFrame {
 	 * Create the frame.
 	 */
 	public Main() {
+		setBackground(Color.WHITE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/images/coiipa_symbol.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1500, 900);
@@ -106,7 +110,7 @@ public class Main extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new BorderLayout(10, 10));
 		contentPane.add(getPnSuperior(), BorderLayout.NORTH);
 		contentPane.add(getPnBotones(), BorderLayout.CENTER);
 	}
@@ -130,34 +134,38 @@ public class Main extends JFrame {
 	private JPanel getPnBotones() {
 		if (pnBotones == null) {
 			pnBotones = new JPanel();
-			pnBotones.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Funcionalidades", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			pnBotones.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2, true), "Funcionalidades", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			pnBotones.setBackground(Color.WHITE);
 			pnBotones.setLayout(new GridLayout(0, 4, 40, 40));
 			pnBotones.add(getBtnAperturaCursos());
-			pnBotones.add(getBtnAltaColegiado());
 			pnBotones.add(getBtnPlanificarCursos());
-			pnBotones.add(getBtnEmitirRecibo());
 			pnBotones.add(getBtnInscripcionCurso());
 			pnBotones.add(getBtnListarInscritos());
-			pnBotones.add(getBtnInscribirPerito());
-			pnBotones.add(getBtnConsolidacionPago());
-			pnBotones.add(getBtnAsignarInformePericial());
-			pnBotones.add(getBtnLotes());
-			pnBotones.add(getBtnLotes());
+			pnBotones.add(getBtnAltaColegiado());
 			pnBotones.add(getBtnInforme());
-			pnBotones.add(getBtnAsignarVisador());
-			pnBotones.add(getBtnSolicitudVisado());
+			pnBotones.add(getBtnInscribirPerito());
 			pnBotones.add(getBtnListadoPericial());
+			pnBotones.add(getBtnConsolidacionPago());
+			pnBotones.add(getBtnSolicitudVisado());
+			pnBotones.add(getBtnEmitirRecibo());
+			pnBotones.add(getBtnLotes());
+			pnBotones.add(getBtnAuxLeft());
+			pnBotones.add(getBtnAsignarInformePericial());
+			pnBotones.add(getBtnAsignarVisador());
+			pnBotones.add(getBtnAuxRight());
 		}
 		return pnBotones;
 	}
 	private JButton getBtnAperturaCursos() {
 		if (btnAperturaCursos == null) {
-			btnAperturaCursos = new JButton("Apertura Cursos");
+			btnAperturaCursos = new JButton("Apertura de cursos");
+			btnAperturaCursos.setMargin(new Insets(1, 5, 1, 5));
+			btnAperturaCursos.setFocusable(false);
+			btnAperturaCursos.setFocusPainted(false);
+			btnAperturaCursos.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnAperturaCursos.setBackground(Color.LIGHT_GRAY);
-			btnAperturaCursos.setBorder(new LineBorder(Color.BLACK));
 			btnAperturaCursos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnAperturaCursos.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnAperturaCursos.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnAperturaCursos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new AperturaMain().main(null);;
@@ -168,11 +176,14 @@ public class Main extends JFrame {
 	}
 	private JButton getBtnAltaColegiado() {
 		if (btnAltaColegiado == null) {
-			btnAltaColegiado = new JButton("Alta Colegiado");
+			btnAltaColegiado = new JButton("Solicitud de alta de colegiado");
+			btnAltaColegiado.setMargin(new Insets(1, 5, 1, 5));
+			btnAltaColegiado.setFocusable(false);
+			btnAltaColegiado.setFocusPainted(false);
+			btnAltaColegiado.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnAltaColegiado.setBackground(Color.LIGHT_GRAY);
-			btnAltaColegiado.setBorder(new LineBorder(Color.BLACK));
 			btnAltaColegiado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnAltaColegiado.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnAltaColegiado.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnAltaColegiado.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new ColegiadoMain().main(null);;
@@ -184,11 +195,14 @@ public class Main extends JFrame {
 	
 	private JButton getBtnPlanificarCursos() {
 		if (btnPlanificarCursos == null) {
-			btnPlanificarCursos = new JButton("Planificar Cursos");
+			btnPlanificarCursos = new JButton("Planificación de cursos");
+			btnPlanificarCursos.setMargin(new Insets(1, 5, 1, 5));
+			btnPlanificarCursos.setFocusable(false);
+			btnPlanificarCursos.setFocusPainted(false);
+			btnPlanificarCursos.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnPlanificarCursos.setBackground(Color.LIGHT_GRAY);
-			btnPlanificarCursos.setBorder(new LineBorder(Color.BLACK));
 			btnPlanificarCursos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnPlanificarCursos.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnPlanificarCursos.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnPlanificarCursos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new CursoMain().main(null);
@@ -199,11 +213,14 @@ public class Main extends JFrame {
 	}
 	private JButton getBtnEmitirRecibo() {
 		if (btnEmitirRecibo == null) {
-			btnEmitirRecibo = new JButton("Emitir Recibo");
+			btnEmitirRecibo = new JButton("Emisión de recibos");
+			btnEmitirRecibo.setMargin(new Insets(1, 5, 1, 5));
+			btnEmitirRecibo.setFocusable(false);
+			btnEmitirRecibo.setFocusPainted(false);
+			btnEmitirRecibo.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnEmitirRecibo.setBackground(Color.LIGHT_GRAY);
-			btnEmitirRecibo.setBorder(new LineBorder(Color.BLACK));
 			btnEmitirRecibo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnEmitirRecibo.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnEmitirRecibo.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnEmitirRecibo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new EmisionMain().main(null);;
@@ -215,11 +232,14 @@ public class Main extends JFrame {
 	
 	private JButton getBtnInscripcionCurso() {
 		if (btnInscripcionCurso == null) {
-			btnInscripcionCurso = new JButton("Inscripcion Curso");
+			btnInscripcionCurso = new JButton("Inscripción a cursos");
+			btnInscripcionCurso.setMargin(new Insets(1, 5, 1, 5));
+			btnInscripcionCurso.setFocusable(false);
+			btnInscripcionCurso.setFocusPainted(false);
+			btnInscripcionCurso.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnInscripcionCurso.setBackground(Color.LIGHT_GRAY);
-			btnInscripcionCurso.setBorder(new LineBorder(Color.BLACK));
 			btnInscripcionCurso.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnInscripcionCurso.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnInscripcionCurso.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnInscripcionCurso.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new InscripcionMain().main(null);;
@@ -230,11 +250,14 @@ public class Main extends JFrame {
 	}
 	private JButton getBtnListarInscritos() {
 		if (btnListarInscritos == null) {
-			btnListarInscritos = new JButton("Listar Inscritos");
+			btnListarInscritos = new JButton("Listados de inscripciones a cursos");
+			btnListarInscritos.setMargin(new Insets(1, 5, 1, 5));
+			btnListarInscritos.setFocusable(false);
+			btnListarInscritos.setFocusPainted(false);
+			btnListarInscritos.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnListarInscritos.setBackground(Color.LIGHT_GRAY);
-			btnListarInscritos.setBorder(new LineBorder(Color.BLACK));
 			btnListarInscritos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnListarInscritos.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnListarInscritos.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnListarInscritos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new InscritosMain().main(null);;
@@ -246,11 +269,14 @@ public class Main extends JFrame {
 	
 	private JButton getBtnInscribirPerito() {
 		if (btnInscribirPerito == null) {
-			btnInscribirPerito = new JButton("Inscribir Perito");
+			btnInscribirPerito = new JButton("Inscripción pericial");
+			btnInscribirPerito.setMargin(new Insets(1, 5, 1, 5));
+			btnInscribirPerito.setFocusable(false);
+			btnInscribirPerito.setFocusPainted(false);
+			btnInscribirPerito.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnInscribirPerito.setBackground(Color.LIGHT_GRAY);
-			btnInscribirPerito.setBorder(new LineBorder(Color.BLACK));
 			btnInscribirPerito.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnInscribirPerito.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnInscribirPerito.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnInscribirPerito.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new InscripcionPericialMain().main(null);;
@@ -262,11 +288,14 @@ public class Main extends JFrame {
 	
 	private JButton getBtnConsolidacionPago() {
 		if (btnConsolidacionPago == null) {
-			btnConsolidacionPago = new JButton("Consolidacion de pagos");
+			btnConsolidacionPago = new JButton("Consolidación de pagos");
+			btnConsolidacionPago.setMargin(new Insets(1, 5, 1, 5));
+			btnConsolidacionPago.setFocusable(false);
+			btnConsolidacionPago.setFocusPainted(false);
+			btnConsolidacionPago.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnConsolidacionPago.setBackground(Color.LIGHT_GRAY);
-			btnConsolidacionPago.setBorder(new LineBorder(Color.BLACK));
 			btnConsolidacionPago.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnConsolidacionPago.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnConsolidacionPago.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnConsolidacionPago.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new ConsolidacionMain().main(null);;
@@ -278,11 +307,14 @@ public class Main extends JFrame {
 	
 	private JButton getBtnAsignarInformePericial() {
 		if (btnAsignarInformePericial == null) {
-			btnAsignarInformePericial = new JButton("Asginar Informe Pericial");
+			btnAsignarInformePericial = new JButton("Gestión de asignaciones periciales");
+			btnAsignarInformePericial.setMargin(new Insets(1, 5, 1, 5));
+			btnAsignarInformePericial.setFocusable(false);
+			btnAsignarInformePericial.setFocusPainted(false);
+			btnAsignarInformePericial.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnAsignarInformePericial.setBackground(Color.LIGHT_GRAY);
-			btnAsignarInformePericial.setBorder(new LineBorder(Color.BLACK));
 			btnAsignarInformePericial.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnAsignarInformePericial.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnAsignarInformePericial.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnAsignarInformePericial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new AsignacionPericialMain().main(null);
@@ -293,11 +325,14 @@ public class Main extends JFrame {
 	}
 	private JButton getBtnLotes() {
 		if (btnLotes == null) {
-			btnLotes = new JButton("Enviar lotes");
+			btnLotes = new JButton("Emisión de lotes");
+			btnLotes.setMargin(new Insets(1, 5, 1, 5));
+			btnLotes.setFocusable(false);
+			btnLotes.setFocusPainted(false);
+			btnLotes.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnLotes.setBackground(Color.LIGHT_GRAY);
-			btnLotes.setBorder(new LineBorder(Color.BLACK));
 			btnLotes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnLotes.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnLotes.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnLotes.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new LotesMain().main(null);
@@ -308,11 +343,14 @@ public class Main extends JFrame {
 	}
 	private JButton getBtnInforme() {
 		if (btnInforme == null) {
-			btnInforme = new JButton("Enviar solicitud de informe");
+			btnInforme = new JButton("Solicitud de informe pericial");
+			btnInforme.setMargin(new Insets(1, 5, 1, 5));
+			btnInforme.setFocusable(false);
+			btnInforme.setFocusPainted(false);
+			btnInforme.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnInforme.setBackground(Color.LIGHT_GRAY);
-			btnInforme.setBorder(new LineBorder(Color.BLACK));
 			btnInforme.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnInforme.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnInforme.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnInforme.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new InformeMain().main(null);
@@ -324,11 +362,14 @@ public class Main extends JFrame {
 	
 	private JButton getBtnAsignarVisador() {
 		if (btnAsignarVisador == null) {
-			btnAsignarVisador = new JButton("Asiginar Visador");
+			btnAsignarVisador = new JButton("Gestión de asignaciones de visado");
+			btnAsignarVisador.setMargin(new Insets(1, 5, 1, 5));
+			btnAsignarVisador.setFocusable(false);
+			btnAsignarVisador.setFocusPainted(false);
+			btnAsignarVisador.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnAsignarVisador.setBackground(Color.LIGHT_GRAY);
-			btnAsignarVisador.setBorder(new LineBorder(Color.BLACK));
 			btnAsignarVisador.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnAsignarVisador.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnAsignarVisador.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnAsignarVisador.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new AsignacionVisadorMain().main(null);
@@ -340,11 +381,14 @@ public class Main extends JFrame {
 	
 	private JButton getBtnSolicitudVisado() {
 		if (btnSolicitudVisado == null) {
-			btnSolicitudVisado = new JButton("Solicitud Visado");
+			btnSolicitudVisado = new JButton("Solicitud de visado");
+			btnSolicitudVisado.setMargin(new Insets(1, 5, 1, 5));
+			btnSolicitudVisado.setFocusable(false);
+			btnSolicitudVisado.setFocusPainted(false);
+			btnSolicitudVisado.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnSolicitudVisado.setBackground(Color.LIGHT_GRAY);
-			btnSolicitudVisado.setBorder(new LineBorder(Color.BLACK));
 			btnSolicitudVisado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnSolicitudVisado.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnSolicitudVisado.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnSolicitudVisado.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					new SolicitudVisadoMain().main(null);
@@ -356,10 +400,13 @@ public class Main extends JFrame {
 
 	private JButton getBtnListadoPericial() {
 		if (btnListadoPericial == null) {
-			btnListadoPericial = new JButton("Listado de solicitudes");
+			btnListadoPericial = new JButton("Listado de peritos");
+			btnListadoPericial.setMargin(new Insets(1, 5, 1, 5));
+			btnListadoPericial.setFocusable(false);
+			btnListadoPericial.setFocusPainted(false);
+			btnListadoPericial.setBorder(new LineBorder(new Color(0, 128, 0), 3, true));
 			btnListadoPericial.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnListadoPericial.setFont(new Font("Tahoma", Font.BOLD, 14));
-			btnListadoPericial.setBorder(new LineBorder(Color.BLACK));
+			btnListadoPericial.setFont(new Font("Tahoma", Font.BOLD, 18));
 			btnListadoPericial.setBackground(Color.LIGHT_GRAY);
 			btnListadoPericial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -376,5 +423,23 @@ public class Main extends JFrame {
 			lblAdministracinCoiipa.setFont(new Font("Baskerville Old Face", Font.BOLD, 56));
 		}
 		return lblAdministracinCoiipa;
+	}
+	private JButton getBtnAuxLeft() {
+		if (btnAuxLeft == null) {
+			btnAuxLeft = new JButton("");
+			btnAuxLeft.setBorder(null);
+			btnAuxLeft.setBackground(Color.WHITE);
+			btnAuxLeft.setEnabled(false);
+		}
+		return btnAuxLeft;
+	}
+	private JButton getBtnAuxRight() {
+		if (btnAuxRight == null) {
+			btnAuxRight = new JButton("");
+			btnAuxRight.setBorder(null);
+			btnAuxRight.setBackground(Color.WHITE);
+			btnAuxRight.setEnabled(false);
+		}
+		return btnAuxRight;
 	}
 }

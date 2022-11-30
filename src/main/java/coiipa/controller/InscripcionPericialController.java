@@ -124,7 +124,6 @@ public class InscripcionPericialController {
 		view.getTxtTelefono().setText(colegiado.getTelefonoColegiado());
 		view.getTxtApellidos().setText(colegiado.getApellidosColegiado());
 		view.getTxtLocalidad().setText(colegiado.getLocalidadColegiado());
-	}
-	
+	}	
 
 }

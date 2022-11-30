@@ -8,9 +8,11 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.text.ParseException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.MaskFormatter;
 
 import coiipa.view.InscripcionPericialView;
 
@@ -130,7 +133,13 @@ public class IdentificadorView {
 	}
 	public JTextField getTextId() {
 		if (textFieldId == null) {
-			textFieldId = new JTextField();
+			MaskFormatter mf = null;
+			try {
+				mf = new MaskFormatter("########U");
+			} catch (ParseException e) {
+				System.out.println("Excepción capturada: JFormattedTextField");
+			}
+			textFieldId = new JFormattedTextField(mf);	
 			textFieldId.setPreferredSize(new Dimension(55, 35));
 			textFieldId.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldId.setFont(new Font("Tahoma", Font.PLAIN, 18));

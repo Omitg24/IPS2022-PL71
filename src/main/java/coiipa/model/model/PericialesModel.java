@@ -1,8 +1,5 @@
 package coiipa.model.model;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,10 +58,7 @@ public class PericialesModel {
 	 * Método que convierte la lista de cursos a un array de String
 	 */
 	public List<AsignacionPericialDTO> getAsignaciones() {
-		List<AsignacionPericialDTO> asig = db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES);
-		for (AsignacionPericialDTO a : asig)
-			a.setFecha(Instant.ofEpochMilli(Long.valueOf(a.getFecha())).atZone(ZoneId.systemDefault()).toLocalDate().toString());
-		return asig;
+		return db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES);
 	}
 
 	/**
@@ -74,9 +68,8 @@ public class PericialesModel {
 		List<AsignacionPericialDTO> fechas = db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_FECHAS_DISPONIBLES);
 		List<String> result = new ArrayList<>();
 		for (AsignacionPericialDTO f : fechas) {
-			LocalDate d = Instant.ofEpochMilli(Long.valueOf(f.getFecha())).atZone(ZoneId.systemDefault()).toLocalDate();
-			if (!result.contains(d.toString()))
-				result.add(d.toString());
+			if (!result.contains(f.getFecha()))
+				result.add(f.getFecha());
 		}
 		result.add("Todas");
 
@@ -91,8 +84,6 @@ public class PericialesModel {
 		List<AsignacionPericialDTO> asig = db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES);
 		List<AsignacionPericialDTO> result = new ArrayList<>();
 		for (AsignacionPericialDTO a : asig) {
-			a.setFecha(Instant.ofEpochMilli(Long.valueOf(
-					a.getFecha())).atZone(ZoneId.systemDefault()).toLocalDate().toString());
 			if (a.getFecha().equals(fecha)) {
 				result.add(a);
 			}
@@ -104,44 +95,28 @@ public class PericialesModel {
 	 * Devuelve las asignaciones con estado 'Realizado'
 	 */
 	public List<AsignacionPericialDTO> getRealizadas() {
-		List<AsignacionPericialDTO> asig = db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES_REALIZADAS);
-		for (AsignacionPericialDTO a : asig)
-			a.setFecha(Instant.ofEpochMilli(Long.valueOf(
-					a.getFecha())).atZone(ZoneId.systemDefault()).toLocalDate().toString());
-		return asig;
+		return db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES_REALIZADAS);
 	}
 
 	/**
 	 * Devuelve las asignaciones con estado 'NA'
 	 */
 	public List<AsignacionPericialDTO> getNoRealizadas() {
-		List<AsignacionPericialDTO> asig = db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES_NO_REALIZADAS);
-		for (AsignacionPericialDTO a : asig)
-			a.setFecha(Instant.ofEpochMilli(Long.valueOf(
-					a.getFecha())).atZone(ZoneId.systemDefault()).toLocalDate().toString());
-		return asig;
+		return db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES_NO_REALIZADAS);
 	}
 
 	/**
 	 * Devuelve las asignaciones con estado 'Anulada'
 	 */
 	public List<AsignacionPericialDTO> getAnuladas() {
-		List<AsignacionPericialDTO> asig = db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES_ANULADAS);
-		for (AsignacionPericialDTO a : asig)
-			a.setFecha(Instant.ofEpochMilli(Long.valueOf(
-					a.getFecha())).atZone(ZoneId.systemDefault()).toLocalDate().toString());
-		return asig;
+		return db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES_ANULADAS);
 	}
 
 	/**
 	 * Devuelve las asignaciones por un perito determinado
 	 */
 	public List<AsignacionPericialDTO> getPorPerito(String perito) {
-		List<AsignacionPericialDTO> asig = db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES_POR_PERITO, perito);
-		for (AsignacionPericialDTO a : asig)
-			a.setFecha(Instant.ofEpochMilli(Long.valueOf(
-					a.getFecha())).atZone(ZoneId.systemDefault()).toLocalDate().toString());
-		return asig;
+		return db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES_POR_PERITO, perito);
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package coiipa.model.dto;
 
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.Objects;
 
 /**
@@ -150,7 +152,7 @@ public class AsignacionPericialDTO {
 	 * @return fecha
 	 */
 	public String getFecha() {
-		return fecha;
+		return Instant.ofEpochMilli(Long.valueOf(fecha)).atZone(ZoneId.systemDefault()).toLocalDateTime().toLocalDate().toString();
 	}
 
 	/**

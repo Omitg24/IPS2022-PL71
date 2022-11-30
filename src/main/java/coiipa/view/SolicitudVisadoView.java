@@ -55,7 +55,6 @@ public class SolicitudVisadoView {
 	private JTextArea textAreaDescripcion;
 	private JLabel lblAux1;
 	private JLabel lblAux2;
-	private JLabel lblAux3;
 	private JLabel lbSolicitud;
 
 	/**
@@ -167,12 +166,11 @@ public class SolicitudVisadoView {
 		if (panelDescripción == null) {
 			panelDescripción = new JPanel();
 			panelDescripción.setBackground(Color.WHITE);
-			panelDescripción.setLayout(new BorderLayout(25, 50));
+			panelDescripción.setLayout(new BorderLayout(25, 25));
 			panelDescripción.add(getLblDescripcion(), BorderLayout.NORTH);
 			panelDescripción.add(getTextAreaDescripcion());
 			panelDescripción.add(getLblAux1(), BorderLayout.WEST);
 			panelDescripción.add(getLblAux2(), BorderLayout.EAST);
-			panelDescripción.add(getLblAux3(), BorderLayout.SOUTH);
 		}
 		return panelDescripción;
 	}
@@ -282,12 +280,6 @@ public class SolicitudVisadoView {
 			lblAux2 = new JLabel("                ");
 		}
 		return lblAux2;
-	}
-	private JLabel getLblAux3() {
-		if (lblAux3 == null) {
-			lblAux3 = new JLabel("                ");
-		}
-		return lblAux3;
 	}
 	private JLabel getLbSolicitud_1() {
 		if (lbSolicitud == null) {

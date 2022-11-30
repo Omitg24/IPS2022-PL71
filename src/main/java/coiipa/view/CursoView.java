@@ -141,7 +141,6 @@ public class CursoView {
 			pnTitulo = new JPanel();
 			FlowLayout flowLayout = (FlowLayout) pnTitulo.getLayout();
 			flowLayout.setHgap(17);
-			flowLayout.setAlignment(FlowLayout.LEFT);
 			pnTitulo.setBackground(Color.WHITE);
 			pnTitulo.add(getLbTitulo());
 			pnTitulo.add(getTxtTitulo());
@@ -168,7 +167,7 @@ public class CursoView {
 			txtTitulo.setPreferredSize(new Dimension(10, 25));
 			txtTitulo.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtTitulo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			txtTitulo.setColumns(10);
+			txtTitulo.setColumns(15);
 		}
 		return txtTitulo;
 	}
@@ -177,7 +176,6 @@ public class CursoView {
 		if (pnFecha == null) {
 			pnFecha = new JPanel();
 			FlowLayout flowLayout = (FlowLayout) pnFecha.getLayout();
-			flowLayout.setAlignment(FlowLayout.LEFT);
 			flowLayout.setHgap(20);
 			pnFecha.setBackground(Color.WHITE);
 			pnFecha.add(getLbFecha());
@@ -206,7 +204,7 @@ public class CursoView {
 			txtFecha.setPreferredSize(new Dimension(10, 25));
 			txtFecha.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtFecha.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			txtFecha.setColumns(10);
+			txtFecha.setColumns(15);
 		}
 		return txtFecha;
 	}
@@ -215,7 +213,6 @@ public class CursoView {
 		if (pnPrecio == null) {
 			pnPrecio = new JPanel();
 			FlowLayout flowLayout = (FlowLayout) pnPrecio.getLayout();
-			flowLayout.setAlignment(FlowLayout.LEFT);
 			flowLayout.setHgap(17);
 			pnPrecio.setBackground(Color.WHITE);
 			pnPrecio.add(getLbPrecio());
@@ -242,7 +239,7 @@ public class CursoView {
 			txtPrecio.setPreferredSize(new Dimension(10, 25));
 			txtPrecio.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtPrecio.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			txtPrecio.setColumns(10);
+			txtPrecio.setColumns(15);
 		}
 		return txtPrecio;
 	}
@@ -298,7 +295,6 @@ public class CursoView {
 			pnCancelable = new JPanel();
 			FlowLayout flowLayout = (FlowLayout) pnCancelable.getLayout();
 			flowLayout.setHgap(35);
-			flowLayout.setAlignment(FlowLayout.LEFT);
 			pnCancelable.setBackground(Color.WHITE);
 			pnCancelable.add(getChCancelable());
 		}
@@ -328,7 +324,6 @@ public class CursoView {
 			pnDevolucion = new JPanel();
 			FlowLayout flowLayout = (FlowLayout) pnDevolucion.getLayout();
 			flowLayout.setHgap(20);
-			flowLayout.setAlignment(FlowLayout.LEFT);
 			pnDevolucion.setBackground(Color.WHITE);
 			pnDevolucion.add(getLbDevolucion());
 			pnDevolucion.add(getTxtDevolucion());
@@ -349,7 +344,7 @@ public class CursoView {
 			txtDevolución.setPreferredSize(new Dimension(10, 25));
 			txtDevolución.setHorizontalAlignment(SwingConstants.CENTER);
 			txtDevolución.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			txtDevolución.setColumns(10);
+			txtDevolución.setColumns(15);
 			txtDevolución.setBorder(new LineBorder(new Color(171, 173, 179)));
 			txtDevolución.setBackground(Color.LIGHT_GRAY);
 			txtDevolución.setEnabled(false);

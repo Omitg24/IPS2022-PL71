@@ -224,6 +224,7 @@ public class InformeView {
 	public JTextField getTextFieldNombre() {
 		if (textFieldNombre == null) {
 			textFieldNombre = new JTextField();
+			textFieldNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFieldNombre.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldNombre.setMaximumSize(new Dimension(280, 30));
 			textFieldNombre.setColumns(10);
@@ -244,6 +245,7 @@ public class InformeView {
 	public JTextField getTextFieldCorreo() {
 		if (textFieldCorreo == null) {
 			textFieldCorreo = new JTextField();
+			textFieldCorreo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFieldCorreo.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldCorreo.setMaximumSize(new Dimension(280, 30));
 			textFieldCorreo.setColumns(10);
@@ -276,6 +278,7 @@ public class InformeView {
 	public JTextField getTextFieldDni() {
 		if (textFieldDni == null) {
 			textFieldDni = new JTextField();
+			textFieldDni.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFieldDni.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldDni.setMaximumSize(new Dimension(280, 30));
 			textFieldDni.setColumns(10);
@@ -296,6 +299,7 @@ public class InformeView {
 	public JTextField getTextFieldTelefono() {
 		if (textFieldTelefono == null) {
 			textFieldTelefono = new JTextField();
+			textFieldTelefono.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			textFieldTelefono.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldTelefono.setMaximumSize(new Dimension(280, 30));
 			textFieldTelefono.setColumns(10);

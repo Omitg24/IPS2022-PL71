@@ -1,6 +1,6 @@
 package coiipa.controller;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.swing.table.TableModel;
@@ -190,7 +190,7 @@ public class AsignacionPericialController {
 	 * @param motivo
 	 */
 	public void anularAsignacion(String motivo) {		
-		model.anularAsignacion(LocalDate.now().toString(), motivo, id);
+		model.anularAsignacion(String.valueOf(new Timestamp(System.currentTimeMillis()).getTime()), motivo, id);
 		model.anularPerito(dniPerito);
 		SwingUtil.showInformationDialog("Se ha anulado la asignación del perito al informe\nEl motivo de dicha cancelación es el siguiente:\n" + motivo);
 		actualizarTablas();

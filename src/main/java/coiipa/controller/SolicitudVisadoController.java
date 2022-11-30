@@ -1,6 +1,5 @@
 package coiipa.controller;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 import coiipa.model.model.SolicitudVisadoModel;
@@ -26,7 +25,6 @@ public class SolicitudVisadoController {
 	public SolicitudVisadoController(SolicitudVisadoModel m, SolicitudVisadoView v) {
 		this.model = m;
 		this.view = v;
-		// no hay inicializacion especifica del modelo, solo de la vista
 		this.initView();
 	}
 
@@ -47,23 +45,17 @@ public class SolicitudVisadoController {
 				String apellidos = view.getTextFieldApellido().getText();
 				String descripcion = view.getTextAreaDescripcion().getText();
 				model.addInformePericial(dni, nombre, apellidos, descripcion);
-				JOptionPane.showMessageDialog(null, "Solicitud guardada con éxito", "Administración COIIPA",
-						JOptionPane.INFORMATION_MESSAGE);
-
+				SwingUtil.showInformationDialog("Solicitud guardada con éxito");
 			} else {
-				JOptionPane.showMessageDialog(null, "El DNI no corresponde a ningún perito inscrito",
-						"Administración COIIPA", JOptionPane.ERROR_MESSAGE);
+				SwingUtil.showErrorDialog("El DNI no corresponde a ningún perito inscrito");
 			}
-
 			reiniciarCampos();
 		} else {
-			JOptionPane.showMessageDialog(null, "Todos los campos deben estar rellenos", "Administración COIIPA",
-					JOptionPane.ERROR_MESSAGE);
+			SwingUtil.showErrorDialog("Todos los campos deben estar rellenos");
 		}
 	}
 
 	public void initView() {
-		// Abre la ventana (sustituye al main generado por WindowBuilder)
 		view.getFrame().setVisible(true);
 	}
 

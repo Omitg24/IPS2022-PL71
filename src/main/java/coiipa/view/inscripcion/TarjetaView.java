@@ -104,6 +104,7 @@ public class TarjetaView extends JDialog {
 				}
 				{
 					txtFechaCaducidad = new JTextField();
+					txtFechaCaducidad.setText("(MM/YY)");
 					txtFechaCaducidad.setHorizontalAlignment(SwingConstants.CENTER);
 					txtFechaCaducidad.setBackground(Color.LIGHT_GRAY);
 					txtFechaCaducidad.setForeground(Color.white);

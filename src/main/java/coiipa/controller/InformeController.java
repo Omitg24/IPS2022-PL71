@@ -1,6 +1,5 @@
 package coiipa.controller;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 import coiipa.model.model.InformeModel;
@@ -23,7 +22,6 @@ public class InformeController {
 	public InformeController(InformeModel m, InformeView v) {
 		this.model = m;
 		this.view = v;
-		// no hay inicializacion especifica del modelo, solo de la vista
 		this.initView();
 	}
 
@@ -43,22 +41,15 @@ public class InformeController {
 					, view.getTextFieldDni().getText()
 					, view.getTextAreaDescripcion().getText()
 					, view.getRdbtnNormal().isSelected());
-			JOptionPane.showMessageDialog(null, "Solicitud guardada con éxito", 
-					"Administración COIIPA", JOptionPane.INFORMATION_MESSAGE);
+			SwingUtil.showInformationDialog("Solicitud guardada con éxito");
 			reiniciarCampos();
 		}
-//		else if (model.isSent(view.getTextFieldDni().getText())) {
-//			JOptionPane.showMessageDialog(null, "Ya existe una solicitud hecha por el DNI introducido", 
-//					"Administración COIIPA", JOptionPane.ERROR_MESSAGE);
-//		}
 		else {
-			JOptionPane.showMessageDialog(null, "Todos los campos deben estar rellenos", 
-					"Administración COIIPA", JOptionPane.ERROR_MESSAGE);
+			SwingUtil.showInformationDialog("Todos los campos deben estar rellenos");
 		}
 	}
 
-	public void initView() {
-		// Abre la ventana (sustituye al main generado por WindowBuilder)
+	public void initView() {	
 		view.getFrame().setVisible(true);
 	}
 	

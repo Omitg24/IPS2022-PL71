@@ -172,7 +172,7 @@ public class InscripcionView implements Inscripcion {
 		frmAdministracinCoiipa = new JFrame();
 		frmAdministracinCoiipa.setIconImage(Toolkit.getDefaultToolkit().getImage(InscripcionView.class.getResource("/images/coiipa_symbol.png")));
 		frmAdministracinCoiipa.setResizable(true);
-		frmAdministracinCoiipa.setTitle("Administración COIIPA - Inscripción a cursos");
+		frmAdministracinCoiipa.setTitle("Administración COIIPA - Listado de inscripciones a cursos");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frmAdministracinCoiipa.setBounds(100, 100, 1500, 900);
 		frmAdministracinCoiipa.setMinimumSize(new Dimension(1500,900));
@@ -749,7 +749,7 @@ public class InscripcionView implements Inscripcion {
 	}
 	private JLabel getLbInscripcion_1() {
 		if (lbInscripcion == null) {
-			lbInscripcion = new JLabel("Inscripción a cursos");
+			lbInscripcion = new JLabel("Listado de inscripciones a cursos");
 			lbInscripcion.setHorizontalAlignment(SwingConstants.CENTER);
 			lbInscripcion.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
 		}

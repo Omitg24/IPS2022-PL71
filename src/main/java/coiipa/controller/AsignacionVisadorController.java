@@ -94,7 +94,7 @@ public class AsignacionVisadorController {
 				model.asignarVisado(dniVisado, id, dniVisador);
 				actualizarTablas();
 				SwingUtil.showInformationDialog(
-						"Se ha asignado la solicitud del perito con DNI: " + dniVisado + ", al visador con dni: " + dniVisador);
+						"Se ha asignado la solicitud del perito con DNI: " + dniVisado + ", al visador con DNI: " + dniVisador);
 			}
 
 		}

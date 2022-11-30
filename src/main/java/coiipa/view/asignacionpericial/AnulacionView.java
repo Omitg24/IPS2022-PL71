@@ -231,6 +231,7 @@ public class AnulacionView extends JDialog {
 	private JTextArea getTextAreaMotivo() {
 		if (textAreaMotivo == null) {
 			textAreaMotivo = new JTextArea();
+			textAreaMotivo.setLineWrap(true);
 			textAreaMotivo.setFont(new Font("Monospaced", Font.PLAIN, 16));
 			textAreaMotivo.setBorder(new LineBorder(new Color(0, 0, 0)));
 		}

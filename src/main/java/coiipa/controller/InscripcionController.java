@@ -368,11 +368,13 @@ public class InscripcionController {
 				String estado ="";
 				double pagado=0;
 				switch(tipoPago) {
-				case "Tarjeta":
-					estado="Inscrito";
-					pagado = c.getPrecio();
-				case "Transferencia":
-					estado="Pendiente";
+					case "Tarjeta":
+						estado="Inscrito";
+						pagado = c.getPrecio();
+						break;
+					case "Transferencia":
+						estado="Pendiente";
+						break;
 				}
 				if(tarjetaView!=null)
 					tarjetaView.dispose();
@@ -392,8 +394,15 @@ public class InscripcionController {
 	 * Método para cancelar la inscripción a un curso
 	 */
 	private void cancelarInscripcion() {
-		String titulo = SwingUtil.getSelectedKey(view.getTbSolicitados());
-		String fecha = SwingUtil.getSelectedKey(view.getTbSolicitados(),1);
+		String titulo = "";
+		String fecha = "";
+		if (view.getTbSolicitados().getSelectedRow() != -1) {
+			titulo = SwingUtil.getSelectedKey(view.getTbSolicitados());
+			fecha = SwingUtil.getSelectedKey(view.getTbSolicitados(),1);
+		} else {
+			titulo = SwingUtil.getSelectedKey(view.getTbEspera());
+			fecha = SwingUtil.getSelectedKey(view.getTbEspera(),1);
+		}		
 		CursoDTO c = model.getCursoTituloFecha(titulo, fecha);
 		if(comprobarCancelable(c) && comprobarFechaCurso(c)) {
 			mostrarJustificante(c);
@@ -417,6 +426,7 @@ public class InscripcionController {
 				c.getTituloCurso(), c.getFechaCurso(), "Cancelado");
 		j.getFrame().dispose();
 		getTablaCursosSolicitados();
+		getTablaCursosEnEspera();
 	}
 
 	private boolean comprobarCancelable(CursoDTO c) {

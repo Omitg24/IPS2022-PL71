@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.TableModel;
 
@@ -47,8 +46,7 @@ public class LotesController {
 	private void recepcionar() {
 		List<ColegiadoDTO> result = model.getProcesados();
 		model.addProcesados(result);
-		JOptionPane.showMessageDialog(null, "Se han recepcionado los colegiados con éxito", 
-				"Administración COIIPA", JOptionPane.INFORMATION_MESSAGE);
+		SwingUtil.showInformationDialog("Se han recepcionado los colegiados con éxito");
 		view.getBtRecepcion().setEnabled(false);
 	}
 
@@ -58,23 +56,19 @@ public class LotesController {
 		if (validValues.contains(col.getTitulacionColegiado())) {
 			if (!model.isSent(col.getDniColegiado())) {
 				LotesUtil.sendToBatchFile(LotesModel.BATCH_PATH, col, model.calcularProximoNum());
-				JOptionPane.showMessageDialog(null, "Solicitud enviada con exito", 
-						"Administración COIIPA", JOptionPane.INFORMATION_MESSAGE);
+				SwingUtil.showInformationDialog("Solicitud enviada con exito");
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Ya se ha enviado esta solicitud", 
-						"Administración COIIPA", JOptionPane.ERROR_MESSAGE);
+				SwingUtil.showInformationDialog("Ya se ha enviado esta solicitud");
 			}
 		}
 		else {
 			if (model.findByDni(col.getDniColegiado())) {
 				model.insertAsInvalid(col);
-				JOptionPane.showMessageDialog(null, "Guardado colegiado con estado anulado", 
-						"Administración COIIPA", JOptionPane.INFORMATION_MESSAGE);
+				SwingUtil.showInformationDialog("Guardado colegiado con estado anulado");
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Este colegiado ya ha sido guardado", 
-						"Administración COIIPA", JOptionPane.ERROR_MESSAGE);
+				SwingUtil.showInformationDialog("Este colegiado ya ha sido guardado");
 			}
 		}	
 	}

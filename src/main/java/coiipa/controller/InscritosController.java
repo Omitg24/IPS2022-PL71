@@ -154,7 +154,7 @@ public class InscritosController {
 			view.getTableCursos().getModel().setValueAt("Cancelado", view.getTableCursos().getSelectedRow(), 5);
 			getListaInscritos();
 			getListaEspera();
-			SwingUtil.showMessage("El curso '" + tituloCurso + "' con fecha " + fecha + " ha sido cancelado", "Administración COIIPA", 1);
+			SwingUtil.showInformationDialog("El curso '" + tituloCurso + "' con fecha " + fecha + " ha sido cancelado");
 		} else
 			SwingUtil.showErrorDialog("El curso seleccionado ya ha sido cancelado");
 	}

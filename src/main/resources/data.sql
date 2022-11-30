@@ -22,14 +22,14 @@ insert into Colegiado (dniColegiado, nombreColegiado, apellidosColegiado, locali
 
 Insert into Curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,estadoc,nplazas,cancelable, porcentajeDevolucion)
 values
-('Desarrollo de bases de datos', '2022-12-04', '70','2022-11-15','2022-12-01', 'Abierta', '40',true,69); 
+('Desarrollo de bases de datos', '2022-12-04', '70','2022-11-15','2022-12-01', 'Abierta', '40',true, 69); 
 
 Insert into Curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,estadoc,nplazas) 
 values 
 ('Desarrollo web','2022-11-26','500','2022-9-17','2023-11-3','Abierta','78'),
 ('Informática forense y auditoría','2023-1-20','250','2022-11-17','2023-3-1','Abierta','25'),
 ('Desarrollo de aplicaciones moviles','2022-09-13','135','2022-06-20','2022-08-20','Abierta', '60'),
-('Desarrollo de robots','2022-06-17','90','2022-05-01','2022-06-15','Abierta', '70'),
+('Desarrollo de robots','2022-06-17','90','2022-05-01','2022-06-15','Abierta', '0'),
 ('Desarrollo de robots','2022-07-13','80','2022-05-01','2022-06-15','Abierta', '90'),
 ('Desarrollo de videojuegos','2022-11-21','165','2022-09-30','2022-11-01','Abierta', '150'),
 ('Desarrollo de videojuegos','2022-06-11','170','2022-04-30','2022-06-01','Abierta', '20')
@@ -72,12 +72,12 @@ values
 
 Insert into InscripcionPericial(dniColegiado, fechaInscripcion, posicionLista, estadoInscripcion)
 VALUES
-('73489205A', '2020-9-11', 1, 'Inscrito'),
-('64356345K', '2026-8', 2, 'Inscrito'),
+('73489205A', '2020-09-11', 1, 'Inscrito'),
+('64356345K', '2026-08-23', 2, 'Inscrito'),
 ('12343124J', '2019-11-25', 4, 'No inscrito'),
-('93857839W', '2022-2-21', 3, 'Inscrito'),
-('23485976B', '2020-1-11', 8, 'No inscrito'),
-('98764523R', '2021-2-23', 4, 'Inscrito')
+('93857839W', '2022-02-21', 3, 'Inscrito'),
+('23485976B', '2020-01-11', 8, 'No inscrito'),
+('98764523R', '2021-02-23', 4, 'Inscrito')
 ;
 
 Insert into SolicitudPericial(dni, id,fecha, estado)

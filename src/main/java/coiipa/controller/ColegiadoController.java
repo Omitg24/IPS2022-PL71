@@ -12,7 +12,7 @@ import ui_events.ChangeDateColor;
 import util.SwingUtil;
 
 /**
- * Título: Clase SolicitanteController
+ * Título: Clase ColegiadoController
  *
  * @author Omar Teixeira González, UO281847
  * @version 9 oct 2022

@@ -64,7 +64,7 @@ public class LotesView {
 		frmAdministracinCoiipa = new JFrame();
 		frmAdministracinCoiipa.setIconImage(Toolkit.getDefaultToolkit().getImage(LotesView.class.getResource("/images/coiipa_symbol.png")));
 		frmAdministracinCoiipa.setResizable(false);
-		frmAdministracinCoiipa.setTitle("Administración COIIPA - Envío de lotes");
+		frmAdministracinCoiipa.setTitle("Administración COIIPA - Emisión de lotes");
 		frmAdministracinCoiipa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frmAdministracinCoiipa.setBounds(100, 100, 1500, 900);
 		frmAdministracinCoiipa.setMinimumSize(new Dimension(1500,900));
@@ -224,7 +224,7 @@ public class LotesView {
 	}
 	private JLabel getLbTitulo_1() {
 		if (lbTitulo == null) {
-			lbTitulo = new JLabel("Envío de lotes");
+			lbTitulo = new JLabel("Emisión de lotes");
 			lbTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 			lbTitulo.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
 		}
