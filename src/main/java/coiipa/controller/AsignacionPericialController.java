@@ -9,6 +9,7 @@ import coiipa.model.dto.AsignacionPericialDTO;
 import coiipa.model.dto.InformeDTO;
 import coiipa.model.dto.InscripcionPericialDTO;
 import coiipa.model.model.AsignacionPericialModel;
+import coiipa.model.model.InformeModel;
 import coiipa.view.AsignacionPericialView;
 import coiipa.view.asignacionpericial.AnulacionView;
 import util.SwingUtil;
@@ -191,9 +192,11 @@ public class AsignacionPericialController {
 	 */
 	public void anularAsignacion(String motivo) {		
 		model.anularAsignacion(String.valueOf(new Timestamp(System.currentTimeMillis()).getTime()), motivo, id);
+		InformeDTO informe = new InformeModel().findInforme(this.id);
+		new InformeModel().addInformePericial(informe.getNombre(), informe.getTelefono(), informe.getCorreo(), informe.getDni(), informe.getDescripcion(), Boolean.valueOf(informe.getUrgencia()));
 		model.anularPerito(dniPerito);
+		anulacionView.dispose();
 		SwingUtil.showInformationDialog("Se ha anulado la asignación del perito al informe\nEl motivo de dicha cancelación es el siguiente:\n" + motivo);
-		actualizarTablas();
-		anulacionView.dispose();		
+		actualizarTablas();		
 	}
 }

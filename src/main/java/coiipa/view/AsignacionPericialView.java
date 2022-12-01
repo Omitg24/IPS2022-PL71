@@ -23,6 +23,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 /**
  * Título: Clase AsignacionPericialView
@@ -170,9 +173,23 @@ public class AsignacionPericialView extends JFrame {
 		if (pnAsignacion == null) {
 			pnAsignacion = new JPanel();
 			pnAsignacion.setBackground(Color.WHITE);
-			pnAsignacion.setLayout(new GridLayout(0, 2, 0, 0));
-			pnAsignacion.add(getPnInformes());
-			pnAsignacion.add(getPnPeritos());
+			GridBagLayout gbl_pnAsignacion = new GridBagLayout();
+			gbl_pnAsignacion.columnWidths = new int[] {1025, 450, 0};
+			gbl_pnAsignacion.rowHeights = new int[]{338, 0};
+			gbl_pnAsignacion.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+			gbl_pnAsignacion.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+			pnAsignacion.setLayout(gbl_pnAsignacion);
+			GridBagConstraints gbc_pnInformes = new GridBagConstraints();
+			gbc_pnInformes.fill = GridBagConstraints.BOTH;
+			gbc_pnInformes.insets = new Insets(0, 0, 0, 5);
+			gbc_pnInformes.gridx = 0;
+			gbc_pnInformes.gridy = 0;
+			pnAsignacion.add(getPnInformes(), gbc_pnInformes);
+			GridBagConstraints gbc_pnPeritos = new GridBagConstraints();
+			gbc_pnPeritos.fill = GridBagConstraints.BOTH;
+			gbc_pnPeritos.gridx = 1;
+			gbc_pnPeritos.gridy = 0;
+			pnAsignacion.add(getPnPeritos(), gbc_pnPeritos);
 		}
 		return pnAsignacion;
 	}
@@ -200,8 +217,8 @@ public class AsignacionPericialView extends JFrame {
 		if (pnInformes == null) {
 			pnInformes = new JPanel();
 			pnInformes.setBackground(Color.WHITE);
-			pnInformes.setLayout(new BorderLayout(0, 0));
 			pnInformes.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Lista de informes periciales no asignados", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			pnInformes.setLayout(new GridLayout(0, 1, 0, 0));
 			pnInformes.add(getSPInformes());
 		}
 		return pnInformes;

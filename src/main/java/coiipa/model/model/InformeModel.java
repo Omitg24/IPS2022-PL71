@@ -2,6 +2,7 @@ package coiipa.model.model;
 
 import java.util.UUID;
 
+import coiipa.model.dto.InformeDTO;
 import util.Database;
 
 /**
@@ -20,6 +21,9 @@ public class InformeModel {
 	public static final String SQL_OBTENER_INFORMES_POR_DNI=
 			"select * from Informes where dni=?";
 	
+	public static final String SQL_FIND_INFORME = 
+			"SELECT * FROM INFORMES WHERE ID=?";
+	
 	/**
 	 * Método que inserta una nueva solicitud de informe pericial
 	 */
@@ -34,5 +38,9 @@ public class InformeModel {
 	public boolean isSent(String dni) {
 		if (!db.executeQueryArray(SQL_OBTENER_INFORMES_POR_DNI, dni).isEmpty()) return true;
 		else return false;
+	}
+	
+	public InformeDTO findInforme(String id) {
+		return db.executeQueryPojo(InformeDTO.class, SQL_FIND_INFORME, id).get(0);
 	}
 }

@@ -19,8 +19,7 @@ public class AsignacionPericialModel {
 	 * Constante SQL_BUSCAR_INFORMES_NO_ASIGNADOS
 	 */
 	private static final String SQL_BUSCAR_INFORMES_NO_ASIGNADOS=
-			"Select * from Informes  where id "
-			+ "not in (select id from SolicitudPericial )";
+			"Select * from Informes where id not in (select id from SolicitudPericial)";
 	/**
 	 * Constante SQL_BUSCAR_PERITOS
 	 */
@@ -95,7 +94,7 @@ public class AsignacionPericialModel {
 	 * @param id
 	 */
 	public void asignarInforme(String dni, String  id) {
-		db.executeUpdate(SQL_ASIGNAR_INFORME, id,dni,"Asignada",new Timestamp(System.currentTimeMillis()));
+		db.executeUpdate(SQL_ASIGNAR_INFORME, id, dni,"Asignada",new Timestamp(System.currentTimeMillis()));
 	}
 	
 	/**
