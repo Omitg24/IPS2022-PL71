@@ -271,6 +271,7 @@ public class InscripcionController {
 		if (!preinscritos.contains(aux) || aux == null) {
 			curso = model.getCursoTituloFecha(tituloCurso, fechaCurso);
 			if (curso.getNplazas() > 0) {
+				model.borrarInscripcion(curso,colegiado);
 				model.inscribir(curso, colegiado);
 				crearEmision();
 				actualizarTablas();
@@ -424,9 +425,9 @@ public class InscripcionController {
 	private void confirmarCancelacion(JustificanteCancelarInscripcion j, CursoDTO c) {
 		model.actualizarEstadoInscripcion(colegiado.getDniColegiado(), 
 				c.getTituloCurso(), c.getFechaCurso(), "Cancelado");
+		model.aumentarPlazas(c.getTituloCurso(), c.getFechaCurso());
 		j.getFrame().dispose();
-		getTablaCursosSolicitados();
-		getTablaCursosEnEspera();
+		actualizarTablas();
 	}
 
 	private boolean comprobarCancelable(CursoDTO c) {
@@ -452,9 +453,9 @@ public class InscripcionController {
 			return false;
 		}
 		else {
-			LocalDate fecha = Date.valueOf(c.getFechaCurso()).toLocalDate();
-			LocalDate hoy=LocalDate.now().minusDays(7);
-			if(hoy.isAfter(fecha)) {
+			LocalDate fecha = Date.valueOf(c.getFechaCurso()).toLocalDate().minusDays(7);
+			LocalDate hoy=LocalDate.now();
+			if(!hoy.isBefore(fecha)) {
 				SwingUtil.showInformationDialog(
 						"No se puede cancelar la inscripción a falta de una semana");
 				return false;

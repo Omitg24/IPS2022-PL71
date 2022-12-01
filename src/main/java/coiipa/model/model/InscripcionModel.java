@@ -59,7 +59,14 @@ public class InscripcionModel {
 	 * Constante SQL_REDUCIR_NPLAZAS
 	 */
 	private static final String SQL_REDUCIR_NPLAZAS = 
-			"update curso set nplazas=nplazas-1 where titulocurso = ? and fechaCurso=?";	
+			"update curso set nplazas=nplazas-1 where titulocurso = ? and fechaCurso=?";
+	
+	/**
+	 * Constante SQL_AUMENTAR_NPLAZAS
+	 */
+	private static final String SQL_AUMENTAR_NPLAZAS = 
+			"update curso set nplazas=nplazas+1 where titulocurso = ? and fechaCurso=?";	
+	
 	/**
 	 * Constante SQL_ACTUALIZAR_INSCRITO
 	 */
@@ -108,6 +115,8 @@ public class InscripcionModel {
 	 */
 	private static final String SQL_OBTENER_LISTA_ESPERA = 
 			"SELECT * FROM INSCRIBE WHERE ESTADOS='Pendiente' AND ENESPERA=TRUE AND DNICOLEGIADO=? ORDER BY POSICIONESPERA";
+
+	private static final String SQL_BORRAR_INSCRIBIRSE = "DELETE from INSCRIBE WHERE dniColegiado=? and titulocurso=? and fechacurso=?";
 
 	/**
 	 * Método getCursosDisponibles
@@ -246,5 +255,14 @@ public class InscripcionModel {
 	 */
 	public void insertarEnEspera(String dniColegiado, String tituloCurso, String fechaCurso, String fecha, int posicion) {
 		db.executeUpdate(SQL_INSERTAR_EN_ESPERA, dniColegiado, tituloCurso, fechaCurso, fecha, posicion);
+	}
+
+	public void borrarInscripcion(CursoDTO curso, ColegiadoDTO colegiado) {
+		db.executeUpdate(SQL_BORRAR_INSCRIBIRSE, colegiado.getDniColegiado(),
+				curso.getTituloCurso(), curso.getFechaCurso());
+	}
+	
+	public void aumentarPlazas(String titulo,String fecha) {
+		db.executeUpdate(SQL_AUMENTAR_NPLAZAS, titulo, fecha);	
 	}
 }
