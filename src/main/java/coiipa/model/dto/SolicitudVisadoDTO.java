@@ -14,17 +14,28 @@ public class SolicitudVisadoDTO {
 	private String nombre;
 	private String apellidos;
 	private String descripcion;
+	private String estado;
 	
 	public SolicitudVisadoDTO(){}
 	
 
 
-	public SolicitudVisadoDTO(String id, String dni, String nombre, String apellidos, String descripcion) {
+	public SolicitudVisadoDTO(String id, String dni, String nombre, String apellidos, 
+			String descripcion,String estado) {
 		this.id = id;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.descripcion = descripcion;
+		this.estado = estado;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 

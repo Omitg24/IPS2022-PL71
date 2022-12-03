@@ -41,7 +41,9 @@ public class CursoController {
 		}else if (comprobarTitulo(view.getTitulo())){
 			view.reiniciarCampos();
 			SwingUtil.showErrorDialog("El curso ya existe");
-		}else {
+		}else if ( view.getCancelable() && comprobarDevolucion()) {
+			SwingUtil.showErrorDialog("Porcentaje de devolución no válido");
+			}else {
 			String titulo = view.getTitulo();
 			Date fecha = Util.isoStringToDate(view.getFecha());
 			double precio = Double.parseDouble(view.getPrecio());
@@ -55,6 +57,16 @@ public class CursoController {
 			view.reiniciarCampos();
 			String str= "'" + titulo+ "'";
 			SwingUtil.showInformationDialog("El curso " +str+" se ha añadido correctamente");
+		}
+	}
+
+	private boolean comprobarDevolucion() {
+		try {
+			double d =Double.parseDouble(view.getDevoculicion());
+			if(d<0 || d>100) return true;
+			return false;
+		} catch (NumberFormatException e) {
+			return true;
 		}
 	}
 

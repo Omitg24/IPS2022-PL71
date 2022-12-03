@@ -19,8 +19,7 @@ public class AsignacionVisadorModel {
 	
 	
 	private static final String SQL_BUSCAR_SOLICITUDES_VISADO=
-			"Select * from SolicitudVisado  where id "
-			+ "not in (select id from AsignaVisado )";
+			"Select * from SolicitudVisado order by estado desc";
 	
 	private static final String SQL_BUSCAR_PERITOS=
 			"Select c.* from InscripcionPericial i, Colegiado c "
@@ -28,6 +27,9 @@ public class AsignacionVisadorModel {
 	
 	private static final String SQL_ASIGNAR_VISADO=
 			"Insert into AsignaVisado (id,dniVisado,dniVisador,fecha) values (?,?,?,?)";
+
+	private static final String SQL_ACTUALIZAR_ESTADO_SOLICITUD = 
+			"update SolicitudVisado set estado=? where id=?";
 
 	
 	private Database db = new Database();
@@ -44,6 +46,11 @@ public class AsignacionVisadorModel {
 	public void asignarVisado(String dniVisado, String  id,String dniVisador) {
 		db.executeUpdate(SQL_ASIGNAR_VISADO, id,dniVisado,dniVisador,
 				Date.valueOf(LocalDate.now()));
+	}
+
+	public void actualizarEstadoSolicitud(String id, String estado) {
+		db.executeUpdate(SQL_ACTUALIZAR_ESTADO_SOLICITUD,estado,id);
+		
 	}
 	
 	

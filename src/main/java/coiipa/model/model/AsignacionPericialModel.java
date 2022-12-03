@@ -24,8 +24,11 @@ public class AsignacionPericialModel {
 	 * Constante SQL_BUSCAR_PERITOS
 	 */
 	private static final String SQL_BUSCAR_PERITOS=
-			"Select i.*,c.estadoAsignacionPericial from InscripcionPericial i, Colegiado c "
+			"Select i.*,c.estadoAsignacionPericial,c.estadoAsignacionVisado from InscripcionPericial i, Colegiado c "
 			+ "where i.dniColegiado=c.dniColegiado and i.estadoInscripcion=? order by i.posicionLista";
+	private static final String SQL_BUSCAR_VISADORES=
+			"Select i.*,c.estadoAsignacionPericial,c.estadoAsignacionVisado from InscripcionPericial i, Colegiado c "
+			+ "where i.dniColegiado=c.dniColegiado and i.estadoInscripcion=? order by i.posicionListaVisado";
 	/**
 	 * Constante SQL_ASIGNAR_INFORME
 	 */
@@ -37,6 +40,12 @@ public class AsignacionPericialModel {
 	private static final String SQL_ACTUALIZAR_ESTADO_PERITO = 
 			"Update Colegiado set estadoAsignacionPericial=? where dniColegiado=?";
 	/**
+	 * Constante SQL_ACTUALIZAR_ESTADO_PERITO
+	 */
+	private static final String SQL_ACTUALIZAR_ESTADO_VISADOR = 
+			"Update Colegiado set estadoAsignacionVisado=? where dniColegiado=?";
+	
+	/**
 	 * Constante SQL_ACTUALIZAR_TURNO
 	 */
 	private static final String SQL_ACTUALIZAR_TURNO = "update InscripcionPericial set posicionLista=? "
@@ -45,7 +54,17 @@ public class AsignacionPericialModel {
 	 * Constante SQL_ACTUALIZAR_TURNO_ANT
 	 */
 	private static final String SQL_ACTUALIZAR_TURNO_ANT =  "update InscripcionPericial set posicionLista= posicionLista-1 "
-			+ "where dniColegiado=?";;
+			+ "where dniColegiado=?";
+	/**
+	 * Constante SQL_ACTUALIZAR_TURNO
+	 */
+	private static final String SQL_ACTUALIZAR_TURNO_VISADO = "update InscripcionPericial set posicionListaVisado=? "
+			+ "where dniColegiado=?";
+	/**
+	 * Constante SQL_ACTUALIZAR_TURNO_ANT
+	 */
+	private static final String SQL_ACTUALIZAR_TURNO_VISADO_ANT =  "update InscripcionPericial set posicionListaVisado= posicionListaVisado-1 "
+			+ "where dniColegiado=?";
 	/**
 	 * Constante SQL_BUSCAR_ASIGNACIONES_ASIGNADAS
 	 */	
@@ -81,6 +100,14 @@ public class AsignacionPericialModel {
 	}
 	
 	/**
+	 * Método getPeritos
+	 * @return peritos
+	 */
+	public List<InscripcionPericialDTO> getVisadores(){
+		return db.executeQueryPojo(InscripcionPericialDTO.class, SQL_BUSCAR_VISADORES, "Inscrito");
+	}
+	
+	/**
 	 * Método getAsignaciones 
 	 * @return asignaciones
 	 */
@@ -104,6 +131,31 @@ public class AsignacionPericialModel {
 	public void asignarPerito(String dni) {
 		db.executeUpdate(SQL_ACTUALIZAR_ESTADO_PERITO, "Asignado", dni);
 	}
+	
+	/**
+	 * Método asignarPerito
+	 * @param dni
+	 */
+	public void asignarVisador(String dni) {
+		db.executeUpdate(SQL_ACTUALIZAR_ESTADO_VISADOR, "Asignado", dni);
+	}
+	
+	/**
+	 * Método actualizarTurno
+	 * @param dni
+	 */
+	public void actualizarTurnoVisado(String dni) {
+		int turno =  new InscripcionPericialModel().getUltimoTurnoVisado()+1;
+		db.executeUpdate(SQL_ACTUALIZAR_TURNO_VISADO,turno,dni);
+	}
+	
+	/**
+	 * Método actualizarTurnoAnt
+	 * @param dniPeritoAnterior
+	 */
+	public void actualizarTurnoVisadoAnt(String dniPeritoAnterior) {
+		db.executeUpdate(SQL_ACTUALIZAR_TURNO_VISADO_ANT,dniPeritoAnterior);		
+	}	
 	
 	/**
 	 * Método actualizarTurno

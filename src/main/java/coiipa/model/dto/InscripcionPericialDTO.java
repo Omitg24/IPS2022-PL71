@@ -5,8 +5,10 @@ public class InscripcionPericialDTO {
     private String dniColegiado ;
     public String fechaInscripcion;
     private int posicionLista;
+    private int posicionListaVisado;
     private String estadoInscripcion ;
     private String estadoAsignacionPericial;
+    private String estadoAsignacionVisado;
     private String fecha;
     
     public InscripcionPericialDTO() {}
@@ -36,7 +38,36 @@ public class InscripcionPericialDTO {
 		this.estadoInscripcion = estadoInscripcion;
 		this.estadoAsignacionPericial=estadoAsignacionPericial;
 		this.fecha=fecha;
+	}
+	
+	public InscripcionPericialDTO(String dniColegiado, String fechaInscripcion, int posicionLista, int posicionListaVisado,
+			String estadoInscripcion,String estadoAsignacionPericial,String estadoAsignacionVisado,String fecha) {
+		this.dniColegiado = dniColegiado;
+		this.fechaInscripcion = fechaInscripcion;
+		this.posicionLista = posicionLista;
+		this.posicionListaVisado= posicionListaVisado;
+		this.estadoInscripcion = estadoInscripcion;
+		this.estadoAsignacionPericial=estadoAsignacionPericial;
+		this.estadoAsignacionVisado= estadoAsignacionVisado;
+		this.fecha=fecha;
 	}	
+
+	
+	public int getPosicionListaVisado() {
+		return posicionListaVisado;
+	}
+
+	public void setPosicionListaVisado(int posicionListaVisado) {
+		this.posicionListaVisado = posicionListaVisado;
+	}
+
+	public String getEstadoAsignacionVisado() {
+		return estadoAsignacionVisado;
+	}
+
+	public void setEstadoAsignacionVisado(String estadoAsignacionVisado) {
+		this.estadoAsignacionVisado = estadoAsignacionVisado;
+	}
 
 	public String getFecha() {
 		return fecha;

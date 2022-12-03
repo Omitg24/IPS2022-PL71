@@ -29,6 +29,10 @@ public class InscripcionPericialModel {
 			"Select * from InscripcionPericial where estadoInscripcion=?"
 			+ "order by (posicionLista) desc";
 	
+	private static final String SQL_OBTENER_ULTIMO_TURNO_VISADO = 
+			"Select * from InscripcionPericial where estadoInscripcion=?"
+			+ "order by (posicionListaVisado) desc";
+	
 	public void insertarInscripcionPericial(InscripcionPericialDTO d) {
 		Util.validateNotNull(d, "La inscripcion no puede ser null");
 		Util.validateNotNull(d.getDniColegiado(), "El dni no puede ser null");
@@ -66,6 +70,11 @@ public class InscripcionPericialModel {
 	public int getUltimoTurnoPericial() {
 		return db.executeQueryPojo(InscripcionPericialDTO.class, 
 				SQL_OBTENER_ULTIMO_TURNO,"Inscrito").get(0).getPosicionLista();
+	}
+
+	public int getUltimoTurnoVisado() {
+		return db.executeQueryPojo(InscripcionPericialDTO.class, 
+				SQL_OBTENER_ULTIMO_TURNO_VISADO,"Inscrito").get(0).getPosicionListaVisado();
 	}
 
 }

@@ -25,10 +25,12 @@ CREATE TABLE Colegiado (
    	estadoColegiado varchar(40) NOT NULL,
     estadoCuota varchar NOT NULL,
     estadoAsignacionPericial varchar NOT NULL,
+    estadoAsignacionVisado varchar ,
     fechaColegiacion date,
 
     CONSTRAINT PK_COLEGIADO PRIMARY KEY (dniColegiado),
     CONSTRAINT CK_ESTADO_ASIGNACION_PERICIAL CHECK (estadoAsignacionPericial in ('Asignado','NA')),
+    CONSTRAINT CK_ESTADO_ASIGNACION_VISADO CHECK (estadoAsignacionVisado in ('Asignado','NA')),
     CONSTRAINT CK_ESTADO_INSCRIBE CHECK (estadoColegiado in ('Pendiente','Anulado','Activo')),
     CONSTRAINT CK_ESTADO_CUOTA_INSCRIBE CHECK (estadoCuota in ('Pagado','Emitido','Pendiente')),
     CONSTRAINT CK_TIPO_COLEGIADO CHECK (tipoColegiado in ('Colegiado', 'Pre-colegiado'))
@@ -71,6 +73,7 @@ CREATE TABLE InscripcionPericial (
     dniColegiado varchar(20),
     fechaInscripcion date NOT NULL,
     posicionLista decimal,
+    posicionListaVisado decimal,
     estadoInscripcion varchar NOT NULL,
 
     CONSTRAINT PK_INSCRIPCION PRIMARY KEY (dniColegiado, fechaInscripcion),
@@ -110,10 +113,12 @@ CREATE TABLE SolicitudVisado (
 	nombre varchar,
 	apellidos varchar,
 	descripcion varchar NOT NULL,
+    estado varchar,
 	
 	CONSTRAINT PK_SOLICITUD_VISADO PRIMARY KEY (id, dni),
 	CONSTRAINT FK_SOLICITUD_VISADO_INFORMES FOREIGN KEY (id) REFERENCES Informes(id),
-	CONSTRAINT FK_SOLICITUD_VISADO_COLEGIADO FOREIGN KEY (dni) REFERENCES Colegiado(dni)
+	CONSTRAINT FK_SOLICITUD_VISADO_COLEGIADO FOREIGN KEY (dni) REFERENCES Colegiado(dni),
+    CONSTRAINT CK_SOLICITUD_VISADO_ESTADO CHECK (estado in ('Asignada', 'NA','Realizada','Anulada'))
 );
 
 CREATE TABLE AsignaVisado (

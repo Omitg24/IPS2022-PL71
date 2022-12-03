@@ -332,7 +332,7 @@ public class CursoView {
 	}
 	private JLabel getLbDevolucion() {
 		if (lbDevolución == null) {
-			lbDevolución = new JLabel("Política devolución:");
+			lbDevolución = new JLabel("Política devolución(%):");
 			lbDevolución.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			lbDevolución.setDisplayedMnemonic('P');
 		}

@@ -100,8 +100,9 @@ public class AsignacionVisadorView extends JFrame {
 			pnCentro = new JPanel();
 			pnCentro.setBackground(Color.WHITE);
 			pnCentro.setLayout(new GridLayout(0, 2, 0, 0));
-			pnCentro.add(getPnVisadores());
 			pnCentro.add(getPnVisados());
+			pnCentro.add(getPnVisadores());
+
 		}
 		return pnCentro;
 	}

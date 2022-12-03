@@ -6,18 +6,18 @@ delete from Inscribe;
 delete from Colegiado;
 delete from Curso;
 
-insert into Colegiado (dniColegiado, nombreColegiado, apellidosColegiado, localidadColegiado, telefonoColegiado, titulacionColegiado, centroColegiado, anioColegiado, ibanColegiado, numeroColegiado, tipoColegiado, estadoColegiado, estadoCuota, estadoAsignacionPericial, fechaColegiacion) values
-	('73489205A' ,'Manolo', 'Sanchez Rodriguez', 'Vallecas', '472381032', 'Panadero', 'Uniovi', 1986, '3412431434789', '2020-2306', 'Colegiado', 'Pendiente', 'Emitido', 'NA', '2020-9-13'),
-	('64356345K' ,'Pablo', 'Gonzalez Martinez', 'Langreo', '584022938', 'Carnicero', 'Fundacion Minabo', 1983, '5342453352345', '2022-2598', 'Colegiado', 'Anulado', 'Pendiente', 'NA', '2021-6-16'),
-	('47281293H' ,'Juan', 'Garcia del Monte Quemao', 'La Palma', '544356789', 'Bombero', 'Grupo Entuhuerto', 1991, '7653756537456', '2020-2359', 'Colegiado', 'Activo', 'Pagado', 'Asignado', '2022-1-3'),
-	('12343124J' ,'Hernesto', 'Alvarez Alvarez', 'Rias Baixas', '549999789', 'Ganadero', 'Grupo Entuhuerto', 1989, '6185993986753', '2019-2278', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', '2019-12-29'),
-	('45465743B' ,'Kazuya', 'Mishima Wins', 'Kyoto', '549566543', 'Ingeniero', 'Fundación Topota', 1995, '5467892034987', '2020-2306', 'Pre-colegiado', 'Anulado', 'Pendiente', 'Asignado', '2021-8-23'),
-	('93857839W' ,'Hermenegildo', 'Gonzalez Rose', 'Terrasa', '546743453', 'Bombero', 'Unitoby', 1990, '6185993986753', '2018-2123', 'Pre-colegiado', 'Pendiente', 'Pagado', 'NA', '2022-3-2'),
-	('21246789G' ,'Sol', 'Bad Guy', 'Shibuya', '654342645', 'Camionero', 'Gears SA', 1990, '3948579283019213', '2018-2125', 'Colegiado', 'Pendiente', 'Pagado', 'Asignado', '2021-2-8'),
-	('23485976B' ,'Bruce', 'Wayne Batman', 'Gotham', '634323654', 'Caballerro Oscuro', 'Wayne Enterprises', 1988, '7654674567456774', '2021-2449', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', '2020-1-24'),
-	('98764523R' ,'Geralt', 'de Rivia', 'Cracovia', '967317211', 'Brujo', 'Fundacion Minabo', 1981, '2341236574982345', '2022-2564', 'Colegiado', 'Pendiente', 'Pagado', 'NA', '2021-3-3'),
-	('62456243T' ,'Tony', 'Stark', 'Manhattan', '932849182', 'Superhéroe', 'Stark Industries', 1968, '4899918200186755', '2022-2571', 'Colegiado', 'Pendiente', 'Pagado', 'NA', '2020-2-3'),
-	('23415123L' ,'Kratos', 'Fantasma de Esparta', 'Esparta', '932849182', 'Asesino de dioses', 'Sony', 1995, '1999811277564738', '2022-2570', 'Colegiado', 'Pendiente', 'Emitido', 'NA', '2019-1-8')
+insert into Colegiado (dniColegiado, nombreColegiado, apellidosColegiado, localidadColegiado, telefonoColegiado, titulacionColegiado, centroColegiado, anioColegiado, ibanColegiado, numeroColegiado, tipoColegiado, estadoColegiado, estadoCuota, estadoAsignacionPericial,estadoAsignacionVisado ,fechaColegiacion) values
+	('73489205A' ,'Manolo', 'Sanchez Rodriguez', 'Vallecas', '472381032', 'Panadero', 'Uniovi', 1986, '3412431434789', '2020-2306', 'Colegiado', 'Pendiente', 'Emitido', 'NA','NA', '2020-9-13'),
+	('64356345K' ,'Pablo', 'Gonzalez Martinez', 'Langreo', '584022938', 'Carnicero', 'Fundacion Minabo', 1983, '5342453352345', '2022-2598', 'Colegiado', 'Anulado', 'Pendiente', 'NA','NA', '2021-6-16'),
+	('47281293H' ,'Juan', 'Garcia del Monte Quemao', 'La Palma', '544356789', 'Bombero', 'Grupo Entuhuerto', 1991, '7653756537456', '2020-2359', 'Colegiado', 'Activo', 'Pagado', 'Asignado','NA', '2022-1-3'),
+	('12343124J' ,'Hernesto', 'Alvarez Alvarez', 'Rias Baixas', '549999789', 'Ganadero', 'Grupo Entuhuerto', 1989, '6185993986753', '2019-2278', 'Pre-colegiado', 'Activo', 'Emitido', 'NA', 'NA','2019-12-29'),
+	('45465743B' ,'Kazuya', 'Mishima Wins', 'Kyoto', '549566543', 'Ingeniero', 'Fundación Topota', 1995, '5467892034987', '2020-2306', 'Pre-colegiado', 'Anulado', 'Pendiente', 'Asignado','NA', '2021-8-23'),
+	('93857839W' ,'Hermenegildo', 'Gonzalez Rose', 'Terrasa', '546743453', 'Bombero', 'Unitoby', 1990, '6185993986753', '2018-2123', 'Pre-colegiado', 'Pendiente', 'Pagado', 'NA','NA', '2022-3-2'),
+	('21246789G' ,'Sol', 'Bad Guy', 'Shibuya', '654342645', 'Camionero', 'Gears SA', 1990, '3948579283019213', '2018-2125', 'Colegiado', 'Pendiente', 'Pagado', 'Asignado', 'NA','2021-2-8'),
+	('23485976B' ,'Bruce', 'Wayne Batman', 'Gotham', '634323654', 'Caballerro Oscuro', 'Wayne Enterprises', 1988, '7654674567456774', '2021-2449', 'Pre-colegiado', 'Activo', 'Emitido', 'NA','NA', '2020-1-24'),
+	('98764523R' ,'Geralt', 'de Rivia', 'Cracovia', '967317211', 'Brujo', 'Fundacion Minabo', 1981, '2341236574982345', '2022-2564', 'Colegiado', 'Pendiente', 'Pagado', 'NA','NA', '2021-3-3'),
+	('62456243T' ,'Tony', 'Stark', 'Manhattan', '932849182', 'Superhéroe', 'Stark Industries', 1968, '4899918200186755', '2022-2571', 'Colegiado', 'Pendiente', 'Pagado', 'NA', 'NA','2020-2-3'),
+	('23415123L' ,'Kratos', 'Fantasma de Esparta', 'Esparta', '932849182', 'Asesino de dioses', 'Sony', 1995, '1999811277564738', '2022-2570', 'Colegiado', 'Pendiente', 'Emitido', 'NA','NA', '2019-1-8')
 ;
 
 Insert into Curso (titulocurso,fechacurso,precio,fechainicioins,fechafinins,estadoc,nplazas,cancelable, porcentajeDevolucion)
@@ -70,14 +70,14 @@ values
 ('98764523R','Desarrollo de bases de datos','2022-12-04','2022-10-12','Pendiente','ninguna', true, 4)
 ;
 
-Insert into InscripcionPericial(dniColegiado, fechaInscripcion, posicionLista, estadoInscripcion)
+Insert into InscripcionPericial(dniColegiado, fechaInscripcion, posicionLista,posicionListaVisado, estadoInscripcion)
 VALUES
-('73489205A', '2020-09-11', 1, 'Inscrito'),
-('64356345K', '2026-08-23', 2, 'Inscrito'),
-('12343124J', '2019-11-25', 4, 'No inscrito'),
-('93857839W', '2022-02-21', 3, 'Inscrito'),
-('23485976B', '2020-01-11', 8, 'No inscrito'),
-('98764523R', '2021-02-23', 4, 'Inscrito')
+('73489205A', '2020-09-11', 1,1, 'Inscrito'),
+('64356345K', '2026-08-23', 2,2, 'Inscrito'),
+('12343124J', '2019-11-25', 4,4, 'No inscrito'),
+('93857839W', '2022-02-21', 3,3, 'Inscrito'),
+('23485976B', '2020-01-11', 8, 8,'No inscrito'),
+('98764523R', '2021-02-23', 4,4, 'Inscrito')
 ;
 
 Insert into SolicitudPericial(dni, id,fecha, estado)
@@ -97,11 +97,11 @@ values
 ('98764523R', '23543563', 'Urgente', 'Geralt','gerardodelarivera@capcom.com', '844303989', 'No esta mal')
 ;
 
-Insert into SolicitudVisado(id, dni, nombre, apellidos, descripcion )
+Insert into SolicitudVisado(id, dni, nombre, apellidos, descripcion ,estado)
 values
-('cf4c7f82-6f4c-11ed-a1eb-0242ac120002','73489205A','Manolo', 'Sanchez Rodriguez','Visar último informe realizado'),
-('e145cc0c-6f4c-11ed-a1eb-0242ac120002','64356345K','Pablo', 'Gonzalez Martinez','Visar último informe realizado' ),
-('e8af6494-6f4c-11ed-a1eb-0242ac120002','93857839W', 'Hermenegildo', 'Gonzalez Rose','Visar último informe realizado'),
-('f1d826aa-6f4c-11ed-a1eb-0242ac120002','98764523R', 'Geralt', 'de Rivia','Visar último informe realizado')
+('cf4c7f82-6f4c-11ed-a1eb-0242ac120002','73489205A','Manolo', 'Sanchez Rodriguez','Visar último informe realizado', 'NA'),
+('e145cc0c-6f4c-11ed-a1eb-0242ac120002','64356345K','Pablo', 'Gonzalez Martinez','Visar último informe realizado' , 'NA'),
+('e8af6494-6f4c-11ed-a1eb-0242ac120002','93857839W', 'Hermenegildo', 'Gonzalez Rose','Visar último informe realizado', 'NA'),
+('f1d826aa-6f4c-11ed-a1eb-0242ac120002','98764523R', 'Geralt', 'de Rivia','Visar último informe realizado', 'NA')
 ;
 
