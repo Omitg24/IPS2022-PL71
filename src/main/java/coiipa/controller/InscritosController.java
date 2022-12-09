@@ -1,5 +1,6 @@
 package coiipa.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.swing.table.TableModel;
@@ -143,9 +144,9 @@ public class InscritosController {
 	public void cancelarCurso() {
 		if (!view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 5)
 				.equals("Cancelado") 
-//				&& LocalDate.parse(view.getTableCursos().getModel()
-//						.getValueAt(view.getTableCursos().getSelectedRow(), 1).toString())
-//						.isAfter(LocalDate.now())
+				&& LocalDate.parse(view.getTableCursos().getModel()
+						.getValueAt(view.getTableCursos().getSelectedRow(), 1).toString())
+						.isAfter(LocalDate.now())
 						) {
 			String fecha = view.getTableCursos().getValueAt(view.getTableCursos().getSelectedRow(), 1).toString();
 			String tituloCurso = view.getTableCursos().getValueAt(view.getTableCursos().getSelectedRow(), 0).toString();
@@ -164,8 +165,8 @@ public class InscritosController {
 		} else if (view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 5)
 				.equals("Cancelado"))
 			SwingUtil.showErrorDialog("El curso seleccionado ya ha sido cancelado");
-//		else {
-//			SwingUtil.showErrorDialog("No se puede cancelar un curso en proceso");
-//		}
+		else {
+			SwingUtil.showErrorDialog("No se puede cancelar un curso en proceso");
+		}
 	}
 }
