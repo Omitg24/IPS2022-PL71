@@ -1,6 +1,5 @@
 package coiipa.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.swing.table.TableModel;
@@ -143,25 +142,30 @@ public class InscritosController {
 	 */
 	public void cancelarCurso() {
 		if (!view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 5)
-				.equals("Cancelado") && 
-				LocalDate.parse(view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 1).toString()).isAfter(LocalDate.now())) {
+				.equals("Cancelado") 
+//				&& LocalDate.parse(view.getTableCursos().getModel()
+//						.getValueAt(view.getTableCursos().getSelectedRow(), 1).toString())
+//						.isAfter(LocalDate.now())
+						) {
 			String fecha = view.getTableCursos().getValueAt(view.getTableCursos().getSelectedRow(), 1).toString();
 			String tituloCurso = view.getTableCursos().getValueAt(view.getTableCursos().getSelectedRow(), 0).toString();
 
 			List<InscritoDTO> inscritos = model.getListaInscritosAEliminar(tituloCurso, fecha);
+			double devolver = 0.0;
 			if (!inscritos.isEmpty())
-				model.anularInscripcion(inscritos);
+				devolver = model.anularInscripcion(inscritos);
 			model.cancelarCurso(tituloCurso, fecha);
 
 			view.getTableCursos().getModel().setValueAt("Cancelado", view.getTableCursos().getSelectedRow(), 5);
-			getListaInscritos();
-			getListaEspera();
-			SwingUtil.showInformationDialog("El curso '" + tituloCurso + "' con fecha " + fecha + " ha sido cancelado");
+			//getListaInscritos();
+			//getListaEspera();
+			SwingUtil.showInformationDialog("El curso '" + tituloCurso + "' con fecha " + fecha + " ha sido cancelado.\n"
+					+ "Cantidad a devolver: " + devolver);
 		} else if (view.getTableCursos().getModel().getValueAt(view.getTableCursos().getSelectedRow(), 5)
 				.equals("Cancelado"))
 			SwingUtil.showErrorDialog("El curso seleccionado ya ha sido cancelado");
-		else {
-			SwingUtil.showErrorDialog("No se puede cancelar un curso en proceso");
-		}
+//		else {
+//			SwingUtil.showErrorDialog("No se puede cancelar un curso en proceso");
+//		}
 	}
 }

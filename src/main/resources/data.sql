@@ -82,9 +82,9 @@ VALUES
 
 Insert into SolicitudPericial(dni, id,fecha, estado)
 VALUES
-('23485976B', '53451213', "1662400529998", 'Asignada'),
-('64356345K', '59951567', "1664400529998", 'Anulada'),
-('12343124J', '23543563', "1666400529998", 'Realizada')
+('23485976B', '53451213', "1622400529998", 'Asignada'),
+('64356345K', '59951567', "1614400529998", 'Anulada'),
+('12343124J', '23543563', "1646400529998", 'Realizada')
 ;
 
 Insert into Informes(dni, id, urgencia, nombre, correo, telefono, descripcion)

@@ -280,7 +280,7 @@ public class PericialesView {
 	}
 	private JLabel getLbApertura_1() {
 		if (lbApertura == null) {
-			lbApertura = new JLabel("Listado de peritos");
+			lbApertura = new JLabel("Listado de periciales");
 			lbApertura.setHorizontalAlignment(SwingConstants.CENTER);
 			lbApertura.setFont(new Font("Baskerville Old Face", Font.BOLD, 60));
 		}

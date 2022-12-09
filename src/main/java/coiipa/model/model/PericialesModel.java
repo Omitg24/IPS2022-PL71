@@ -68,8 +68,8 @@ public class PericialesModel {
 		List<AsignacionPericialDTO> fechas = db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_FECHAS_DISPONIBLES);
 		List<String> result = new ArrayList<>();
 		for (AsignacionPericialDTO f : fechas) {
-			if (!result.contains(f.getFecha()))
-				result.add(f.getFecha());
+			if (!result.contains(f.getFecha().split("-")[0]))
+				result.add(f.getFecha().split("-")[0]);
 		}
 		result.add("Todas");
 
@@ -84,7 +84,7 @@ public class PericialesModel {
 		List<AsignacionPericialDTO> asig = db.executeQueryPojo(AsignacionPericialDTO.class, SQL_OBTENER_ASIGNACIONES);
 		List<AsignacionPericialDTO> result = new ArrayList<>();
 		for (AsignacionPericialDTO a : asig) {
-			if (a.getFecha().equals(fecha)) {
+			if (a.getFecha().split("-")[0].equals(fecha.split("-")[0])) {
 				result.add(a);
 			}
 		}

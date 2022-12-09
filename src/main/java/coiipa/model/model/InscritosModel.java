@@ -31,7 +31,7 @@ public class InscritosModel {
 	 * Constante SQL_LISTAR_INSCRITOS
 	 */
 	public static final String SQL_LISTAR_INSCRITOS = "Select DISTINCT apellidosColegiado , nombreColegiado, "
-			+ " fecha, estadoS, abonado from Curso c, Inscribe i ,Colegiado o "
+			+ " fecha, estadoS, i.abonado from Curso c, Inscribe i ,Colegiado o "
 			+ "where c.tituloCurso = i.tituloCurso and i.dniColegiado = o.dniColegiado "
 			+ "and i.estados<> 'Pendiente' "
 			+ "and i.estados<> 'Cancelado' "
@@ -42,7 +42,7 @@ public class InscritosModel {
 	 * Constante SQL_LISTAR_INSCRITOS_CON_CURSOS
 	 */
 	public static final String SQL_LISTAR_INSCRITOS_A_ELIMINAR = "Select i.dniColegiado , i.tituloCurso, "
-			+ " o.apellidosColegiado, o.nombreColegiado, i.fechaCurso, i.fecha, i.estadoS from Curso c, Inscribe i ,Colegiado o "
+			+ " o.apellidosColegiado, o.nombreColegiado, i.fechaCurso, i.fecha, i.estadoS, i.abonado from Curso c, Inscribe i ,Colegiado o "
 			+ "where c.tituloCurso = i.tituloCurso and i.dniColegiado = o.dniColegiado and "
 			+ "i.tituloCurso = ? and i.fechaCurso = ? order by o.apellidosColegiado, o.nombreColegiado";
 	/**
@@ -126,13 +126,17 @@ public class InscritosModel {
 	/**
 	 * Método anularInscripcion
 	 * @param tituloCurso
+	 * @return 
 	 */
-	public void anularInscripcion(List<InscritoDTO> inscritos) {
+	public double anularInscripcion(List<InscritoDTO> inscritos) {
+		double result = 0.0;
 		for (InscritoDTO i : inscritos) {
 			if (i.getTituloCurso() != null) {
+				result += i.getAbonado();
 				String incidencia = "Se han devuelto " + i.getAbonado() + "€ por la cancelación del curso " + i.getTituloCurso();
 				db.executeUpdate(SQL_CANCELAR_INSCRIPCION, incidencia, i.getTituloCurso(), i.getFechaCurso());
 			}
 		}		
+		return result;
 	}
 }
